@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lotus.Core
+namespace Innoventory.Lotus.DataAccess.Abstract
 {
-    public class Class1
+    public interface IRepositoryContainer
     {
+
     }
 }

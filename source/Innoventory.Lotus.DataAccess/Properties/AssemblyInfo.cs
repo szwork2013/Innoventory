@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Innoventory.Lotus.Core")]
+[assembly: AssemblyTitle("Innoventory.Lotus.DataAccess")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Innoventory.Lotus.Core")]
+[assembly: AssemblyProduct("Innoventory.Lotus.DataAccess")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("859daaf0-d37c-4f69-8d26-0c96ec8c5349")]
+[assembly: Guid("a07f9441-6a5e-40bd-9bda-9918bced4adb")]
 
 // Version information for an assembly consists of the following four values:
 //
