@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.Domain", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.DataAccess", "Innoventory.Lotus.DataAccess\Innoventory.Lotus.DataAccess.csproj", "{CFC1B219-5EF3-4008-A178-4CBAA92112B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.ViewModels", "Innoventory.Lotus.ViewModels\Innoventory.Lotus.ViewModels.csproj", "{D7F7EA22-AE02-47B6-A438-C8F850435F0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{CFC1B219-5EF3-4008-A178-4CBAA92112B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFC1B219-5EF3-4008-A178-4CBAA92112B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFC1B219-5EF3-4008-A178-4CBAA92112B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F7EA22-AE02-47B6-A438-C8F850435F0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F7EA22-AE02-47B6-A438-C8F850435F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F7EA22-AE02-47B6-A438-C8F850435F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F7EA22-AE02-47B6-A438-C8F850435F0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

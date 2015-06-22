@@ -61,5 +61,7 @@ namespace Innoventory.Lotus.Domain.DataEntities
         [ForeignKey("ProductId")]
         public virtual Product Product { get; set; }
 
+        //TODO: Add field for ImageId as foregn key
+
     }
 }

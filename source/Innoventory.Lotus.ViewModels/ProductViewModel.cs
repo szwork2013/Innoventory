@@ -1,49 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
-namespace Innoventory.Lotus.Domain.DataEntities
+namespace Innoventory.Lotus.ViewModels
 {
-    public class Product
+    public class ProductViewModel
     {
         [Key]
+        [ScaffoldColumn(false)]
         public Guid ProductId { get; set; }
 
-        [StringLength(200)]
-        public string ProductName { get; set; }
-
+        [ScaffoldColumn(false)]
         public int ItemType { get; set; }
 
+        
+        public string ProductName { get; set; }
         public string Description { get; set; }
-
         public string Remarks { get; set; }
-
         public Guid SubCategoryId { get; set; }
-
         public decimal? ReorderPoint { get; set; }
-
         public decimal? ReorderQuantity { get; set; }
-
         public Guid UnitId { get; set; }
-
         public int LastModifiedBy { get; set; }
-
         public DateTime LastModifiedOn { get; set; }
-
         public Guid? ImageId { get; set; }
-
         public Guid SalesOrderUnitId { get; set; }
-
         public Guid PurchaseOrderUnitId { get; set; }
-
-        public virtual IList<ProductVariant> ProductVariants { get; set; }
-
-        [ForeignKey("SubCategoryId")]
-        public virtual SubCategory SubCategory { get; set; }
 
     }
 }
