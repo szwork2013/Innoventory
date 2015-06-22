@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Innoventory.Lotus.Domain.DataEntities
 {
-    class ProductVariant
+    public class ProductVariant
     {
         [Key]
         public Guid ProductVariantId { get; set; }
