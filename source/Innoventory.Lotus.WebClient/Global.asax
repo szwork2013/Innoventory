@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Innoventory.Lotus.WebClient.WebApiApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Innoventory.Lotus.WebClient.MvcApplication" Language="C#" %>
