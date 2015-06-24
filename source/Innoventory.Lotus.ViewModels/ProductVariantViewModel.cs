@@ -20,6 +20,9 @@ namespace Innoventory.Lotus.ViewModels
         [Browsable(false)]
         public Guid ProductVariantId { get; set; }
 
+        [ScaffoldColumn(false)]
+        [Browsable(false)]
+        [DataMember(Name = "productId")]
         public Guid ProductId { get; set; }
 
         [DataMember(Name = "barCode")]
@@ -74,7 +77,7 @@ namespace Innoventory.Lotus.ViewModels
         [Browsable(false)]
         public Guid? ImageId { get; set; }
 
-        [DataMember(Name = "SKUCode")]
+        [DataMember(Name = "skuCode")]
         public string SKUCode { get; set; }
 
         [DataMember(Name = "lastPurchasePrice")]

@@ -26,6 +26,22 @@ namespace Innoventory.Lotus.WebClient
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                        "~/Scripts/angular.min.js",
+                        "~/Scripts/angular.min.js.map"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                       "~/Scripts/angular.min.js",
+                       "~/Scripts/angular.min.js.map"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular-ui").IncludeDirectory(
+                            "~/Scripts/angular-ui", "*.js", true));
+
+            bundles.Add(new ScriptBundle("~/bundles/custom-scripts").IncludeDirectory(
+                            "~/Scripts/custom-scripts", "*.js", true));
+
         }
     }
 }
