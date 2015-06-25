@@ -40,7 +40,7 @@ namespace Innoventory.Lotus.WebClient
                             "~/Scripts/angular-ui", "*.js", true));
 
             bundles.Add(new ScriptBundle("~/bundles/custom-scripts").IncludeDirectory(
-                            "~/Scripts/custom-scripts", "*.js", true));
+                            "~/custom-scripts", "*.js", true));
 
         }
     }
