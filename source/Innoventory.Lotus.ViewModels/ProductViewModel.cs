@@ -33,13 +33,21 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "remarks")]
         public string Remarks { get; set; }
 
+        [DataMember(Name="categoryId")]
+        [ScaffoldColumn(false)]
+        [Browsable(false)]
+        public Guid CategoryId { get; set; }
+
+        [DataMember(Name = "categoryName")]
+        public string CategoryName { get; set; }
+
         [DataMember(Name = "subCategoryId")]
         [ScaffoldColumn(false)]
         [Browsable(false)]
         public Guid SubCategoryId { get; set; }
 
         [DataMember(Name = "subCategoryName")]
-        public Guid SubCategoryName { get; set; }
+        public string SubCategoryName { get; set; }
 
         [DataMember(Name = "reorderPoint")]
         public decimal? ReorderPoint { get; set; }
@@ -65,8 +73,12 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "salesOrderUnit")]
         public string SalesOrderUnit { get; set; }
 
-        [DataMember(Name = "itemType")]
+        [DataMember(Name = "purchaseUnitId")]
         public Guid PurchaseOrderUnitId { get; set; }
+        
+        [DataMember(Name = "purchaseUnitName")]
+        public Guid PurchaseOrderUnitName { get; set; }
+
 
     }
 }

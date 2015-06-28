@@ -40,6 +40,8 @@ namespace Innoventory.Lotus.Domain.DataEntities
 
         public Guid PurchaseOrderUnitId { get; set; }
 
+        public Guid CategorySubCategoryMapId { get; set; }
+
         public virtual IList<ProductVariant> ProductVariants { get; set; }
 
         [ForeignKey("SubCategoryId")]

@@ -1,0 +1,54 @@
+﻿
+
+<h2>ProductList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Item Type
+                </th>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                    Description
+                </th>
+
+                <th>
+                    Category
+                </th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="product in productCtrl.products" ng-click="productCtrl.showProduct">
+                <td>
+                    {{product.productId}}
+                </td>
+                <td>
+                    {{product.productName}}
+                </td>
+                <td>
+                    {{product.description}}
+                </td>
+                <td>
+                    {{product.category}}
+                </td>
+                <td>
+                    {{product.description}}
+                </td>
+                <td>
+                    {{product.description}}
+                </td>
+
+                
+            </tr>
+
+        </tbody>
+    </table>
+</div>

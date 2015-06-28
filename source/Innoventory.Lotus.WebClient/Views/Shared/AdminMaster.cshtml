@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = "~/Views/Shared/InnoventoryMaster.cshtml";
+}
+
+<div id="header">
+    <div class="title">
+    </div>
+</div>
+<nav class="navbar navbar-inverse" id="main-menu">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="/" class="header-small hidden-lg hidden-md" id="header-mini">
+                @*<img src="~/CImages/LEA_Title_Small.png" />*@
+            </a>
+            <div class="header-container hidden-sm hidden-xs" id="hc-mini">
+            </div>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="main-menu">
+                <li>@Html.ActionLink("Category", "List", "Category") </li>
+                <li>@Html.ActionLink("Sub Category", "List", "SubCategory") </li>
+                <li>@Html.ActionLink("Item Attribute", "List", "ItemAttribute") </li>
+                <li>@Html.ActionLink("View Order", "OrderList", "OrderAdmin") </li>
+                <li>@Html.ActionLink("Product", "ProductList", "Product") </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="container-fluid content col-sm-10">
+    @RenderBody()
+</section>
+

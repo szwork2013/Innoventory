@@ -53,9 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryViewModel.cs" />
     <Compile Include="ProductVariantViewModel.cs" />
     <Compile Include="ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubCategoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

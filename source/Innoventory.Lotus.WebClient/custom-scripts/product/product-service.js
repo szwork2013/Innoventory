@@ -1,11 +1,24 @@
 ﻿
-var productService = function () {
+var productService = ["$http", function () {
 
     
-    var product = {};
-    var products = []; // Product list
-    
 
-    
-    
-};
+    var getProducts = function () {
+
+        service.product = { productName: "World|" };
+              
+
+        return service.product;
+    };
+
+    var service = {
+        product: {},
+        products: [], // Product list
+        getProducts: getProducts,
+
+    };
+
+    return service;
+
+
+}]

@@ -17,10 +17,10 @@ namespace Innoventory.Lotus.Domain.DataEntities
         [StringLength(500)]
         public string BarCode { get; set; }
 
-        public decimal? MasterPackQty { get; set; }
-        
-        public decimal? InnerPackQty { get; set; }
-        
+        public decimal PurchaseOrderVolume { get; set; }
+
+        public decimal SalesOrderVolume { get; set; }
+
         public decimal? CaseLength { get; set; }
         
         public decimal? CaseWidth { get; set; }
@@ -37,7 +37,7 @@ namespace Innoventory.Lotus.Domain.DataEntities
         
         public decimal? ProductWeight { get; set; }
         
-        public int? LastVendorId { get; set; }
+        public Guid? LastVendorId { get; set; }
         
         public bool IsSellable { get; set; }
         
@@ -55,13 +55,14 @@ namespace Innoventory.Lotus.Domain.DataEntities
         
         public decimal ShelfPrice { get; set; }
         
-        public Guid PromotionId { get; set; }
+        public Guid? PromotionId { get; set; }
+
+        public Guid ProductVariantType { get; set; }
 
         
         [ForeignKey("ProductId")]
         public virtual Product Product { get; set; }
-
-        //TODO: Add field for ImageId as foregn key
+               
 
     }
 }
