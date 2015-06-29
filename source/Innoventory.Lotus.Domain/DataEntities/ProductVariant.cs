@@ -17,52 +17,53 @@ namespace Innoventory.Lotus.Domain.DataEntities
         [StringLength(500)]
         public string BarCode { get; set; }
 
+        
         public decimal PurchaseOrderVolume { get; set; }
 
         public decimal SalesOrderVolume { get; set; }
 
         public decimal? CaseLength { get; set; }
-        
+
         public decimal? CaseWidth { get; set; }
-        
+
         public decimal? CaseHeight { get; set; }
-        
+
         public decimal? CaseWeight { get; set; }
-        
+
         public decimal? ProductLength { get; set; }
-        
+
         public decimal? ProductWidth { get; set; }
-        
+
         public decimal? ProductHeight { get; set; }
-        
+
         public decimal? ProductWeight { get; set; }
-        
+
         public Guid? LastVendorId { get; set; }
-        
+
         public bool IsSellable { get; set; }
-        
+
         public bool IsPurchaseable { get; set; }
-        
+
         public bool IsActive { get; set; }
-        
+
         public Guid? ImageId { get; set; }
-        
+
         public string SKUCode { get; set; }
-        
+
         public decimal LastPurchasePrice { get; set; }
-        
+
         public decimal BasePrice { get; set; }
-        
+
         public decimal ShelfPrice { get; set; }
-        
+
         public Guid? PromotionId { get; set; }
 
         public Guid ProductVariantType { get; set; }
 
-        
+
         [ForeignKey("ProductId")]
         public virtual Product Product { get; set; }
-               
+
 
     }
 }

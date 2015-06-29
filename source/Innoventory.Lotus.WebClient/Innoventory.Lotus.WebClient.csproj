@@ -166,6 +166,7 @@
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="custom-scripts\category\category-controller.js" />
     <Content Include="custom-scripts\category\category-service.js" />
+    <Content Include="custom-scripts\product\innoventory.js" />
     <Content Include="custom-scripts\product\product-service.js" />
     <Content Include="custom-scripts\product\product-directives.js" />
     <Content Include="favicon.ico" />
