@@ -18,9 +18,9 @@ namespace Innoventory.Lotus.Domain.DataEntities
         public string BarCode { get; set; }
 
         
-        public decimal PurchaseOrderVolume { get; set; }
+        public decimal PurchaseUnitVolume { get; set; }
 
-        public decimal SalesOrderVolume { get; set; }
+        public decimal SalesUnitVolume { get; set; }
 
         public decimal? CaseLength { get; set; }
 
@@ -38,7 +38,7 @@ namespace Innoventory.Lotus.Domain.DataEntities
 
         public decimal? ProductWeight { get; set; }
 
-        public Guid? LastVendorId { get; set; }
+        public Guid? LastSupplierId { get; set; }
 
         public bool IsSellable { get; set; }
 
@@ -59,6 +59,8 @@ namespace Innoventory.Lotus.Domain.DataEntities
         public Guid? PromotionId { get; set; }
 
         public Guid ProductVariantType { get; set; }
+
+        public decimal AvailableQuantity { get; set; }
 
 
         [ForeignKey("ProductId")]

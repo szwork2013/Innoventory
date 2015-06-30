@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+
+namespace Innoventory.Lotus.Domain.DataEntities
+{
+    public class Currency
+    {
+        [Key]
+        public Guid CurrencyID { get; set; }
+
+        [StringLength(3)]
+        public string CurrencyCode { get; set; }
+        
+        [StringLength(3)]
+        public string CurrencySymbol { get; set; }
+        
+        [StringLength(3)]
+        public string Currency { get; set; }
+
+
+    }
+}

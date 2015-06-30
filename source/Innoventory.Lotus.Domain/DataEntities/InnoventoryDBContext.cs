@@ -17,8 +17,24 @@ namespace Innoventory.Lotus.Domain.DataEntities
 
        
 
-        public DbSet<Product> Product { get; set; }
-        public DbSet<ProductVariant> ProductVariant { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductVariant> ProductVariants { get; set; }
+
+        public DbSet<Address> Addresses { get; set; }
+               
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<AttributeValueList> AttributeValueLists { get; set; }
+
+        public DbSet<CategorySubCategoryAttributeMap> CategorySubCategoryAttributeMaps { get; set; }
+
+        public DbSet<Country> Countries { get; set; }
+
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<CustomerProductVariantPrice> CustomerProductVariantPrices{ get; set; }
+
         
 
         
