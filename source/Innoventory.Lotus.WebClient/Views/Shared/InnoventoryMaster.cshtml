@@ -1,0 +1,51 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>InnoventoryMaster</title>
+    @Styles.Render("~/Content/css")
+    @*<link rel="SHORTCUT ICON" href="@Url.Content("~/Content/SiteIcon.ico")" />*@
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+        
+    
+</head>
+<body>
+    @using FluentBootstrap
+
+    <header class="jumbotron hidden-sm hidden-xs">
+
+        
+        <a href="/" class="title hidden-sm hidden-xs">
+            <img src="~/Images/StellaTitle.png" />
+        </a>
+                        
+        <section class="right-content">
+            <article id="account">
+               
+                @Html.ActionLink("Contact Us", "ContactUs", new { action = "ContactUs", controller = "home" })
+            </article>
+            <br />
+
+            
+        </section>
+    </header>
+    
+    <div ng-app="innoventoryApp">
+
+        @RenderBody()
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/custom-scripts")
+    @Scripts.Render("~/bundles/angular-ui")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
