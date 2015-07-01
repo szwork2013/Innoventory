@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.Domain.DataEntities
 {
-    class SystemUser
+    public class UserAccount
     {
         [Key]
         public Guid UserID { get; set; }
@@ -21,6 +21,8 @@ namespace Innoventory.Lotus.Domain.DataEntities
         public string Contact2 { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
+
+        public virtual List<UserAccountUserRoleMap> UserAccountRoleMaps { get; set; }
 
     }
 }

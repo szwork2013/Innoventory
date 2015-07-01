@@ -23,6 +23,6 @@ namespace Innoventory.Lotus.Domain.DataEntities
         [ForeignKey("CategorySubCategoryAttributeMapID")]
         public virtual CategorySubCategoryAttributeMap CategorySubCategoryAttributeMap { get; set; }
 
-
+        public virtual List<ProductVariantAttributeValue> ProductVariantAttributeValue { get; set; }
     }
 }

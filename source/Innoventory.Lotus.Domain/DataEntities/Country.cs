@@ -13,7 +13,7 @@ namespace Innoventory.Lotus.Domain.DataEntities
         public Guid CountryID { get; set; }
 
         [StringLength(50)]
-        public string Country { get; set; }
+        public string CountryName { get; set; }
 
         [StringLength(5)]
         public string CountryCode { get; set; }
@@ -24,8 +24,8 @@ namespace Innoventory.Lotus.Domain.DataEntities
 
         public Guid CurrencyID { get; set; }
 
-        [ForeignKey("CurrencyId")]
-        public virtual Currency Currency { get; set; }
+
+        public virtual List<Address> Addresses { get; set; }
 
 
 

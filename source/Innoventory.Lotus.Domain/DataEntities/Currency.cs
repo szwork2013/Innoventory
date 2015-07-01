@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -18,7 +19,9 @@ namespace Innoventory.Lotus.Domain.DataEntities
         public string CurrencySymbol { get; set; }
         
         [StringLength(3)]
-        public string Currency { get; set; }
+        public string CurrencyFullName { get; set; }
+
+      
 
 
     }

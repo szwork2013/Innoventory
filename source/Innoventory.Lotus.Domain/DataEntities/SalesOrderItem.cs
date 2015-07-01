@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Innoventory.Lotus.Domain.DataEntities
 {
-    class SalesOrderItem
+    public class SalesOrderItem
     {
 
         [Key]

@@ -8,22 +8,25 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.Domain.DataEntities
 {
-    public class ProductVariantImageFileMap
+    public class UserAccountUserRoleMap
     {
         [Key]
         [Column(Order = 1)]
-        public Guid ProductVariantId { get; set; }
+        public Guid UserId { get; set; }
+
 
         [Key]
         [Column(Order = 2)]
-        public Guid ImageFileId { get; set; }
+        public Guid UserRoleId { get; set; }
 
 
-        [ForeignKey("ProductVariantId")]
-        public virtual ProductVariant ProductVariant { get; set; }
+        [ForeignKey("UserId")]
+        public virtual UserAccount UserAccounts { get; set; }
 
-        [ForeignKey("ImageFileId")]
-        public virtual List<ImageFile> ImageFiles{ get; set; }
+
+        [ForeignKey("UserRoleId")]
+        public virtual UserRole UserRoles { get; set; }
+
 
 
     }

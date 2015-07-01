@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.Domain.DataEntities
 {
-    class CustomerProductVariantPrice
+    public class CustomerProductVariantPrice
     {
         [Key]
         public Guid CustomerProductVariantPriceId { get; set; }

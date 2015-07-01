@@ -24,15 +24,11 @@ namespace Innoventory.Lotus.Domain.DataEntities
 
         public Guid SubCategoryId { get; set; }
 
-        public decimal? ReorderPoint { get; set; }
+        public Guid SalesVolumeMeasureId { get; set; }
 
-        public decimal? ReorderQuantity { get; set; }
-
-        public Guid UnitId { get; set; }
-
-        public int LastModifiedBy { get; set; }
-
-        public DateTime LastModifiedOn { get; set; }
+        public Guid PurchaseVolumeMeasureId { get; set; }
+        public Guid ModifiedBy { get; set; }
+        public DateTime ModifiedOn { get; set; }
 
         public Guid? ImageId { get; set; }
 
@@ -46,6 +42,8 @@ namespace Innoventory.Lotus.Domain.DataEntities
 
         [ForeignKey("SubCategoryId")]
         public virtual SubCategory SubCategory { get; set; }
+
+        
 
     }
 }

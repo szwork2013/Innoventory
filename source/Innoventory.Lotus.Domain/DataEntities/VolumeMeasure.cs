@@ -11,16 +11,12 @@ namespace Innoventory.Lotus.Domain.DataEntities
     public class VolumeMeasure
     {
         [Key]
-        public Guid VolumeMeasureMappingId { get; set; }
-        public Guid PrimaryVMId { get; set; }
-        public Guid SecondaryVMId { get; set; }
-        public decimal Ratio { get; set; }
+        public Guid VolumeMeasureId { get; set; }
+        [StringLength(50)]
+        public string VolumeMeasureName { get; set; }
+        [StringLength(5)]
+        public string ShortName { get; set; }
 
-        [ForeignKey("PrimaryVMId")]
-        public VolumeMeasure PrimaryVM { get; set; }
-
-        [ForeignKey("SecondaryVMId")]
-        public VolumeMeasure SecondaryVM { get; set; }
 
     }
 }

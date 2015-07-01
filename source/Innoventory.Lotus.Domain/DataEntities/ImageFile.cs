@@ -20,5 +20,10 @@ namespace Innoventory.Lotus.Domain.DataEntities
 
         public byte[] ImageData { get; set; }
 
+        public virtual ProductVariant  ProductVariant { get; set; }
+
+        public virtual Product Product { get; set; }
+
+        public virtual List<ProductVariantImageFileMap> ProductVariantImageFileMaps { get; set; } 
     }
 }

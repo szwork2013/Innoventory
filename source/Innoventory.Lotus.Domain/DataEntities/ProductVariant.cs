@@ -17,10 +17,13 @@ namespace Innoventory.Lotus.Domain.DataEntities
         [StringLength(500)]
         public string BarCode { get; set; }
 
-        
         public decimal PurchaseUnitVolume { get; set; }
 
         public decimal SalesUnitVolume { get; set; }
+
+        public decimal? ReorderPoint { get; set; }
+
+        public decimal? ReorderQuantity { get; set; }
 
         public decimal? CaseLength { get; set; }
 
@@ -46,7 +49,7 @@ namespace Innoventory.Lotus.Domain.DataEntities
 
         public bool IsActive { get; set; }
 
-        public Guid? ImageId { get; set; }
+        public Guid? ImageFileId { get; set; }
 
         public string SKUCode { get; set; }
 
@@ -62,9 +65,17 @@ namespace Innoventory.Lotus.Domain.DataEntities
 
         public decimal AvailableQuantity { get; set; }
 
+        public Guid ModifiedBy { get; set; }
+
+        public DateTime ModifiedOn { get; set; }
+
 
         [ForeignKey("ProductId")]
         public virtual Product Product { get; set; }
+
+        public virtual List<ProductVariantAttributeValue> ProductVariantAttributeValues { get; set; }
+
+        public virtual List<ImageFile> ImageFiles { get; set; }
 
 
     }

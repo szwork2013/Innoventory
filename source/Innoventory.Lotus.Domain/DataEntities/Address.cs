@@ -22,17 +22,17 @@ namespace Innoventory.Lotus.Domain.DataEntities
         [StringLength(100)]
         public string AddressLine2 { get; set; }
 
-        [StringLength(100)]
+        [StringLength(60)]
         public string City { get; set; }
 
-        [StringLength(100)]
+        [StringLength(12)]
         public string PostCode { get; set; }
 
         [StringLength(100)]
         public string State { get; set; }
 
-        [StringLength(100)]
-        public Guid CountryID { get; set; }
+
+        public Guid CountryId { get; set; }
 
         public bool DefaultAddress { get; set; }
 

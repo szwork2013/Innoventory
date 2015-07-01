@@ -12,19 +12,19 @@ namespace Innoventory.Lotus.Domain.DataEntities
     {
 
         [Key]
-        [Column(Order=1)]
-        public Guid AttributeValueListId { get; set; }
+        [Column(Order = 1)]
+        public Guid ProductVariantId { get; set; }
 
         [Key]
         [Column(Order = 2)]
-        public Guid ProductVariantId { get; set; }
+        public Guid AttributeValueListId { get; set; }
 
         [ForeignKey("AttributeValueListId")]
-        public virtual List<AttributeValueList> AttributeValueLists { get; set; }
+        public virtual AttributeValueList AttributeValueList { get; set; }
 
 
         [ForeignKey("ProductVariantId")]
-        public virtual List<ProductVariant> ProductVariants { get; set; }
+        public virtual ProductVariant ProductVariant { get; set; }
 
 
     }
