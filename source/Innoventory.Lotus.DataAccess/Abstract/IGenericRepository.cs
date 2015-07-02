@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.DataAccess.Abstract
 {
-    public interface IGenericRepository<T> : IDisposable where T : class
+    public interface IGenericRepository
+    {
+
+    }
+    public interface IGenericRepository<T> : IGenericRepository, IDisposable where T : class
     {
         IQueryable<T> GetAll();
 
