@@ -17,61 +17,61 @@ namespace Innoventory.Lotus.Domain.DataEntities
 
 
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> ProductSet { get; set; }
         public DbSet<ProductVariant> ProductVariants { get; set; }
 
-        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Address> AddressSet { get; set; }
 
 
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Category> CategorySet { get; set; }
 
-        public DbSet<AttributeValueList> AttributeValueLists { get; set; }
+        public DbSet<AttributeValueList> AttributeValueListSet { get; set; }
 
-        public DbSet<CategorySubCategoryMap> CategorySubCategoryMaps { get; set; }
+        public DbSet<CategorySubCategoryMap> CategorySubCategoryMapSet { get; set; }
 
-        public DbSet<ProductAttribute> ProductAttributes { get; set; }
+        public DbSet<ProductAttribute> ProductAttributeSet { get; set; }
 
-        public DbSet<ProductVariantAttributeValue> ProductVariantAttributeValues { get; set; }
+        public DbSet<ProductVariantAttributeValue> ProductVariantAttributeValueSet { get; set; }
 
-        public DbSet<ProductVariantImageFileMap> ProductVariantImageFileMaps { get; set; }
+        public DbSet<ProductVariantImageFileMap> ProductVariantImageFileMapSet { get; set; }
 
-        public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
+        public DbSet<PurchaseOrder> PurchaseOrderSet { get; set; }
 
-        public DbSet<PurchaseOrderItem> PurchaseOrderItems { get; set; }
+        public DbSet<PurchaseOrderItem> PurchaseOrderItemSet { get; set; }
 
-        public DbSet<CategorySubCategoryAttributeMap> CategorySubCategoryAttributeMaps { get; set; }
+        public DbSet<CategorySubCategoryAttributeMap> CategorySubCategoryAttributeMapSet { get; set; }
 
-        public DbSet<Country> Countries { get; set; }
+        public DbSet<Country> CountrySet { get; set; }
 
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Customer> CustomerSet { get; set; }
 
-        public DbSet<CustomerProductVariantPrice> CustomerProductVariantPrices { get; set; }
+        public DbSet<CustomerProductVariantPrice> CustomerProductVariantPriceSet { get; set; }
 
-        public DbSet<PurchaseReturn> PurchaseReturns { get; set; }
+        public DbSet<PurchaseReturn> PurchaseReturnSet { get; set; }
 
-        public DbSet<PurchaseReturnItem> PurchaseReturnItems { get; set; }
+        public DbSet<PurchaseReturnItem> PurchaseReturnItemSet { get; set; }
 
-        public DbSet<SalesOrder> SalesOrders { get; set; }
+        public DbSet<SalesOrder> SalesOrderSet { get; set; }
 
-        public DbSet<SalesOrderItem> SalesOrderItems { get; set; }
+        public DbSet<SalesOrderItem> SalesOrderItemSet { get; set; }
 
-        public DbSet<SalesReturn> SalesReturns { get; set; }
-
-
-        public DbSet<SalesReturnItem> SalesReturnItems { get; set; }
-
-        public DbSet<SubCategory> SubCategories { get; set; }
-
-        public DbSet<Supplier> Suppliers { get; set; }
-
-        public DbSet<UserAccount> UserAccounts { get; set; }
-
-        public DbSet<VolumeMeasure> VolumeMeasurs { get; set; }
+        public DbSet<SalesReturn> SalesReturnSet { get; set; }
 
 
-        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<SalesReturnItem> SalesReturnItemSet { get; set; }
 
-        public DbSet<UserAccountUserRoleMap> UserAccountUserRoleMaps { get; set; }
+        public DbSet<SubCategory> SubCategorySet { get; set; }
+
+        public DbSet<Supplier> SupplierSet { get; set; }
+
+        public DbSet<UserAccount> UserAccountSet { get; set; }
+
+        public DbSet<VolumeMeasure> VolumeMeasureSet { get; set; }
+
+
+        public DbSet<UserRole> UserRoleSet { get; set; }
+
+        public DbSet<UserAccountUserRoleMap> UserAccountUserRoleMapSet { get; set; }
         
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -83,9 +83,6 @@ namespace Innoventory.Lotus.Domain.DataEntities
             modelBuilder.Entity<ProductVariantImageFileMap>().HasKey(x => new { x.ProductVariantId, x.ImageFileId });
 
             modelBuilder.Entity<ProductVariant>().Property(x => x.AvailableQuantity).HasPrecision(8, 2);
-
-         
-
 
         }
     }
