@@ -11,11 +11,11 @@ namespace Innoventory.Lotus.DataAccess.Concrete
 {
     [Export(typeof(IAttributeValueListRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class AddressRepository : GenericRepository<Address>, IAttributeValueListRepository
+    public class AttributeValueListRepository : GenericRepository<AttributeValueList>, IAttributeValueListRepository
     {
-        public Address FindById(Guid addressId)
+        public Address FindById(Guid attributeValueId)
         {
-            return GetAll().FirstOrDefault(x => x.AddressID == addressId);
+            return GetAll().FirstOrDefault(x => x.AttributeValueListId == attributeValueId);
         }
     }
 }

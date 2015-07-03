@@ -59,15 +59,168 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\GenericRepository.cs" />
-    <Compile Include="Abstract\IAddressRepository.cs" />
-    <Compile Include="Abstract\ICategoryRepository.cs" />
+    <Compile Include="Abstract\IAddressRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\IAttributeValueListRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\ICategoryRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\ICategorySubCategoryAttributeMapRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\ICategorySubCategoryMapRepository.cs" />
+    <Compile Include="Abstract\ICountryRepository.cs" />
+    <Compile Include="Abstract\ICurrencyRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\ICustomerProductVariantPriceRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\ICustomerRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Abstract\IGenericRepository.cs" />
+    <Compile Include="Abstract\IImageFileRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\IOrganisationSetupRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\IProductAttibuteRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\IProductRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\IProductVariantAttributeValueRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\IProductVariantImageFileMapRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\IProductVariantRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\IPurchaseOrderItemRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\IPurchaseOrderRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Abstract\IRepositoryContainer.cs" />
+    <Compile Include="Abstract\ISalesOrderItemRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\ISalesOrderRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\ISalesReturnItemRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\ISalesReturnRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Abstract\ISubCategoryRepository.cs" />
+    <Compile Include="Abstract\ISupplierRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\IUserAccountRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\IUserAccountUserRoleMapRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\IUserRoleRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Abstract\IVolumeMeasureMapRepository.cs" />
+    <Compile Include="Abstract\IVolumeMeasureRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Abstract\Transaction.cs" />
-    <Compile Include="Concrete\AddressRepository.cs" />
+    <Compile Include="Concrete\AddressRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\AttributeValueListRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Concrete\CategoryRepository.cs" />
+    <Compile Include="Concrete\CategroySubCategoryAttributeMapRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\CategroySubCategoryMapRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\CountryRepository.cs" />
+    <Compile Include="Concrete\CurrencyRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\CustomerProductVariantPriceRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\CustomerRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\ICategorySubCategoryMapRepository.cs" />
+    <Compile Include="Concrete\ImageFileRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\OrganisationSetupRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\ProductAttibuteRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\ProductRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\ProductVariantAttributeValueRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\ProductVariantImageFileMapRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\ProductVariantRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\PurchaseOrderItemRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\PurchaseOrderRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\SalesOrderItemRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\SalesOrderRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\SalesReturnItemRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\SalesReturnRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Concrete\SubCategoryRepository.cs" />
+    <Compile Include="Concrete\SupplierRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\UserAccountRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\UserAccountUserRoleMapRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\UserRoleRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\VolumeMeasureMapRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete\VolumeMeasureRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
