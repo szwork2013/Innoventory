@@ -172,8 +172,7 @@
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="custom-scripts\category\category-controller.js" />
     <Content Include="custom-scripts\category\category-service.js" />
-    <Content Include="custom-scripts\common-app.js" />
-    <Content Include="custom-scripts\product\innoventory.js" />
+    <Content Include="custom-scripts\shared\innoventory.js" />
     <Content Include="custom-scripts\product\product-model.js" />
     <Content Include="custom-scripts\product\product-service.js" />
     <Content Include="custom-scripts\product\product-directives.js" />
@@ -196,7 +195,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="custom-scripts\product\product-controller.js" />
-    <Content Include="custom-scripts\app.js" />
+    <Content Include="custom-scripts\shared\app.js" />
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />

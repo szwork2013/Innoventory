@@ -1,4 +1,4 @@
-﻿(function (ia) {
+﻿(function (i) {
 
 
 })(window.Innoventory);

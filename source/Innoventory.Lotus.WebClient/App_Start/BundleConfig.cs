@@ -34,9 +34,8 @@ namespace Innoventory.Lotus.WebClient
             bundles.Add(new ScriptBundle("~/bundles/angular-ui").IncludeDirectory(
                             "~/Scripts/angular-ui", "*.js", true));
 
-            bundles.Add(new ScriptBundle("~/bundles/custom-scripts").IncludeDirectory(
-                            "~/custom-scripts/product", "*.js", true).Include(
-                            "~/custom-scripts/app.js"));
+            bundles.Add(new ScriptBundle("~/bundles/shared-scripts").IncludeDirectory(
+                                                        "~/custom-scripts/shared", "*.js"));
 
             BundleTable.EnableOptimizations = false;
         }
