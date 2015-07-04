@@ -36,7 +36,7 @@ namespace Innoventory.Lotus.WebClient
 
             bundles.Add(new ScriptBundle("~/bundles/custom-scripts").IncludeDirectory(
                             "~/custom-scripts/product", "*.js", true).Include(
-                            "~/custom-scripts/innoventoryApp.js"));
+                            "~/custom-scripts/app.js"));
 
             BundleTable.EnableOptimizations = false;
         }

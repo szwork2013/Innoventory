@@ -5,14 +5,15 @@
         return window._;
     });
 
-    var innoventoryApp = angular.module("innoventoryApp", ["_", "product-directives"]);
+    var commonModule = angular.module('common', ["_", 'ngRoute', 'ui.bootstrap']);
+
+    var innoventoryApp = angular.module("innoventoryApp", ['common', "product-directives"]);
 
     innoventoryApp.controller("productController", productController);
 
     innoventoryApp.factory("productService", productService);
 
     innoventoryApp.factory("innoventoryService", innoventoryService);
-
-   
+      
 
 })()
