@@ -34,7 +34,7 @@
         </section>
     </header>
     
-    <div ng-app="innoventoryApp">
+    <div ng-app="mainApp">
 
         @RenderBody()
 
@@ -43,8 +43,9 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/custom-scripts")
+    
     @Scripts.Render("~/bundles/angular-ui")
+    @Scripts.Render("~/bundles/shared-scripts")
     @RenderSection("scripts", required: false)
 </body>
 </html>
