@@ -13,7 +13,7 @@ namespace Innoventory.Lotus.DataAccess.Concrete
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class AttributeValueListRepository : GenericRepository<AttributeValueList>, IAttributeValueListRepository
     {
-        public Address FindById(Guid attributeValueId)
+        public AttributeValueList FindById(Guid attributeValueId)
         {
             return GetAll().FirstOrDefault(x => x.AttributeValueListId == attributeValueId);
         }

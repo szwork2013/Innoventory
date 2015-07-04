@@ -11,7 +11,7 @@ namespace Innoventory.Lotus.Domain.DataEntities
     public class CategorySubCategoryAttributeMap
     {
         [Key]
-        public Guid CategorySubCategoryAttributeMapID { get; set; }
+        public Guid CategorySubCategoryAttributeMapId { get; set; }
         public Guid CategorySubCategoryMapId { get; set; }
         public Guid ProductAttributeId { get; set; }
 

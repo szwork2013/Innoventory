@@ -12,7 +12,7 @@ namespace Innoventory.Lotus.Domain.DataEntities
     {
         [Key]
         [Column(Order = 1)]
-        public Guid UserId { get; set; }
+        public Guid UserAccountUserRoleMapId { get; set; }
 
 
         [Key]

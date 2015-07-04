@@ -10,7 +10,7 @@ namespace Innoventory.Lotus.DataAccess.Abstract
     public interface ICategorySubCategoryMapRepository : IGenericRepository<CategorySubCategoryMap>
     {
 
-        Category FindById(Guid categorySubCategoryMapId);
+        CategorySubCategoryMap FindById(Guid categorySubCategoryMapId);
 
     }
 }

@@ -11,11 +11,11 @@ namespace Innoventory.Lotus.DataAccess.Concrete
 {
     [Export(typeof(ICategorySubCategoryMapRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class CategorySubCategoryMapRepository : GenericRepository<CategorySubCategoryMapRepository>, ICategorySubCategoryMapRepository
+    public class CategorySubCategoryMapRepository : GenericRepository<CategorySubCategoryMap>, ICategorySubCategoryMapRepository
     {
         public CategorySubCategoryMap FindById(Guid categorySubCategoryMapId)
         {
-            return GetAll().FirstOrDefault(x => x. == addressId);
+            return GetAll().FirstOrDefault(x => x.CategorySubCategoryMapId == categorySubCategoryMapId);
         }
     }
 }

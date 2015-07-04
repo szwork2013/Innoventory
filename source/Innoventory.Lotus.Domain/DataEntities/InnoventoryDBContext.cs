@@ -78,9 +78,9 @@ namespace Innoventory.Lotus.Domain.DataEntities
         {
             //For Table Mapping 
 
-            modelBuilder.Entity<ProductVariantAttributeValue>().HasKey(x => new { x.ProductVariantId, x.AttributeValueListId });
+            modelBuilder.Entity<ProductVariantAttributeValue>().HasKey(x => new { x.ProductVariantAttributeValueId, x.AttributeValueListId });
 
-            modelBuilder.Entity<ProductVariantImageFileMap>().HasKey(x => new { x.ProductVariantId, x.ImageFileId });
+            modelBuilder.Entity<ProductVariantImageFileMap>().HasKey(x => new { x.ProductVariantImageFileMapId, x.ImageFileId });
 
             modelBuilder.Entity<ProductVariant>().Property(x => x.AvailableQuantity).HasPrecision(8, 2);
 

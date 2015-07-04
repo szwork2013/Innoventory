@@ -9,6 +9,6 @@ namespace Innoventory.Lotus.DataAccess.Abstract
 {
     public interface IAttributeValueListRepository : IGenericRepository<AttributeValueList>
     {
-        Address FindById(Guid attributeValueId);
+        AttributeValueList FindById(Guid attributeValueId);
     }
 }
