@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function (inv) {
 
     var underscore = angular.module('underscore', []);
 
@@ -9,13 +9,14 @@
 
     var commonModule = angular.module('common', ["_", 'ngRoute', 'ui.bootstrap']);
 
-    var mainApp = angular.module("innoventoryApp", ['common', "product-directives"]);
+    var mainApp = angular.module("mainApp", ['common', "product-directives"]);
 
-    innoventoryApp.controller("productController", productController);
+    mainApp.controller("productController", productController);
 
-    innoventoryApp.factory("productService", productService);
+    mainApp.factory("productService", productService);
 
-    innoventoryApp.factory("innoventoryService", innoventoryService);
-      
+    mainApp.factory("innoventoryService", innoventoryService);
 
-})()
+
+
+})(window.Innoventory)

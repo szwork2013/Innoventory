@@ -1,11 +1,17 @@
-﻿(function () {
+﻿(function (inv) {
     var global = function () {
         var globals = {
 
-            webApiBaseUrl: "http://localhost/api/v1/"
+            webApiBaseUrl: "http://localhost/api/v1/",
+
+            apiUrl: inv.appConfig.ApiUrl,
+            imageHost: inv.appConfig.ImageHost,
 
         };
 
         return globals;
     };
-})(window.Innoventory);
+
+    inv.global = global;
+
+}(window.Innoventory));

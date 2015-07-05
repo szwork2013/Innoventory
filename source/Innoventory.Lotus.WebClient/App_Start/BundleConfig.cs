@@ -27,8 +27,13 @@ namespace Innoventory.Lotus.WebClient
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/themes/css").Include(
+                        "~/Content/bootstrap-theme.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                        "~/Scripts/angular.js"));
+                        "~/Scripts/angular.js",
+                        "~/Scripts/angular-route.js",
+                        "~/Scripts/angular-animate.js"));
                                    
 
             bundles.Add(new ScriptBundle("~/bundles/angular-ui").IncludeDirectory(

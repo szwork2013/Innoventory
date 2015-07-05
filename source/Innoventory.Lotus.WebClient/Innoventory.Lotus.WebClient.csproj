@@ -79,6 +79,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
@@ -150,6 +151,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\ClientConfiguration.cs" />
     <Compile Include="App_Data\Create.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -176,6 +178,7 @@
     <Content Include="custom-scripts\product\product-model.js" />
     <Content Include="custom-scripts\product\product-service.js" />
     <Content Include="custom-scripts\product\product-directives.js" />
+    <Content Include="custom-scripts\shared\viewModelHelper.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -262,9 +265,17 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Innoventory.Lotus.Bootstraper\Innoventory.Lotus.Bootstraper.csproj">
+      <Project>{c424f5f8-d603-4823-9147-aa04b20c1c44}</Project>
+      <Name>Innoventory.Lotus.Bootstraper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Innoventory.Lotus.ViewModels\Innoventory.Lotus.ViewModels.csproj">
       <Project>{d7f7ea22-ae02-47b6-a438-c8f850435f0d}</Project>
       <Name>Innoventory.Lotus.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lotus.Core\Innoventory.Lotus.Core.csproj">
+      <Project>{2d2dc8ba-66f6-4bdb-901d-293eebeed402}</Project>
+      <Name>Innoventory.Lotus.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

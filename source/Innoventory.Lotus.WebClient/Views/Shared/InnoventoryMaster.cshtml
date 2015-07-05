@@ -5,48 +5,68 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>InnoventoryMaster</title>
+
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/theme/css")
+
     @*<link rel="SHORTCUT ICON" href="@Url.Content("~/Content/SiteIcon.ico")" />*@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-        
-    
+
 </head>
 <body>
-    @using FluentBootstrap
-
     <header class="jumbotron hidden-sm hidden-xs">
 
-        
         <a href="/" class="title hidden-sm hidden-xs">
             <img src="~/Images/StellaTitle.png" />
         </a>
-                        
+
         <section class="right-content">
             <article id="account">
-               
+
                 @Html.ActionLink("Contact Us", "ContactUs", new { action = "ContactUs", controller = "home" })
             </article>
             <br />
 
-            
+
         </section>
     </header>
-    
+
     <div ng-app="mainApp">
 
         @RenderBody()
 
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+
+        window.Innoventory = {};
+        (function (inv) {
+            var rootPath;
+            inv.rootPath = rootPath;
+
+            var appConfig;
+
+            inv.appConfig = appConfig;
+
+        })(window.Innoventory)
+
+        Innoventory.rootPath = '@Url.Content("~")';
+        Innoventory.appConfig = '@ClientConfiguration.LoadConfig()';
+
+
+    </script>
     @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    
+
     @Scripts.Render("~/bundles/angular-ui")
     @Scripts.Render("~/bundles/shared-scripts")
+
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        @RenderSection("footerScript", required:false)
+    </script>
 </body>
 </html>
-

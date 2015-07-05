@@ -6,13 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Innoventory.Lotus.Core
+namespace Innoventory.Lotus.Bootsraper
 {
     public class DependencyContainer
     {
-        public static CompositionContainer Initialize()
+        public static CompositionContainer Initialize(AggregateCatalog catalog)
         {
-            AggregateCatalog catalog = new AggregateCatalog();
 
             catalog.Catalogs.Add(new AssemblyCatalog(typeof(AddressRepository).Assembly));
 
