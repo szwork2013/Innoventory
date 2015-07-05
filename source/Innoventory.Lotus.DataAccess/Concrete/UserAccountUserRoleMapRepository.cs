@@ -13,9 +13,24 @@ namespace Innoventory.Lotus.DataAccess.Concrete
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class UserAccountUserRoleMapRepository : GenericRepository<UserAccountUserRoleMap>, IUserAccountUserRoleMapRepository
     {
-        public UserAccountUserRoleMap FindById(Guid userAccountUserRoleMapId)
+        public UserAccountUserRoleMap FindById(Guid userId)
         {
-            return GetAll().FirstOrDefault(x => x.UserAccountUserRoleMapId == userAccountUserRoleMapId);
+            return GetAll().FirstOrDefault(x => x.UserId == userId);
+        }
+
+        public List<UserAccountUserRoleMap> FindByUserId(Guid userId)
+        {
+            return GetAll().Where(x => x.UserId == userId).ToList();
+        }
+
+        public List<UserAccountUserRoleMap> FindByUserRoleId(Guid userRoleId)
+        {
+            return GetAll().Where(x => x.UserRoleId == userRoleId).ToList();
+        }
+
+        public UserAccountUserRoleMap FindByUserIdAndUserRoleId(Guid userId, Guid userRoleId)
+        {
+            return GetAll().FirstOrDefault(x => x.UserId == userId && x.UserRoleId == userRoleId);
         }
     }
 }

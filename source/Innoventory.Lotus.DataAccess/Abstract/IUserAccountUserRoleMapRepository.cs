@@ -9,6 +9,12 @@ namespace Innoventory.Lotus.DataAccess.Abstract
 {
     public interface IUserAccountUserRoleMapRepository : IGenericRepository<UserAccountUserRoleMap>
     {
-        UserAccountUserRoleMap FindById(Guid userAccountUserRoleMapId);
+        List<UserAccountUserRoleMap> FindByUserId(Guid userId);
+
+        List<UserAccountUserRoleMap> FindByUserRoleId(Guid userRoleId);
+
+        UserAccountUserRoleMap FindByUserIdAndUserRoleId(Guid userId, Guid userRoleId);
+
+
     }
 }

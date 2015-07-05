@@ -88,4 +88,4 @@ namespace Innoventory.Lotus.Domain.DataEntities
 
         }
     }
-}}
+}

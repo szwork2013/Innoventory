@@ -13,9 +13,9 @@ namespace Innoventory.Lotus.DataAccess.Concrete
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class ProductVariantImageFileMapRepository : GenericRepository<ProductVariantImageFileMap>, IProductVariantImageFileMapRepository
     {
-        public ProductVariantImageFileMap FindById(Guid productVariantImageFileMapId)
+        public ProductVariantImageFileMap FindById(Guid productVariantId)
         {
-            return GetAll().FirstOrDefault(x => x.ProductVariantImageFileMapId == productVariantImageFileMapId);
+            return GetAll().FirstOrDefault(x => x.ProductVariantId == productVariantId);
         }
     }
 }

@@ -13,9 +13,9 @@ namespace Innoventory.Lotus.DataAccess.Concrete
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class ProductVariantAttributeValueRepository : GenericRepository<ProductVariantAttributeValue>, IProductVariantAttributeValueRepository
     {
-        public ProductVariantAttributeValue FindById(Guid productVariantAttributeValueId)
+        public ProductVariantAttributeValue FindById(Guid productVariantId)
         {
-            return GetAll().FirstOrDefault(x => x.ProductVariantAttributeValueId == productVariantAttributeValueId);
+            return GetAll().FirstOrDefault(x => x.ProductVariantId == productVariantId);
         }
     }
 }
