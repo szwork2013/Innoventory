@@ -12,7 +12,7 @@ namespace Innoventory.Lotus.Domain.DataEntities
     {
         [Key]
         [Column(Order = 1)]
-        public Guid ProductVariantImageFileMapId { get; set; }
+        public Guid ProductVariantId { get; set; }
 
         [Key]
         [Column(Order = 2)]
