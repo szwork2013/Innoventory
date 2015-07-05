@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.DataAccess.Abstract
 {
-    public interface ICountry:IGenericRepository<Country>
+    public interface ICountryRepository:IGenericRepository<Country>
     {
 
         Country FindById(Guid countryId);

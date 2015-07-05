@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.DataAccess.Abstract
 {
-    public interface IAttributeValueListRepository : IGenericRepository<Address>
+    public interface IImageFileRepository : IGenericRepository<ImageFile>
     {
-        Address FindById(Guid addressId);
+        ImageFile FindById(Guid imageFileId);
     }
 }

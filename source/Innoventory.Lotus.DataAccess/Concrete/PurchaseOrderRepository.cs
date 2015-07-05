@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.DataAccess.Concrete
 {
-    [Export(typeof(IAttributeValueListRepository))]
+    [Export(typeof(IPurchaseOrderRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class AddressRepository : GenericRepository<Address>, IAttributeValueListRepository
+    public class PurchaseOrderRepository : GenericRepository<PurchaseOrder>, IPurchaseOrderRepository
     {
-        public Address FindById(Guid addressId)
+        public PurchaseOrder FindById(Guid purchaseOrderId)
         {
-            return GetAll().FirstOrDefault(x => x.AddressID == addressId);
+            return GetAll().FirstOrDefault(x => x.PurchaseOrderId == purchaseOrderId);
         }
     }
 }

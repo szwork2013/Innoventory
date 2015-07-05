@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.DataAccess.Abstract
 {
-    public interface IAttributeValueListRepository : IGenericRepository<Address>
+    public interface ICustomerRepository : IGenericRepository<Customer>
     {
-        Address FindById(Guid addressId);
+        Customer FindById(Guid customerId);
     }
 }

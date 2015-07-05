@@ -140,7 +140,6 @@
     <Compile Include="Abstract\IVolumeMeasureRepository.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Abstract\Transaction.cs" />
     <Compile Include="Concrete\AddressRepository.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -148,10 +147,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Concrete\CategoryRepository.cs" />
-    <Compile Include="Concrete\CategroySubCategoryAttributeMapRepository.cs">
+    <Compile Include="Concrete\CategorySubCategoryAttributeMapRepository.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Concrete\CategroySubCategoryMapRepository.cs">
+    <Compile Include="Concrete\CategorySubCategoryMapRepository.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Concrete\CountryRepository.cs" />
@@ -162,10 +161,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Concrete\CustomerRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Concrete\ICategorySubCategoryMapRepository.cs" />
-    <Compile Include="Concrete\ImageFileRepository.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Concrete\OrganisationSetupRepository.cs">
@@ -208,6 +203,7 @@
     <Compile Include="Concrete\SupplierRepository.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Concrete\Transaction.cs" />
     <Compile Include="Concrete\UserAccountRepository.cs">
       <SubType>Code</SubType>
     </Compile>

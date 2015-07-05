@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.Domain.DataEntities
 {
-    class VolumeMeasureMapping
+    public class VolumeMeasureMap
     {
         [Key]
-        public Guid VolumeMeasureMappingId { get; set; }
+        public Guid VolumeMeasureMapId { get; set; }
         public Guid PrimaryVMId { get; set; }
         public Guid SecondaryVMId { get; set; }
         public decimal Ratio { get; set; }

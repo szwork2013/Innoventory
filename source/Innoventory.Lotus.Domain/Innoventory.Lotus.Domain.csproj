@@ -81,7 +81,7 @@
     <Compile Include="DataEntities\UserAccountUserRoleMap.cs" />
     <Compile Include="DataEntities\UserRole.cs" />
     <Compile Include="DataEntities\VolumeMeasure.cs" />
-    <Compile Include="DataEntities\VolumeMeasureMapping.cs" />
+    <Compile Include="DataEntities\VolumeMeasureMap.cs" />
     <Compile Include="Migrations\201506292233541_New.cs" />
     <Compile Include="Migrations\201506292233541_New.Designer.cs">
       <DependentUpon>201506292233541_New.cs</DependentUpon>
