@@ -1,99 +1,99 @@
-﻿(function (inv) { 
-var viewModelHelper = ['$http', '$q', function ($http, $q) {
+﻿(function (inv) {
+    var viewModelHelper = function ($http, $q) {
 
-    var me = this;
+        var me = this;
 
-    me.modelIsValid = true;
-
-    me.modelErrors = [];
-    me.isLoading = false;
-
-    me.apiGet = function (uri, data, success, failure, always) {
-        me.isLoading = true;
         me.modelIsValid = true;
 
-        $http.get(Innoventory.appConfig.apiUrl + uri, data)
-        .then(function (result) {
-            success(result);
+        me.modelErrors = [];
+        me.isLoading = false;
 
-            if (always != null) {
-                always();
-            };
+        me.apiGet = function (uri, data, success, failure, always) {
+            me.isLoading = true;
+            me.modelIsValid = true;
 
-            me.isLoading = false;
-        }, function (result) {
-            if (failure == null) {
-                if (result.status != 400) {
-                    me.modelErrors = [result.status + ':' + result.data.message];
-                }
-                else {
-                    me.modelErrors = [result.data.message];
+            $http.get(Innoventory.appConfig.apiUrl + uri, data)
+            .then(function (result) {
+                success(result);
+
+                if (always != null) {
+                    always();
                 };
 
-                me.modelIsValid = false;
+                me.isLoading = false;
+            }, function (result) {
+                if (failure == null) {
+                    if (result.status != 400) {
+                        me.modelErrors = [result.status + ':' + result.data.message];
+                    }
+                    else {
+                        me.modelErrors = [result.data.message];
+                    };
 
-            }
-            else {
-                failure(result);
+                    me.modelIsValid = false;
 
-            };
-
-            if (always != null) {
-                always();
-            };
-
-            me.isLoading = false;
-
-
-        })
-
-    }
-
-    me.post = function (uri, data, success, failure, always) {
-        me.isLoading = true;
-        me.modelIsValid = true;
-
-        $http.post(Innoventory.appConfig.apiUrl + uri, data)
-        .then(function (result) {
-            success(result);
-
-            if (always != null) {
-                always();
-            };
-
-            me.isLoading = false;
-        }, function (result) {
-            if (failure == null) {
-                if (result.status != 400) {
-                    me.modelErrors = [result.status + ':' + result.data.message];
                 }
                 else {
-                    me.modelErrors = [result.data.message];
+                    failure(result);
+
                 };
 
-                me.modelIsValid = false;
+                if (always != null) {
+                    always();
+                };
 
-            }
-            else {
-                failure(result);
-
-            };
-
-            if (always != null) {
-                always();
-            };
-
-            me.isLoading = false;
+                me.isLoading = false;
 
 
-        })
+            })
+
+        }
+
+        me.post = function (uri, data, success, failure, always) {
+            me.isLoading = true;
+            me.modelIsValid = true;
+
+            $http.post(Innoventory.appConfig.apiUrl + uri, data)
+            .then(function (result) {
+                success(result);
+
+                if (always != null) {
+                    always();
+                };
+
+                me.isLoading = false;
+            }, function (result) {
+                if (failure == null) {
+                    if (result.status != 400) {
+                        me.modelErrors = [result.status + ':' + result.data.message];
+                    }
+                    else {
+                        me.modelErrors = [result.data.message];
+                    };
+
+                    me.modelIsValid = false;
+
+                }
+                else {
+                    failure(result);
+
+                };
+
+                if (always != null) {
+                    always();
+                };
+
+                me.isLoading = false;
+
+
+            })
+        };
+
+        return me;
+
+
     };
 
-    return me;
-       
+    inv.viewModelHelper = viewModelHelper;
 
-}];
-
-inv.viewModelHelper = viewModelHelper;
-
-})(window.Innoventory)
+}(window.Innoventory))

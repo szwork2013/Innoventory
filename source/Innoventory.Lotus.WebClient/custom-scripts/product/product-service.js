@@ -1,9 +1,9 @@
 ﻿
-var productService = ["$http", 'innoventoryService', function () {
+var productService = ["$http", function ($http) {
 
     var getProducts = function () {
 
-        var url = innoventoryService.webApiBaseUrl;
+        //var url = innoventoryService.webApiBaseUrl;
                
         service.product = { productName: "World|" };
 

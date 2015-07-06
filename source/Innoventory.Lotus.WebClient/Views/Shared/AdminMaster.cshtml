@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/InnoventoryMaster.cshtml";
 }
 
@@ -37,3 +36,7 @@
     @RenderBody()
 </section>
 
+@section scripts
+{
+    @RenderSection("scripts", false)
+}

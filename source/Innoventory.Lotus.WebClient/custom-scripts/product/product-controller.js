@@ -29,7 +29,6 @@ var productController = ["$scope", "$q", "productService", function ($scope, $q,
     $scope.onGetProductsError = function (err) {
         page.Error = err.errorMessage;
     };
-
-    
+  
     
 }]
