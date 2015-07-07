@@ -1,23 +1,28 @@
-﻿
-var productService = ["$http", function ($http) {
+﻿(function (inv) {
+    var productService = function ($http, $q, viewModelHelper) {
 
-    var getProducts = function () {
+        var ps = this;
 
-        //var url = innoventoryService.webApiBaseUrl;
-               
-        service.product = { productName: "World|" };
+        ps.product = {};
+        ps.products = [];
 
-        return service.product;
+        ps.getProducts = function () {
+
+            //var url = innoventoryService.webApiBaseUrl;
+
+            ps.product = { productName: "World|" };
+
+            return ps.product;
+        };
+
+
+        // Product list
+        
+
+        return this;
+
     };
 
-    var service = {
-        product: {},
-        products: [], // Product list
-        getProducts: getProducts,
+    inv.productService = productService;
 
-    };
-
-    return service;
-
-
-}]
+})(window.Innoventory)

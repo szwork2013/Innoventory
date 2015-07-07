@@ -1,7 +1,8 @@
 ﻿(function (inv) {
-    var viewModelHelper = function ($http, $q) {
+    var apiHelper = function ($http, $q) {
 
         var me = this;
+       
 
         me.modelIsValid = true;
 
@@ -94,6 +95,6 @@
 
     };
 
-    inv.viewModelHelper = viewModelHelper;
+    inv.apiHelper = apiHelper;
 
 }(window.Innoventory))

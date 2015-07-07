@@ -176,12 +176,14 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="custom-scripts\category\category-controller.js" />
+    <Content Include="custom-scripts\category\category-directives.js" />
+    <Content Include="custom-scripts\category\category-model.js" />
     <Content Include="custom-scripts\category\category-service.js" />
     <Content Include="custom-scripts\shared\innoventory.js" />
     <Content Include="custom-scripts\product\product-model.js" />
     <Content Include="custom-scripts\product\product-service.js" />
     <Content Include="custom-scripts\product\product-directives.js" />
-    <Content Include="custom-scripts\shared\viewModelHelper.js" />
+    <Content Include="custom-scripts\shared\apiHelper.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -232,8 +234,8 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="templates\product-detail.html" />
-    <Content Include="Views\Category\Templates\Category.html" />
-    <Content Include="Views\Category\Templates\List.html" />
+    <Content Include="templates\category\Category.html" />
+    <Content Include="templates\category\List.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -255,9 +257,11 @@
     <Content Include="Views\Shared\InnoventoryMaster.cshtml" />
     <Content Include="Views\Shared\AdminMaster.cshtml" />
     <Content Include="Views\Category\List.cshtml" />
+    <Content Include="Views\Category\Categories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\Category\Templates\" />
     <Folder Include="Views\Products\Templates\" />
   </ItemGroup>
   <ItemGroup>

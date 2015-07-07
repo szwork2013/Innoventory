@@ -32,7 +32,7 @@
         </section>
     </header>
 
-    <div >
+    <div>
 
         @RenderBody()
 
@@ -52,7 +52,10 @@
         })(window.Innoventory)
 
         Innoventory.rootPath = '@Url.Content("~")';
-        Innoventory.appConfig = '@ClientConfiguration.LoadConfig()';
+        Innoventory.appConfig = {
+            apiUrl: "http://localhost/api/",
+            imageHost: "TBD"
+        };
 
 
     </script>
@@ -62,15 +65,19 @@
     @Scripts.Render("~/bundles/bootstrap")
 
     @Scripts.Render("~/bundles/angular-ui")
-   
+
+
 
     @RenderSection("scripts", false)
+
+    <script src="~/custom-scripts/category/category-directives.js"></script>
+    @Scripts.Render("~/bundles/shared-scripts")
 
     <script type="text/javascript">
         @RenderSection("footerScript", false)
     </script>
 
-    @Scripts.Render("~/bundles/shared-scripts")
+
 
 </body>
 </html>

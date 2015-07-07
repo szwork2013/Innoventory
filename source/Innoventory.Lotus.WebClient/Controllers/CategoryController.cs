@@ -9,7 +9,7 @@ namespace Innoventory.Lotus.WebClient.Controllers
     public class CategoryController : Controller
     {
         // GET: Category
-        public ActionResult List()
+        public ActionResult Categories()
         {
             return View();
         }

@@ -9,6 +9,7 @@ namespace Innoventory.Lotus.Domain.DataEntities
 {
     public class Category
     {
+        
         [Key]
         public Guid CategoryId { get; set; }
 

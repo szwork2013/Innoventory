@@ -95,8 +95,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common.cs" />
+    <Compile Include="Common\Common.cs" />
     <Compile Include="Common\EntityBase.cs" />
+    <Compile Include="Common\ObjectMapper.cs" />
     <Compile Include="Extensions\MefExtensions.cs" />
     <Compile Include="MefApiDependencyResolver.cs" />
     <Compile Include="MefDependencyResolver.cs" />

@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Category";
+    ViewBag.Name = "Category";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+
+@section scripts
+{
+    <script src="~/custom-scripts/category/category-model.js"></script>
+    <script src="~/custom-scripts/category/category-controller.js"></script>
+    <script src="~/custom-scripts/category/category-service.js"></script>
+    
+}
+
+<div class="container" ng-controller="categoryController  as categoryCtrl" id="category">
+    <div>
+
+        <category-list></category-list>
+
+
+
+    </div>
+
+</div>
