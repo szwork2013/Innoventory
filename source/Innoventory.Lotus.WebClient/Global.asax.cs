@@ -12,6 +12,7 @@ using System.ComponentModel.Composition.Primitives;
 using System.Reflection;
 using Innoventory.Lotus.Core;
 using Innoventory.Lotus.Bootsraper;
+using System.Web.Http;
 
 namespace Innoventory.Lotus.WebClient
 {
@@ -19,6 +20,8 @@ namespace Innoventory.Lotus.WebClient
     {
         protected void Application_Start()
         {
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -30,6 +33,7 @@ namespace Innoventory.Lotus.WebClient
 
             CompositionContainer container = DependencyContainer.Initialize(catalog);
 
+            GlobalConfiguration.Configuration.DependencyResolver = new MefApiDependencyResolver(container);
             DependencyResolver.SetResolver(new MefDependencyResolver(container));
         }
     }

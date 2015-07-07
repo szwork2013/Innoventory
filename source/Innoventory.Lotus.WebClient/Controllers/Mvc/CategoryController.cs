@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Innoventory.Lotus.WebClient.Controllers
+namespace Innoventory.Lotus.WebClient.Mvc.Controllers
 {
     public class CategoryController : Controller
     {
