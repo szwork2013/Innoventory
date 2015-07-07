@@ -6,7 +6,9 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using SimpleInjector.Extensions;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition.Primitives;
 using System.Reflection;
 using Innoventory.Lotus.Core;
 using Innoventory.Lotus.Bootsraper;
@@ -27,7 +29,8 @@ namespace Innoventory.Lotus.WebClient
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
 
             CompositionContainer container = DependencyContainer.Initialize(catalog);
-            DependencyResolver.SetResolver(container);
+
+            DependencyResolver.SetResolver(new MefDependencyResolver(container));
         }
     }
 }

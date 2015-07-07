@@ -1,6 +1,8 @@
 ﻿(function (inv) {
     var global = function () {
-        var globals = {
+
+        var gl = this;
+        gl.globals = {
 
             webApiBaseUrl: "http://localhost/api/v1/",
 
@@ -9,7 +11,7 @@
 
         };
 
-        return globals;
+        return this;
     };
 
     inv.global = global;

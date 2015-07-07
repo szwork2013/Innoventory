@@ -1,22 +1,19 @@
-﻿(function (inv) {
+﻿
+(function (inv) {
 
-    var underscore = angular.module('underscore', []);
+    var commonModule = angular.module('common', ['ngRoute', 'ui.bootstrap']);
 
-    underscore.factory('_', function () {
-        return window._;
-       
-    });
-
-    var commonModule = angular.module('common', ["_", 'ngRoute', 'ui.bootstrap']);
-
-    var mainApp = angular.module("mainApp", ['common', "product-directives"]);
+    var mainApp = angular.module("mainApp", ['common']);
 
     mainApp.controller("productController", productController);
 
+    commonModule.factory('viewModelHelper', ['$http', '$q', function ($http, $q) {
+        return Innoventory.viewModelHelper($http, $q);
+    }]);
+
     mainApp.factory("productService", productService);
 
-    mainApp.factory("innoventoryService", innoventoryService);
+    //mainApp.factory("innoventoryService", innoventoryService);
 
 
-
-})(window.Innoventory)
+}(window.Innoventory));

@@ -7,13 +7,13 @@
     <title>InnoventoryMaster</title>
 
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/theme/css")
+    @Styles.Render("~/Content/themes/css")
 
     @*<link rel="SHORTCUT ICON" href="@Url.Content("~/Content/SiteIcon.ico")" />*@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
 </head>
-<body>
+<body ng-app="mainApp">
     <header class="jumbotron hidden-sm hidden-xs">
 
         <a href="/" class="title hidden-sm hidden-xs">
@@ -24,6 +24,7 @@
             <article id="account">
 
                 @Html.ActionLink("Contact Us", "ContactUs", new { action = "ContactUs", controller = "home" })
+
             </article>
             <br />
 
@@ -31,7 +32,7 @@
         </section>
     </header>
 
-    <div ng-app="mainApp">
+    <div >
 
         @RenderBody()
 
@@ -61,12 +62,15 @@
     @Scripts.Render("~/bundles/bootstrap")
 
     @Scripts.Render("~/bundles/angular-ui")
-    @Scripts.Render("~/bundles/shared-scripts")
+   
 
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", false)
 
     <script type="text/javascript">
-        @RenderSection("footerScript", required:false)
+        @RenderSection("footerScript", false)
     </script>
+
+    @Scripts.Render("~/bundles/shared-scripts")
+
 </body>
 </html>

@@ -9,7 +9,7 @@ using Innoventory.Lotus.Core.Extensions;
 
 namespace Innoventory.Lotus.Core
 {
-    public class MefDependencyResolver
+    public class MefDependencyResolver : IDependencyResolver
     {
         CompositionContainer _container;
         public MefDependencyResolver(CompositionContainer container)
