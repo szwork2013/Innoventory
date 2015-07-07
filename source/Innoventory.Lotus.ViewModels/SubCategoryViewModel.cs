@@ -9,21 +9,16 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    [DataContract]
-    class SubCategoryViewModel
+
+    public class SubCategoryViewModel
     {
-        [ScaffoldColumn(false)]
-        [DataMember(Name = "subCategoryId")]
+
         public Guid SubCategoryId { get; set; }
 
 
-        [DisplayName("Sub Category Name")]
-        [DataMember(Name = "subCategoryName")]
-        [Required(ErrorMessage = "Sub Category Name is required field")]
+
         public string SubCategoryName { get; set; }
 
-        [DisplayName("Sub Category Description")]
-        [DataMember(Name = "subCategoryDescription")]
         public string SubCategoryDescription { get; set; }
     }
 }

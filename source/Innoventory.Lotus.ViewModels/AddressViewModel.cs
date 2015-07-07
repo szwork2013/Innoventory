@@ -1,43 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Innoventory.Lotus.Domain.DataEntities
+namespace Innoventory.Lotus.ViewModels
 {
-    public class Address
+
+    public class AddressViewModel
     {
-        [Key]
+         [ScaffoldColumn(false)]
         public Guid AddressID { get; set; }
 
+        
         public Guid AddressMapId { get; set; }
+
+        [DisplayName("Address Type")]
         public short AddressType { get; set; }
 
-        [StringLength(100)]
+        [DisplayName("Address Line 1")]
         public string AddressLine1 { get; set; }
 
-        [StringLength(100)]
+        [DisplayName("Address Line 2")]
         public string AddressLine2 { get; set; }
 
-        [StringLength(60)]
+        [DisplayName("City")]
         public string City { get; set; }
 
-        [StringLength(12)]
+        [DisplayName("Post Code")]
         public string PostCode { get; set; }
 
-        [StringLength(100)]
+        [DisplayName("State")]
         public string State { get; set; }
 
 
         public Guid CountryId { get; set; }
 
+        [DisplayName("Default Address")]
         public bool DefaultAddress { get; set; }
 
-        [ForeignKey("CountryId")]
-        public virtual List<Country> Country { get; set; }
+        
+        public CountryViewModel Country { get; set; }
 
     }
 }

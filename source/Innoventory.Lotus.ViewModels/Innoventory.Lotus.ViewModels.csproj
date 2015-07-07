@@ -53,11 +53,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AttributeValueListViewModel.cs" />
+    <Compile Include="CategorySubCategoryAttributeMapViewModel.cs" />
+    <Compile Include="CategorySubCategoryMapViewModel.cs" />
     <Compile Include="CategoryViewModel.cs" />
+    <Compile Include="CountryViewModel.cs" />
+    <Compile Include="CurrencyViewModel.cs" />
+    <Compile Include="CustomerProductVariantPriceViewModel.cs" />
+    <Compile Include="CustomerViewModel.cs" />
+    <Compile Include="ImageFileViewModel.cs" />
+    <Compile Include="OrganisationSetupViewModel.cs" />
+    <Compile Include="ProductAttributeViewModel.cs" />
+    <Compile Include="ProductVariantAttributeValueViewModel.cs" />
+    <Compile Include="ProductVariantImageFileMapViewModel.cs" />
     <Compile Include="ProductVariantViewModel.cs" />
     <Compile Include="ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseOrderItemViewModel.cs" />
+    <Compile Include="PurchaseOrderViewModel.cs" />
+    <Compile Include="PurchaseReturnItemViewModel.cs" />
+    <Compile Include="PurchaseReturnViewModel.cs" />
+    <Compile Include="SalesOrderItemViewModel.cs" />
+    <Compile Include="SalesOrderViewModel.cs" />
+    <Compile Include="SalesReturnItemViewModel.cs" />
+    <Compile Include="SalesReturnViewModel.cs" />
     <Compile Include="SubCategoryViewModel.cs" />
+    <Compile Include="SupplierViewModel.cs" />
+    <Compile Include="UserAccountUserRoleMapViewModel.cs" />
+    <Compile Include="UserAccountViewModel.cs" />
+    <Compile Include="UserRoleViewModel.cs" />
+    <Compile Include="VolumeMeasureMapViewModel.cs" />
+    <Compile Include="VolumeMeasureViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
