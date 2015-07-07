@@ -12,6 +12,8 @@ using System.Web.Http;
 
 namespace Innoventory.Lotus.WebClient.Api.Controllers
 {
+    [Export]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     [RoutePrefix("api/category")]
     public class CategoryController : ApiControllerBase
     {
@@ -33,16 +35,61 @@ namespace Innoventory.Lotus.WebClient.Api.Controllers
             {
                 HttpResponseMessage response = null;
 
-                List<CategoryViewModel> categories = _categoryRepository.GetAll().Select(
+                List<Category> categories = _categoryRepository.GetAll().ToList();
 
-                    (T) => ConvertToCategoryViewModel(T)).ToList();
+                List<CategoryViewModel> retCategories = new List<CategoryViewModel>();
 
-                response.Content = new ObjectContent<List<CategoryViewModel>>(categories, Configuration.Formatters.JsonFormatter);
+                foreach (var item in categories)
+                {
+                    retCategories.Add(ConvertToCategoryViewModel(item));
+                }
+
+
+                response.Content = new ObjectContent<List<CategoryViewModel>>(retCategories, Configuration.Formatters.JsonFormatter);
 
                 return response;
             });
         }
 
+        [HttpPost]
+        [Route("SaveCategory")]
+        public HttpResponseMessage SaveCategory(HttpRequestMessage request, [FromBody]CategoryViewModel categoryModel)
+        {
+            Category category = null;
+            bool isNew = false;
+
+            if(categoryModel .CategoryId != Guid.Empty)
+            {
+                category = _categoryRepository.FindById(categoryModel.CategoryId);
+
+            }
+            else
+            {
+                category = new Category();
+                categoryModel.CategoryId = Guid.NewGuid();
+                isNew = true;
+            }
+
+            category.CategoryName = categoryModel.CategoryName;
+            category.Description = categoryModel.Description;
+
+            if(isNew)
+            {
+                _categoryRepository.Add(category);
+            }
+            else
+            {
+                _categoryRepository.Edit(category);
+
+            }
+
+            _categoryRepository.Save();
+
+            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+
+            return response;
+
+        }
         private CategoryViewModel ConvertToCategoryViewModel(Category category)
         {
             CategoryViewModel cv = new CategoryViewModel();

@@ -31,12 +31,12 @@ namespace Innoventory.Lotus.Core
 
         public IDependencyScope BeginScope()
         {
-            throw new NotImplementedException();
+            return this;
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            //_container.Dispose();
         }
     }
 }

@@ -22,22 +22,22 @@
         //};
 
         GetCategories = function () {
-            //apiHelper.apiGet("Category/GetCategories", {}, function (result) {
+            apiHelper.apiGet("api/Category/categories", {}, function (result) {
 
-            //    $scope.categories = result.data;
+                $scope.categories = result.data;
 
 
-            //});
+            });
 
-            categoryModel = {
-                categoryName: "Test",
-                description: "Test 123"
+            //categoryModel = {
+            //    categoryName: "Test",
+            //    description: "Test 123"
 
-            }
+            //}
 
-            $scope.categories = [];
+            //$scope.categories = [];
 
-            $scope.categories.push(categoryModel);
+            //$scope.categories.push(categoryModel);
         }
 
         GetCategories();

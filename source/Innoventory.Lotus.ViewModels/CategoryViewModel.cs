@@ -13,6 +13,8 @@ namespace Innoventory.Lotus.ViewModels
     [DataContract]
     public class CategoryViewModel
     {
+        //public CategoryViewModel (Category category)
+        //{ }
 
         [ScaffoldColumn(false)]
         [DataMember]

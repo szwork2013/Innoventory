@@ -13,7 +13,7 @@
             me.isLoading = true;
             me.modelIsValid = true;
 
-            $http.get(Innoventory.appConfig.apiUrl + uri, data)
+            $http.get(Innoventory.rootPath + uri, data)
             .then(function (result) {
                 success(result);
 
