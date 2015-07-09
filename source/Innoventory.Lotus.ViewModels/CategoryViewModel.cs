@@ -33,14 +33,9 @@ namespace Innoventory.Lotus.ViewModels
 
         public Guid EntityId
         {
-            get
-            {
-                return CategoryId;
-            }
-            set
-            {
-                CategoryId = value;
-            }
+            get { return CategoryId; }
+
+            set { CategoryId = value; }
         }
     }
 }

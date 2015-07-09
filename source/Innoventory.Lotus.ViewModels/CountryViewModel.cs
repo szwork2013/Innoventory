@@ -27,22 +27,12 @@ namespace Innoventory.Lotus.ViewModels
 
 
         public List<AddressViewModel> Addresses { get; set; }
-
-
-
-
-
+               
 
         public Guid EntityId
         {
-            get
-            {
-                return CountryID;
-            }
-            set
-            {
-                CountryID = value;
-            }
+            get{return CountryID; }
+            set {CountryID = value;}
         }
     }
 }

@@ -55,35 +55,9 @@ namespace Innoventory.Lotus.WebClient.Api.Controllers
         [Route("SaveCategory")]
         public HttpResponseMessage SaveCategory(HttpRequestMessage request, [FromBody]CategoryViewModel categoryModel)
         {
-            Category category = null;
-            bool isNew = false;
+           
 
-            if(categoryModel .CategoryId != Guid.Empty)
-            {
-                category = _categoryRepository.FindById(categoryModel.CategoryId);
-
-            }
-            else
-            {
-                category = new Category();
-                categoryModel.CategoryId = Guid.NewGuid();
-                isNew = true;
-            }
-
-            category.CategoryName = categoryModel.CategoryName;
-            category.Description = categoryModel.Description;
-
-            if(isNew)
-            {
-                _categoryRepository.Add(category);
-            }
-            else
-            {
-                _categoryRepository.Edit(category);
-
-            }
-
-            _categoryRepository.Save();
+            //_categoryRepository.
 
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
 
