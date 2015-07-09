@@ -4,74 +4,180 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Transactions;
-using Innoventory.Lotus.Domain.DataEntities;
+using Innoventory.Lotus.Database.DataEntities;
 using System.Linq.Expressions;
+using System.Collections.Generic;
+using Innoventory.Lotus.Core.Contracts;
+using Innoventory.Lotus.ViewModels;
 
 
-namespace Innoventory.Lotus.DataAccess.Abstract
+namespace Innoventory.Lotus.Business.Abstract
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public abstract class GenericRepository<DbEntity, VM> : IGenericRepository<VM>
+        where DbEntity : class, new()
+        where VM : class, IIdentifiable, new()
     {
-        protected InnoventoryDBContext _context;
-        private IDbTransaction transaction;
-        protected DbSet<T> dbSet;
-
-        private Transaction trans;
+        private InnoventoryDBContext _context;
+        private DbSet<DbEntity> entitySet;
 
         // Track whether Dispose has been called.
         private bool disposed = false;
+
+        protected InnoventoryDBContext DbContext
+        {
+            get
+            {
+                return _context;
+            }
+
+        }
+
+        protected DbContextTransaction transaction;
+
+        protected abstract VM GetEntity(Guid id);
+
+        protected abstract IList<VM> GetEntities();
+
+        protected abstract IList<VM> Find(Expression<Func<DbEntity, bool>> predicate);
+
+        protected abstract void DeleteEntity(Guid id);
+
+
+        protected abstract DbEntity GetDomainEntity(VM viewModel);
+
+        protected abstract bool AddEntity(VM viewModel);
+
+
+        protected abstract bool EditEntity(VM viewModel);
+
 
         public GenericRepository()
         {
             _context = new InnoventoryDBContext();
 
-            dbSet = _context.Set<T>();
+            entitySet = DbContext.Set<DbEntity>();
         }
 
 
-        public virtual IQueryable<T> GetAll()
+        public virtual FindResult<VM> GetAll()
         {
-            IQueryable<T> query = dbSet.AsQueryable<T>();
-            return query;
-        }
+            FindResult<VM> result = new FindResult<VM>();
 
-        public virtual IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
-        {
-            IQueryable<T> query = dbSet.Where(predicate);
-            return query;
-        }
-
-        public virtual void Add(T entity)
-        {
-            dbSet.Add(entity);
-        }
-
-        public virtual void Delete(T entity)
-        {
-            dbSet.Remove(entity);
-        }
-
-        public virtual void Edit(T entity)
-        {
-
-            dbSet.Attach(entity);
-
-            _context.Entry(entity).State = EntityState.Modified;
-        }
-
-        public virtual string Save()
-        {
-            StringBuilder message = new StringBuilder();
             try
             {
-                _context.SaveChanges();
-                message.Append("Data saved successfully!");
+                IList<VM> entityList = GetEntities();
+                result.Entities = new List<VM>();
+                result.Success = true;
+
             }
-            catch (System.Data.DataException de)
+            catch (Exception ex)
             {
-                throw (de);
+                throw ex;
             }
-            return message.ToString();
+
+            return result;
+        }
+
+        public virtual GetEntityResult<VM> FindById(Guid id)
+        {
+            GetEntityResult<VM> result = new GetEntityResult<VM>();
+
+            try
+            {
+                VM entity = GetEntity(id);
+
+                if (entity != null)
+                {
+                    result.Entity = entity;
+                    result.Success = true;
+                }
+                else
+                {
+                    result.Success = false;
+                    result.ErrorMessage = "Record does not exist";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                throw ex;
+            }
+
+            return result;
+        }
+
+        public virtual FindResult<VM> FindBy(Expression<Func<DbEntity, bool>> predicate)
+        {
+            FindResult<VM> result = new FindResult<VM>() { Success = false };
+
+            try
+            {
+
+                result.Entities = Find(predicate);
+                result.Success = true;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return result;
+        }
+
+
+
+        public virtual UpdateResult<VM> Update(VM viewModel)
+        {
+
+            UpdateResult<VM> result = new UpdateResult<VM>();
+
+            try
+            {
+                if (viewModel.EntityId == Guid.Empty)
+                {
+
+                    viewModel.EntityId = new Guid();
+
+                    result.Success = AddEntity(viewModel);
+
+                }
+                else
+                {
+                    result.Success = EditEntity(viewModel);
+                }
+
+                result.Entity = viewModel;
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = string.Format("An error {0} occurred while saving changes to database",
+                                   ex.Message);
+                throw ex;
+            }
+
+            return result;
+        }
+
+        public virtual bool Delete(VM viewModel)
+        {
+            bool success = false;
+            try
+            {
+
+                DbEntity existingEntity = GetDomainEntity(viewModel);
+
+                entitySet.Remove(existingEntity);
+
+                success = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return success;
         }
 
         public void Dispose()
@@ -90,8 +196,8 @@ namespace Innoventory.Lotus.DataAccess.Abstract
                 // and unmanaged resources.
                 if (disposing)
                 {
-                    // Dispose contex.
-                    _context.Dispose();
+                    // Dispose context.
+                    DbContext.Dispose();
 
                     _context = null;
                 }

@@ -1,6 +1,6 @@
 ﻿using Innoventory.Lotus.Core.Common;
 using Innoventory.Lotus.DataAccess.Abstract;
-using Innoventory.Lotus.Domain.DataEntities;
+using Innoventory.Lotus.Database.DataEntities;
 using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;

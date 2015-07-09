@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Innoventory.Lotus.Core.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace Innoventory.Lotus.ViewModels
 {
 
-    public class AddressViewModel
+    public class AddressViewModel :IIdentifiable
     {
          [ScaffoldColumn(false)]
         public Guid AddressID { get; set; }
@@ -44,5 +45,19 @@ namespace Innoventory.Lotus.ViewModels
         
         public CountryViewModel Country { get; set; }
 
+
+
+
+        public Guid EntityId
+        {
+            get
+            {
+                return AddressID;
+            }
+            set
+            {
+                AddressID = value;
+            }
+        }
     }
 }

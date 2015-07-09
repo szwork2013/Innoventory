@@ -7,7 +7,7 @@ namespace Innoventory.Lotus.Core.Common
 {
     public static class ObjectMapper
     {
-        public static void PropertyMap<T, U>(T source, U destination)
+        public static U PropertyMap<T, U>(T source, U destination)
             where T : class, new()
             where U : class, new()
         {
@@ -29,6 +29,8 @@ namespace Innoventory.Lotus.Core.Common
                     }
                 }
             }
+
+            return destination;
         }
     }
 }

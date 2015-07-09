@@ -1,18 +1,18 @@
-namespace Innoventory.Lotus.Domain.Migrations
+namespace Innoventory.Lotus.Database.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Innoventory.Lotus.Domain.DataEntities.InnoventoryDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Innoventory.Lotus.Database.DataEntities.InnoventoryDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Innoventory.Lotus.Domain.DataEntities.InnoventoryDBContext context)
+        protected override void Seed(Innoventory.Lotus.Database.DataEntities.InnoventoryDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

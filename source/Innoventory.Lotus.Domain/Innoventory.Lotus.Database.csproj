@@ -7,8 +7,8 @@
     <ProjectGuid>{4AF5F319-4D6A-4597-9930-33AAE9C6C856}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Innoventory.Lotus.Domain</RootNamespace>
-    <AssemblyName>Innoventory.Lotus.Domain</AssemblyName>
+    <RootNamespace>Innoventory.Lotus.Database</RootNamespace>
+    <AssemblyName>Innoventory.Lotus.Database</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>

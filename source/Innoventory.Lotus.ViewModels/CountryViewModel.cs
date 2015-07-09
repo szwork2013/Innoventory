@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Innoventory.Lotus.Core.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    public class CountryViewModel
+    public class CountryViewModel:IIdentifiable 
     {
 
         public Guid CountryID { get; set; }
@@ -29,5 +30,19 @@ namespace Innoventory.Lotus.ViewModels
 
 
 
+
+
+
+        public Guid EntityId
+        {
+            get
+            {
+                return CountryID;
+            }
+            set
+            {
+                CountryID = value;
+            }
+        }
     }
 }

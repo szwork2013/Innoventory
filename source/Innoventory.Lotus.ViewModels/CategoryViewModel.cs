@@ -1,4 +1,5 @@
-﻿using Innoventory.Lotus.Domain.DataEntities;
+﻿using Innoventory.Lotus.Core.Contracts;
+using Innoventory.Lotus.Database.DataEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 namespace Innoventory.Lotus.ViewModels
 {
     [DataContract]
-    public class CategoryViewModel
+    public class CategoryViewModel : IIdentifiable
     {
         //public CategoryViewModel (Category category)
         //{ }
@@ -29,5 +30,17 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember]
         public string Description { get; set; }
 
+
+        public Guid EntityId
+        {
+            get
+            {
+                return CategoryId;
+            }
+            set
+            {
+                CategoryId = value;
+            }
+        }
     }
 }

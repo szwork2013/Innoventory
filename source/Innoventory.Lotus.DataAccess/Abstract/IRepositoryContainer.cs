@@ -1,7 +1,7 @@
-﻿using Innoventory.Lotus.Domain.DataEntities;
+﻿using Innoventory.Lotus.Database.DataEntities;
 
 
-namespace Innoventory.Lotus.DataAccess.Abstract
+namespace Innoventory.Lotus.Business.Abstract
 {
     public interface IRepositoryContainer
     {

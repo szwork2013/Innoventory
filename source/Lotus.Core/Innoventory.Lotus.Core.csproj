@@ -98,6 +98,7 @@
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\EntityBase.cs" />
     <Compile Include="Common\ObjectMapper.cs" />
+    <Compile Include="Contracts\IIdentifiable.cs" />
     <Compile Include="Extensions\MefExtensions.cs" />
     <Compile Include="MefApiDependencyResolver.cs" />
     <Compile Include="MefDependencyResolver.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Innoventory.Lotus.Domain.DataEntities
+namespace Innoventory.Lotus.Database.DataEntities
 {
     public class Customer
     {

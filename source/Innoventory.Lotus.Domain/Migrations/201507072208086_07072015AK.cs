@@ -1,4 +1,4 @@
-namespace Innoventory.Lotus.Domain.Migrations
+namespace Innoventory.Lotus.Database.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

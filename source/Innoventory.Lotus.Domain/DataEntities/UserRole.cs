@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Innoventory.Lotus.Domain.DataEntities
+namespace Innoventory.Lotus.Database.DataEntities
 {
     public class UserRole
     {

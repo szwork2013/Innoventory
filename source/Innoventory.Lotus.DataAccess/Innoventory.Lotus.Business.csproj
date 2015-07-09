@@ -7,8 +7,8 @@
     <ProjectGuid>{CFC1B219-5EF3-4008-A178-4CBAA92112B4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Innoventory.Lotus.DataAccess</RootNamespace>
-    <AssemblyName>Innoventory.Lotus.DataAccess</AssemblyName>
+    <RootNamespace>Innoventory.Lotus.DataAccessInnoventory.Lotus.Business</RootNamespace>
+    <AssemblyName>Innoventory.Lotus.Business</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -203,7 +203,6 @@
     <Compile Include="Concrete\SupplierRepository.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Concrete\Transaction.cs" />
     <Compile Include="Concrete\UserAccountRepository.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -225,9 +224,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Innoventory.Lotus.Domain\Innoventory.Lotus.Domain.csproj">
+    <ProjectReference Include="..\Innoventory.Lotus.Domain\Innoventory.Lotus.Database.csproj">
       <Project>{4af5f319-4d6a-4597-9930-33aae9c6c856}</Project>
-      <Name>Innoventory.Lotus.Domain</Name>
+      <Name>Innoventory.Lotus.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Innoventory.Lotus.ViewModels\Innoventory.Lotus.ViewModels.csproj">
+      <Project>{d7f7ea22-ae02-47b6-a438-c8f850435f0d}</Project>
+      <Name>Innoventory.Lotus.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lotus.Core\Innoventory.Lotus.Core.csproj">
+      <Project>{2d2dc8ba-66f6-4bdb-901d-293eebeed402}</Project>
+      <Name>Innoventory.Lotus.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 
-namespace Innoventory.Lotus.Domain.DataEntities
+namespace Innoventory.Lotus.Database.DataEntities
 {
     public class InnoventoryDBContext : DbContext
     {

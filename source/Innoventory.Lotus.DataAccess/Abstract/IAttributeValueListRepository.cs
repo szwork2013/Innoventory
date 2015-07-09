@@ -1,14 +1,15 @@
-﻿using Innoventory.Lotus.Domain.DataEntities;
+﻿using Innoventory.Lotus.Database.DataEntities;
+using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Innoventory.Lotus.DataAccess.Abstract
+namespace Innoventory.Lotus.Business.Abstract
 {
-    public interface IAttributeValueListRepository : IGenericRepository<AttributeValueList>
+    public interface IAttributeValueListRepository : IGenericRepository<AttributeValueListViewModel>
     {
-        AttributeValueList FindById(Guid attributeValueId);
+        AttributeValueListViewModel FindById(Guid attributeValueId);
     }
 }

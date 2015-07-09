@@ -1,28 +1,30 @@
-﻿using System;
+﻿using Innoventory.Lotus.Core.Contracts;
+using Innoventory.Lotus.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Innoventory.Lotus.DataAccess.Abstract
+namespace Innoventory.Lotus.Business.Abstract
 {
     public interface IGenericRepository
     {
 
     }
-    public interface IGenericRepository<T> : IGenericRepository, IDisposable where T : class
+    public interface IGenericRepository<T> : IGenericRepository, IDisposable
+        where T : class, IIdentifiable, new()
     {
-        IQueryable<T> GetAll();
+        FindResult<T> GetAll();
 
-        IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
+        FindResult<T> FindBy(Expression<Func<T, bool>> predicate);
 
-        void Add(T entity);
+        GetEntityResult<T> FindById(Guid id);
 
-        void Delete(T entity);
+        UpdateResult<T> Update(T viewModel);
 
-        void Edit(T entity);
-
-        string Save();
+        EntityOperationResultBase Delete(Guid id);
+                
     }
 }

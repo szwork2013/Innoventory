@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
-namespace Innoventory.Lotus.Domain.DataEntities
+namespace Innoventory.Lotus.Database.DataEntities
 {
     public class PurchaseReturnItem
     {

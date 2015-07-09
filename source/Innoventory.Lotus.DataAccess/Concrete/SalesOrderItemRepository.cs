@@ -1,5 +1,5 @@
-﻿using Innoventory.Lotus.DataAccess.Abstract;
-using Innoventory.Lotus.Domain.DataEntities;
+﻿using Innoventory.Lotus.Business.Abstract;
+using Innoventory.Lotus.Database.DataEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Innoventory.Lotus.DataAccess.Concrete
+namespace Innoventory.Lotus.Business.Concrete
 {
     [Export(typeof(ISalesOrderItemRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]

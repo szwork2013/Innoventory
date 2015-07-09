@@ -64,6 +64,7 @@
     <Compile Include="CurrencyViewModel.cs" />
     <Compile Include="CustomerProductVariantPriceViewModel.cs" />
     <Compile Include="CustomerViewModel.cs" />
+    <Compile Include="EntityOperationResults.cs" />
     <Compile Include="ImageFileViewModel.cs" />
     <Compile Include="OrganisationSetupViewModel.cs" />
     <Compile Include="ProductAttributeViewModel.cs" />
@@ -93,9 +94,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Innoventory.Lotus.Domain\Innoventory.Lotus.Domain.csproj">
+    <ProjectReference Include="..\Innoventory.Lotus.Domain\Innoventory.Lotus.Database.csproj">
       <Project>{4af5f319-4d6a-4597-9930-33aae9c6c856}</Project>
-      <Name>Innoventory.Lotus.Domain</Name>
+      <Name>Innoventory.Lotus.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lotus.Core\Innoventory.Lotus.Core.csproj">
+      <Project>{2d2dc8ba-66f6-4bdb-901d-293eebeed402}</Project>
+      <Name>Innoventory.Lotus.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
