@@ -27,9 +27,9 @@ namespace Innoventory.Lotus.Business.Concrete
 
 
 
-        protected override CategoryViewModel GetEntity( Guid id)
+        protected override CategoryViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            DbSet<Category> entitySet = DbContext.CategorySet;
+            DbSet<Category> entitySet = dbContext.CategorySet;
 
             Category dmCategory = entitySet.FirstOrDefault(x => x.CategoryId == id);
 
@@ -41,9 +41,9 @@ namespace Innoventory.Lotus.Business.Concrete
 
         }
 
-        protected override IList<CategoryViewModel> GetEntities()
+        protected override IList<CategoryViewModel> GetEntities(InnoventoryDBContext dbContext)
         {
-            DbSet<Category> entitySet = DbContext.CategorySet;
+            DbSet<Category> entitySet = dbContext.CategorySet;
 
             List<Category> categories = entitySet.ToList();
 
@@ -61,9 +61,9 @@ namespace Innoventory.Lotus.Business.Concrete
             return retList;
         }
 
-        protected override IList<CategoryViewModel> Find(Expression<Func<Category, bool>> predicate)
+        protected override IList<CategoryViewModel> Find(InnoventoryDBContext dbContext, Expression<Func<Category, bool>> predicate)
         {
-            List<Category> categories = DbContext.CategorySet.Where(predicate).ToList();
+            List<Category> categories = dbContext.CategorySet.Where(predicate).ToList();
 
             List<CategoryViewModel> retList = new List<CategoryViewModel>();
 
@@ -79,41 +79,43 @@ namespace Innoventory.Lotus.Business.Concrete
             return retList;
         }
 
-        protected override void DeleteEntity( Guid id)
+        protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            DbSet<Category> entitySet = DbContext.CategorySet;
+            DbSet<Category> entitySet = dbContext.CategorySet;
 
-            CategoryViewModel categoryVM = GetEntity(id);
+            CategoryViewModel categoryVM = GetEntity(dbContext,id);
 
             Category category = GetDomainEntity(categoryVM);
 
             entitySet.Remove(category);
-            DbContext.SaveChanges();
-        }
+            dbContext.SaveChanges();
 
-        protected override bool AddEntity( CategoryViewModel viewModel)
-        {
-            Category category = GetDomainEntity(viewModel);
-            DbContext.CategorySet.Add(category);
-
-            DbContext.SaveChanges();
             return true;
         }
 
-        protected override bool EditEntity(CategoryViewModel viewModel)
+        protected override bool AddEntity(InnoventoryDBContext dbContext, CategoryViewModel viewModel)
         {
-            DbSet<Category> entitySet = DbContext.CategorySet;
+            Category category = GetDomainEntity(viewModel);
+            dbContext.CategorySet.Add(category);
+
+            dbContext.SaveChanges();
+            return true;
+        }
+
+        protected override bool EditEntity(InnoventoryDBContext dbContext, CategoryViewModel viewModel)
+        {
+            DbSet<Category> entitySet = dbContext.CategorySet;
 
             Category category = GetDomainEntity(viewModel);
 
             entitySet.Attach(category);
 
-            DbContext.Entry(category).State = EntityState.Modified;
+            dbContext.Entry(category).State = EntityState.Modified;
 
-            DbContext.SaveChanges();
+            dbContext.SaveChanges();
 
             return true;
-            
+           
         }
 
 

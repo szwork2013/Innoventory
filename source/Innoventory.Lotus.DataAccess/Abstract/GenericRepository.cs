@@ -17,46 +17,26 @@ namespace Innoventory.Lotus.Business.Abstract
         where DbEntity : class, new()
         where VM : class, IIdentifiable, new()
     {
-        private InnoventoryDBContext _context;
-        private DbSet<DbEntity> entitySet;
-
-        // Track whether Dispose has been called.
-        private bool disposed = false;
-
-        protected InnoventoryDBContext DbContext
-        {
-            get
-            {
-                return _context;
-            }
-
-        }
-
+        
         protected DbContextTransaction transaction;
 
-        protected abstract VM GetEntity(Guid id);
+        protected abstract VM GetEntity(InnoventoryDBContext dbContext, Guid id);
 
-        protected abstract IList<VM> GetEntities();
+        protected abstract IList<VM> GetEntities(InnoventoryDBContext dbContext);
 
-        protected abstract IList<VM> Find(Expression<Func<DbEntity, bool>> predicate);
+        protected abstract IList<VM> Find(InnoventoryDBContext dbContext, Expression<Func<DbEntity, bool>> predicate);
 
-        protected abstract void DeleteEntity(Guid id);
+        protected abstract bool DeleteEntity(InnoventoryDBContext dbContext, Guid id);
 
 
         protected abstract DbEntity GetDomainEntity(VM viewModel);
 
-        protected abstract bool AddEntity(VM viewModel);
+        protected abstract bool AddEntity(InnoventoryDBContext dbContext, VM viewModel);
 
 
-        protected abstract bool EditEntity(VM viewModel);
+        protected abstract bool EditEntity(InnoventoryDBContext dbContext, VM viewModel);
 
 
-        public GenericRepository()
-        {
-            _context = new InnoventoryDBContext();
-
-            entitySet = DbContext.Set<DbEntity>();
-        }
 
 
         public virtual FindResult<VM> GetAll()
@@ -65,9 +45,13 @@ namespace Innoventory.Lotus.Business.Abstract
 
             try
             {
-                IList<VM> entityList = GetEntities();
-                result.Entities = new List<VM>();
-                result.Success = true;
+                using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
+                {
+                    
+                    IList<VM> entityList = GetEntities(dbContext);
+                    result.Entities = new List<VM>();
+                    result.Success = true;
+                }
 
             }
             catch (Exception ex)
@@ -84,17 +68,22 @@ namespace Innoventory.Lotus.Business.Abstract
 
             try
             {
-                VM entity = GetEntity(id);
+                using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
+                {
 
-                if (entity != null)
-                {
-                    result.Entity = entity;
-                    result.Success = true;
-                }
-                else
-                {
-                    result.Success = false;
-                    result.ErrorMessage = "Record does not exist";
+                    VM entity = GetEntity(dbContext, id);
+
+
+                    if (entity != null)
+                    {
+                        result.Entity = entity;
+                        result.Success = true;
+                    }
+                    else
+                    {
+                        result.Success = false;
+                        result.ErrorMessage = "Record does not exist";
+                    }
                 }
             }
             catch (Exception ex)
@@ -112,9 +101,12 @@ namespace Innoventory.Lotus.Business.Abstract
 
             try
             {
+                using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
+                {
 
-                result.Entities = Find(predicate);
-                result.Success = true;
+                    result.Entities = Find(dbContext, predicate);
+                    result.Success = true;
+                }
 
             }
             catch (Exception ex)
@@ -135,20 +127,24 @@ namespace Innoventory.Lotus.Business.Abstract
 
             try
             {
-                if (viewModel.EntityId == Guid.Empty)
+                using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
                 {
 
-                    viewModel.EntityId = new Guid();
+                    if (viewModel.EntityId == Guid.Empty)
+                    {
 
-                    result.Success = AddEntity(viewModel);
+                        viewModel.EntityId = new Guid();
 
+                        result.Success = AddEntity(dbContext, viewModel);
+
+                    }
+                    else
+                    {
+                        result.Success = EditEntity(dbContext, viewModel);
+                    }
+
+                    result.Entity = viewModel;
                 }
-                else
-                {
-                    result.Success = EditEntity(viewModel);
-                }
-
-                result.Entity = viewModel;
             }
             catch (Exception ex)
             {
@@ -165,12 +161,13 @@ namespace Innoventory.Lotus.Business.Abstract
             bool success = false;
             try
             {
+                using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
+                {
 
-                DbEntity existingEntity = GetDomainEntity(viewModel);
+                    success = DeleteEntity(dbContext, viewModel.EntityId);
+                }
 
-                entitySet.Remove(existingEntity);
 
-                success = true;
             }
             catch (Exception ex)
             {
@@ -180,35 +177,7 @@ namespace Innoventory.Lotus.Business.Abstract
             return success;
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            // Check to see if Dispose has already been called.
-            if (!this.disposed)
-            {
-                // If disposing equals true, dispose all managed
-                // and unmanaged resources.
-                if (disposing)
-                {
-                    // Dispose context.
-                    DbContext.Dispose();
-
-                    _context = null;
-                }
-                disposed = true;
-            }
-        }
-
-        ~GenericRepository()
-        {
-            Dispose(false);
-        }
+       
 
     }
 }
