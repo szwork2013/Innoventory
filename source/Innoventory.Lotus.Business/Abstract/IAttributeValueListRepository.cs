@@ -10,6 +10,6 @@ namespace Innoventory.Lotus.Business.Abstract
 {
     public interface IAttributeValueListRepository : IGenericRepository<AttributeValueListViewModel>
     {
-        AttributeValueListViewModel FindById(Guid attributeValueId);
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Innoventory.Lotus.Business.Abstract;
 using Innoventory.Lotus.Database.DataEntities;
+using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -11,11 +12,41 @@ namespace Innoventory.Lotus.Business.Concrete
 {
     [Export(typeof(ISalesOrderItemRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class SalesOrderItemRepository : GenericRepository<SalesOrderItem>, ISalesOrderItemRepository
+    public class SalesOrderItemRepository : GenericRepository<SalesOrderItem, SalesOrderItemViewModel>, ISalesOrderItemRepository
     {
-        public SalesOrderItem FindById(Guid salesOrderItemId)
+      
+        protected override SalesOrderItemViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            return GetAll().FirstOrDefault(x => x.SalesOrderItemId == salesOrderItemId);
+            throw new NotImplementedException();
+        }
+
+        protected override List<SalesOrderItemViewModel> GetEntities(InnoventoryDBContext dbContext)
+        {
+            throw new NotImplementedException();
+        }
+
+     
+
+        protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+      
+
+        protected override bool AddEntity(InnoventoryDBContext dbContext, SalesOrderItemViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool EditEntity(InnoventoryDBContext dbContext, SalesOrderItemViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<SalesOrderItemViewModel> Find(InnoventoryDBContext dbContext, Func<SalesOrderItemViewModel, bool> predicate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

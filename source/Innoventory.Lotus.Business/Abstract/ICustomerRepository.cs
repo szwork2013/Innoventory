@@ -1,4 +1,5 @@
 ﻿using Innoventory.Lotus.Database.DataEntities;
+using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.Business.Abstract
 {
-    public interface ICustomerRepository : IGenericRepository<Customer>
+    public interface ICustomerRepository : IGenericRepository<CustomerViewModel>
     {
-        Customer FindById(Guid customerId);
+        
     }
 }

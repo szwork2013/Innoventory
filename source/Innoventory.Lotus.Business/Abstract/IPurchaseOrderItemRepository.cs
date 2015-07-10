@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Innoventory.Lotus.ViewModels;
 
 namespace Innoventory.Lotus.Business.Abstract
 {
-    public interface IPurchaseOrderItemRepository : IGenericRepository<PurchaseOrderItem>
+    public interface IPurchaseOrderItemRepository : IGenericRepository<PurchaseOrderItemViewModel>
     {
-        PurchaseOrderItem FindById(Guid purchaseOrderItem);
+        
     }
 }

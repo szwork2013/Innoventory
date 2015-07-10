@@ -6,11 +6,12 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Innoventory.Lotus.Core.Contracts;
 
 namespace Innoventory.Lotus.ViewModels
 {
 
-    public class SubCategoryViewModel
+    public class SubCategoryViewModel:IIdentifiable
     {
 
         public Guid SubCategoryId { get; set; }
@@ -20,5 +21,17 @@ namespace Innoventory.Lotus.ViewModels
         public string SubCategoryName { get; set; }
 
         public string SubCategoryDescription { get; set; }
+
+        public Guid EntityId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

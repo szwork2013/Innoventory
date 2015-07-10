@@ -1,5 +1,6 @@
 ﻿using Innoventory.Lotus.Business.Abstract;
 using Innoventory.Lotus.Database.DataEntities;
+using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -11,26 +12,79 @@ namespace Innoventory.Lotus.Business.Concrete
 {
     [Export(typeof(IUserAccountUserRoleMapRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class UserAccountUserRoleMapRepository : GenericRepository<UserAccountUserRoleMap>, IUserAccountUserRoleMapRepository
+    public class UserAccountUserRoleMapRepository : GenericRepository<UserAccountUserRoleMap, UserAccountUserRoleMapViewModel>, 
+                                                        IUserAccountUserRoleMapRepository
     {
-        public UserAccountUserRoleMap FindById(Guid userId)
+
+
+        public List<UserAccountUserRoleMapViewModel> FindByUserId(Guid userId)
         {
-            return GetAll().FirstOrDefault(x => x.UserId == userId);
+            List<UserAccountUserRoleMapViewModel> result = new List<UserAccountUserRoleMapViewModel>();
+            using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
+            {
+                result = GetEntities(dbContext).Where(x => x.UserId == userId).ToList();
+            }
+
+            return result;
         }
 
-        public List<UserAccountUserRoleMap> FindByUserId(Guid userId)
+        public List<UserAccountUserRoleMapViewModel> FindByUserRoleId(Guid userRoleId)
         {
-            return GetAll().Where(x => x.UserId == userId).ToList();
+            List<UserAccountUserRoleMapViewModel> result = new List<UserAccountUserRoleMapViewModel>();
+            using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
+            {
+                result = GetEntities(dbContext).Where(x => x.UserRoleId == userRoleId).ToList();
+            }
+
+            return result;
         }
 
-        public List<UserAccountUserRoleMap> FindByUserRoleId(Guid userRoleId)
+        public UserAccountUserRoleMapViewModel FindByUserIdAndUserRoleId(Guid userId, Guid userRoleId)
         {
-            return GetAll().Where(x => x.UserRoleId == userRoleId).ToList();
+            UserAccountUserRoleMapViewModel result = null;
+
+            using(InnoventoryDBContext dbContext = new InnoventoryDBContext())
+            {
+                result = GetEntities(dbContext).FirstOrDefault(x=>x.UserId == userId && x.UserRoleId == userRoleId);
+            }
+
+            return result;
+        }
+        
+
+        protected override UserAccountUserRoleMapViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
+        {
+            throw new NotImplementedException();
         }
 
-        public UserAccountUserRoleMap FindByUserIdAndUserRoleId(Guid userId, Guid userRoleId)
+        protected override List<UserAccountUserRoleMapViewModel> GetEntities(InnoventoryDBContext dbContext)
         {
-            return GetAll().FirstOrDefault(x => x.UserId == userId && x.UserRoleId == userRoleId);
+            throw new NotImplementedException();
         }
+
+        
+        protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+        protected override bool AddEntity(InnoventoryDBContext dbContext, UserAccountUserRoleMapViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool EditEntity(InnoventoryDBContext dbContext, UserAccountUserRoleMapViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<UserAccountUserRoleMapViewModel> Find(InnoventoryDBContext dbContext, Func<UserAccountUserRoleMapViewModel, bool> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        
     }
 }

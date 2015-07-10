@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Innoventory.Lotus.Core.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    public class CustomerProductVariantPriceViewModel
+    public class CustomerProductVariantPriceViewModel : IIdentifiable
     {
 
         public Guid CustomerProductVariantPriceId { get; set; }
@@ -25,5 +26,17 @@ namespace Innoventory.Lotus.ViewModels
 
         public ProductVariantViewModel ProductVariant { get; set; }
 
+
+        public Guid EntityId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

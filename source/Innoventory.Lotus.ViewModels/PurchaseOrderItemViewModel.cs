@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using Innoventory.Lotus.Core.Contracts;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    public class PurchaseOrderItemViewModel
+    public class PurchaseOrderItemViewModel:IIdentifiable
     {
         [Key]
         public Guid PurchaseOrderItemId { get; set; }
@@ -22,5 +23,17 @@ namespace Innoventory.Lotus.ViewModels
         public  ProductVariantViewModel ProductVariant { get; set; }
 
 
+
+        public Guid EntityId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

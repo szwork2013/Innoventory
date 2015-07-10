@@ -1,5 +1,6 @@
 ﻿using Innoventory.Lotus.Business.Abstract;
 using Innoventory.Lotus.Database.DataEntities;
+using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -11,11 +12,41 @@ namespace Innoventory.Lotus.Business.Concrete
 {
     [Export(typeof(IProductVariantAttributeValueRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class ProductVariantAttributeValueRepository : GenericRepository<ProductVariantAttributeValue>, IProductVariantAttributeValueRepository
+    public class ProductVariantAttributeValueRepository : GenericRepository<ProductVariantAttributeValue, ProductVariantAttributeValueViewModel>, IProductVariantAttributeValueRepository
     {
-        public ProductVariantAttributeValue FindById(Guid productVariantId)
+        
+        protected override ProductVariantAttributeValueViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            return GetAll().FirstOrDefault(x => x.ProductVariantId == productVariantId);
+            throw new NotImplementedException();
+        }
+
+        protected override List<ProductVariantAttributeValueViewModel> GetEntities(InnoventoryDBContext dbContext)
+        {
+            throw new NotImplementedException();
+        }
+
+      
+
+        protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
+        protected override bool AddEntity(InnoventoryDBContext dbContext, ProductVariantAttributeValueViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool EditEntity(InnoventoryDBContext dbContext, ProductVariantAttributeValueViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<ProductVariantAttributeValueViewModel> Find(InnoventoryDBContext dbContext, Func<ProductVariantAttributeValueViewModel, bool> predicate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

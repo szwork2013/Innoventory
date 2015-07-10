@@ -1,5 +1,6 @@
 ﻿using Innoventory.Lotus.Business.Abstract;
 using Innoventory.Lotus.Database.DataEntities;
+using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -11,11 +12,42 @@ namespace Innoventory.Lotus.Business.Concrete
 {
     [Export(typeof(ICategorySubCategoryAttributeMapRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class CategorySubCategoryAttributeMapRepository : GenericRepository<CategorySubCategoryAttributeMap>, ICategorySubCategoryAttributeMapRepository
+    public class CategorySubCategoryAttributeMapRepository : GenericRepository<CategorySubCategoryAttributeMap, CategorySubCategoryAttributeMapViewModel>, 
+                                                                ICategorySubCategoryAttributeMapRepository
     {
-        public CategorySubCategoryAttributeMap FindById(Guid categorySubCategoryAttributeMapId)
+
+       
+       
+        protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            return GetAll().FirstOrDefault(x => x.CategorySubCategoryAttributeMapId == categorySubCategoryAttributeMapId);
+            throw new NotImplementedException();
+        }
+
+              
+
+        protected override List<CategorySubCategoryAttributeMapViewModel> Find(InnoventoryDBContext dbContext, Func<CategorySubCategoryAttributeMapViewModel, bool> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool AddEntity(InnoventoryDBContext dbContext, CategorySubCategoryAttributeMapViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool EditEntity(InnoventoryDBContext dbContext, CategorySubCategoryAttributeMapViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override CategorySubCategoryAttributeMapViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<CategorySubCategoryAttributeMapViewModel> GetEntities(InnoventoryDBContext dbContext)
+        {
+            throw new NotImplementedException();
         }
     }
 }

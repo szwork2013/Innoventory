@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Innoventory.Lotus.Core.Contracts;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    public class UserAccountViewModel
+    public class UserAccountViewModel:IIdentifiable
     {
         [Key]
         public Guid UserAccountId { get; set; }
@@ -24,5 +25,17 @@ namespace Innoventory.Lotus.ViewModels
 
         public List<UserAccountUserRoleMapViewModel> UserAccountRoleMaps { get; set; }
 
+
+        public Guid EntityId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

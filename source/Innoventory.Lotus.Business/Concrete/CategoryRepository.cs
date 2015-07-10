@@ -18,7 +18,7 @@ namespace Innoventory.Lotus.Business.Concrete
     public class CategoryRepository : GenericRepository<Category, CategoryViewModel>, ICategoryRepository
     {
 
-        protected override Category GetDomainEntity(CategoryViewModel viewModel)
+        protected Category GetDomainEntity(CategoryViewModel viewModel)
         {
             Category category = ObjectMapper.PropertyMap(viewModel, new Category());
 
@@ -41,29 +41,11 @@ namespace Innoventory.Lotus.Business.Concrete
 
         }
 
-        protected override IList<CategoryViewModel> GetEntities(InnoventoryDBContext dbContext)
+        protected override List<CategoryViewModel> GetEntities(InnoventoryDBContext dbContext)
         {
             DbSet<Category> entitySet = dbContext.CategorySet;
 
             List<Category> categories = entitySet.ToList();
-
-            List<CategoryViewModel> retList = new List<CategoryViewModel>();
-
-            foreach (Category category in categories)
-            {
-                CategoryViewModel catVM = new CategoryViewModel ();
-
-
-                retList.Add(ObjectMapper.PropertyMap(category, catVM));
-                
-            }
-
-            return retList;
-        }
-
-        protected override IList<CategoryViewModel> Find(InnoventoryDBContext dbContext, Expression<Func<Category, bool>> predicate)
-        {
-            List<Category> categories = dbContext.CategorySet.Where(predicate).ToList();
 
             List<CategoryViewModel> retList = new List<CategoryViewModel>();
 
@@ -79,11 +61,19 @@ namespace Innoventory.Lotus.Business.Concrete
             return retList;
         }
 
+        protected override List<CategoryViewModel> Find(InnoventoryDBContext dbContext, Func<CategoryViewModel, bool> predicate)
+        {
+
+            List<CategoryViewModel> categories = (GetEntities(dbContext) as List<CategoryViewModel>).Where(predicate).ToList();
+
+            return categories;
+        }
+
         protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
         {
             DbSet<Category> entitySet = dbContext.CategorySet;
 
-            CategoryViewModel categoryVM = GetEntity(dbContext,id);
+            CategoryViewModel categoryVM = GetEntity(dbContext, id);
 
             Category category = GetDomainEntity(categoryVM);
 
@@ -115,9 +105,10 @@ namespace Innoventory.Lotus.Business.Concrete
             dbContext.SaveChanges();
 
             return true;
-           
+
         }
 
-
+        
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Innoventory.Lotus.Business.Abstract;
 using Innoventory.Lotus.Database.DataEntities;
+using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -11,11 +12,38 @@ namespace Innoventory.Lotus.Business.Concrete
 {
     [Export(typeof(IProductAttibuteRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class ProductAttibuteRepository : GenericRepository<ProductAttribute>, IProductAttibuteRepository
+    public class ProductAttibuteRepository : GenericRepository<ProductAttribute, ProductAttributeViewModel>, IProductAttibuteRepository
     {
-        public ProductAttribute FindById(Guid productAttributeId)
+        protected override ProductAttributeViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            return GetAll().FirstOrDefault(x => x.ProductAttributeId == productAttributeId);
+            throw new NotImplementedException();
+        }
+
+        protected override List<ProductAttributeViewModel> GetEntities(InnoventoryDBContext dbContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+      
+
+        protected override bool AddEntity(InnoventoryDBContext dbContext, ProductAttributeViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool EditEntity(InnoventoryDBContext dbContext, ProductAttributeViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<ProductAttributeViewModel> Find(InnoventoryDBContext dbContext, Func<ProductAttributeViewModel, bool> predicate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Innoventory.Lotus.Business.Abstract;
 using Innoventory.Lotus.Database.DataEntities;
+using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -11,11 +12,41 @@ namespace Innoventory.Lotus.Business.Concrete
 {
     [Export(typeof(IVolumeMeasureRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class VolumeMeasureRepository : GenericRepository<VolumeMeasure>, IVolumeMeasureRepository
+    public class VolumeMeasureRepository : GenericRepository<VolumeMeasure, VolumeMeasureViewModel>, IVolumeMeasureRepository
     {
-        public VolumeMeasure FindById(Guid volumeMeasureId)
+      
+        protected override VolumeMeasureViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            return GetAll().FirstOrDefault(x => x.VolumeMeasureId == volumeMeasureId);
+            throw new NotImplementedException();
+        }
+
+        protected override List<VolumeMeasureViewModel> GetEntities(InnoventoryDBContext dbContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+
+        protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+    
+
+        protected override bool AddEntity(InnoventoryDBContext dbContext, VolumeMeasureViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool EditEntity(InnoventoryDBContext dbContext, VolumeMeasureViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<VolumeMeasureViewModel> Find(InnoventoryDBContext dbContext, Func<VolumeMeasureViewModel, bool> predicate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

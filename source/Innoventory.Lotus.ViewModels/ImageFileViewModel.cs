@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Innoventory.Lotus.Core.Contracts;
 
 namespace Innoventory.Lotus.ViewModels
 {
-   public  class ImageFileViewModel
+   public  class ImageFileViewModel:IIdentifiable
     {
         public Guid ImageFileId { get; set; }
 
@@ -21,6 +22,18 @@ namespace Innoventory.Lotus.ViewModels
 
         public ProductViewModel Product { get; set; }
 
-        public List<ProductVariantImageFileMapViewModel> ProductVariantImageFileMaps { get; set; } 
+        public List<ProductVariantImageFileMapViewModel> ProductVariantImageFileMaps { get; set; }
+
+        public Guid EntityId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Innoventory.Lotus.Business.Abstract;
 using Innoventory.Lotus.Database.DataEntities;
+using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -11,12 +12,39 @@ namespace Innoventory.Lotus.Business.Concrete
 {
     [Export(typeof(ISubCategoryRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class SubCategoryRepository : GenericRepository<SubCategory>, ISubCategoryRepository
+    public class SubCategoryRepository : GenericRepository<SubCategory, SubCategoryViewModel>, ISubCategoryRepository
     {
-        public SubCategory FindById(Guid subCategoryId)
+       
+        protected override SubCategoryViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            return GetAll().FirstOrDefault(x => x.SubCategoryId == subCategoryId);
+            throw new NotImplementedException();
         }
 
+        protected override List<SubCategoryViewModel> GetEntities(InnoventoryDBContext dbContext)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+        protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+        protected override bool AddEntity(InnoventoryDBContext dbContext, SubCategoryViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool EditEntity(InnoventoryDBContext dbContext, SubCategoryViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<SubCategoryViewModel> Find(InnoventoryDBContext dbContext, Func<SubCategoryViewModel, bool> predicate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

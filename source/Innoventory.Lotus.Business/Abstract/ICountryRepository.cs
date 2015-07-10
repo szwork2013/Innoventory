@@ -11,7 +11,7 @@ namespace Innoventory.Lotus.Business.Abstract
     public interface ICountryRepository:IGenericRepository<CountryViewModel>
     {
 
-        Country FindById(Guid countryId);
+        
 
     }
 }

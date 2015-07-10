@@ -13,12 +13,12 @@ namespace Innoventory.Lotus.Business.Abstract
     {
 
     }
-    public interface IGenericRepository<T> : IGenericRepository, IDisposable
+    public interface IGenericRepository<T> : IGenericRepository
         where T : class, IIdentifiable, new()
     {
         FindResult<T> GetAll();
 
-        FindResult<T> FindBy(Expression<Func<T, bool>> predicate);
+        FindResult<T> FindBy(Func<T, bool> predicate);
 
         GetEntityResult<T> FindById(Guid id);
 

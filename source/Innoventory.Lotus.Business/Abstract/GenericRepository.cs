@@ -18,27 +18,29 @@ namespace Innoventory.Lotus.Business.Abstract
         where VM : class, IIdentifiable, new()
     {
         
-        protected DbContextTransaction transaction;
 
+        
+
+        #region Abstract Methods
         protected abstract VM GetEntity(InnoventoryDBContext dbContext, Guid id);
 
-        protected abstract IList<VM> GetEntities(InnoventoryDBContext dbContext);
+        protected abstract List<VM> GetEntities(InnoventoryDBContext dbContext);
 
-        protected abstract IList<VM> Find(InnoventoryDBContext dbContext, Expression<Func<DbEntity, bool>> predicate);
+        protected abstract List<VM> Find(InnoventoryDBContext dbContext, Func<VM, bool> predicate);
 
         protected abstract bool DeleteEntity(InnoventoryDBContext dbContext, Guid id);
 
 
-        protected abstract DbEntity GetDomainEntity(VM viewModel);
+        //protected abstract DbEntity GetDomainEntity(VM viewModel);
 
         protected abstract bool AddEntity(InnoventoryDBContext dbContext, VM viewModel);
 
 
         protected abstract bool EditEntity(InnoventoryDBContext dbContext, VM viewModel);
+        #endregion
 
 
-
-
+        #region Generic Interface Implementation
         public virtual FindResult<VM> GetAll()
         {
             FindResult<VM> result = new FindResult<VM>();
@@ -48,7 +50,7 @@ namespace Innoventory.Lotus.Business.Abstract
                 using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
                 {
                     
-                    IList<VM> entityList = GetEntities(dbContext);
+                    List<VM> entityList = GetEntities(dbContext);
                     result.Entities = new List<VM>();
                     result.Success = true;
                 }
@@ -95,7 +97,7 @@ namespace Innoventory.Lotus.Business.Abstract
             return result;
         }
 
-        public virtual FindResult<VM> FindBy(Expression<Func<DbEntity, bool>> predicate)
+        public virtual FindResult<VM> FindBy(Func<VM, bool> predicate)
         {
             FindResult<VM> result = new FindResult<VM>() { Success = false };
 
@@ -117,8 +119,6 @@ namespace Innoventory.Lotus.Business.Abstract
 
             return result;
         }
-
-
 
         public virtual UpdateResult<VM> Update(VM viewModel)
         {
@@ -156,15 +156,15 @@ namespace Innoventory.Lotus.Business.Abstract
             return result;
         }
 
-        public virtual bool Delete(VM viewModel)
+        public virtual EntityOperationResultBase Delete(Guid id)
         {
-            bool success = false;
+            EntityOperationResultBase result = new EntityOperationResultBase() { Success = false };
             try
             {
                 using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
                 {
 
-                    success = DeleteEntity(dbContext, viewModel.EntityId);
+                    result.Success = DeleteEntity(dbContext, id);
                 }
 
 
@@ -174,10 +174,12 @@ namespace Innoventory.Lotus.Business.Abstract
                 throw ex;
             }
 
-            return success;
+            return result;
         }
 
-       
+
+        #endregion
+
 
     }
 }

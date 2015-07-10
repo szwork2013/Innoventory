@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Innoventory.Lotus.Core.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,7 @@ namespace Innoventory.Lotus.ViewModels
 {
 
 
-    public class AttributeValueListViewModel
+    public class AttributeValueListViewModel:IIdentifiable
     {
 
        [ScaffoldColumn(false)]
@@ -26,5 +27,19 @@ namespace Innoventory.Lotus.ViewModels
         public CategorySubCategoryAttributeMapViewModel CategorySubCategoryAttributeMap { get; set; }
 
         public List<ProductVariantAttributeValueViewModel> ProductVariantAttributeValue { get; set; }
+
+
+
+        public Guid EntityId
+        {
+            get
+            {
+                return AttributeValueListId;
+            }
+            set
+            {
+                AttributeValueListId = value;
+            }
+        }
     }
 }

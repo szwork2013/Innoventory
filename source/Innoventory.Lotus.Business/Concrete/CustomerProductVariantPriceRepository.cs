@@ -1,5 +1,6 @@
 ﻿using Innoventory.Lotus.Business.Abstract;
 using Innoventory.Lotus.Database.DataEntities;
+using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -11,11 +12,39 @@ namespace Innoventory.Lotus.Business.Concrete
 {
     [Export(typeof(ICustomerProductVariantPriceRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class CustomerProductVariantPriceRepository : GenericRepository<CustomerProductVariantPrice>, ICustomerProductVariantPriceRepository
+    public class CustomerProductVariantPriceRepository : GenericRepository<CustomerProductVariantPrice, CustomerProductVariantPriceViewModel>, 
+                                                            ICustomerProductVariantPriceRepository
     {
-        public CustomerProductVariantPrice FindById(Guid customerProductVariantPriceId)
+
+        protected override CustomerProductVariantPriceViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            return GetAll().FirstOrDefault(x => x.CustomerProductVariantPriceId == customerProductVariantPriceId);
+            throw new NotImplementedException();
+        }
+
+        protected override List<CustomerProductVariantPriceViewModel> GetEntities(InnoventoryDBContext dbContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+        protected override bool AddEntity(InnoventoryDBContext dbContext, CustomerProductVariantPriceViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool EditEntity(InnoventoryDBContext dbContext, CustomerProductVariantPriceViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<CustomerProductVariantPriceViewModel> Find(InnoventoryDBContext dbContext, Func<CustomerProductVariantPriceViewModel, bool> predicate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

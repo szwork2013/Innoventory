@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Innoventory.Lotus.ViewModels;
 
 namespace Innoventory.Lotus.Business.Abstract
 {
-    public interface IUserAccountUserRoleMapRepository : IGenericRepository<UserAccountUserRoleMap>
+    public interface IUserAccountUserRoleMapRepository : IGenericRepository<UserAccountUserRoleMapViewModel>
     {
-        List<UserAccountUserRoleMap> FindByUserId(Guid userId);
+        List<UserAccountUserRoleMapViewModel> FindByUserId(Guid userId);
 
-        List<UserAccountUserRoleMap> FindByUserRoleId(Guid userRoleId);
+        List<UserAccountUserRoleMapViewModel> FindByUserRoleId(Guid userRoleId);
 
-        UserAccountUserRoleMap FindByUserIdAndUserRoleId(Guid userId, Guid userRoleId);
+        UserAccountUserRoleMapViewModel FindByUserIdAndUserRoleId(Guid userId, Guid userRoleId);
 
 
     }

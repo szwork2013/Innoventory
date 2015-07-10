@@ -1,5 +1,6 @@
 ﻿using Innoventory.Lotus.Business.Abstract;
 using Innoventory.Lotus.Database.DataEntities;
+using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -11,11 +12,40 @@ namespace Innoventory.Lotus.Business.Concrete
 {
     [Export(typeof(ICustomerRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class CustomerRepository : GenericRepository<Customer>, ICustomerRepository
+    public class CustomerRepository : GenericRepository<Customer, CustomerViewModel>, ICustomerRepository
     {
-        public Customer FindById(Guid customerId)
+
+        protected override CustomerViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            return GetAll().FirstOrDefault(x => x.CustomerId == customerId);
+            throw new NotImplementedException();
+        }
+
+        protected override List<CustomerViewModel> GetEntities(InnoventoryDBContext dbContext)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
+        protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+        protected override bool AddEntity(InnoventoryDBContext dbContext, CustomerViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool EditEntity(InnoventoryDBContext dbContext, CustomerViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override List<CustomerViewModel> Find(InnoventoryDBContext dbContext, Func<CustomerViewModel, bool> predicate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

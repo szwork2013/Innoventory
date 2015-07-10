@@ -10,6 +10,6 @@ namespace Innoventory.Lotus.Business.Abstract
 {
     public interface IAddressRepository : IGenericRepository<AddressViewModel>
     {
-        AddressViewModel FindById(Guid addressId);
+        
     }
 }

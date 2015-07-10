@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using Innoventory.Lotus.Core.Contracts;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    public class SalesReturnItemViewModel
+    public class SalesReturnItemViewModel:IIdentifiable
     {
 
         public Guid SalesReturnItemId { get; set; }
@@ -20,5 +21,17 @@ namespace Innoventory.Lotus.ViewModels
         public virtual SalesReturnViewModel SalesReturn { get; set; }
 
         public virtual ProductVariantViewModel ProductVariant { get; set; }
+
+        public Guid EntityId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

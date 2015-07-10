@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Innoventory.Lotus.Core.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    public class CategorySubCategoryMapViewModel
+    public class CategorySubCategoryMapViewModel : IIdentifiable
     {
 
         public Guid CategorySubCategoryMapId { get; set; }
@@ -20,5 +21,11 @@ namespace Innoventory.Lotus.ViewModels
         public List<CategoryViewModel> Categories { get; set; }
 
         public List<SubCategoryViewModel> SubCategories { get; set; }
+
+        public Guid EntityId
+        {
+            get { return CategorySubCategoryMapId; }
+            set { CategorySubCategoryMapId = value; }
+        }
     }
 }

@@ -5,10 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Innoventory.Lotus.Core.Contracts;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    public class SalesOrderViewModel
+    public class SalesOrderViewModel:IIdentifiable
     {
         [Key]
         public Guid SalesOrderId { get; set; }
@@ -20,5 +21,17 @@ namespace Innoventory.Lotus.ViewModels
         public List<SalesOrderItemViewModel> SaleOrderItems { get; set; }
 
         public CustomerViewModel Customer { get; set; }
+
+        public Guid EntityId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

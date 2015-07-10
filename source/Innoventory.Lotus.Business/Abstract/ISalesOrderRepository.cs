@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Innoventory.Lotus.ViewModels;
 
 namespace Innoventory.Lotus.Business.Abstract
 {
-    public interface ISalesOrderRepository : IGenericRepository<SalesOrder>
+    public interface ISalesOrderRepository : IGenericRepository<SalesOrderViewModel>
     {
-        SalesOrder FindById(Guid salesOrder);
+        
     }
 }

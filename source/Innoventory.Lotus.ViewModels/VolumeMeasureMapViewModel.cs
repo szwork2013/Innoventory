@@ -5,10 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Innoventory.Lotus.Core.Contracts;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    public class VolumeMeasureMapViewModel
+    public class VolumeMeasureMapViewModel:IIdentifiable
     {
 
         public Guid VolumeMeasureMapId { get; set; }
@@ -19,5 +20,17 @@ namespace Innoventory.Lotus.ViewModels
         public VolumeMeasureViewModel PrimaryVM { get; set; }
 
         public VolumeMeasureViewModel SecondaryVM { get; set; }
+
+        public Guid EntityId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

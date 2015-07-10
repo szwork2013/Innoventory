@@ -14,12 +14,41 @@ namespace Innoventory.Lotus.Business.Concrete
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class AddressRepository : GenericRepository<Address, AddressViewModel>, IAddressRepository
     {
-        public AddressViewModel FindById(Guid addressId)
+
+
+
+        protected override AddressViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            return GetAll().FirstOrDefault(x => x.AddressID == addressId);
+            throw new NotImplementedException();
+        }
+
+        protected override List<AddressViewModel> GetEntities(InnoventoryDBContext dbContext)
+        {
+            throw new NotImplementedException();
+        }
+
+    
+        protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+      
+
+        protected override bool AddEntity(InnoventoryDBContext dbContext, AddressViewModel viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override bool EditEntity(InnoventoryDBContext dbContext, AddressViewModel viewModel)
+        {
+            throw new NotImplementedException();
         }
 
        
-        
+        protected override List<AddressViewModel> Find(InnoventoryDBContext dbContext, Func<AddressViewModel, bool> predicate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

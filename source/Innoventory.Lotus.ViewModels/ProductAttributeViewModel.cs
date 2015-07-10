@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Innoventory.Lotus.Core.Contracts;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    public class ProductAttributeViewModel
+    public class ProductAttributeViewModel:IIdentifiable
     {
         
         public Guid ProductAttributeId { get; set; }
@@ -18,5 +19,17 @@ namespace Innoventory.Lotus.ViewModels
         
         public string AttributeDescription { get; set; }
 
+
+        public Guid EntityId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
