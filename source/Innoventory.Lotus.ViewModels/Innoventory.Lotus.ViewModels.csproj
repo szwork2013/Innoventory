@@ -94,7 +94,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Innoventory.Lotus.Domain\Innoventory.Lotus.Database.csproj">
+    <ProjectReference Include="..\Innoventory.Lotus.Database\Innoventory.Lotus.Database.csproj">
       <Project>{4af5f319-4d6a-4597-9930-33aae9c6c856}</Project>
       <Name>Innoventory.Lotus.Database</Name>
     </ProjectReference>

@@ -1,4 +1,4 @@
-﻿using Innoventory.Lotus.DataAccess.Concrete;
+﻿using Innoventory.Lotus.Business.Concrete;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;

@@ -44,13 +44,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Innoventory.Lotus.DataAccess\Innoventory.Lotus.Business.csproj">
+    <ProjectReference Include="..\Innoventory.Lotus.Business\Innoventory.Lotus.Business.csproj">
       <Project>{cfc1b219-5ef3-4008-a178-4cbaa92112b4}</Project>
       <Name>Innoventory.Lotus.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Innoventory.Lotus.Domain\Innoventory.Lotus.Database.csproj">
-      <Project>{4af5f319-4d6a-4597-9930-33aae9c6c856}</Project>
-      <Name>Innoventory.Lotus.Database</Name>
+    <ProjectReference Include="..\Innoventory.Lotus.ViewModels\Innoventory.Lotus.ViewModels.csproj">
+      <Project>{d7f7ea22-ae02-47b6-a438-c8f850435f0d}</Project>
+      <Name>Innoventory.Lotus.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

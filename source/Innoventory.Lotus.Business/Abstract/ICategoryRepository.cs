@@ -1,4 +1,4 @@
-﻿using Innoventory.Lotus.Database.DataEntities;
+﻿
 using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
