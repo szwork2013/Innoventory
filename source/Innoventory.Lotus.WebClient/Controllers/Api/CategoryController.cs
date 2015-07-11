@@ -42,7 +42,7 @@ namespace Innoventory.Lotus.WebClient.Api.Controllers
                 {
 
                     response = request.CreateResponse(HttpStatusCode.OK);
-                    response.Content = new ObjectContent<List<CategoryViewModel>>(retCategories, Configuration.Formatters.JsonFormatter);
+                    response.Content = new ObjectContent<FindResult<CategoryViewModel>>(result, Configuration.Formatters.JsonFormatter);
                 }
                 else
                 {
@@ -71,12 +71,15 @@ namespace Innoventory.Lotus.WebClient.Api.Controllers
                 {
                     response = new HttpResponseMessage(HttpStatusCode.OK);
                     updateResult.SuccessMessage = string.Format("Category: {0} saved successfully.", categoryModel.CategoryName);
+                    
                 }
                 else
                 {
                     response = new HttpResponseMessage(HttpStatusCode.OK);
                     updateResult.ErrorMessage = ("Error occurred while saving category" + updateResult.ErrorMessage);
                 }
+
+                response.Content = new ObjectContent<UpdateResult<CategoryViewModel>> (updateResult, Configuration.Formatters.JsonFormatter);
 
                 return response;
             });

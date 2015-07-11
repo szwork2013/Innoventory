@@ -13,12 +13,12 @@
             me.isLoading = true;
             me.modelIsValid = true;
 
-            $http.get(Innoventory.rootPath + uri, data)
+            $http.get(Innoventory.rootPath + 'api/' + uri, data)
             .then(function (result) {
 
                 showAlert(result.data);
 
-                success(result);
+                success(result.data);
 
                 if (always != null) {
                     always();
@@ -58,12 +58,12 @@
             me.isLoading = true;
             me.modelIsValid = true;
 
-            $http.post(Innoventory.appConfig.apiUrl + uri, data)
+            $http.post(Innoventory.rootPath + 'api/' + uri, data)
             .then(function (result) {
 
                 showAlert(result.data);
 
-                success(result);
+                success(result.data);
 
                 if (always != null) {
                     always();
@@ -99,12 +99,12 @@
 
         showAlert = function (data) {
             if (data) {
-                if (data && data.Success) {
+                if (data && data.Success && data.SuccessMessage && data.SuccessMessage != "") {
                     me.hasSuccess = true;
-                    me.successMessage = result.data.SuccessMessage;
+                    me.successMessage = data.SuccessMessage;
                 } else {
                     me.hasErrors = true;
-                    me.errors.push(result.data.ErrorMessage);
+                    me.errors.push(data.ErrorMessage);
                 };
             }
         };

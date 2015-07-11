@@ -17,11 +17,11 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
-    max-width: 280px;
-}
+    max-width: 400px;
+}*/
 
 header .jumbotron .title-container {
     background: #4a77b0;
@@ -100,4 +100,21 @@ header .jumbotron .title {
     padding-bottom: 80px;
     /*-webkit-transition: all 0.5s;
     transition: all 0.5s ease-in-out;*/
+}
+.form-horizontal{
+    padding:20px 15px;
+    border-top: 1px solid #cfc7c7;
+    border-bottom: 1px solid #cfc7c7;
+}
+
+.btn{
+    min-width:150px;
+}
+
+.table thead {
+    background: -moz-linear-gradient(top, #286090 50%, #457AA8 100%);
+    background: -webkit-linear-gradient(top, #234770 0%, #017ebc 100%);
+    background: -ms-linear-gradient(top, #234770 0%, #7db9e8 100%);
+    color: white;
+    height: 15%;
 }

@@ -14,6 +14,7 @@
 
             $scope.categoryModel = new Innoventory.categoryModel();
             $scope.showCategory = true;
+            $scope.formTitle = "New Category";
 
         };
 
@@ -24,15 +25,24 @@
         //};
 
         GetCategories = function () {
-            apiHelper.apiGet("api/Category/categories", {}, function (result) {
+            apiHelper.apiGet("Category/categories", {}, function (result) {
 
-                $scope.categories = result.data;
+                if (result.Entities) {
+                    $scope.categories = result.Entities;
+                    return $scope.categories;
+                }
 
 
             });
 
           
         };
+        $scope.editCategory = function (category) {
+            $scope.category = category;
+            $scope.formTitle = "Edit Category";
+            $scope.showCategory = true;
+
+        }
 
         $scope.saveCategory = function (e) {
 
@@ -43,7 +53,7 @@
                 $scope.category.categoryId = Innoventory.emptyGuid;
             }
 
-            apiHelper.apiPost("api/Category/SaveCategory", $scope.category, function (result) {
+            apiHelper.apiPost("Category/SaveCategory", $scope.category, function (result) {
 
                 $scope.showCategory = false;
 
@@ -53,6 +63,24 @@
 
         }
 
+        $scope.deleteCategory = function (e) {
+
+            e.preventDefault();
+
+            apiHelper.apiDelete("Category/Delete", $scope.category, function (result) {
+
+
+
+            });
+        }
+
+        $scope.cancel = function (e) {
+            e.preventDefault();
+
+            $scope.category = null;
+
+            $scope.showCategory = false;
+        }
 
         GetCategories();
 

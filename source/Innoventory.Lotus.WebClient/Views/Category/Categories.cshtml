@@ -12,21 +12,25 @@
     
 }
 
+@*<div ng-controller="apiHelper">
+    @Html.Partial("AlertBox");
+</div>*@
+
 <div class="container" ng-controller="categoryController  as categoryCtrl" id="category">
+
+    
+
     <div>
-
         <category-list></category-list>
-
-
-
     </div>
-    <div  class="col-sm-offset-4 form-group">
+
+    <div  class="form-group">
 
         <a href="#" id="lnkNewCategory" class="btn btn-primary" ng-click="newCategory()">Create New Category</a>
 
     </div>
 
-    <div class="container" ng-show="showCategory">
+    <div ng-show="showCategory">
 
         <category></category>
 

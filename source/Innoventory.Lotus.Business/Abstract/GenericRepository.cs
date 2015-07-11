@@ -51,7 +51,7 @@ namespace Innoventory.Lotus.Business.Abstract
                 {
                     
                     List<VM> entityList = GetEntities(dbContext);
-                    result.Entities = new List<VM>();
+                    result.Entities = entityList;
                     result.Success = true;
                 }
 
@@ -133,7 +133,7 @@ namespace Innoventory.Lotus.Business.Abstract
                     if (viewModel.EntityId == Guid.Empty)
                     {
 
-                        viewModel.EntityId = new Guid();
+                        viewModel.EntityId = Guid.NewGuid();
 
                         result.Success = AddEntity(dbContext, viewModel);
 
