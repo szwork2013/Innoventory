@@ -28,6 +28,6 @@ namespace Innoventory.Lotus.ViewModels
 
     public class FindResult<ViewModel> : EntityOperationResultBase
     {
-        public IList<ViewModel> Entities { get; set; }
+        public List<ViewModel> Entities { get; set; }
     }
 }

@@ -8,10 +8,12 @@
         cc.test = "Test";
 
         $scope.apiHelper = apiHelper;
+        $scope.showCategory = false;
 
-        $scope.New = function () {
+        $scope.newCategory = function () {
 
             $scope.categoryModel = new Innoventory.categoryModel();
+            $scope.showCategory = true;
 
         };
 
@@ -29,16 +31,28 @@
 
             });
 
-            //categoryModel = {
-            //    categoryName: "Test",
-            //    description: "Test 123"
+          
+        };
 
-            //}
+        $scope.saveCategory = function (e) {
 
-            //$scope.categories = [];
+            e.preventDefault();
 
-            //$scope.categories.push(categoryModel);
+            if($scope.category.categoryId == null)
+            {
+                $scope.category.categoryId = Innoventory.emptyGuid;
+            }
+
+            apiHelper.apiPost("api/Category/SaveCategory", $scope.category, function (result) {
+
+                $scope.showCategory = false;
+
+                GetCategories();
+
+            });
+
         }
+
 
         GetCategories();
 

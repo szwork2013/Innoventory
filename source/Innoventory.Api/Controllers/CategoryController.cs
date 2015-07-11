@@ -1,6 +1,5 @@
 ﻿using Innoventory.Lotus.Core.Common;
-using Innoventory.Lotus.DataAccess.Abstract;
-using Innoventory.Lotus.Database.DataEntities;
+using Innoventory.Lotus.Business.Abstract;
 using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -33,22 +32,20 @@ namespace Innoventory.Api.Controllers
             {
                 HttpResponseMessage response = null;
 
-                List<CategoryViewModel> categories = _categoryRepository.GetAll().Select(
+                FindResult<CategoryViewModel> categoryResult = _categoryRepository.GetAll();
 
-                    (T) => ConvertToCategoryViewModel(T)).ToList();
-
-                response.Content = new ObjectContent<List<CategoryViewModel>>(categories, Configuration.Formatters.JsonFormatter);
+                if (categoryResult.Success)
+                {
+                    
+                    response.Content = new ObjectContent<FindResult<CategoryViewModel>>(categoryResult, Configuration.Formatters.JsonFormatter);
+                    
+                }
 
                 return response;
+
             });
         }
 
-        private CategoryViewModel ConvertToCategoryViewModel(Category category)
-        {
-            CategoryViewModel cv = new CategoryViewModel();
-            ObjectMapper.PropertyMap<Category, CategoryViewModel>(category, cv);
-            return cv;
-        }
-
+        
     }
 }

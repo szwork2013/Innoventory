@@ -52,6 +52,10 @@
       <Project>{d7f7ea22-ae02-47b6-a438-c8f850435f0d}</Project>
       <Name>Innoventory.Lotus.ViewModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Lotus.Core\Innoventory.Lotus.Core.csproj">
+      <Project>{2d2dc8ba-66f6-4bdb-901d-293eebeed402}</Project>
+      <Name>Innoventory.Lotus.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

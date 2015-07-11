@@ -11,7 +11,7 @@
 
         <div class="col-sm-18">
 
-            <input type="text" id="CategoryName" class="form-control" />
+            <input type="text" id="CategoryName" class="form-control" ng-model="category.CategoryName" />
 
         </div>
 
@@ -22,7 +22,7 @@
 
         <div class="col-sm-18">
 
-            <input type="text" id="CategoryDescription" class="form-control" />
+            <input type="text" id="CategoryDescription" class="form-control"  ng-model="category.Description"/>
 
         </div>
 
@@ -32,7 +32,7 @@
         <div class="col-sm-6">
         </div>
         <div class="col-sm-6">
-            <input type="submit" value="Save" class="btn btn-primary" />
+            <input type="submit" value="Save" class="btn btn-primary" ng-click="saveCategory($event)" />
         </div>
 
         <div class="col-sm-6">

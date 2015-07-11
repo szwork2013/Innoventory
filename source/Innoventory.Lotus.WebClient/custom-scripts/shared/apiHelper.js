@@ -2,11 +2,11 @@
     var apiHelper = function ($http, $q) {
 
         var me = this;
-       
+
 
         me.modelIsValid = true;
 
-        me.modelErrors = [];
+        me.errors = [];
         me.isLoading = false;
 
         me.apiGet = function (uri, data, success, failure, always) {
@@ -15,6 +15,9 @@
 
             $http.get(Innoventory.rootPath + uri, data)
             .then(function (result) {
+
+                showAlert(result.data);
+
                 success(result);
 
                 if (always != null) {
@@ -23,18 +26,20 @@
 
                 me.isLoading = false;
             }, function (result) {
+
+                me.hasErrors = true;
+
                 if (failure == null) {
                     if (result.status != 400) {
-                        me.modelErrors = [result.status + ':' + result.data.message];
+                        me.errors = [result.status + ':' + result.data.message];
                     }
                     else {
-                        me.modelErrors = [result.data.message];
+                        me.errors = [result.data.ErrorMessage];
                     };
-
-                    me.modelIsValid = false;
-
                 }
                 else {
+
+                    me.errors = [result.data.ErrorMessage];
                     failure(result);
 
                 };
@@ -44,18 +49,20 @@
                 };
 
                 me.isLoading = false;
-
 
             })
 
         }
 
-        me.post = function (uri, data, success, failure, always) {
+        me.apiPost = function (uri, data, success, failure, always) {
             me.isLoading = true;
             me.modelIsValid = true;
 
             $http.post(Innoventory.appConfig.apiUrl + uri, data)
             .then(function (result) {
+
+                showAlert(result.data);
+
                 success(result);
 
                 if (always != null) {
@@ -66,10 +73,10 @@
             }, function (result) {
                 if (failure == null) {
                     if (result.status != 400) {
-                        me.modelErrors = [result.status + ':' + result.data.message];
+                        me.errors = [result.status + ':' + result.data.message];
                     }
                     else {
-                        me.modelErrors = [result.data.message];
+                        me.errors = [result.data.message];
                     };
 
                     me.modelIsValid = false;
@@ -88,6 +95,18 @@
 
 
             })
+        };
+
+        showAlert = function (data) {
+            if (data) {
+                if (data && data.Success) {
+                    me.hasSuccess = true;
+                    me.successMessage = result.data.SuccessMessage;
+                } else {
+                    me.hasErrors = true;
+                    me.errors.push(result.data.ErrorMessage);
+                };
+            }
         };
 
         return me;

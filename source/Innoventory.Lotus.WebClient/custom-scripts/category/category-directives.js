@@ -11,4 +11,11 @@
 
     });
 
+    app.directive("category", function () {
+        return {
+            restrict: 'E',
+            templateUrl: '../templates/category/Category.html'
+        };
+    });
+
 })()

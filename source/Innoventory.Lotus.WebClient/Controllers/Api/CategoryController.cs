@@ -34,19 +34,23 @@ namespace Innoventory.Lotus.WebClient.Api.Controllers
             {
                 HttpResponseMessage response = null;
 
-
-
                 List<CategoryViewModel> retCategories = new List<CategoryViewModel>();
 
                 FindResult<CategoryViewModel> result = _categoryRepository.GetAll();
 
                 if (result.Success)
                 {
-                    retCategories = result.Entities as List<CategoryViewModel>;
+
+                    response = request.CreateResponse(HttpStatusCode.OK);
                     response.Content = new ObjectContent<List<CategoryViewModel>>(retCategories, Configuration.Formatters.JsonFormatter);
+                }
+                else
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.NoContent, "Error occurred");
                 }
 
                 return response;
+
             });
         }
 
@@ -55,13 +59,27 @@ namespace Innoventory.Lotus.WebClient.Api.Controllers
         public HttpResponseMessage SaveCategory(HttpRequestMessage request, [FromBody]CategoryViewModel categoryModel)
         {
 
+            return GetHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
 
-            _categoryRepository.Update(categoryModel);
+                UpdateResult<CategoryViewModel> updateResult = _categoryRepository.Update(categoryModel);
 
-            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
 
-            return response;
 
+                if (updateResult.Success)
+                {
+                    response = new HttpResponseMessage(HttpStatusCode.OK);
+                    updateResult.SuccessMessage = string.Format("Category: {0} saved successfully.", categoryModel.CategoryName);
+                }
+                else
+                {
+                    response = new HttpResponseMessage(HttpStatusCode.OK);
+                    updateResult.ErrorMessage = ("Error occurred while saving category" + updateResult.ErrorMessage);
+                }
+
+                return response;
+            });
         }
 
     }
