@@ -1,9 +1,11 @@
 ﻿using Innoventory.Lotus.Business.Abstract;
+using Innoventory.Lotus.Core.Common;
 using Innoventory.Lotus.Database.DataEntities;
 using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +20,12 @@ namespace Innoventory.Lotus.Business.Concrete
 
         protected override CategorySubCategoryMapViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            throw new NotImplementedException();
+            DbSet<CategorySubCategoryMap> dbSet = dbContext.CategorySubCategoryMapSet;
+            CategorySubCategoryMap catSubCatMap = dbSet.FirstOrDefault(x => x.CategorySubCategoryMapId == id);
+            CategorySubCategoryMapViewModel catSubCatMapVM = new CategorySubCategoryMapViewModel();
+
+            ObjectMapper.PropertyMap(catSubCatMap, catSubCatMapVM);
+            return catSubCatMapVM;
         }
 
         protected override List<CategorySubCategoryMapViewModel> GetEntities(InnoventoryDBContext dbContext)

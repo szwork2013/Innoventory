@@ -64,7 +64,7 @@ namespace Innoventory.Lotus.Business.Concrete
         protected override List<CategoryViewModel> Find(InnoventoryDBContext dbContext, Func<CategoryViewModel, bool> predicate)
         {
 
-            List<CategoryViewModel> categories = (GetEntities(dbContext) as List<CategoryViewModel>).Where(predicate).ToList();
+            List<CategoryViewModel> categories = (GetEntities(dbContext)).Where(predicate).ToList();
 
             return categories;
         }
@@ -111,7 +111,7 @@ namespace Innoventory.Lotus.Business.Concrete
 
         }
 
-        
-        
+
+
     }
 }

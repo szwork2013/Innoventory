@@ -48,12 +48,12 @@
 
             e.preventDefault();
 
-            if ($scope.categoryVM.categoryName == null || $scope.categoryVM.categoryName == "") {
+            if ($scope.categoryVM.CategoryName == null || $scope.categoryVM.CategoryName == "") {
                 errors.push("Category Name can not be blank!");
                 hasErrors = true;
             };
 
-            if ($scope.categoryVM.description == null || $scope.categoryVM.description == "") {
+            if ($scope.categoryVM.Description == null || $scope.categoryVM.Description == "") {
 
                 errors.push("Description can not be blank!");
                 hasErrors = true;
@@ -87,12 +87,15 @@
 
             e.preventDefault();
 
-            apiHelper.apiDelete("Category/Delete/" + $scope.categoryVM.CategoryId, function (result) {
+            if (confirm("Are you sure you want to delete this category?")) {
 
-                $scope.showCategory = false;
+                apiHelper.apiDelete("Category/Delete/" + $scope.categoryVM.CategoryId, function (result) {
 
-                GetCategories();
-            });
+                    $scope.showCategory = false;
+
+                    GetCategories();
+                });
+            };
         }
 
         $scope.cancel = function (e) {

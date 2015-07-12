@@ -11,27 +11,28 @@ using Innoventory.Lotus.Core.Contracts;
 namespace Innoventory.Lotus.ViewModels
 {
 
-    public class SubCategoryViewModel:IIdentifiable
+    public class SubCategoryViewModel : IIdentifiable
     {
 
+        [Key]
+        [ScaffoldColumn(false)]
         public Guid SubCategoryId { get; set; }
 
 
-
+        [Required]
+        [StringLength(50)]
         public string SubCategoryName { get; set; }
 
+        [Required]
+        [StringLength(500)]
         public string SubCategoryDescription { get; set; }
+
+        public List<Guid> SelectedCategories { get; set; }
 
         public Guid EntityId
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return SubCategoryId; }
+            set { SubCategoryId = value; }
         }
     }
 }
