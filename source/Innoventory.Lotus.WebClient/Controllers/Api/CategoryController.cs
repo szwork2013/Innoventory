@@ -85,5 +85,75 @@ namespace Innoventory.Lotus.WebClient.Api.Controllers
             });
         }
 
+        [HttpDelete]
+        [Route("Delete/{id}")]
+        public HttpResponseMessage DeleteCategory(HttpRequestMessage request, 
+                Guid id)
+        {
+
+            //Guid id = Guid.Empty;
+
+            //if(!Guid.TryParse(categoryId, out id))
+            //{
+            //    throw new Exception("Id is not in correct formate");
+            //}
+
+            GetEntityResult<CategoryViewModel> categoryResult = _categoryRepository.FindById(id);
+
+            CategoryViewModel category = null;
+
+            if(categoryResult.Success && categoryResult.Entity != null)
+            {
+                category = categoryResult.Entity;
+            }
+
+            return GetHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                DeleteResult<CategoryViewModel> deleteResult = new DeleteResult<CategoryViewModel>();
+                deleteResult.Entity = category;
+
+                bool success = false;
+
+                if (category == null)
+                {
+                    response = new HttpResponseMessage(HttpStatusCode.BadRequest);
+
+                    deleteResult.ErrorMessage = "Category is null";
+                    deleteResult.Success = false;
+
+                    response.Content = new ObjectContent<DeleteResult<CategoryViewModel>>(deleteResult, Configuration.Formatters.JsonFormatter);
+                    return response;
+                }
+
+                EntityOperationResultBase result = _categoryRepository.Delete(category.CategoryId);
+
+                deleteResult.ErrorMessage = result.ErrorMessage;
+                deleteResult.Success = result.Success;
+                deleteResult.SuccessMessage = result.SuccessMessage;
+
+                response = new HttpResponseMessage(HttpStatusCode.OK);
+
+                if (deleteResult.Success)
+                {
+
+                    deleteResult.SuccessMessage = string.Format("Category: '{0}' has been deleted", category.CategoryName);
+
+                }
+                else
+                {
+
+                    deleteResult.SuccessMessage = string.Format("Error occurred while deleting Category: '{0}'", category.CategoryName);
+
+                }
+
+                response.Content = new ObjectContent<DeleteResult<CategoryViewModel>>(deleteResult, Configuration.Formatters.JsonFormatter);
+
+                return response;
+            });
+
+        }
+
     }
 }

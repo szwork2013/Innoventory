@@ -3,17 +3,21 @@
 
         var me = this;
 
-
+        me.apiUrl = Innoventory.rootPath + 'api/'
         me.modelIsValid = true;
 
         me.errors = [];
         me.isLoading = false;
+        me.hasErrors = false;
 
         me.apiGet = function (uri, data, success, failure, always) {
+
+            
             me.isLoading = true;
             me.modelIsValid = true;
+            me.hasErrors = false;
 
-            $http.get(Innoventory.rootPath + 'api/' + uri, data)
+            $http.get(me.apiUrl + uri, data)
             .then(function (result) {
 
                 showAlert(result.data);
@@ -30,12 +34,22 @@
                 me.hasErrors = true;
 
                 if (failure == null) {
-                    if (result.status != 400) {
-                        me.errors = [result.status + ':' + result.data.message];
+
+                    if (result.status == 404) {
+
+                        me.errors = [result.status + ": Resource not found (Wrong Url mentioned)"];
+                    }
+                    else if (result.data.ErrorMessage) {
+                        me.errors = [result.data.ErrorMessage];
+                    }
+
+                    else if (result.status != 400) {
+                        me.errors = [result.status + ':' + result.message];
                     }
                     else {
-                        me.errors = [result.data.ErrorMessage];
+                        me.errors = [result.message];
                     };
+
                 }
                 else {
 
@@ -50,15 +64,69 @@
 
                 me.isLoading = false;
 
-            })
+            });
 
-        }
+        };
+
+        me.apiDelete = function (uri, success, failure, always) {
+
+            me.isLoading = true;
+            me.modalIsValid = true;
+            me.hasErrors = false;
+
+
+            $http.delete(me.apiUrl + uri)
+            .then(function (result) {
+                showAlert(result.data);
+
+                success(result.data);
+
+                if (always != null) {
+                    always();
+                };
+
+            }, function (result) {
+
+                me.hasErrors = true;
+
+                if (failure == null) {
+
+                    if (result.status == 404) {
+
+                        me.errors = [result.status + ": Resource not found (Wrong Url mentioned)"];
+                    }
+                    else if (result.data.ErrorMessage) {
+                        me.errors = [result.data.ErrorMessage];
+                    }
+
+                    else if (result.status != 400) {
+                        me.errors = [result.status + ':' + result.statusText];
+                    }
+                    else {
+                        me.errors = [result.message];
+                    };
+
+                }
+                else {
+                    failure(result);
+
+                };
+
+                if (always != null) {
+                    always();
+                };
+
+                me.isLoading = false;
+
+            });
+        };
 
         me.apiPost = function (uri, data, success, failure, always) {
             me.isLoading = true;
             me.modelIsValid = true;
+            me.hasErrors = false;
 
-            $http.post(Innoventory.rootPath + 'api/' + uri, data)
+            $http.post(me.apiUrl + uri, data)
             .then(function (result) {
 
                 showAlert(result.data);
@@ -72,14 +140,23 @@
                 me.isLoading = false;
             }, function (result) {
                 if (failure == null) {
-                    if (result.status != 400) {
-                        me.errors = [result.status + ':' + result.data.message];
+
+                    if (result.status == 404) {
+
+                        me.errors = [result.status + ": Resource not found (Wrong Url mentioned)"];
+                    }
+                    else if (result.data.ErrorMessage) {
+                        me.errors = [result.data.ErrorMessage];
+                    }
+
+                    else if (result.status != 400) {
+                        me.errors = [result.status + ':' + result.message];
                     }
                     else {
-                        me.errors = [result.data.message];
+                        me.errors = [result.message];
                     };
 
-                    me.modelIsValid = false;
+                    me.hasErrors = true;
 
                 }
                 else {
@@ -94,7 +171,7 @@
                 me.isLoading = false;
 
 
-            })
+            });
         };
 
         showAlert = function (data) {
@@ -102,7 +179,7 @@
                 if (data && data.Success && data.SuccessMessage && data.SuccessMessage != "") {
                     me.hasSuccess = true;
                     me.successMessage = data.SuccessMessage;
-                } else {
+                } else if(data.Success == false && data.ErrorMessage != "") {
                     me.hasErrors = true;
                     me.errors.push(data.ErrorMessage);
                 };

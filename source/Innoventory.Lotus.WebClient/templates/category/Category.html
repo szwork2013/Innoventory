@@ -2,18 +2,18 @@
 
 
 
-    <h4>{{formTitle}}</h4>
+<h4>{{formTitle}}</h4>
 
 <form class="form-horizontal" name="Category" novalidate role="form">
 
-    
-    
+
+
     <div class="form-group">
         <label for="CategoryName" class="control-label col-sm-6"> Category Name</label>
 
         <div class="col-sm-18">
 
-            <input type="text" id="CategoryName" class="form-control" ng-model="category.CategoryName" />
+            <input type="text" id="CategoryName" class="form-control" ng-model="categoryVM.CategoryName" />
 
         </div>
 
@@ -24,7 +24,7 @@
 
         <div class="col-sm-18">
 
-            <input type="text" id="CategoryDescription" class="form-control" ng-model="category.Description" />
+            <input type="text" id="CategoryDescription" class="form-control" ng-model="categoryVM.Description" />
 
         </div>
 
@@ -35,10 +35,25 @@
         <div class="col-sm-6">
         </div>
         <div class="col-sm-12">
-            <input type="submit" value="Save" class="btn btn-primary" ng-click="saveCategory($event)" />
+
+
+
+            <button type="button" class="btn btn-primary" ng-click="saveCategory($event)">
+               Save
+                <span class="glyphicon glyphicon-floppy-disk btn-span">
+                    
+                </span>
+            </button>
+
+            <button type="button" class="btn btn-warning" ng-show="showDelete" ng-click="deleteCategory($event)" >
+                Delete
+                <span class="glyphicon glyphicon-remove-sign btn-span" >
+
+                </span>
+                </button>
 
             <input type="submit" value="Cancel" class="btn btn-default" ng-click="cancel($event)" />
         </div>
     </div>
-    
+
 </form>

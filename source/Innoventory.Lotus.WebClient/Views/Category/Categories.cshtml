@@ -12,13 +12,16 @@
     
 }
 
-@*<div ng-controller="apiHelper">
-    @Html.Partial("AlertBox");
-</div>*@
+
+  
+
 
 <div class="container" ng-controller="categoryController  as categoryCtrl" id="category">
+    <div ng-show="apiHelper.isLoading">
+        @Html.Partial("~/Views/Shared/Loader.cshtml")
+    </div>
 
-    
+    @Html.Partial("~/Views/Shared/AlertBox.cshtml")
 
     <div>
         <category-list></category-list>

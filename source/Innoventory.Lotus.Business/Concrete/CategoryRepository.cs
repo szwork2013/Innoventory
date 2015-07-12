@@ -73,13 +73,16 @@ namespace Innoventory.Lotus.Business.Concrete
         {
             DbSet<Category> entitySet = dbContext.CategorySet;
 
-            CategoryViewModel categoryVM = GetEntity(dbContext, id);
+            //CategoryViewModel categoryVM = GetEntity(dbContext, id);
 
-            Category category = GetDomainEntity(categoryVM);
 
-            entitySet.Remove(category);
-            dbContext.SaveChanges();
+            Category category = entitySet.FirstOrDefault(x => x.CategoryId == id);
 
+            if (category != null)
+            {
+                entitySet.Remove(category);
+                dbContext.SaveChanges();
+            }
             return true;
         }
 

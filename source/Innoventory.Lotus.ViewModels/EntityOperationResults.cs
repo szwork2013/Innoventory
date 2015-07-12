@@ -30,4 +30,9 @@ namespace Innoventory.Lotus.ViewModels
     {
         public List<ViewModel> Entities { get; set; }
     }
+
+    public class DeleteResult<ViewModel> : EntityOperationResultBase
+    {
+        public ViewModel Entity { get; set; }
+    }
 }
