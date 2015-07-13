@@ -217,6 +217,9 @@
     <Content Include="custom-scripts\product\product-service.js" />
     <Content Include="custom-scripts\product\product-directives.js" />
     <Content Include="custom-scripts\shared\apiHelper.js" />
+    <Content Include="custom-scripts\subCategory\sub-category-controller.js" />
+    <Content Include="custom-scripts\subCategory\sub-category-directives.js" />
+    <Content Include="custom-scripts\subCategory\sub-category-model.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -273,6 +276,8 @@
     <Content Include="templates\product-detail.html" />
     <Content Include="templates\category\Category.html" />
     <Content Include="templates\category\List.html" />
+    <Content Include="Views\SubCategory\List.html" />
+    <Content Include="Views\SubCategory\SubCategory.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -297,6 +302,7 @@
     <Content Include="Views\Category\Categories.cshtml" />
     <Content Include="Views\Shared\AlertBox.cshtml" />
     <Content Include="Views\Shared\Loader.cshtml" />
+    <Content Include="Views\SubCategory\SubCategories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

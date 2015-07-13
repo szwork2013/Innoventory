@@ -18,9 +18,9 @@ namespace Innoventory.Lotus.ViewModels
 
         public Guid SubCategoryId { get; set; }
 
-        public List<CategoryViewModel> Categories { get; set; }
+        public CategoryViewModel Category { get; set; }
 
-        public List<SubCategoryViewModel> SubCategories { get; set; }
+        public SubCategoryViewModel SubCategory { get; set; }
 
         public Guid EntityId
         {

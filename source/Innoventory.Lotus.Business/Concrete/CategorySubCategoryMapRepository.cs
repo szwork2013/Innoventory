@@ -14,10 +14,19 @@ namespace Innoventory.Lotus.Business.Concrete
 {
     [Export(typeof(ICategorySubCategoryMapRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class CategorySubCategoryMapRepository : GenericRepository<CategorySubCategoryMap, CategorySubCategoryMapViewModel>, 
+    public class CategorySubCategoryMapRepository : GenericRepository<CategorySubCategoryMap, CategorySubCategoryMapViewModel>,
                                                     ICategorySubCategoryMapRepository
     {
+        ICategoryRepository _categoryRespository;
+        ISubCategoryRepository _subCategoryRepository;
 
+        public CategorySubCategoryMapRepository()
+            : base()
+        {
+            _categoryRespository = new CategoryRepository();
+
+            _subCategoryRepository = new SubCategoryRepository();
+        }
         protected override CategorySubCategoryMapViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
             DbSet<CategorySubCategoryMap> dbSet = dbContext.CategorySubCategoryMapSet;
@@ -30,31 +39,86 @@ namespace Innoventory.Lotus.Business.Concrete
 
         protected override List<CategorySubCategoryMapViewModel> GetEntities(InnoventoryDBContext dbContext)
         {
-            throw new NotImplementedException();
-        }
+            DbSet<CategorySubCategoryMap> dbSet = dbContext.CategorySubCategoryMapSet;
 
-        
+            List<CategorySubCategoryMap> catSubcatMaps = dbSet.ToList();
+
+            List<CategorySubCategoryMapViewModel> vmList = new List<CategorySubCategoryMapViewModel>();
+
+            foreach (CategorySubCategoryMap map in catSubcatMaps)
+            {
+                CategorySubCategoryMapViewModel vm = new CategorySubCategoryMapViewModel();
+
+                ObjectMapper.PropertyMap(map, vm);
+
+                GetEntityResult<CategoryViewModel> categoryResult = _categoryRespository.FindById(map.CategoryId);
+
+                if (categoryResult != null && categoryResult.Success)
+                {
+                    vm.Category = categoryResult.Entity;
+                }
+
+                GetEntityResult<SubCategoryViewModel> subCategoryResult = _subCategoryRepository.FindById(map.SubCategoryId);
+
+                if (subCategoryResult != null && subCategoryResult.Success)
+                {
+                    vm.SubCategory = subCategoryResult.Entity;
+                }
+
+                vmList.Add(vm);
+            }
+
+            return vmList;
+        }
 
         protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            throw new NotImplementedException();
+            DbSet<CategorySubCategoryMap> dbSet = dbContext.CategorySubCategoryMapSet;
+            CategorySubCategoryMap map = dbSet.FirstOrDefault(x => x.CategorySubCategoryMapId == id);
+
+            if (map != null)
+            {
+                dbSet.Remove(map);
+                dbContext.SaveChanges();
+            }
+
+            return true;
         }
 
-        
+
 
         protected override bool AddEntity(InnoventoryDBContext dbContext, CategorySubCategoryMapViewModel viewModel)
         {
-            throw new NotImplementedException();
+            DbSet<CategorySubCategoryMap> dbSet = dbContext.CategorySubCategoryMapSet;
+            CategorySubCategoryMap map = new CategorySubCategoryMap();
+
+            ObjectMapper.PropertyMap(viewModel, map);
+
+            dbSet.Add(map);
+            dbContext.SaveChanges();
+            return true;
+
         }
 
         protected override bool EditEntity(InnoventoryDBContext dbContext, CategorySubCategoryMapViewModel viewModel)
         {
-            throw new NotImplementedException();
+            DbSet<CategorySubCategoryMap> dbSet = dbContext.CategorySubCategoryMapSet;
+            CategorySubCategoryMap map = new CategorySubCategoryMap();
+
+            ObjectMapper.PropertyMap(viewModel, map);
+
+            dbSet.Attach(map);
+            dbContext.Entry(map).State = EntityState.Modified;
+            dbContext.SaveChanges();
+
+            return true;
         }
 
         protected override List<CategorySubCategoryMapViewModel> Find(InnoventoryDBContext dbContext, Func<CategorySubCategoryMapViewModel, bool> predicate)
         {
-            throw new NotImplementedException();
+            List<CategorySubCategoryMapViewModel> retList = GetEntities(dbContext).Where(predicate).ToList();
+
+            return retList;
         }
     }
 }

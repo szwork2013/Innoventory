@@ -25,7 +25,7 @@ namespace Innoventory.Lotus.ViewModels
 
         [Required]
         [StringLength(500)]
-        public string SubCategoryDescription { get; set; }
+        public string Description { get; set; }
 
         public List<Guid> SelectedCategories { get; set; }
 
