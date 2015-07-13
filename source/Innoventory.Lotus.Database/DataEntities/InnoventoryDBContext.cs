@@ -24,7 +24,7 @@ namespace Innoventory.Lotus.Database.DataEntities
 
 
         public DbSet<Category> CategorySet { get; set; }
-
+        public DbSet<Currency> CurrencySet { get; set; }
         public DbSet<AttributeValueList> AttributeValueListSet { get; set; }
 
         public DbSet<CategorySubCategoryMap> CategorySubCategoryMapSet { get; set; }
