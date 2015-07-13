@@ -1,10 +1,13 @@
 ﻿using Innoventory.Lotus.Business.Abstract;
+using Innoventory.Lotus.Core.Common;
 using Innoventory.Lotus.Database.DataEntities;
 using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,36 +18,97 @@ namespace Innoventory.Lotus.Business.Concrete
     public class UserAccountRepository : GenericRepository<UserAccount, UserAccountViewModel>, IUserAccountRepository
     {
 
+        protected UserAccount GetDomainEntity(UserAccountViewModel viewModel)
+        {
+            UserAccount userAccount = ObjectMapper.PropertyMap(viewModel, new UserAccount());
+
+            return userAccount;
+        }
+
+
+
         protected override UserAccountViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            throw new NotImplementedException();
+            DbSet<UserAccount> entitySet = dbContext.UserAccountSet;
+
+            UserAccount dmUserAccount = entitySet.FirstOrDefault(x => x.UserAccountId == id);
+
+            UserAccountViewModel useracctVM = new UserAccountViewModel();
+
+            UserAccountViewModel userAccountVM = ObjectMapper.PropertyMap(dmUserAccount, useracctVM);
+
+            return userAccountVM;
+
         }
 
         protected override List<UserAccountViewModel> GetEntities(InnoventoryDBContext dbContext)
         {
-            throw new NotImplementedException();
-        }
+            DbSet<UserAccount> entitySet = dbContext.UserAccountSet;
 
-        
-        protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
-        {
-            throw new NotImplementedException();
-        }
+            List<UserAccount> userAccounts = entitySet.ToList();
 
-       
-        protected override bool AddEntity(InnoventoryDBContext dbContext, UserAccountViewModel viewModel)
-        {
-            throw new NotImplementedException();
-        }
+            List<UserAccountViewModel> retList = new List<UserAccountViewModel>();
 
-        protected override bool EditEntity(InnoventoryDBContext dbContext, UserAccountViewModel viewModel)
-        {
-            throw new NotImplementedException();
+            foreach (UserAccount userAccount in userAccounts)
+            {
+                UserAccountViewModel useracctVM = new UserAccountViewModel();
+
+
+                retList.Add(ObjectMapper.PropertyMap(userAccount, useracctVM));
+
+            }
+
+            return retList;
         }
 
         protected override List<UserAccountViewModel> Find(InnoventoryDBContext dbContext, Func<UserAccountViewModel, bool> predicate)
         {
-            throw new NotImplementedException();
+
+            List<UserAccountViewModel> userAccounts = (GetEntities(dbContext)).Where(predicate).ToList();
+
+            return userAccounts;
+        }
+
+        protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
+        {
+            DbSet<UserAccount> entitySet = dbContext.UserAccountSet;
+
+            //UserAccountViewModel userAccountVM = GetEntity(dbContext, id);
+
+
+            UserAccount userAccount = entitySet.FirstOrDefault(x => x.UserAccountId == id);
+
+            if (userAccount != null)
+            {
+                entitySet.Remove(userAccount);
+                dbContext.SaveChanges();
+            }
+            return true;
+        }
+
+        protected override bool AddEntity(InnoventoryDBContext dbContext, UserAccountViewModel viewModel)
+        {
+            UserAccount userAccount = GetDomainEntity(viewModel);
+            dbContext.UserAccountSet.Add(userAccount);
+
+            dbContext.SaveChanges();
+            return true;
+        }
+
+        protected override bool EditEntity(InnoventoryDBContext dbContext, UserAccountViewModel viewModel)
+        {
+            DbSet<UserAccount> entitySet = dbContext.UserAccountSet;
+
+            UserAccount userAccount = GetDomainEntity(viewModel);
+
+            entitySet.Attach(userAccount);
+
+            dbContext.Entry(userAccount).State = EntityState.Modified;
+
+            dbContext.SaveChanges();
+
+            return true;
+
         }
     }
 }

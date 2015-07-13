@@ -18,7 +18,7 @@ namespace Innoventory.Lotus.Database.DataEntities
 
 
         public DbSet<Product> ProductSet { get; set; }
-        public DbSet<ProductVariant> ProductVariants { get; set; }
+        public DbSet<ProductVariant> ProductVariantSet { get; set; }
 
         public DbSet<Address> AddressSet { get; set; }
 
