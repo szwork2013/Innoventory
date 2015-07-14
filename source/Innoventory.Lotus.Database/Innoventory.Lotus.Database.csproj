@@ -82,25 +82,9 @@
     <Compile Include="DataEntities\UserRole.cs" />
     <Compile Include="DataEntities\VolumeMeasure.cs" />
     <Compile Include="DataEntities\VolumeMeasureMap.cs" />
-    <Compile Include="Migrations\201506292233541_New.cs" />
-    <Compile Include="Migrations\201506292233541_New.Designer.cs">
-      <DependentUpon>201506292233541_New.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507012049058_NewTables.cs" />
-    <Compile Include="Migrations\201507012049058_NewTables.Designer.cs">
-      <DependentUpon>201507012049058_NewTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507072208086_07072015AK.cs" />
-    <Compile Include="Migrations\201507072208086_07072015AK.Designer.cs">
-      <DependentUpon>201507072208086_07072015AK.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507142119374_14072015_ak.cs" />
-    <Compile Include="Migrations\201507142119374_14072015_ak.Designer.cs">
-      <DependentUpon>201507142119374_14072015_ak.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507142123503_14072015_ak1.cs" />
-    <Compile Include="Migrations\201507142123503_14072015_ak1.Designer.cs">
-      <DependentUpon>201507142123503_14072015_ak1.cs</DependentUpon>
+    <Compile Include="Migrations\201507142230084_AK.cs" />
+    <Compile Include="Migrations\201507142230084_AK.Designer.cs">
+      <DependentUpon>201507142230084_AK.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,20 +94,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201506292233541_New.resx">
-      <DependentUpon>201506292233541_New.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507012049058_NewTables.resx">
-      <DependentUpon>201507012049058_NewTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507072208086_07072015AK.resx">
-      <DependentUpon>201507072208086_07072015AK.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507142119374_14072015_ak.resx">
-      <DependentUpon>201507142119374_14072015_ak.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507142123503_14072015_ak1.resx">
-      <DependentUpon>201507142123503_14072015_ak1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201507142230084_AK.resx">
+      <DependentUpon>201507142230084_AK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

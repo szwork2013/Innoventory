@@ -3,7 +3,7 @@ namespace Innoventory.Lotus.Database.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class NewTables : DbMigration
+    public partial class AK : DbMigration
     {
         public override void Up()
         {
@@ -22,9 +22,7 @@ namespace Innoventory.Lotus.Database.Migrations
                         CountryId = c.Guid(nullable: false),
                         DefaultAddress = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.AddressID)
-                .ForeignKey("dbo.Countries", t => t.CountryId, cascadeDelete: true)
-                .Index(t => t.CountryId);
+                .PrimaryKey(t => t.AddressID);
             
             CreateTable(
                 "dbo.Countries",
@@ -54,11 +52,11 @@ namespace Innoventory.Lotus.Database.Migrations
                 "dbo.CategorySubCategoryAttributeMaps",
                 c => new
                     {
-                        CategorySubCategoryAttributeMapID = c.Guid(nullable: false),
+                        CategorySubCategoryAttributeMapId = c.Guid(nullable: false),
                         CategorySubCategoryMapId = c.Guid(nullable: false),
                         ProductAttributeId = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => t.CategorySubCategoryAttributeMapID)
+                .PrimaryKey(t => t.CategorySubCategoryAttributeMapId)
                 .ForeignKey("dbo.CategorySubCategoryMaps", t => t.CategorySubCategoryMapId, cascadeDelete: true)
                 .ForeignKey("dbo.ProductAttributes", t => t.ProductAttributeId, cascadeDelete: true)
                 .Index(t => t.CategorySubCategoryMapId)
@@ -72,7 +70,11 @@ namespace Innoventory.Lotus.Database.Migrations
                         CategoryId = c.Guid(nullable: false),
                         SubCategoryId = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => t.CategorySubCategoryMapId);
+                .PrimaryKey(t => t.CategorySubCategoryMapId)
+                .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
+                .ForeignKey("dbo.SubCategories", t => t.SubCategoryId, cascadeDelete: true)
+                .Index(t => t.CategoryId)
+                .Index(t => t.SubCategoryId);
             
             CreateTable(
                 "dbo.Categories",
@@ -82,9 +84,17 @@ namespace Innoventory.Lotus.Database.Migrations
                         CategoryName = c.String(nullable: false, maxLength: 50),
                         Description = c.String(nullable: false, maxLength: 500),
                     })
-                .PrimaryKey(t => t.CategoryId)
-                .ForeignKey("dbo.CategorySubCategoryMaps", t => t.CategoryId)
-                .Index(t => t.CategoryId);
+                .PrimaryKey(t => t.CategoryId);
+            
+            CreateTable(
+                "dbo.SubCategories",
+                c => new
+                    {
+                        SubCategoryId = c.Guid(nullable: false),
+                        SubCategoryName = c.String(nullable: false, maxLength: 50),
+                        Description = c.String(nullable: false, maxLength: 500),
+                    })
+                .PrimaryKey(t => t.SubCategoryId);
             
             CreateTable(
                 "dbo.ProductAttributes",
@@ -110,6 +120,44 @@ namespace Innoventory.Lotus.Database.Migrations
                 .Index(t => t.AttributeValueListId);
             
             CreateTable(
+                "dbo.ProductVariants",
+                c => new
+                    {
+                        ProductVariantId = c.Guid(nullable: false),
+                        ProductId = c.Guid(nullable: false),
+                        BarCode = c.String(maxLength: 500),
+                        PurchaseUnitVolume = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        SalesUnitVolume = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        ReorderPoint = c.Decimal(precision: 18, scale: 2),
+                        ReorderQuantity = c.Decimal(precision: 18, scale: 2),
+                        CaseLength = c.Decimal(precision: 18, scale: 2),
+                        CaseWidth = c.Decimal(precision: 18, scale: 2),
+                        CaseHeight = c.Decimal(precision: 18, scale: 2),
+                        CaseWeight = c.Decimal(precision: 18, scale: 2),
+                        ProductLength = c.Decimal(precision: 18, scale: 2),
+                        ProductWidth = c.Decimal(precision: 18, scale: 2),
+                        ProductHeight = c.Decimal(precision: 18, scale: 2),
+                        ProductWeight = c.Decimal(precision: 18, scale: 2),
+                        LastSupplierId = c.Guid(),
+                        IsSellable = c.Boolean(nullable: false),
+                        IsPurchaseable = c.Boolean(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
+                        ImageFileId = c.Guid(),
+                        SKUCode = c.String(),
+                        LastPurchasePrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        BasePrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        ShelfPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        PromotionId = c.Guid(),
+                        ProductVariantType = c.Guid(nullable: false),
+                        AvailableQuantity = c.Decimal(nullable: false, precision: 8, scale: 2),
+                        ModifiedBy = c.Guid(nullable: false),
+                        ModifiedOn = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.ProductVariantId)
+                .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
+                .Index(t => t.ProductId);
+            
+            CreateTable(
                 "dbo.ImageFiles",
                 c => new
                     {
@@ -127,6 +175,26 @@ namespace Innoventory.Lotus.Database.Migrations
                 .Index(t => t.ProductVariant_ProductVariantId);
             
             CreateTable(
+                "dbo.Products",
+                c => new
+                    {
+                        ProductId = c.Guid(nullable: false),
+                        ProductName = c.String(maxLength: 200),
+                        ItemType = c.Int(nullable: false),
+                        Description = c.String(),
+                        Remarks = c.String(),
+                        SalesVolumeMeasureId = c.Guid(nullable: false),
+                        PurchaseVolumeMeasureId = c.Guid(nullable: false),
+                        ModifiedBy = c.Guid(nullable: false),
+                        ModifiedOn = c.DateTime(nullable: false),
+                        ImageId = c.Guid(),
+                        SalesOrderUnitId = c.Guid(nullable: false),
+                        PurchaseOrderUnitId = c.Guid(nullable: false),
+                        CategorySubCategoryMapId = c.Guid(nullable: false),
+                    })
+                .PrimaryKey(t => t.ProductId);
+            
+            CreateTable(
                 "dbo.ProductVariantImageFileMaps",
                 c => new
                     {
@@ -134,8 +202,21 @@ namespace Innoventory.Lotus.Database.Migrations
                         ImageFileId = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => new { t.ProductVariantId, t.ImageFileId })
+                .ForeignKey("dbo.ImageFiles", t => t.ImageFileId, cascadeDelete: true)
                 .ForeignKey("dbo.ProductVariants", t => t.ProductVariantId, cascadeDelete: true)
-                .Index(t => t.ProductVariantId);
+                .Index(t => t.ProductVariantId)
+                .Index(t => t.ImageFileId);
+            
+            CreateTable(
+                "dbo.Currencies",
+                c => new
+                    {
+                        CurrencyID = c.Guid(nullable: false),
+                        CurrencyCode = c.String(maxLength: 3),
+                        CurrencySymbol = c.String(maxLength: 3),
+                        CurrencyFullName = c.String(maxLength: 3),
+                    })
+                .PrimaryKey(t => t.CurrencyID);
             
             CreateTable(
                 "dbo.CustomerProductVariantPrices",
@@ -214,17 +295,6 @@ namespace Innoventory.Lotus.Database.Migrations
                 .PrimaryKey(t => t.SupplierId)
                 .ForeignKey("dbo.Currencies", t => t.CurrencyId, cascadeDelete: true)
                 .Index(t => t.CurrencyId);
-            
-            CreateTable(
-                "dbo.Currencies",
-                c => new
-                    {
-                        CurrencyID = c.Guid(nullable: false),
-                        CurrencyCode = c.String(maxLength: 3),
-                        CurrencySymbol = c.String(maxLength: 3),
-                        CurrencyFullName = c.String(maxLength: 3),
-                    })
-                .PrimaryKey(t => t.CurrencyID);
             
             CreateTable(
                 "dbo.PurchaseReturnItems",
@@ -325,7 +395,7 @@ namespace Innoventory.Lotus.Database.Migrations
                 "dbo.UserAccounts",
                 c => new
                     {
-                        UserID = c.Guid(nullable: false),
+                        UserAccountId = c.Guid(nullable: false),
                         UserName = c.String(),
                         Email = c.String(),
                         Password = c.String(),
@@ -337,7 +407,7 @@ namespace Innoventory.Lotus.Database.Migrations
                         CreatedDate = c.DateTime(nullable: false),
                         ModifiedDate = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.UserID);
+                .PrimaryKey(t => t.UserAccountId);
             
             CreateTable(
                 "dbo.UserAccountUserRoleMaps",
@@ -377,56 +447,22 @@ namespace Innoventory.Lotus.Database.Migrations
                 .PrimaryKey(t => t.VolumeMeasureId);
             
             CreateTable(
-                "dbo.ProductVariantImageFileMapImageFiles",
+                "dbo.CountryAddresses",
                 c => new
                     {
-                        ProductVariantImageFileMap_ProductVariantId = c.Guid(nullable: false),
-                        ProductVariantImageFileMap_ImageFileId = c.Guid(nullable: false),
-                        ImageFile_ImageFileId = c.Guid(nullable: false),
+                        Country_CountryID = c.Guid(nullable: false),
+                        Address_AddressID = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => new { t.ProductVariantImageFileMap_ProductVariantId, t.ProductVariantImageFileMap_ImageFileId, t.ImageFile_ImageFileId })
-                .ForeignKey("dbo.ProductVariantImageFileMaps", t => new { t.ProductVariantImageFileMap_ProductVariantId, t.ProductVariantImageFileMap_ImageFileId }, cascadeDelete: true)
-                .ForeignKey("dbo.ImageFiles", t => t.ImageFile_ImageFileId, cascadeDelete: true)
-                .Index(t => new { t.ProductVariantImageFileMap_ProductVariantId, t.ProductVariantImageFileMap_ImageFileId })
-                .Index(t => t.ImageFile_ImageFileId);
+                .PrimaryKey(t => new { t.Country_CountryID, t.Address_AddressID })
+                .ForeignKey("dbo.Countries", t => t.Country_CountryID, cascadeDelete: true)
+                .ForeignKey("dbo.Addresses", t => t.Address_AddressID, cascadeDelete: true)
+                .Index(t => t.Country_CountryID)
+                .Index(t => t.Address_AddressID);
             
-            AddColumn("dbo.Products", "SalesVolumeMeasureId", c => c.Guid(nullable: false));
-            AddColumn("dbo.Products", "PurchaseVolumeMeasureId", c => c.Guid(nullable: false));
-            AddColumn("dbo.Products", "ModifiedBy", c => c.Guid(nullable: false));
-            AddColumn("dbo.Products", "ModifiedOn", c => c.DateTime(nullable: false));
-            AddColumn("dbo.ProductVariants", "PurchaseUnitVolume", c => c.Decimal(nullable: false, precision: 18, scale: 2));
-            AddColumn("dbo.ProductVariants", "SalesUnitVolume", c => c.Decimal(nullable: false, precision: 18, scale: 2));
-            AddColumn("dbo.ProductVariants", "ReorderPoint", c => c.Decimal(precision: 18, scale: 2));
-            AddColumn("dbo.ProductVariants", "ReorderQuantity", c => c.Decimal(precision: 18, scale: 2));
-            AddColumn("dbo.ProductVariants", "LastSupplierId", c => c.Guid());
-            AddColumn("dbo.ProductVariants", "ImageFileId", c => c.Guid());
-            AddColumn("dbo.ProductVariants", "AvailableQuantity", c => c.Decimal(nullable: false, precision: 8, scale: 2));
-            AddColumn("dbo.ProductVariants", "ModifiedBy", c => c.Guid(nullable: false));
-            AddColumn("dbo.ProductVariants", "ModifiedOn", c => c.DateTime(nullable: false));
-            CreateIndex("dbo.SubCategories", "SubCategoryId");
-            AddForeignKey("dbo.SubCategories", "SubCategoryId", "dbo.CategorySubCategoryMaps", "CategorySubCategoryMapId");
-            DropColumn("dbo.Products", "ReorderPoint");
-            DropColumn("dbo.Products", "ReorderQuantity");
-            DropColumn("dbo.Products", "UnitId");
-            DropColumn("dbo.Products", "LastModifiedBy");
-            DropColumn("dbo.Products", "LastModifiedOn");
-            DropColumn("dbo.ProductVariants", "PurchaseOrderVolume");
-            DropColumn("dbo.ProductVariants", "SalesOrderVolume");
-            DropColumn("dbo.ProductVariants", "LastVendorId");
-            DropColumn("dbo.ProductVariants", "ImageId");
         }
         
         public override void Down()
         {
-            AddColumn("dbo.ProductVariants", "ImageId", c => c.Guid());
-            AddColumn("dbo.ProductVariants", "LastVendorId", c => c.Guid());
-            AddColumn("dbo.ProductVariants", "SalesOrderVolume", c => c.Decimal(nullable: false, precision: 18, scale: 2));
-            AddColumn("dbo.ProductVariants", "PurchaseOrderVolume", c => c.Decimal(nullable: false, precision: 18, scale: 2));
-            AddColumn("dbo.Products", "LastModifiedOn", c => c.DateTime(nullable: false));
-            AddColumn("dbo.Products", "LastModifiedBy", c => c.Int(nullable: false));
-            AddColumn("dbo.Products", "UnitId", c => c.Guid(nullable: false));
-            AddColumn("dbo.Products", "ReorderQuantity", c => c.Decimal(precision: 18, scale: 2));
-            AddColumn("dbo.Products", "ReorderPoint", c => c.Decimal(precision: 18, scale: 2));
             DropForeignKey("dbo.UserAccountUserRoleMaps", "UserRoleId", "dbo.UserRoles");
             DropForeignKey("dbo.UserAccountUserRoleMaps", "UserId", "dbo.UserAccounts");
             DropForeignKey("dbo.SalesReturnItems", "SalesReturnId", "dbo.SalesReturns");
@@ -449,19 +485,20 @@ namespace Innoventory.Lotus.Database.Migrations
             DropForeignKey("dbo.PurchaseOrderItems", "ProductVariantId", "dbo.ProductVariants");
             DropForeignKey("dbo.ProductVariantAttributeValues", "ProductVariantId", "dbo.ProductVariants");
             DropForeignKey("dbo.ProductVariantImageFileMaps", "ProductVariantId", "dbo.ProductVariants");
-            DropForeignKey("dbo.ProductVariantImageFileMapImageFiles", "ImageFile_ImageFileId", "dbo.ImageFiles");
-            DropForeignKey("dbo.ProductVariantImageFileMapImageFiles", new[] { "ProductVariantImageFileMap_ProductVariantId", "ProductVariantImageFileMap_ImageFileId" }, "dbo.ProductVariantImageFileMaps");
+            DropForeignKey("dbo.ProductVariantImageFileMaps", "ImageFileId", "dbo.ImageFiles");
             DropForeignKey("dbo.ImageFiles", "ProductVariant_ProductVariantId", "dbo.ProductVariants");
             DropForeignKey("dbo.ImageFiles", "Product_ProductId", "dbo.Products");
+            DropForeignKey("dbo.ProductVariants", "ProductId", "dbo.Products");
             DropForeignKey("dbo.ProductVariantAttributeValues", "AttributeValueListId", "dbo.AttributeValueLists");
             DropForeignKey("dbo.AttributeValueLists", "CategorySubCategoryAttributeMapID", "dbo.CategorySubCategoryAttributeMaps");
             DropForeignKey("dbo.CategorySubCategoryAttributeMaps", "ProductAttributeId", "dbo.ProductAttributes");
             DropForeignKey("dbo.CategorySubCategoryAttributeMaps", "CategorySubCategoryMapId", "dbo.CategorySubCategoryMaps");
-            DropForeignKey("dbo.SubCategories", "SubCategoryId", "dbo.CategorySubCategoryMaps");
-            DropForeignKey("dbo.Categories", "CategoryId", "dbo.CategorySubCategoryMaps");
-            DropForeignKey("dbo.Addresses", "CountryId", "dbo.Countries");
-            DropIndex("dbo.ProductVariantImageFileMapImageFiles", new[] { "ImageFile_ImageFileId" });
-            DropIndex("dbo.ProductVariantImageFileMapImageFiles", new[] { "ProductVariantImageFileMap_ProductVariantId", "ProductVariantImageFileMap_ImageFileId" });
+            DropForeignKey("dbo.CategorySubCategoryMaps", "SubCategoryId", "dbo.SubCategories");
+            DropForeignKey("dbo.CategorySubCategoryMaps", "CategoryId", "dbo.Categories");
+            DropForeignKey("dbo.CountryAddresses", "Address_AddressID", "dbo.Addresses");
+            DropForeignKey("dbo.CountryAddresses", "Country_CountryID", "dbo.Countries");
+            DropIndex("dbo.CountryAddresses", new[] { "Address_AddressID" });
+            DropIndex("dbo.CountryAddresses", new[] { "Country_CountryID" });
             DropIndex("dbo.UserAccountUserRoleMaps", new[] { "UserRoleId" });
             DropIndex("dbo.UserAccountUserRoleMaps", new[] { "UserId" });
             DropIndex("dbo.SalesReturns", new[] { "CustomerId" });
@@ -482,31 +519,19 @@ namespace Innoventory.Lotus.Database.Migrations
             DropIndex("dbo.PurchaseOrders", new[] { "SupplierId" });
             DropIndex("dbo.CustomerProductVariantPrices", new[] { "ProductVariantId" });
             DropIndex("dbo.CustomerProductVariantPrices", new[] { "CustomerId" });
+            DropIndex("dbo.ProductVariantImageFileMaps", new[] { "ImageFileId" });
             DropIndex("dbo.ProductVariantImageFileMaps", new[] { "ProductVariantId" });
             DropIndex("dbo.ImageFiles", new[] { "ProductVariant_ProductVariantId" });
             DropIndex("dbo.ImageFiles", new[] { "Product_ProductId" });
+            DropIndex("dbo.ProductVariants", new[] { "ProductId" });
             DropIndex("dbo.ProductVariantAttributeValues", new[] { "AttributeValueListId" });
             DropIndex("dbo.ProductVariantAttributeValues", new[] { "ProductVariantId" });
-            DropIndex("dbo.SubCategories", new[] { "SubCategoryId" });
-            DropIndex("dbo.Categories", new[] { "CategoryId" });
+            DropIndex("dbo.CategorySubCategoryMaps", new[] { "SubCategoryId" });
+            DropIndex("dbo.CategorySubCategoryMaps", new[] { "CategoryId" });
             DropIndex("dbo.CategorySubCategoryAttributeMaps", new[] { "ProductAttributeId" });
             DropIndex("dbo.CategorySubCategoryAttributeMaps", new[] { "CategorySubCategoryMapId" });
             DropIndex("dbo.AttributeValueLists", new[] { "CategorySubCategoryAttributeMapID" });
-            DropIndex("dbo.Addresses", new[] { "CountryId" });
-            DropColumn("dbo.ProductVariants", "ModifiedOn");
-            DropColumn("dbo.ProductVariants", "ModifiedBy");
-            DropColumn("dbo.ProductVariants", "AvailableQuantity");
-            DropColumn("dbo.ProductVariants", "ImageFileId");
-            DropColumn("dbo.ProductVariants", "LastSupplierId");
-            DropColumn("dbo.ProductVariants", "ReorderQuantity");
-            DropColumn("dbo.ProductVariants", "ReorderPoint");
-            DropColumn("dbo.ProductVariants", "SalesUnitVolume");
-            DropColumn("dbo.ProductVariants", "PurchaseUnitVolume");
-            DropColumn("dbo.Products", "ModifiedOn");
-            DropColumn("dbo.Products", "ModifiedBy");
-            DropColumn("dbo.Products", "PurchaseVolumeMeasureId");
-            DropColumn("dbo.Products", "SalesVolumeMeasureId");
-            DropTable("dbo.ProductVariantImageFileMapImageFiles");
+            DropTable("dbo.CountryAddresses");
             DropTable("dbo.VolumeMeasures");
             DropTable("dbo.UserRoles");
             DropTable("dbo.UserAccountUserRoleMaps");
@@ -517,16 +542,19 @@ namespace Innoventory.Lotus.Database.Migrations
             DropTable("dbo.SalesOrderItems");
             DropTable("dbo.PurchaseReturns");
             DropTable("dbo.PurchaseReturnItems");
-            DropTable("dbo.Currencies");
             DropTable("dbo.Suppliers");
             DropTable("dbo.PurchaseOrderItems");
             DropTable("dbo.PurchaseOrders");
             DropTable("dbo.Customers");
             DropTable("dbo.CustomerProductVariantPrices");
+            DropTable("dbo.Currencies");
             DropTable("dbo.ProductVariantImageFileMaps");
+            DropTable("dbo.Products");
             DropTable("dbo.ImageFiles");
+            DropTable("dbo.ProductVariants");
             DropTable("dbo.ProductVariantAttributeValues");
             DropTable("dbo.ProductAttributes");
+            DropTable("dbo.SubCategories");
             DropTable("dbo.Categories");
             DropTable("dbo.CategorySubCategoryMaps");
             DropTable("dbo.CategorySubCategoryAttributeMaps");

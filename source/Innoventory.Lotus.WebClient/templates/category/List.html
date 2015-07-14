@@ -1,6 +1,6 @@
 ﻿
     <h2>Categories</h2>
-
+<div ng-show="isData">
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -38,6 +38,9 @@
 
 
     </table>
-
+</div>
+<div ng-hide="isData" style="padding:20px;border:2px solid #d3cbcb; margin:10px; text-align:center;">
+    <h4>No Data</h4>
+</div>
 
 
