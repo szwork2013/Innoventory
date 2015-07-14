@@ -6,8 +6,6 @@
 
 <form class="form-horizontal" name="<#= ViewName#>" novalidate role="form">
 
-	<div class="alert alert-danger" ng-if="hasError" >{{formErrors}}</div>
-
 	<#
 	foreach (PropertyMetadata property in ModelMetadata.Properties) {
 		if (property.Scaffold && !property.IsAssociation) {

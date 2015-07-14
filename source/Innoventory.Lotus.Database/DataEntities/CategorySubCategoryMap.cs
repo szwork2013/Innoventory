@@ -17,6 +17,13 @@ namespace Innoventory.Lotus.Database.DataEntities
 
         public Guid SubCategoryId { get; set; }
 
+
+        [ForeignKey("CategoryId")]
+        public Category Category { get; set; }
+
+
+        [ForeignKey("SubCategoryId")]
+        public SubCategory SubCategory { get; set; }
         
     }
 }

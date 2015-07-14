@@ -22,7 +22,6 @@ namespace Innoventory.Lotus.Database.DataEntities
 
         public string Remarks { get; set; }
 
-        public Guid SubCategoryId { get; set; }
 
         public Guid SalesVolumeMeasureId { get; set; }
 
@@ -39,11 +38,7 @@ namespace Innoventory.Lotus.Database.DataEntities
         public Guid CategorySubCategoryMapId { get; set; }
 
         public virtual IList<ProductVariant> ProductVariants { get; set; }
-
-        [ForeignKey("SubCategoryId")]
-        public virtual SubCategory SubCategory { get; set; }
-
-        
+                     
 
     }
 }

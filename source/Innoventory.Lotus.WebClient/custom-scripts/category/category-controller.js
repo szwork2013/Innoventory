@@ -1,13 +1,13 @@
 ﻿
 (function (inv) {
 
-    var categoryController = function ($scope, $q, apiHelper) {
+    var categoryController = function ($scope, $q, apiService) {
 
         var cc = this;
 
         cc.test = "Test";
 
-        $scope.apiHelper = apiHelper;
+        $scope.apiService = apiService;
         $scope.showCategory = false;
 
         $scope.newCategory = function () {
@@ -21,7 +21,7 @@
 
 
         GetCategories = function () {
-            apiHelper.apiGet("Category/categories", {}, function (result) {
+            apiService.apiGet("Category/categories", {}, function (result) {
 
                 if (result.Entities) {
                     $scope.categories = result.Entities;
@@ -61,8 +61,8 @@
             };
 
             if (hasErrors) {
-                apiHelper.hasErrors = true;
-                apiHelper.errors = errors;
+                apiService.hasErrors = true;
+                apiService.errors = errors;
                 return;
             };
 
@@ -70,7 +70,7 @@
                 $scope.categoryVM.categoryId = Innoventory.emptyGuid;
             }
 
-            apiHelper.apiPost("Category/SaveCategory", $scope.categoryVM, setTimeout(function (result) {
+            apiService.apiPost("Category/SaveCategory", $scope.categoryVM, function (result) {
 
 
                 $scope.categoryVM = null;
@@ -79,7 +79,7 @@
 
                 GetCategories();
 
-            }), 1000);
+            });
 
         }
 
@@ -89,7 +89,7 @@
 
             if (confirm("Are you sure you want to delete this category?")) {
 
-                apiHelper.apiDelete("Category/Delete/" + $scope.categoryVM.CategoryId, function (result) {
+                apiService.apiDelete("Category/Delete/" + $scope.categoryVM.CategoryId, function (result) {
 
                     $scope.showCategory = false;
 

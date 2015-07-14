@@ -1,13 +1,13 @@
 ﻿(function (inv) {
 
-    var subCategoryController = function ($scope, $q, apiHelper) {
+    var subCategoryController = function ($scope, $q, apiService) {
 
         var scc = this;
 
         
         
 
-        $scope.apiHelper = apiHelper;
+        $scope.apiService = apiService;
         $scope.showSubCategory = false;
 
         $scope.newSubCategory = function () {
@@ -21,7 +21,7 @@
         };
 
         GetSubCategories = function () {
-            apiHelper.apiGet("SubCategory/subCategories", {}, function (result) {
+            apiService.apiGet("SubCategory/subCategories", {}, function (result) {
 
                 if (result.Entities) {
                     $scope.subCategories = result.Entities;
@@ -37,7 +37,7 @@
 
 
         GetCategories = function () {
-            apiHelper.apiGet("Category/categories", {}, function (result) {
+            apiService.apiGet("Category/categories", {}, function (result) {
 
                 if (result.Entities) {
                     $scope.categories = result.Entities;
@@ -77,8 +77,8 @@
             };
 
             if (hasErrors) {
-                apiHelper.hasErrors = true;
-                apiHelper.errors = errors;
+                apiService.hasErrors = true;
+                apiService.errors = errors;
                 return;
             };
 
@@ -86,12 +86,12 @@
                 $scope.categoryVM.categoryId = Innoventory.emptyGuid;
             }
 
-            apiHelper.apiPost("Category/SaveCategory", $scope.categoryVM, setTimeout(function (result) {
+            apiService.apiPost("Category/SaveCategory", $scope.categoryVM, setTimeout(function (result) {
 
 
-                $scope.categoryVM = null;
+                $scope.subCategoryVM = null;
 
-                $scope.showCategory = false;
+                $scope.showSubCategory = false;
 
                 GetCategories();
 
@@ -105,7 +105,7 @@
 
             if (confirm("Are you sure you want to delete this category?")) {
 
-                apiHelper.apiDelete("Category/Delete/" + $scope.categoryVM.CategoryId, function (result) {
+                apiService.apiDelete("Category/Delete/" + $scope.categoryVM.CategoryId, function (result) {
 
                     $scope.showCategory = false;
 
@@ -117,9 +117,9 @@
         $scope.cancel = function (e) {
             e.preventDefault();
 
-            $scope.categoryVM = null;
+            $scope.subCategoryVM = null;
 
-            $scope.showCategory = false;
+            $scope.showSubCategory = false;
         }
 
         GetSubCategories();
@@ -128,6 +128,6 @@
 
     };
 
-    inv.categoryController = categoryController;
+    inv.subCategoryController = subCategoryController;
 
 }(window.Innoventory));

@@ -23,7 +23,7 @@ namespace Innoventory.Lotus.Database.DataEntities
         public virtual ProductVariant ProductVariant { get; set; }
 
         [ForeignKey("ImageFileId")]
-        public virtual List<ImageFile> ImageFiles{ get; set; }
+        public virtual ImageFile ImageFile{ get; set; }
 
 
     }

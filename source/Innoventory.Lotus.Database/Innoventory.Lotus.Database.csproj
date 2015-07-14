@@ -94,6 +94,14 @@
     <Compile Include="Migrations\201507072208086_07072015AK.Designer.cs">
       <DependentUpon>201507072208086_07072015AK.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507142119374_14072015_ak.cs" />
+    <Compile Include="Migrations\201507142119374_14072015_ak.Designer.cs">
+      <DependentUpon>201507142119374_14072015_ak.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507142123503_14072015_ak1.cs" />
+    <Compile Include="Migrations\201507142123503_14072015_ak1.Designer.cs">
+      <DependentUpon>201507142123503_14072015_ak1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -110,6 +118,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507072208086_07072015AK.resx">
       <DependentUpon>201507072208086_07072015AK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507142119374_14072015_ak.resx">
+      <DependentUpon>201507142119374_14072015_ak.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507142123503_14072015_ak1.resx">
+      <DependentUpon>201507142123503_14072015_ak1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

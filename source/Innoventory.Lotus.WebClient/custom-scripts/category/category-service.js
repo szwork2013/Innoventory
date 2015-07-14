@@ -1,5 +1,5 @@
 ﻿(function (inv) {
-    var categoryService = function (apiHelper) {
+    var categoryService = function (apiService) {
 
         var cs = this;
 

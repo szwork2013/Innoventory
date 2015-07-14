@@ -42,7 +42,7 @@ namespace Innoventory.Lotus.WebClient
                             "~/Scripts/angular-ui", "*.js", true));
 
             bundles.Add(new ScriptBundle("~/bundles/shared-scripts").Include(
-                                        "~/custom-scripts/shared/apiHelper.js",
+                                        "~/custom-scripts/shared/apiService.js",
                                         "~/custom-scripts/shared/innoventory.js",
                                         "~/custom-scripts/shared/app.js"));
 

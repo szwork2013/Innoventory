@@ -9,15 +9,16 @@
     <script src="~/custom-scripts/category/category-model.js"></script>
     <script src="~/custom-scripts/category/category-controller.js"></script>
     <script src="~/custom-scripts/category/category-service.js"></script>
-    
+}
+
+@section footerScript
+{
+    @*angular.bootstrap(document.getElementById("category"), ['categoryModule'])*@
 }
 
 
-  
-
-
-<div class="container" ng-controller="categoryController  as categoryCtrl" id="category">
-    <div ng-show="apiHelper.isLoading">
+<div class="container" ng-app="categoryModule" ng-controller="categoryController  as categoryCtrl" id="category">
+    <div ng-show="apiService.isLoading">
         @Html.Partial("~/Views/Shared/Loader.cshtml")
     </div>
 

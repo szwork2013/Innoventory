@@ -1,5 +1,5 @@
 ﻿(function (inv) {
-    var apiHelper = function ($http, $q) {
+    var apiService = function ($http, $q) {
 
         var me = this;
 
@@ -191,6 +191,6 @@
 
     };
 
-    inv.apiHelper = apiHelper;
+    inv.apiService = apiService;
 
 }(window.Innoventory))

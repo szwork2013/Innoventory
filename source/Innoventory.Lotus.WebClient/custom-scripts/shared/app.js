@@ -7,8 +7,8 @@
 
 
     commonModule.constant("emptyGuid", "00000000-0000-0000-0000-000000000000");
-    commonModule.factory('apiHelper', ['$http', '$q', function ($http, $q) {
-        return Innoventory.apiHelper($http, $q);
+    commonModule.factory('apiService', ['$http', '$q', function ($http, $q) {
+        return Innoventory.apiService($http, $q);
     }]);
 
     
@@ -22,19 +22,20 @@
 
 
 
-    mainApp.factory("productService", ['$http', '$q', 'apiHelper', function ($http, $q, apiHelper) {
-        return Innoventory.productService($http, $q, apiHelper);
+    mainApp.factory("productService", ['$http', '$q', 'apiService', function ($http, $q, apiService) {
+        return Innoventory.productService($http, $q, apiService);
     }]);
 
 
     var categoryModule = angular.module("categoryModule", ['common']);
 
-    mainApp.controller("categoryController", ["$scope", "$q", "apiHelper", function ($scope, $q, apiHelper) {
-        Innoventory.categoryController($scope, $q, apiHelper);
+    mainApp.controller("categoryController", ["$scope", "$q", "apiService", function ($scope, $q, apiService) {
+        Innoventory.categoryController($scope, $q, apiService);
     }]);
 
-    mainApp.factory("categoryService", ['apiHelper', function (apiHelper) {
-        return Innoventory.categoryService(apiHelper);
+
+    mainApp.factory("categoryService", ['apiService', function (apiService) {
+        return Innoventory.categoryService(apiService);
     }]);
 
 }(window.Innoventory));
