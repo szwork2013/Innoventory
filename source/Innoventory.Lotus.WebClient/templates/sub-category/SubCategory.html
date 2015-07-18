@@ -30,6 +30,18 @@
 
     </div>
 
+    <div class="form-group" ng-repeat="category in categories">
+
+        <div class="col-sm-6">
+            <label class="control-label col-sm-22">
+                {{category.CategoryName}}
+                <input type="checkbox" id="category.CategoryId" ng-model="category.isSelected"/>
+            </label>
+            <div class="col-sm-2"></div>
+        </div>
+
+    </div>
+
 
     <div class="form-group">
         <div class="col-sm-6">

@@ -11,7 +11,6 @@ namespace Innoventory.Lotus.Business.Abstract
     public interface ICategorySubCategoryMapRepository : IGenericRepository<CategorySubCategoryMapViewModel>
     {
 
-        
-
+       
     }
 }

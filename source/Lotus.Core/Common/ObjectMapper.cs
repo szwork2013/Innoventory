@@ -13,7 +13,12 @@ namespace Innoventory.Lotus.Core.Common
         {
             List<PropertyInfo> sourceProperties = source.GetType().GetProperties().ToList<PropertyInfo>();
             List<PropertyInfo> destinationProperties = destination.GetType().GetProperties().ToList<PropertyInfo>();
+            if(destination == null)
+            {
+                destination = new U();
+            }
 
+                        
             foreach (PropertyInfo sourceProperty in sourceProperties)
             {
                 PropertyInfo destinationProperty = destinationProperties.Find(item => item.Name == sourceProperty.Name);

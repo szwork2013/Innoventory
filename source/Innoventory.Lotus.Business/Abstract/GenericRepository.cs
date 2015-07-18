@@ -17,9 +17,9 @@ namespace Innoventory.Lotus.Business.Abstract
         where DbEntity : class, new()
         where VM : class, IIdentifiable, new()
     {
-        
 
-        
+
+
 
         #region Abstract Methods
         protected abstract VM GetEntity(InnoventoryDBContext dbContext, Guid id);
@@ -49,11 +49,30 @@ namespace Innoventory.Lotus.Business.Abstract
             {
                 using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
                 {
-                    
+
                     List<VM> entityList = GetEntities(dbContext);
                     result.Entities = entityList;
                     result.Success = true;
                 }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
+        }
+
+        public virtual FindResult<VM> GetAll(InnoventoryDBContext dbContext)
+        {
+            FindResult<VM> result = new FindResult<VM>();
+
+            try
+            {
+                List<VM> entityList = GetEntities(dbContext);
+                result.Entities = entityList;
+                result.Success = true;
 
             }
             catch (Exception ex)
@@ -97,6 +116,35 @@ namespace Innoventory.Lotus.Business.Abstract
             return result;
         }
 
+        public virtual GetEntityResult<VM> FindById(InnoventoryDBContext dbContext, Guid id)
+        {
+            GetEntityResult<VM> result = new GetEntityResult<VM>();
+
+            try
+            {
+                VM entity = GetEntity(dbContext, id);
+
+                if (entity != null)
+                {
+                    result.Entity = entity;
+                    result.Success = true;
+                }
+                else
+                {
+                    result.Success = false;
+                    result.ErrorMessage = "Record does not exist";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                throw ex;
+            }
+
+            return result;
+        }
+
         public virtual FindResult<VM> FindBy(Func<VM, bool> predicate)
         {
             FindResult<VM> result = new FindResult<VM>() { Success = false };
@@ -109,6 +157,26 @@ namespace Innoventory.Lotus.Business.Abstract
                     result.Entities = Find(dbContext, predicate);
                     result.Success = true;
                 }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            return result;
+        }
+
+        public virtual FindResult<VM> FindBy(InnoventoryDBContext dbContext, Func<VM, bool> predicate)
+        {
+            FindResult<VM> result = new FindResult<VM>() { Success = false };
+
+            try
+            {
+
+                result.Entities = Find(dbContext, predicate);
+                result.Success = true;
 
             }
             catch (Exception ex)
@@ -156,6 +224,39 @@ namespace Innoventory.Lotus.Business.Abstract
             return result;
         }
 
+        public virtual UpdateResult<VM> Update(InnoventoryDBContext dbContext, VM viewModel)
+        {
+
+            UpdateResult<VM> result = new UpdateResult<VM>();
+
+            try
+            {
+                if (viewModel.EntityId == Guid.Empty)
+                {
+
+                    viewModel.EntityId = Guid.NewGuid();
+
+                    result.Success = AddEntity(dbContext, viewModel);
+
+                }
+                else
+                {
+                    result.Success = EditEntity(dbContext, viewModel);
+                }
+
+                result.Entity = viewModel;
+
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = string.Format("An error {0} occurred while saving changes to database",
+                                   ex.Message);
+                throw ex;
+            }
+
+            return result;
+        }
+
         public virtual EntityOperationResultBase Delete(Guid id)
         {
             EntityOperationResultBase result = new EntityOperationResultBase() { Success = false };
@@ -177,6 +278,22 @@ namespace Innoventory.Lotus.Business.Abstract
             return result;
         }
 
+        public virtual EntityOperationResultBase Delete(InnoventoryDBContext dbContext, Guid id)
+        {
+            EntityOperationResultBase result = new EntityOperationResultBase() { Success = false };
+            try
+            {
+
+                result.Success = DeleteEntity(dbContext, id);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
+        }
 
         #endregion
 

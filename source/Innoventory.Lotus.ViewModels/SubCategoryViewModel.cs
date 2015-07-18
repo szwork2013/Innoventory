@@ -27,12 +27,22 @@ namespace Innoventory.Lotus.ViewModels
         [StringLength(500)]
         public string Description { get; set; }
 
-        public List<Guid> SelectedCategories { get; set; }
+        public string SelectedCategories { get; set; }
+
+        //Selected category Ids
+        public List<Guid> CategoryIds { get; set; }
 
         public Guid EntityId
         {
             get { return SubCategoryId; }
             set { SubCategoryId = value; }
         }
+    }
+
+    public class SubCategoryCategories
+    {
+        public SubCategoryViewModel SubCategory { get; set; }
+
+        public List<CategorySelectionViewModel> CategorySelections { get; set; }
     }
 }

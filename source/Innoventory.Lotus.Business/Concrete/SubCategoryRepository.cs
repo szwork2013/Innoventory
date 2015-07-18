@@ -16,7 +16,15 @@ namespace Innoventory.Lotus.Business.Concrete
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class SubCategoryRepository : GenericRepository<SubCategory, SubCategoryViewModel>, ISubCategoryRepository
     {
+        ICategoryRepository _categoryRepository;
 
+        ICategorySubCategoryMapRepository _categorySubCategoryMapRepo;
+
+        public SubCategoryRepository()
+        {
+            _categoryRepository = new CategoryRepository();
+            _categorySubCategoryMapRepo = new CategorySubCategoryMapRepository();
+        }
         protected override SubCategoryViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
             DbSet<SubCategory> subCategorySet = dbContext.SubCategorySet;
@@ -45,13 +53,51 @@ namespace Innoventory.Lotus.Business.Concrete
 
             foreach (SubCategory subCategory in subCategories)
             {
-                SubCategoryViewModel subCatVM = new SubCategoryViewModel();
-                SubCategoryViewModel scvm = ObjectMapper.PropertyMap(subCategory, subCatVM);
+                SubCategoryViewModel scvm = new SubCategoryViewModel();
+
+                ObjectMapper.PropertyMap(subCategory, scvm);
+
+                //CategoryViewModel cvm = _categoryRepository.FindById()
+
+                List<CategoryViewModel> categories =  GetCategories(dbContext, subCategory.SubCategoryId);
+
+                StringBuilder categoryString = new StringBuilder();
+
+                categories.ForEach(x => categoryString.Append(x.CategoryName + ","));
+
+                scvm.SelectedCategories = categoryString.ToString();
 
                 retList.Add(scvm);
             }
 
             return retList;
+        }
+
+        private List<CategoryViewModel> GetCategories(InnoventoryDBContext dbContext,  Guid guid)
+        {
+            
+            List<CategoryViewModel> retResult = new List<CategoryViewModel>();
+
+            var query = from category in dbContext.CategorySet.ToList()
+                        join map in dbContext.CategorySubCategoryMapSet.ToList()
+                        on category.CategoryId equals map.CategoryId
+                        join sc in dbContext.SubCategorySet.ToList()
+                        on map.SubCategoryId equals sc.SubCategoryId 
+                        where (sc.SubCategoryId == guid)
+                        select category;
+
+
+            foreach (var item in query)
+            {
+                CategoryViewModel cvm = new CategoryViewModel();
+
+                ObjectMapper.PropertyMap(item, cvm);
+
+                retResult.Add(cvm);
+            }
+
+            return retResult;
+            
         }
 
 
@@ -77,6 +123,22 @@ namespace Innoventory.Lotus.Business.Concrete
             SubCategory newSubCategory = ObjectMapper.PropertyMap(viewModel, subCategory);
 
             subCategorySet.Add(subCategory);
+            if (viewModel.CategoryIds != null && viewModel.CategoryIds.Count > 0)
+            {
+                foreach (Guid categoryId in viewModel.CategoryIds)
+                {
+                    
+
+                    CategorySubCategoryMapViewModel mapViewModel = new CategorySubCategoryMapViewModel
+                    {
+                        CategorySubCategoryMapId = Guid.Empty,
+                        CategoryId = categoryId,
+                        SubCategoryId = viewModel.SubCategoryId,
+                    };
+
+                    _categorySubCategoryMapRepo.Update(dbContext, mapViewModel);
+                }
+            }
 
             dbContext.SaveChanges();
             return true;
@@ -102,6 +164,64 @@ namespace Innoventory.Lotus.Business.Concrete
             List<SubCategoryViewModel> retList = GetEntities(dbContext).Where(predicate).ToList();
 
             return retList;
+        }
+
+        public SubCategoryCategories GetSubCategoryCategories(Guid subCategoryId)
+        {
+            SubCategoryCategories subCategoryCategories = new SubCategoryCategories();
+
+            GetEntityResult<SubCategoryViewModel> entityResult = this.FindById(subCategoryId);
+            if(entityResult.Success && entityResult.Entity != null)
+            {
+                subCategoryCategories.SubCategory = entityResult.Entity;
+            }
+            else
+            {
+                throw new Exception("No subcategory found with the matching sub category id");
+            }
+
+            subCategoryCategories.CategorySelections = GetCategorySelections(subCategoryId);
+
+            //List<CategoryViewModel> 
+
+            return subCategoryCategories;
+        }
+
+        private List<CategorySelectionViewModel> GetCategorySelections(Guid subCategoryId)
+        {
+            List<CategorySelectionViewModel> categorySelections = new List<CategorySelectionViewModel>();
+            using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
+            {
+
+                List<CategoryViewModel> selectedCategories = GetCategories(dbContext, subCategoryId);
+
+                List<Guid> selectedCategoryIds = selectedCategories.Select(x=>x.CategoryId).ToList();
+
+                FindResult<CategoryViewModel> categoryResult = _categoryRepository.GetAll();
+                List<CategoryViewModel> allCategories = new List<CategoryViewModel>();
+
+                if(categoryResult != null && categoryResult.Success)
+                {
+                    allCategories = categoryResult.Entities;
+                }
+
+                foreach (var category in allCategories)
+                {
+                    CategorySelectionViewModel selectionViewModel = new CategorySelectionViewModel();
+
+                    selectionViewModel.CategoryVM = category;
+
+                    if(selectedCategoryIds.Contains(category.CategoryId))
+                    {
+                        selectionViewModel.IsSelected = true;
+                    }
+
+                    categorySelections.Add(selectionViewModel);
+                }
+
+            }
+
+            return categorySelections;
         }
     }
 }
