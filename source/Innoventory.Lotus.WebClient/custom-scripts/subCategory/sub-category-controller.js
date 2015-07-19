@@ -4,11 +4,10 @@
 
         var scc = this;
 
-        
-        
-
         $scope.apiService = apiService;
         $scope.showSubCategory = false;
+        $scope.subCategory = {};
+
 
         $scope.newSubCategory = function () {
 
@@ -16,19 +15,19 @@
             $scope.showDelete = false;
             $scope.showSubCategory = true;
             $scope.formTitle = "New Sub Category";
-            GetCategories();
-            $scope.subCategoryVM.Categories = $scope.categories;
+            
+            $scope.subCategoryVM.categories = $scope.categories;
         };
 
         GetSubCategories = function () {
-            apiService.apiGet("SubCategory/subCategories", {}, function (result) {
+            apiService.apiGet("SubCategory/SubCategories", {}, function (result) {
 
                 if (result.Entities) {
                     $scope.subCategories = result.Entities;
 
 
                     
-                    return $scope.categories;
+                    return $scope.subCategories;
                 }
 
             });
@@ -36,28 +35,28 @@
         };
 
 
-        GetCategories = function () {
-            apiService.apiGet("Category/categories", {}, function (result) {
+        //GetCategories = function () {
+        //    apiService.apiGet("Category/categories", {}, function (result) {
 
-                if (result.Entities) {
-                    $scope.categories = result.Entities;
-                    return $scope.categories;
-                }
+        //        if (result.Entities) {
+        //            $scope.categories = result.Entities;
+        //            return $scope.categories;
+        //        }
 
-            });
+        //    });
 
-        };
+        //};
 
-        $scope.editCategory = function (subCategory) {
+        $scope.editSubCategory = function (subCategory) {
             $scope.subCategoryVM = angular.copy(subCategory);
 
             $scope.formTitle = "Edit Category";
             $scope.showDelete = true;
-            $scope.showCategory = true;
+            $scope.showSubCategory = true;
 
         }
 
-        $scope.saveCategory = function (e) {
+        $scope.saveSubCategory = function (e) {
 
             var errors = [];
             var hasErrors = false;
@@ -86,20 +85,20 @@
                 $scope.categoryVM.categoryId = Innoventory.emptyGuid;
             }
 
-            apiService.apiPost("Category/SaveCategory", $scope.categoryVM, setTimeout(function (result) {
+            apiService.apiPost("Category/SaveCategory", $scope.categoryVM, function (result) {
 
 
                 $scope.subCategoryVM = null;
 
                 $scope.showSubCategory = false;
 
-                GetCategories();
+                GetSubCategories();
 
-            }), 1000);
+            });
 
         }
 
-        $scope.deleteCategory = function (e) {
+        $scope.deleteSubCategory = function (e) {
 
             e.preventDefault();
 
@@ -107,9 +106,9 @@
 
                 apiService.apiDelete("Category/Delete/" + $scope.categoryVM.CategoryId, function (result) {
 
-                    $scope.showCategory = false;
+                    $scope.showSubCategory = false;
 
-                    GetCategories();
+                    GetSubCategories();
                 });
             };
         }

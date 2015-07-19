@@ -17,16 +17,19 @@ namespace Innoventory.Lotus.Business.Concrete
     public class CategorySubCategoryMapRepository : GenericRepository<CategorySubCategoryMap, CategorySubCategoryMapViewModel>,
                                                     ICategorySubCategoryMapRepository
     {
-        ICategoryRepository _categoryRespository;
-        ISubCategoryRepository _subCategoryRepository;
+        //[Import]
+        //ICategoryRepository _categoryRespository;
 
-        public CategorySubCategoryMapRepository()
-            : base()
-        {
-            _categoryRespository = new CategoryRepository();
+        //[Import]
+        //ISubCategoryRepository _subCategoryRepository;
 
-            _subCategoryRepository = new SubCategoryRepository();
-        }
+        
+        //public CategorySubCategoryMapRepository(ICategoryRepository categoryRepo, ISubCategoryRepository subCategoryRepo)
+        //{
+        //    _categoryRespository = categoryRepo;
+
+        //    _subCategoryRepository = subCategoryRepo;
+        //}
         protected override CategorySubCategoryMapViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
             DbSet<CategorySubCategoryMap> dbSet = dbContext.CategorySubCategoryMapSet;
@@ -51,19 +54,19 @@ namespace Innoventory.Lotus.Business.Concrete
 
                 ObjectMapper.PropertyMap(map, vm);
 
-                GetEntityResult<CategoryViewModel> categoryResult = _categoryRespository.FindById(map.CategoryId);
+                //GetEntityResult<CategoryViewModel> categoryResult = _categoryRespository.FindById(map.CategoryId);
 
-                if (categoryResult != null && categoryResult.Success)
-                {
-                    vm.Category = categoryResult.Entity;
-                }
+                //if (categoryResult != null && categoryResult.Success)
+                //{
+                //    vm.Category = categoryResult.Entity;
+                //}
 
-                GetEntityResult<SubCategoryViewModel> subCategoryResult = _subCategoryRepository.FindById(map.SubCategoryId);
+                //GetEntityResult<SubCategoryViewModel> subCategoryResult = _subCategoryRepository.FindById(map.SubCategoryId);
 
-                if (subCategoryResult != null && subCategoryResult.Success)
-                {
-                    vm.SubCategory = subCategoryResult.Entity;
-                }
+                //if (subCategoryResult != null && subCategoryResult.Success)
+                //{
+                //    vm.SubCategory = subCategoryResult.Entity;
+                //}
 
                 vmList.Add(vm);
             }
@@ -120,6 +123,6 @@ namespace Innoventory.Lotus.Business.Concrete
 
             return retList;
         }
-               
+
     }
 }

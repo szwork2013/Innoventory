@@ -1,5 +1,5 @@
 ﻿
-    <h2>Categories</h2>
+<h2>Categories</h2>
 <div ng-show="isData">
     <table class="table table-striped table-bordered">
         <thead>
@@ -23,13 +23,13 @@
 
         <tbody>
 
-            <tr ng-repeat="category in categories " ng-click="editCategory(category)">
+            <tr ng-repeat="category in categories " ng-click="editCategory(category)" ng-class="{'row-selected': category.categoryId === selectedId}">
 
                 <td>
-                    {{category.CategoryName}}
+                    {{category.categoryName}}
                 </td>
                 <td>
-                    {{category.Description}}
+                    {{category.description}}
                 </td>
 
             </tr>

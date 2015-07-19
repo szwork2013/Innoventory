@@ -9,7 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace Innoventory.Lotus.WebClient.Api.Controllers
+namespace Innoventory.Lotus.WebClient.Controllers.Api
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
@@ -38,16 +38,7 @@ namespace Innoventory.Lotus.WebClient.Api.Controllers
 
                 FindResult<CategoryViewModel> result = _categoryRepository.GetAll();
 
-                if (result.Success)
-                {
-
-                    response = request.CreateResponse(HttpStatusCode.OK);
-                    response.Content = new ObjectContent<FindResult<CategoryViewModel>>(result, Configuration.Formatters.JsonFormatter);
-                }
-                else
-                {
-                    response = request.CreateErrorResponse(HttpStatusCode.NoContent, "Error occurred");
-                }
+                response = GetFindResultResponse(request, result);
 
                 return response;
 
@@ -71,7 +62,7 @@ namespace Innoventory.Lotus.WebClient.Api.Controllers
                 {
                     response = new HttpResponseMessage(HttpStatusCode.OK);
                     updateResult.SuccessMessage = string.Format("Category: {0} saved successfully.", categoryModel.CategoryName);
-                    
+
                 }
                 else
                 {
@@ -79,7 +70,7 @@ namespace Innoventory.Lotus.WebClient.Api.Controllers
                     updateResult.ErrorMessage = ("Error occurred while saving category" + updateResult.ErrorMessage);
                 }
 
-                response.Content = new ObjectContent<UpdateResult<CategoryViewModel>> (updateResult, Configuration.Formatters.JsonFormatter);
+                response.Content = new ObjectContent<UpdateResult<CategoryViewModel>>(updateResult, Configuration.Formatters.JsonFormatter);
 
                 return response;
             });
@@ -87,7 +78,7 @@ namespace Innoventory.Lotus.WebClient.Api.Controllers
 
         [HttpDelete]
         [Route("Delete/{id}")]
-        public HttpResponseMessage DeleteCategory(HttpRequestMessage request, 
+        public HttpResponseMessage DeleteCategory(HttpRequestMessage request,
                 Guid id)
         {
 
@@ -102,7 +93,7 @@ namespace Innoventory.Lotus.WebClient.Api.Controllers
 
             CategoryViewModel category = null;
 
-            if(categoryResult.Success && categoryResult.Entity != null)
+            if (categoryResult.Success && categoryResult.Entity != null)
             {
                 category = categoryResult.Entity;
             }

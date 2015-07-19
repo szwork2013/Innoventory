@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.Business"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.Database", "Innoventory.Lotus.Database\Innoventory.Lotus.Database.csproj", "{4AF5F319-4D6A-4597-9930-33AAE9C6C856}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.BusinessTransition", "Innoventory.Lotus.BusinessTransition\Innoventory.Lotus.BusinessTransition.csproj", "{9B99C18C-EE69-4D1D-84F4-C3C78578F407}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{4AF5F319-4D6A-4597-9930-33AAE9C6C856}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AF5F319-4D6A-4597-9930-33AAE9C6C856}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AF5F319-4D6A-4597-9930-33AAE9C6C856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B99C18C-EE69-4D1D-84F4-C3C78578F407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B99C18C-EE69-4D1D-84F4-C3C78578F407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B99C18C-EE69-4D1D-84F4-C3C78578F407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B99C18C-EE69-4D1D-84F4-C3C78578F407}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

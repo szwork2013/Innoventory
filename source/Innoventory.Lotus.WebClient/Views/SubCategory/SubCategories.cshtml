@@ -1,7 +1,45 @@
 ﻿
 @{
-    ViewBag.Title = "SubCategories";
+    ViewBag.Title = "Sub Category";
+    ViewBag.Name = "SubCategory";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
 }
 
-<h2>SubCategories</h2>
+@section scripts
+{
+<script src="~/custom-scripts/subCategory/sub-category-model.js"></script>
+<script src="~/custom-scripts/subCategory/sub-category-controller.js"></script>
+
+}
+
+@section footerScript
+{
+
+}
+
+<div class="container" ng-controller="subCategoryController as subCategoryCtrl">
+
+    <div ng-show="apiService.isLoading">
+        @Html.Partial("~/Views/Shared/Loader.cshtml")
+    </div>
+
+    @Html.Partial("~/Views/Shared/AlertBox.cshtml")
+
+    <div>
+        <sub-category-list></sub-category-list>
+    </div>
+
+    <div class="form-group">
+
+        <a href="#" id="lnkNewSubCategory" class="btn btn-primary" ng-click="newSubCategory()">Create New Sub Category</a>
+
+    </div>
+
+    <div ng-show="showSubCategory">
+
+        <sub-category></sub-category>
+
+    </div>
+
+</div>
 

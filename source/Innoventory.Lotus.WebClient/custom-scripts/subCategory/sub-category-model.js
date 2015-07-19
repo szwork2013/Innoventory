@@ -3,11 +3,11 @@
     var subCategoryModel = function () {
 
         var me = this;
-        me.SubCategoryId = Innoventory.emptyGuid;
-        me.SubCategoryName = "";
-        me.Description = "";
-        me.Categories = [];
-        me.SelectedCategories = [];
+        me.subCategoryId = Innoventory.emptyGuid;
+        me.subCategoryName = "";
+        me.description = "";
+        me.categories = [];
+        me.selectedCategoryNames = "";
 
     }
 

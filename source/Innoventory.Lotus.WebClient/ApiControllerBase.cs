@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Innoventory.Lotus.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -27,6 +28,29 @@ namespace Innoventory.Lotus.WebClient
             {
                 response = request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
+
+            return response;
+        }
+
+        protected HttpResponseMessage GetFindResultResponse<T>(HttpRequestMessage request, FindResult<T> findResult)
+        {
+            HttpResponseMessage response = null;
+
+            
+
+            if(findResult.Success)
+            {
+
+                response = request.CreateResponse(HttpStatusCode.OK);
+                
+            }
+            else
+            {
+                response = request.CreateResponse(HttpStatusCode.InternalServerError);
+               
+            }
+
+            response.Content = new ObjectContent<FindResult<T>>(findResult, Configuration.Formatters.JsonFormatter);
 
             return response;
         }

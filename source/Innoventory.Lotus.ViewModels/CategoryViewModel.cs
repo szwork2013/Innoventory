@@ -18,16 +18,16 @@ namespace Innoventory.Lotus.ViewModels
         //{ }
 
         [ScaffoldColumn(false)]
-        [DataMember]
+        [DataMember(Name = "categoryId")]
         public Guid CategoryId { get; set; }
 
 
         [DisplayName("Category Name")]
-        [DataMember]
+        [DataMember(Name = "categoryName")]
         public string CategoryName { get; set; }
 
         [DisplayName("Category Description")]
-        [DataMember]
+        [DataMember(Name = "description")]
         public string Description { get; set; }
 
 

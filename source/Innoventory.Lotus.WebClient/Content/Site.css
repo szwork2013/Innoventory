@@ -131,3 +131,22 @@ header .jumbotron .title {
     text-align: right;
     width: 30px;
 }
+
+.btn-save {
+    background: #73c348;
+}
+
+    .btn-save:hover {
+        background: #5a9639;
+    }
+
+.btn-default {
+    background: #cfc7c7;
+}
+
+.row-selected {
+    background: linear-gradient(top, #d2dbe0 0%, #c1d1dd 100%);
+    background: -webkit-linear-gradient(top, #d2dbe0 0%, #c1d1dd 100% );
+    background: -moz-linear-gradient(top, #d2dbe0 0%, #c1d1dd 100%);
+    background: -ms-linear-gradient(top, #d2dbe0 0%, #c1d1dd 100%);
+}

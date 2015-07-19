@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Innoventory.Lotus.Business.Concrete
 {
     [Export(typeof(ICategoryRepository))]
-    [PartCreationPolicy(CreationPolicy.NonShared)]
+    [PartCreationPolicy(CreationPolicy.Shared)]
     public class CategoryRepository : GenericRepository<Category, CategoryViewModel>, ICategoryRepository
     {
 

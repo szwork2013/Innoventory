@@ -38,4 +38,9 @@
         return Innoventory.categoryService(apiService);
     }]);
 
+    mainApp.controller("subCategoryController", ["$scope", "$q", "apiService", function ($scope, $q, apiService) {
+        Innoventory.subCategoryController($scope, $q, apiService);
+    }]);
+       
+
 }(window.Innoventory));

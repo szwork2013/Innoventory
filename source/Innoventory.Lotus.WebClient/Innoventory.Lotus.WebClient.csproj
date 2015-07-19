@@ -193,9 +193,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\CategoryController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
+    <Compile Include="Controllers\Api\SubCategoryController.cs" />
     <Compile Include="Controllers\Mvc\CategoryController.cs" />
     <Compile Include="Controllers\Mvc\HomeController.cs" />
     <Compile Include="Controllers\Mvc\ProductsController.cs" />
+    <Compile Include="Controllers\Mvc\SubCategoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -316,6 +318,10 @@
     <ProjectReference Include="..\Innoventory.Lotus.Bootstraper\Innoventory.Lotus.Bootstraper.csproj">
       <Project>{c424f5f8-d603-4823-9147-aa04b20c1c44}</Project>
       <Name>Innoventory.Lotus.Bootstraper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Innoventory.Lotus.BusinessTransition\Innoventory.Lotus.BusinessTransition.csproj">
+      <Project>{9b99c18c-ee69-4d1d-84f4-c3c78578f407}</Project>
+      <Name>Innoventory.Lotus.BusinessTransition</Name>
     </ProjectReference>
     <ProjectReference Include="..\Innoventory.Lotus.Business\Innoventory.Lotus.Business.csproj">
       <Project>{cfc1b219-5ef3-4008-a178-4cbaa92112b4}</Project>

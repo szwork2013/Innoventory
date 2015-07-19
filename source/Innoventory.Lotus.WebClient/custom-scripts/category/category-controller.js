@@ -49,6 +49,7 @@
             $scope.formTitle = "Edit Category";
             $scope.showDelete = true;
             $scope.showCategory = true;
+            $scope.selectedId = category.categoryId;
 
         }
 
@@ -59,12 +60,12 @@
 
             e.preventDefault();
 
-            if ($scope.categoryVM.CategoryName == null || $scope.categoryVM.CategoryName == "") {
+            if ($scope.categoryVM.categoryName == null || $scope.categoryVM.categoryName == "") {
                 errors.push("Category Name can not be blank!");
                 hasErrors = true;
             };
 
-            if ($scope.categoryVM.Description == null || $scope.categoryVM.Description == "") {
+            if ($scope.categoryVM.description == null || $scope.categoryVM.description == "") {
 
                 errors.push("Description can not be blank!");
                 hasErrors = true;
@@ -100,7 +101,7 @@
 
             if (confirm("Are you sure you want to delete this category?")) {
 
-                apiService.apiDelete("Category/Delete/" + $scope.categoryVM.CategoryId, function (result) {
+                apiService.apiDelete("Category/Delete/" + $scope.categoryVM.categoryId, function (result) {
 
                     $scope.showCategory = false;
 
@@ -115,6 +116,7 @@
             $scope.categoryVM = null;
 
             $scope.showCategory = false;
+            $scope.selectedId = null;
         }
 
         GetCategories();

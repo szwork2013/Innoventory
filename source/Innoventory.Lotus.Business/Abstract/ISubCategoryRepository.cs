@@ -10,7 +10,7 @@ namespace Innoventory.Lotus.Business.Abstract
 {
     public interface ISubCategoryRepository : IGenericRepository<SubCategoryViewModel>
     {
-        SubCategoryCategories GetSubCategoryCategories(Guid subCategoryId);
+        //SubCategoryCategories GetSubCategoryCategories(Guid subCategoryId);
 
         
     }

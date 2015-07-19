@@ -3,9 +3,9 @@
     var categoryModel = function() {
 
         var me = this;
-        me.CategoryId = Innoventory.emptyGuid;
-        me.CategoryName = "";
-        me.Description = "";
+        me.categoryId = Innoventory.emptyGuid;
+        me.categoryName = "";
+        me.description = "";
 
     }
 
