@@ -32,31 +32,61 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
         [Route("SubCategories")]
         public HttpResponseMessage GetSubCategories(HttpRequestMessage request)
         {
-            HttpResponseMessage response = null;
+            return GetHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
 
-            FindResult<SubCategoryCategories> subCategoryCategoriesResult = new FindResult<SubCategoryCategories>();
+                FindResult<SubCategoryCategories> subCategoryCategoriesResult = new FindResult<SubCategoryCategories>();
 
-            FindResult<SubCategoryViewModel> subCategoryResult  = subCategoryTransition.GetAllSubcategories();
+                FindResult<SubCategoryViewModel> subCategoryResult = subCategoryTransition.GetAllSubcategories();
 
-            response = GetFindResultResponse(request, subCategoryResult);
-            return response;
+                response = GetFindResultResponse(request, subCategoryResult);
+                return response;
+            });
         }
 
         [HttpPost]
         [Route("SaveSubCategory")]
-        public HttpResponseMessage SaveSubCategory(HttpRequestMessage request, [FromBody]SubCategoryViewModel model )
+        public HttpResponseMessage SaveSubCategory(HttpRequestMessage request, [FromBody]SubCategoryViewModel model)
         {
-            HttpResponseMessage response = null;
+            return GetHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
 
-            UpdateResult<SubCategoryViewModel> updateResult = subCategoryTransition.UpdateSubCategory(model);
+                UpdateResult<SubCategoryViewModel> updateResult = subCategoryTransition.UpdateSubCategory(model);
 
-            response = GetUpdateResultResponse(request, updateResult);
+                response = GetUpdateResultResponse(request, updateResult);
 
-            return response;
+                return response;
+            });
         }
 
-        //[HttpGet]
-        //[Route("SubCategory/{id}")]
-        //public HttpResponseMessage Get
+        [HttpGet]
+        [Route("SubCategory/{id}")]
+        public HttpResponseMessage GetSubCategory(HttpRequestMessage request, Guid id)
+        {
+            return GetHttpResponse(request, () =>
+            {
+
+                HttpResponseMessage response = null;
+                SubCategoryCategories subCategory = subCategoryTransition.GetSubCategoryCategories(id);
+                GetEntityResult<SubCategoryCategories> result = new GetEntityResult<SubCategoryCategories>
+                {
+                    Entity = subCategory,
+                    ErrorMessage = string.Empty,
+                    Success = true,
+                    SuccessMessage = string.Empty
+                };
+
+                response = new HttpResponseMessage(HttpStatusCode.OK);
+
+                response.Content = new ObjectContent<GetEntityResult<SubCategoryCategories>>(result, Configuration.Formatters.JsonFormatter);
+
+
+
+                return response;
+
+            });
+        }
     }
 }
