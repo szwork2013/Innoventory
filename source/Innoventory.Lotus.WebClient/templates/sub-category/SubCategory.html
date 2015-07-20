@@ -33,12 +33,12 @@
 
     <div class="form-group" >
 
-        <div class="col-sm-6 form-group" ng-repeat="category in categories">
+        <div class="col-sm-6 form-group" ng-repeat="categorySelection in subCategoryVM.categories">
             <label class="control-label col-sm-24">
-                {{category.categoryName}}
-                <input type="checkbox" id="category.categoryId" ng-model="category.isSelected" />
+                {{categorySelection.category.categoryName}}
+                <input type="checkbox" id="categorySelection.category.categoryId" ng-model="categorySelection.isSelected" />
             </label>
-            
+
         </div>
 
     </div>
@@ -57,7 +57,7 @@
                 <i class="btn-span glyphicon glyphicon-remove-sign"></i>
             </button>		
         
-            <input type="button" value="Cancel" class="btn btn-default" />
+            <input type="button" value="Cancel" class="btn btn-default" ng-show="cancel"/>
         </div>
     </div>
 

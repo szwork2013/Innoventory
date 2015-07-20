@@ -7,14 +7,5 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    [DataContract]
-    public class CategorySelectionViewModel
-    {
-        [DataMember(Name="category")]
-        public CategoryViewModel CategoryVM { get; set; }
-
-        [DataMember(Name="isSelected")]
-        public bool IsSelected { get; set; }
-
-    }
+   
 }

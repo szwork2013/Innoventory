@@ -15,7 +15,7 @@ namespace Innoventory.Lotus.BusinessTransition
 {
     [Export(typeof(ISubCategoryTransition))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class SubCategoryTransition:ISubCategoryTransition
+    public class SubCategoryTransition : ISubCategoryTransition
     {
         [Import]
         ISubCategoryRepository subCategoryRepository;
@@ -26,7 +26,7 @@ namespace Innoventory.Lotus.BusinessTransition
         [Import]
         ICategorySubCategoryMapRepository categorySubCategoryMapRepo;
 
-        
+
         //public SubCategoryTransition(ISubCategoryRepository subCategoryRepository, 
         //                            ICategoryRepository categoryRepository,
         //                            ICategorySubCategoryMapRepository categorySubCategoryMapRepo)
@@ -45,6 +45,7 @@ namespace Innoventory.Lotus.BusinessTransition
             if (entityResult.Success && entityResult.Entity != null)
             {
                 subCategoryCategories.SubCategory = entityResult.Entity;
+                subCategoryCategories.SubCategory.CategoryIds = new List<Guid>();
             }
             else
             {
@@ -52,6 +53,14 @@ namespace Innoventory.Lotus.BusinessTransition
             }
 
             subCategoryCategories.CategorySelections = GetCategorySelections(subCategoryId);
+
+            foreach (var item in subCategoryCategories.CategorySelections)
+            {
+                if (item.IsSelected)
+                {
+                    subCategoryCategories.SubCategory.CategoryIds.Add(item.CategoryVM.CategoryId);
+                }
+            }
 
             //List<CategoryViewModel> 
 
@@ -145,83 +154,86 @@ namespace Innoventory.Lotus.BusinessTransition
 
         }
 
-        private bool AddUpdateCategorySubCategoryMapRepo(InnoventoryDBContext dbContext, SubCategoryViewModel viewModel)
+        private bool AddUpdateCategorySubCategoryMapRepo(SubCategoryViewModel viewModel)
         {
-            using (DbContextTransaction transaction = dbContext.Database.BeginTransaction())
+            using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
             {
-
-                DbSet<SubCategory> subCategorySet = dbContext.SubCategorySet;
-                SubCategory subCategory = new SubCategory();
-                ObjectMapper.PropertyMap(viewModel, subCategory);
-
-                FindResult<CategoryViewModel> categoryResult = categoryRepository.GetAll(dbContext);
-
-                FindResult<CategorySubCategoryMapViewModel> mapResult = categorySubCategoryMapRepo.FindBy(x => x.SubCategoryId == viewModel.SubCategoryId);
-
-                List<CategorySubCategoryMapViewModel> existingMappings = new List<CategorySubCategoryMapViewModel>();
-
-                existingMappings = mapResult.Entities;
-
-                List<Guid> deletionList = new List<Guid>();
-
-                List<Guid> newAdded = new List<Guid>();
-
-                foreach (var emapvm in existingMappings)
-                {
-                    if (!viewModel.CategoryIds.Contains(emapvm.CategoryId))
-                    {
-                        deletionList.Add(emapvm.CategorySubCategoryMapId);
-                    }
-                }
-
-
-                if (viewModel.CategoryIds != null && viewModel.CategoryIds.Count > 0)
+                using (DbContextTransaction transaction = dbContext.Database.BeginTransaction())
                 {
 
-                    foreach (var cId in viewModel.CategoryIds)
-                    {
-                        CategorySubCategoryMapViewModel existingMap = existingMappings.FirstOrDefault(x => x.SubCategoryId == viewModel.SubCategoryId && x.CategoryId == cId);
+                    DbSet<SubCategory> subCategorySet = dbContext.SubCategorySet;
+                    SubCategory subCategory = new SubCategory();
+                    ObjectMapper.PropertyMap(viewModel, subCategory);
 
-                        if (existingMap == null)
+                    FindResult<CategoryViewModel> categoryResult = categoryRepository.GetAll(dbContext);
+
+                    FindResult<CategorySubCategoryMapViewModel> mapResult = categorySubCategoryMapRepo.FindBy(x => x.SubCategoryId == viewModel.SubCategoryId);
+
+                    List<CategorySubCategoryMapViewModel> existingMappings = new List<CategorySubCategoryMapViewModel>();
+
+                    existingMappings = mapResult.Entities;
+
+                    List<Guid> deletionList = new List<Guid>();
+
+                    List<Guid> newAdded = new List<Guid>();
+
+                    foreach (var emapvm in existingMappings)
+                    {
+                        if (!viewModel.CategoryIds.Contains(emapvm.CategoryId))
                         {
-                            newAdded.Add(cId);
+                            deletionList.Add(emapvm.CategorySubCategoryMapId);
                         }
                     }
 
-                }
 
-                if (deletionList.Count > 0)
-                {
-                    foreach (Guid mapid in deletionList)
+                    if (viewModel.CategoryIds != null && viewModel.CategoryIds.Count > 0)
                     {
-                        categoryRepository.Delete(mapid);
-                    }
-                }
 
-                if (newAdded.Count > 0)
-                {
-                    foreach (Guid categoryId in newAdded)
-                    {
-                        CategorySubCategoryMapViewModel catSubCatMapVM = new CategorySubCategoryMapViewModel
+                        foreach (var cId in viewModel.CategoryIds)
                         {
+                            CategorySubCategoryMapViewModel existingMap = existingMappings.FirstOrDefault(x => x.SubCategoryId == viewModel.SubCategoryId && x.CategoryId == cId);
 
-                            CategorySubCategoryMapId = Guid.Empty,
-                            CategoryId = categoryId,
-                            SubCategoryId = viewModel.SubCategoryId,
+                            if (existingMap == null)
+                            {
+                                newAdded.Add(cId);
+                            }
+                        }
 
-                        };
-
-                        categorySubCategoryMapRepo.Update(dbContext, catSubCatMapVM);
                     }
+
+                    if (deletionList.Count > 0)
+                    {
+                        foreach (Guid mapid in deletionList)
+                        {
+                            categorySubCategoryMapRepo.Delete(mapid);
+                        }
+                    }
+
+                    if (newAdded.Count > 0)
+                    {
+                        foreach (Guid categoryId in newAdded)
+                        {
+                            CategorySubCategoryMapViewModel catSubCatMapVM = new CategorySubCategoryMapViewModel
+                            {
+
+                                CategorySubCategoryMapId = Guid.Empty,
+                                CategoryId = categoryId,
+                                SubCategoryId = viewModel.SubCategoryId,
+
+                            };
+
+                            categorySubCategoryMapRepo.Update(dbContext, catSubCatMapVM);
+                        }
+                    }
+
+                    subCategorySet.Attach(subCategory);
+
+                    dbContext.Entry<SubCategory>(subCategory).State = EntityState.Modified;
+
+                    dbContext.SaveChanges();
+
+                    transaction.Commit();
                 }
-
-                subCategorySet.Attach(subCategory);
-
-                dbContext.Entry<SubCategory>(subCategory).State = EntityState.Modified;
-
-                dbContext.SaveChanges();
-
-                transaction.Commit();
             }
 
             return true;
@@ -231,9 +243,18 @@ namespace Innoventory.Lotus.BusinessTransition
         {
             UpdateResult<SubCategoryViewModel> updateResult = new UpdateResult<SubCategoryViewModel>();
 
-            if(subCategoryViewModel.SubCategoryId == Guid.Empty)
+            if (subCategoryViewModel.SubCategoryId == Guid.Empty)
             {
                 updateResult = CreateNewSubcategory(subCategoryViewModel);
+            }
+            else
+            {
+
+                bool success = AddUpdateCategorySubCategoryMapRepo(subCategoryViewModel);
+
+                updateResult.Success = success;
+
+
             }
 
             return updateResult;
@@ -243,7 +264,7 @@ namespace Innoventory.Lotus.BusinessTransition
         {
             UpdateResult<SubCategoryViewModel> updateResult = new UpdateResult<SubCategoryViewModel>();
 
-            using(InnoventoryDBContext dbContext = new InnoventoryDBContext())
+            using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
             {
 
                 updateResult = subCategoryRepository.Update(subCategoryViewModel);
@@ -252,7 +273,7 @@ namespace Innoventory.Lotus.BusinessTransition
                 {
                     AddCategorySubCategoryMap(dbContext, subCategoryViewModel);
                 }
-                
+
                 updateResult.Success = true;
                 updateResult.ErrorMessage = string.Empty;
             }
