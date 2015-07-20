@@ -46,10 +46,13 @@ namespace Innoventory.Lotus.ViewModels
         }
     }
 
+    [DataContract]
     public class SubCategoryCategories
     {
+        [DataMember(Name="subCategory")]
         public SubCategoryViewModel SubCategory { get; set; }
 
+        [DataMember(Name="categorySelections")]
         public List<CategorySelectionViewModel> CategorySelections { get; set; }
     }
 }

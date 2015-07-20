@@ -54,5 +54,26 @@ namespace Innoventory.Lotus.WebClient
 
             return response;
         }
+
+        protected HttpResponseMessage GetUpdateResultResponse<T>(HttpRequestMessage request, UpdateResult<T> findResult)
+        {
+            HttpResponseMessage response = null;
+
+            if (findResult.Success)
+            {
+
+                response = request.CreateResponse(HttpStatusCode.OK);
+
+            }
+            else
+            {
+                response = request.CreateResponse(HttpStatusCode.InternalServerError);
+
+            }
+
+            response.Content = new ObjectContent<UpdateResult<T>>(findResult, Configuration.Formatters.JsonFormatter);
+
+            return response;
+        }
     }
 }

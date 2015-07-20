@@ -41,5 +41,21 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
             response = GetFindResultResponse(request, subCategoryResult);
             return response;
         }
+
+        [HttpPost]
+        [Route("SaveSubCategory")]
+        public HttpResponseMessage SaveSubCategory(HttpRequestMessage request, [FromBody]SubCategoryViewModel model )
+        {
+            HttpResponseMessage response = null;
+
+            UpdateResult<SubCategoryViewModel> updateResult = subCategoryTransition.UpdateSubCategory(model);
+
+            response = GetUpdateResultResponse(request, updateResult);
+
+            return response;
+        }
+
+        [HttpGet]
+        [Route()]
     }
 }

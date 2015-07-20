@@ -245,9 +245,14 @@ namespace Innoventory.Lotus.BusinessTransition
 
             using(InnoventoryDBContext dbContext = new InnoventoryDBContext())
             {
-                AddCategorySubCategoryMap(dbContext, subCategoryViewModel);
 
                 updateResult = subCategoryRepository.Update(subCategoryViewModel);
+
+                if (updateResult.Success)
+                {
+                    AddCategorySubCategoryMap(dbContext, subCategoryViewModel);
+                }
+                
                 updateResult.Success = true;
                 updateResult.ErrorMessage = string.Empty;
             }

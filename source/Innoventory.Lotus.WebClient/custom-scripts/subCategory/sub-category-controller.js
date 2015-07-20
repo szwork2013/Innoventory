@@ -15,8 +15,11 @@
             $scope.showDelete = false;
             $scope.showSubCategory = true;
             $scope.formTitle = "New Sub Category";
-            
-            $scope.subCategoryVM.categories = $scope.categories;
+
+            $scope.subCategoryVM.categories = GetCategories();
+
+            return $scope.subCategoryVM;
+
         };
 
         GetSubCategories = function () {
@@ -26,7 +29,7 @@
                     $scope.subCategories = result.Entities;
 
 
-                    
+
                     return $scope.subCategories;
                 }
 
@@ -35,17 +38,17 @@
         };
 
 
-        //GetCategories = function () {
-        //    apiService.apiGet("Category/categories", {}, function (result) {
+        GetCategories = function () {
+            apiService.apiGet("Category/categories", {}, function (result) {
 
-        //        if (result.Entities) {
-        //            $scope.categories = result.Entities;
-        //            return $scope.categories;
-        //        }
+                if (result.Entities) {
+                    $scope.categories = result.Entities;
+                    return $scope.categories;
+                }
 
-        //    });
+            });
 
-        //};
+        };
 
         $scope.editSubCategory = function (subCategory) {
             $scope.subCategoryVM = angular.copy(subCategory);
@@ -56,6 +59,7 @@
 
         }
 
+        //Save Sub Category
         $scope.saveSubCategory = function (e) {
 
             var errors = [];
@@ -63,17 +67,19 @@
 
             e.preventDefault();
 
-            if ($scope.categoryVM.CategoryName == null || $scope.categoryVM.CategoryName == "") {
-                errors.push("Category Name can not be blank!");
+            if ($scope.subCategoryVM.subCategoryName == null || $scope.subCategoryVM.subCategoryName == "") {
+                errors.push("Sub Category Name can not be blank!");
                 hasErrors = true;
             };
 
-            if ($scope.categoryVM.Description == null || $scope.categoryVM.Description == "") {
+            if ($scope.subCategoryVM.description == null || $scope.subCategoryVM.description == "") {
 
-                errors.push("Description can not be blank!");
+                errors.push("Sub Description can not be blank!");
                 hasErrors = true;
 
             };
+
+            $scope.subCategoryVM.categories = $scope.categories;
 
             if (hasErrors) {
                 apiService.hasErrors = true;
@@ -81,11 +87,13 @@
                 return;
             };
 
-            if ($scope.categoryVM.categoryId == null) {
-                $scope.categoryVM.categoryId = Innoventory.emptyGuid;
+            if ($scope.subCategoryVM.categoryId == null) {
+                $scope.subCategoryVM.categoryId = Innoventory.emptyGuid;
             }
 
-            apiService.apiPost("Category/SaveCategory", $scope.categoryVM, function (result) {
+            var subCategoryViewModel = getSubCategorySaveModel($scope.subCategoryVM);
+
+            apiService.apiPost("SubCategory/SaveSubCategory", subCategoryViewModel, function (result) {
 
 
                 $scope.subCategoryVM = null;
@@ -122,6 +130,35 @@
         }
 
         GetSubCategories();
+
+        getSubCategorySaveModel = function (subCategoryVM) {
+
+
+
+            var subCategory = {
+                subCategoryId: subCategoryVM.subCategoryId,
+                subCategoryName: subCategoryVM.subCategoryName,
+                description: subCategoryVM.description,
+                categoryIds: [],
+                selectedCategoryNames: "",
+            };
+
+
+            var selectedNames = "";
+
+            subCategoryVM.categories.forEach(function (category, key) {
+
+
+                if (category.isSelected) {
+                    subCategory.categoryIds.push(category.categoryId);
+                    selectedNames = selectedNames.concat(category.categoryName + ", ");
+                }
+
+            });
+
+            return subCategory;
+
+        };
 
         return this;
 
