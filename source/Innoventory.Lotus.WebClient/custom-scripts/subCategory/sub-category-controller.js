@@ -28,9 +28,20 @@
                 if (result.Entities) {
                     $scope.subCategories = result.Entities;
 
-
+                    if (result.Entities.length > 0)
+                    {
+                        $scope.isData = true;
+                    }
+                    else
+                    {
+                        $scope.isData = false;
+                    }
 
                     return $scope.subCategories;
+                }
+                else
+                {
+                    $scope.isData = false;
                 }
 
             });

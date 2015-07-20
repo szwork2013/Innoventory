@@ -55,7 +55,8 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
             return response;
         }
 
-        [HttpGet]
-        [Route()]
+        //[HttpGet]
+        //[Route("SubCategory/{id}")]
+        //public HttpResponseMessage Get
     }
 }

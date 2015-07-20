@@ -150,3 +150,10 @@ header .jumbotron .title {
     background: -moz-linear-gradient(top, #d2dbe0 0%, #c1d1dd 100%);
     background: -ms-linear-gradient(top, #d2dbe0 0%, #c1d1dd 100%);
 }
+
+div.no-data {
+    padding: 20px;
+    border: 2px solid #d3cbcb;
+    margin: 10px;
+    text-align: center;
+}
