@@ -55,4 +55,15 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name="categorySelections")]
         public List<CategorySelectionViewModel> CategorySelections { get; set; }
     }
+
+    [DataContract]
+    public class CategorySelectionViewModel
+    {
+        [DataMember(Name = "category")]
+        public CategoryViewModel CategoryVM { get; set; }
+
+        [DataMember(Name = "isSelected")]
+        public bool IsSelected { get; set; }
+
+    }
 }

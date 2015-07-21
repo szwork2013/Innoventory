@@ -4,6 +4,8 @@
 
         var scc = this;
 
+        scc.subCategoryVM = {};
+
         $scope.apiService = apiService;
         $scope.showSubCategory = false;
         $scope.subCategory = {};
@@ -11,14 +13,12 @@
 
         $scope.newSubCategory = function () {
 
-            $scope.subCategoryVM = new Innoventory.subCategoryModel();
+            scc.subCategoryVM = new Innoventory.subCategoryModel();
             $scope.showDelete = false;
             $scope.showSubCategory = true;
             $scope.formTitle = "New Sub Category";
 
-            $scope.subCategoryVM.categories = GetCategories();
-
-            return $scope.subCategoryVM;
+            GetCategories()
 
         };
 
@@ -28,19 +28,16 @@
                 if (result.Entities) {
                     $scope.subCategories = result.Entities;
 
-                    if (result.Entities.length > 0)
-                    {
+                    if (result.Entities.length > 0) {
                         $scope.isData = true;
                     }
-                    else
-                    {
+                    else {
                         $scope.isData = false;
                     }
 
                     return $scope.subCategories;
                 }
-                else
-                {
+                else {
                     $scope.isData = false;
                 }
 
@@ -50,19 +47,51 @@
 
 
         GetCategories = function () {
+
+            var categories = [];
+            var categorySelections = [];
+
             apiService.apiGet("Category/categories", {}, function (result) {
 
-                if (result.Entities) {
-                    $scope.categories = result.Entities;
-                    return $scope.categories;
-                }
+                categories = result.Entities;
 
+                categories.forEach(function (category, key) {
+
+                    var categorySelection = {
+                        category: category,
+                        isSelected: false
+                    };
+
+                    categorySelections.push(categorySelection);
+
+                });
+
+                scc.subCategoryVM.categories = categorySelections;
+
+                $scope.subCategoryVM = scc.subCategoryVM;
+                
             });
 
+            
         };
 
         $scope.editSubCategory = function (subCategory) {
-            $scope.subCategoryVM = angular.copy(subCategory);
+            //$scope.subCategoryVM = angular.copy(subCategory);
+
+            var subCategoryVM = {};
+
+            apiService.apiGet("SubCategory/SubCategory/" + subCategory.subCategoryId, {}, function (result) {
+
+
+                if (result.Entity) {
+
+                    scc.subCategoryVM = result.Entity.subCategory;
+
+                    scc.subCategoryVM.categories = result.Entity.categorySelections;
+
+                    $scope.subCategoryVM = scc.subCategoryVM;
+                };
+            });
 
             $scope.formTitle = "Edit Category";
             $scope.showDelete = true;
@@ -90,7 +119,7 @@
 
             };
 
-            $scope.subCategoryVM.categories = $scope.categories;
+            $scope.subCategoryVM.categories;
 
             if (hasErrors) {
                 apiService.hasErrors = true;
@@ -102,7 +131,9 @@
                 $scope.subCategoryVM.categoryId = Innoventory.emptyGuid;
             }
 
-            var subCategoryViewModel = getSubCategorySaveModel($scope.subCategoryVM);
+            var localVM = angular.copy($scope.subCategoryVM);
+
+            var subCategoryViewModel = getSubCategorySaveModel(localVM);
 
             apiService.apiPost("SubCategory/SaveSubCategory", subCategoryViewModel, function (result) {
 
@@ -143,9 +174,7 @@
         GetSubCategories();
 
         getSubCategorySaveModel = function (subCategoryVM) {
-
-
-
+            
             var subCategory = {
                 subCategoryId: subCategoryVM.subCategoryId,
                 subCategoryName: subCategoryVM.subCategoryName,
@@ -154,15 +183,12 @@
                 selectedCategoryNames: "",
             };
 
-
             var selectedNames = "";
 
-            subCategoryVM.categories.forEach(function (category, key) {
-
-
-                if (category.isSelected) {
-                    subCategory.categoryIds.push(category.categoryId);
-                    selectedNames = selectedNames.concat(category.categoryName + ", ");
+            subCategoryVM.categories.forEach(function (value, key) {
+                if (value.isSelected) {
+                    subCategory.categoryIds.push(value.category.categoryId);
+                    selectedNames = selectedNames.concat(value.category.categoryName + ", ");
                 }
 
             });
