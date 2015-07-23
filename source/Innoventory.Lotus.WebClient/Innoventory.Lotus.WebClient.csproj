@@ -194,6 +194,7 @@
     <Compile Include="Controllers\Api\CategoryController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\SubCategoryController.cs" />
+    <Compile Include="Controllers\Api\VolumeMeasureController.cs" />
     <Compile Include="Controllers\Mvc\CategoryController.cs" />
     <Compile Include="Controllers\Mvc\HomeController.cs" />
     <Compile Include="Controllers\Mvc\ProductsController.cs" />
@@ -222,6 +223,9 @@
     <Content Include="custom-scripts\subCategory\sub-category-controller.js" />
     <Content Include="custom-scripts\subCategory\sub-category-directives.js" />
     <Content Include="custom-scripts\subCategory\sub-category-model.js" />
+    <Content Include="custom-scripts\volumeMeasure\volume-measure-controller.js" />
+    <Content Include="custom-scripts\volumeMeasure\volume-measure-directive.js" />
+    <Content Include="custom-scripts\volumeMeasure\volume-measure-model.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
