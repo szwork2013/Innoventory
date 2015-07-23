@@ -11,85 +11,75 @@ using Innoventory.Lotus.Core.Contracts;
 namespace Innoventory.Lotus.ViewModels
 {
     [DataContract]
-    public class ProductViewModel:IIdentifiable 
+    public class ProductViewModel : IIdentifiable
     {
         [ScaffoldColumn(false)]
-        [DataMember]
+        [DataMember(Name = "productId")]
         public Guid ProductId { get; set; }
 
         [DisplayName("Item Type")]
-        [DataMember]
+        [DataMember(Name = "itemType")]
         public int ItemType { get; set; }
 
         [DisplayName("Item Type Value")]
-        [DataMember]
+        [DataMember(Name = "itemTypeValue")]
         public string ItemTypeValue { get; set; }
 
         [DisplayName("Product Name")]
-        [DataMember]
+        [DataMember(Name = "productName")]
         public string ProductName { get; set; }
 
         [DisplayName("Description")]
-        [DataMember]
+        [DataMember(Name = "description")]
         public string Description { get; set; }
 
-        [DisplayName("Remarks")]
-        [DataMember]
+
+        [DataMember(Name = "remarks")]
         public string Remarks { get; set; }
 
         [DisplayName("Category ID")]
-        [DataMember]
+        [DataMember(Name = "categoryId")]
         public Guid CategoryId { get; set; }
 
         [DisplayName("Category Name")]
-        [DataMember]
+        [DataMember(Name = "categoryName")]
         public string CategoryName { get; set; }
 
         [DisplayName("Sub Category ID")]
-        [DataMember]
+        [DataMember(Name = "subCategoryId")]
         public Guid SubCategoryId { get; set; }
 
+
         [DisplayName("Sub Category Name")]
-        [DataMember]
+        [DataMember(Name = "subCategoryName")]
         public string SubCategoryName { get; set; }
 
-        [DisplayName("Re-Order Point")]
-        [DataMember]
-        public decimal? ReorderPoint { get; set; }
-
-        [DisplayName("Re-Order Quantity")]
-        [DataMember]
-        public decimal? ReorderQuantity { get; set; }
-
-        [DisplayName("Unit ID")]
-        [DataMember]
-        public Guid UnitId { get; set; }
-
-        [DisplayName("Unit")]
-        [DataMember]
-        public string Unit { get; set; }
 
         [DisplayName("Image ID")]
-        [DataMember]
+        [DataMember(Name = "imageId")]
         public Guid? ImageId { get; set; }
 
         [DisplayName("Sales Order Unit ID")]
-        [DataMember]
-        public Guid SalesOrderUnitId { get; set; }
+        [DataMember(Name = "salesOrderUnitId")]
+        public Guid SalesOrderVolumeMeasureId { get; set; }
 
-        [DisplayName("Sales Order Unit")]
-        [DataMember]
-        public string SalesOrderUnit { get; set; }
+        [DisplayName("Sales Order Volume Measure")]
+        [DataMember(Name = "salesOrderVolumeMeasureName")]
+        public string SalesOrderVolumeMeasureName { get; set; }
 
-        [DisplayName("Purchase Order Unit ID")]
-        [DataMember]
-        public Guid PurchaseOrderUnitId { get; set; }
+        [DisplayName("Purchase Order Volume Measure Id")]
+        [DataMember(Name = "purchaseOrderVolumeMeasureId")]
+        public Guid PurchaseOrderVolueMeasureId { get; set; }
 
         [DisplayName("Purschase Order Unit")]
-        [DataMember]
-        public Guid PurchaseOrderUnitName { get; set; }
+        [DataMember(Name = "purchaseOrderUnit")]
+        public Guid PurchaseVolumeMeasureName { get; set; }
 
+        [DataMember(Name = "productVariants")]
+        public List<ProductVariantViewModel> ProductVariants { get; set; }
 
+        [DataMember(Name = "imageUrl")]
+        public string ImageUrl { get; set; }
 
         public Guid EntityId
         {
@@ -102,5 +92,7 @@ namespace Innoventory.Lotus.ViewModels
                 ProductId = value;
             }
         }
+
+
     }
 }

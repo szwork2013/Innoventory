@@ -16,7 +16,7 @@
             scc.subCategoryVM = new Innoventory.subCategoryModel();
             $scope.showDelete = false;
             $scope.showSubCategory = true;
-            $scope.formTitle = "New Sub Category";
+            $scope.title = "New Sub Category";
 
             GetCategories()
 
@@ -78,7 +78,10 @@
         $scope.editSubCategory = function (subCategory) {
             //$scope.subCategoryVM = angular.copy(subCategory);
 
+            $scope.title = "Edit Sub Category";
+
             var subCategoryVM = {};
+            $scope.selectedId = subCategory.subCategoryId;
 
             apiService.apiGet("SubCategory/SubCategory/" + subCategory.subCategoryId, {}, function (result) {
 
@@ -93,7 +96,8 @@
                 };
             });
 
-            $scope.formTitle = "Edit Category";
+            
+            
             $scope.showDelete = true;
             $scope.showSubCategory = true;
 
@@ -127,8 +131,8 @@
                 return;
             };
 
-            if ($scope.subCategoryVM.categoryId == null) {
-                $scope.subCategoryVM.categoryId = Innoventory.emptyGuid;
+            if ($scope.subCategoryVM.subCategoryId == null) {
+                $scope.subCategoryVM.subCategoryId = Innoventory.emptyGuid;
             }
 
             var localVM = angular.copy($scope.subCategoryVM);
@@ -154,7 +158,7 @@
 
             if (confirm("Are you sure you want to delete this category?")) {
 
-                apiService.apiDelete("Category/Delete/" + $scope.categoryVM.CategoryId, function (result) {
+                apiService.apiDelete("Category/Delete/" + $scope.subCategoryVM.subCategoryId, function (result) {
 
                     $scope.showSubCategory = false;
 
@@ -192,6 +196,8 @@
                 }
 
             });
+
+            subCategory.selectedCategoryNames = selectedNames;
 
             return subCategory;
 

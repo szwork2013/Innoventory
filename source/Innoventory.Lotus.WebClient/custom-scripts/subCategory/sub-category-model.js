@@ -6,7 +6,7 @@
         me.subCategoryId = Innoventory.emptyGuid;
         me.subCategoryName = "";
         me.description = "";
-        me.categories = [];
+        me.categoryIds = [];
         me.selectedCategoryNames = "";
 
     }

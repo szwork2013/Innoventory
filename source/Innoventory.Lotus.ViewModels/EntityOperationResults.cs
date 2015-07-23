@@ -35,4 +35,11 @@ namespace Innoventory.Lotus.ViewModels
     {
         public ViewModel Entity { get; set; }
     }
+
+    public class PreCacheResult<ViewModel>: EntityOperationResultBase
+    {
+        public long Count { get; set; }
+
+        public bool Caching { get; set; }
+    }
 }

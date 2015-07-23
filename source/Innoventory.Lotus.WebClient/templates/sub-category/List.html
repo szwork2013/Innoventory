@@ -1,6 +1,6 @@
 ﻿
 
-<h3>Sub Categories</h3>
+<h2>Sub Categories</h2>
 <div ng-show="isData">
     <table class="table table-striped table-bordered">
         <thead>
@@ -21,7 +21,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="subCategory in subCategories " ng-click="editSubCategory(subCategory)">
+            <tr ng-repeat="subCategory in subCategories" ng-click="editSubCategory(subCategory)" ng-class="{'row-selected': subCategory.subCategoryId === selectedId}">
                 <td>
                     {{subCategory.subCategoryName}}
                 </td>

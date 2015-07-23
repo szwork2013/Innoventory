@@ -12,27 +12,27 @@ using System.Threading.Tasks;
 namespace Innoventory.Lotus.ViewModels
 {
     [DataContract]
-    public class ProductVariantViewModel:IIdentifiable
+    public class ProductVariantViewModel : IIdentifiable
     {
         [ScaffoldColumn(false)]
-        [DataMember]
+        [DataMember(Name = "productVariantId")]
         public Guid ProductVariantId { get; set; }
 
         [DisplayName("Product ID")]
-        [DataMember]
+        [DataMember(Name = "productId")]
         public Guid ProductId { get; set; }
 
         [DisplayName("Bar Code")]
-        [DataMember]
+        [DataMember(Name = "barCode")]
         public string BarCode { get; set; }
 
-        [DisplayName("Market Pack Quantity")]
-        [DataMember]
-        public decimal? MasterPackQty { get; set; }
+        [DisplayName("Sales Volume")]
+        [DataMember(Name = "salesVolume")]
+        public decimal? SalesVolume { get; set; }
 
-        [DisplayName("Inner Pack Quantity")]
-        [DataMember]
-        public decimal? InnerPackQty { get; set; }
+        [DisplayName("Purchase Volume")]
+        [DataMember(Name = "purchaseVolume")]
+        public decimal? PurchaseVolume { get; set; }
 
         [DisplayName("Case Length")]
         [DataMember]
@@ -51,62 +51,66 @@ namespace Innoventory.Lotus.ViewModels
         public decimal? CaseWeight { get; set; }
 
         [DisplayName("Product Length")]
-        [DataMember]
+        [DataMember(Name = "productLength")]
         public decimal? ProductLength { get; set; }
 
         [DisplayName("Product Width")]
-        [DataMember]
+        [DataMember(Name = "productWidth")]
         public decimal? ProductWidth { get; set; }
 
         [DisplayName("Product Height")]
-        [DataMember]
+        [DataMember(Name = "productHeight")]
         public decimal? ProductHeight { get; set; }
 
         [DisplayName("Product Weight")]
-        [DataMember]
+        [DataMember(Name = "productWeight")]
         public decimal? ProductWeight { get; set; }
 
-        [DisplayName("Last Vendor ID")]
-        [DataMember]
-        public int? LastVendorId { get; set; }
+        [DisplayName("Last Supplier ID")]
+        [DataMember(Name = "lastSupplierId")]
+        public int? LastSupplierId { get; set; }
 
         [DisplayName("Is Sellable")]
-        [DataMember]
+        [DataMember(Name = "isSellable")]
         public bool IsSellable { get; set; }
 
         [DisplayName("Is Purchaseable")]
-        [DataMember]
+        [DataMember(Name = "isPurchasable")]
         public bool IsPurchaseable { get; set; }
 
         [DisplayName("Is Active")]
-        [DataMember]
+        [DataMember(Name = "isActive")]
         public bool IsActive { get; set; }
 
         [DisplayName("Image ID")]
-        [DataMember]
+        [DataMember(Name = "imageId")]
         public Guid? ImageId { get; set; }
 
         [DisplayName("SKU Code")]
-        [DataMember]
+        [DataMember(Name = "skuCode")]
         public string SKUCode { get; set; }
 
         [DisplayName("Last Purchase Price")]
-        [DataMember]
+        [DataMember(Name = "lastPurchasePrice")]
         public decimal LastPurchasePrice { get; set; }
 
         [DisplayName("Base Price")]
-        [DataMember]
+        [DataMember(Name = "basePrice")]
         public decimal BasePrice { get; set; }
 
         [DisplayName("Shelf Price")]
-        [DataMember]
+        [DataMember(Name = "shelfPrice")]
         public decimal ShelfPrice { get; set; }
 
         [DisplayName("Promotion ID")]
-        [DataMember]
+        [DataMember(Name = "promotionId")]
         public Guid PromotionId { get; set; }
 
 
+        [DataMember(Name = "imageFileIds")]
+        public List<Guid> ImageFileIds { get; set; }
+
+     
 
         public Guid EntityId
         {

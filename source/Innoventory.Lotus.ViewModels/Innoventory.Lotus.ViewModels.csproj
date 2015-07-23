@@ -69,6 +69,7 @@
     <Compile Include="ImageFileViewModel.cs" />
     <Compile Include="OrganisationSetupViewModel.cs" />
     <Compile Include="ProductAttributeViewModel.cs" />
+    <Compile Include="ProductTransitionObjects.cs" />
     <Compile Include="ProductVariantAttributeValueViewModel.cs" />
     <Compile Include="ProductVariantImageFileMapViewModel.cs" />
     <Compile Include="ProductVariantViewModel.cs" />
