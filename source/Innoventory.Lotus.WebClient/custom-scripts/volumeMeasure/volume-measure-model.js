@@ -1,14 +1,13 @@
 ﻿(function (inv) {
 
-    var volumemeasureModel = function () {
+    var volumeMeasureModel = function () {
 
         var me = this;
-        me.volumemeasureId = Innoventory.emptyGuid;
-        me.volumemeasureName = "";
-        me.description = "";
-
+        me.volumeMeasureId = Innoventory.emptyGuid;
+        me.volumeMeasureName = "",
+        me.shortName = ""
     }
 
-    inv.volumemeasureModel = volumemeasureModel;
+    inv.volumeMeasureModel = volumeMeasureModel;
 
 }(window.Innoventory));

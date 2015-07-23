@@ -199,6 +199,7 @@
     <Compile Include="Controllers\Mvc\HomeController.cs" />
     <Compile Include="Controllers\Mvc\ProductsController.cs" />
     <Compile Include="Controllers\Mvc\SubCategoryController.cs" />
+    <Compile Include="Controllers\Mvc\VolumeMeasureController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -284,6 +285,8 @@
     <Content Include="templates\category\List.html" />
     <Content Include="templates\sub-category\List.html" />
     <Content Include="templates\sub-category\SubCategory.html" />
+    <Content Include="templates\volume-measure\List.html" />
+    <Content Include="templates\volume-measure\VolumeMeasure.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -309,6 +312,7 @@
     <Content Include="Views\Shared\AlertBox.cshtml" />
     <Content Include="Views\Shared\Loader.cshtml" />
     <Content Include="Views\SubCategory\SubCategories.cshtml" />
+    <Content Include="Views\VolumeMeasure\VolumeMeasures.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

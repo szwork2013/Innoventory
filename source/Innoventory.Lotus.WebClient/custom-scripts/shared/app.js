@@ -41,6 +41,10 @@
     mainApp.controller("subCategoryController", ["$scope", "$q", "apiService", function ($scope, $q, apiService) {
         Innoventory.subCategoryController($scope, $q, apiService);
     }]);
+
+    mainApp.controller("volumeMeasureController", ["$scope", "$q", "apiService", function ($scope, $q, apiService) {
+        Innoventory.volumeMeasureController($scope, $q, apiService);
+    }]);
        
 
 }(window.Innoventory));

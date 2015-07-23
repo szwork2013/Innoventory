@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "VolumeMeasures";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+
+@section scripts
+{
+    <script src="~/custom-scripts/volumeMeasure/volume-measure-model.js"></script>
+    <script src="~/custom-scripts/volumeMeasure/volume-measure-controller.js"></script>
+}
+
+<div class="container" ng-controller="volumeMeasureController  as volumeMeasureCtrl" id="category">
+
+    <div ng-show="apiService.isLoading">
+        @Html.Partial("~/Views/Shared/Loader.cshtml")
+    </div>
+
+    @Html.Partial("~/Views/Shared/AlertBox.cshtml")
+
+    <div>
+        <volume-measure-list></volume-measure-list>
+    </div>
+
+    <div class="form-group">
+
+        <a href="#" id="lnkNewVolumeMeasure" class="btn btn-primary" ng-click="newVolumeMeasure($event)">Create New Category</a>
+
+    </div>
+
+    <div ng-show="showCategory">
+
+        <volume-measure></volume-measure>
+
+    </div>
+
+</div>
+
+

@@ -1,7 +1,7 @@
 ﻿
 (function (inv) {
 
-    var volumemeasureController = function ($scope, $q, apiService) {
+    var volumeMeasureController = function ($scope, $q, apiService) {
 
         var cc = this;
 
@@ -14,7 +14,7 @@
 
         $scope.newVolumeMeasure = function () {
 
-            $scope.volumemeasureVM = new Innoventory.volumemeasureModel();
+            $scope.volumeMeasureVM = new Innoventory.volumeMeasureModel();
             $scope.showDelete = false;
             $scope.showVolumeMeasure = true;
             $scope.formTitle = "New VolumeMeasure";
@@ -22,8 +22,8 @@
         };
 
 
-        GetCategories = function () {
-            apiService.apiGet("VolumeMeasure/categories", {}, function (result) {
+        GetVolumeMeasures = function () {
+            apiService.apiGet("VolumeMeasure/volumeMeasures", {}, function (result) {
 
                 if (result.Entities) {
                     $scope.categories = result.Entities;
@@ -41,13 +41,13 @@
 
         };
 
-        $scope.editVolumeMeasure = function (volumemeasure) {
-            $scope.volumemeasureVM = angular.copy(volumemeasure);
+        $scope.editVolumeMeasure = function (volumeMeasure) {
+            $scope.volumeMeasureVM = angular.copy(volumeMeasure);
 
-            $scope.formTitle = "Edit VolumeMeasure";
+            $scope.formTitle = "Edit Volume Measure";
             $scope.showDelete = true;
             $scope.showVolumeMeasure = true;
-            $scope.selectedId = volumemeasure.volumemeasureId;
+            $scope.selectedId = volumeMeasure.volumeMeasureId;
 
         }
 
@@ -58,14 +58,14 @@
 
             e.preventDefault();
 
-            if ($scope.volumemeasureVM.volumemeasureName == null || $scope.volumemeasureVM.volumemeasureName == "") {
-                errors.push("VolumeMeasure Name can not be blank!");
+            if ($scope.volumeMeasureVM.volumeMeasureName == null || $scope.volumeMeasureVM.volumeMeasureName == "") {
+                errors.push("Volume Measure Name can not be blank!");
                 hasErrors = true;
             };
 
-            if ($scope.volumemeasureVM.description == null || $scope.volumemeasureVM.description == "") {
+            if ($scope.volumeMeasureVM.shortName == null || $scope.volumeMeasureVM.shortName == "") {
 
-                errors.push("Description can not be blank!");
+                errors.push("Description can't be blank!");
                 hasErrors = true;
 
             };
@@ -76,18 +76,18 @@
                 return;
             };
 
-            if ($scope.volumemeasureVM.volumemeasureId == null) {
-                $scope.volumemeasureVM.volumemeasureId = Innoventory.emptyGuid;
+            if ($scope.volumeMeasureVM.volumeMeasureId == null) {
+                $scope.volumeMeasureVM.volumeMeasureId = Innoventory.emptyGuid;
             }
 
-            apiService.apiPost("VolumeMeasure/SaveVolumeMeasure", $scope.volumemeasureVM, function (result) {
+            apiService.apiPost("VolumeMeasure/SaveVolumeMeasure", $scope.volumeMeasureVM, function (result) {
 
 
-                $scope.volumemeasureVM = null;
+                $scope.volumeMeasureVM = null;
 
                 $scope.showVolumeMeasure = false;
 
-                GetCategories();
+                GetVolumeMeasures();
 
             });
 
@@ -97,13 +97,13 @@
 
             e.preventDefault();
 
-            if (confirm("Are you sure you want to delete this volumemeasure?")) {
+            if (confirm("Are you sure you want to delete this Volume Measure?")) {
 
-                apiService.apiDelete("VolumeMeasure/Delete/" + $scope.volumemeasureVM.volumemeasureId, function (result) {
+                apiService.apiDelete("VolumeMeasure/Delete/" + $scope.volumeMeasureVM.volumeMeasureId, function (result) {
 
                     $scope.showVolumeMeasure = false;
 
-                    GetCategories();
+                    GetVolumeMeasures();
                 });
             };
         }
@@ -111,18 +111,18 @@
         $scope.cancel = function (e) {
             e.preventDefault();
 
-            $scope.volumemeasureVM = null;
+            $scope.volumeMeasureVM = null;
 
             $scope.showVolumeMeasure = false;
             $scope.selectedId = null;
         }
 
-        GetCategories();
+        GetVolumeMeasures();
 
         return this;
 
     };
 
-    inv.volumemeasureController = volumemeasureController;
+    inv.volumeMeasureController = volumeMeasureController;
 
 }(window.Innoventory));

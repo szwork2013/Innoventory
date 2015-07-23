@@ -35,4 +35,21 @@
         };
     });
 
+    app.directive("volumeMeasureList", function () {
+
+        return {
+            restrict: 'E',
+            templateUrl: '../templates/volume-measure/List.html'
+
+        }
+
+    });
+
+    app.directive("volumeMeasure", function () {
+        return {
+            restrict: 'E',
+            templateUrl: '../templates/volume-measure/VolumeMeasure.html'
+        };
+    });
+
 })()
