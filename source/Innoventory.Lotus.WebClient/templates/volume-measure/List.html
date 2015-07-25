@@ -1,6 +1,5 @@
-﻿@model IEnumerable<innoventory.lotus.viewmodels.volumemeasureviewmodel>
-
-    <h2>Volume Measures</h2>
+﻿
+    <h4>Volume Measures</h4>
     <div ng-show="isData">
         <table class="table table-striped table-bordered">
             <thead>
@@ -16,14 +15,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="VolumeMeasure in volumeMeasures " ng-click="editVolumeMeasure(VolumeMeasure)" ng-class="{'row-selected': volumeMeasure.volumeMeasureId === selectedId}">
+                <tr ng-repeat="volumeMeasure in volumeMeasures " ng-click="editVolumeMeasure(volumeMeasure)" ng-class="{'row-selected': volumeMeasure.volumeMeasureId === selectedId}">
                     <td>
-                        {{volumeMeasureName}}
+                        {{volumeMeasure.volumeMeasureName}}
                     </td>
                     <td>
-                        {{shortName}}
+                        {{volumeMeasure.shortName}}
                     </td>
-                    
+
                 </tr>
             </tbody>
 

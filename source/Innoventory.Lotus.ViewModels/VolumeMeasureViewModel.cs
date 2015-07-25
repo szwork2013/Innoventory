@@ -31,11 +31,11 @@ namespace Innoventory.Lotus.ViewModels
         {
             get
             {
-                throw new NotImplementedException();
+                return VolumeMeasureId;
             }
             set
             {
-                throw new NotImplementedException();
+                VolumeMeasureId = value;
             }
         }
     }

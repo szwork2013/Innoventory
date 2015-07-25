@@ -17,7 +17,7 @@
             $scope.volumeMeasureVM = new Innoventory.volumeMeasureModel();
             $scope.showDelete = false;
             $scope.showVolumeMeasure = true;
-            $scope.formTitle = "New VolumeMeasure";
+            $scope.formTitle = "New Volume Measure";
 
         };
 
@@ -26,15 +26,15 @@
             apiService.apiGet("VolumeMeasure/volumeMeasures", {}, function (result) {
 
                 if (result.Entities) {
-                    $scope.categories = result.Entities;
-                    if ($scope.categories && $scope.categories.length > 0) {
+                    $scope.volumeMeasures = result.Entities;
+                    if ($scope.volumeMeasures && $scope.volumeMeasures.length > 0) {
                         $scope.isData = true;
                     }
                     else {
                         $scope.isData = false;
                     }
 
-                    return $scope.categories;
+                    return $scope.volumeMeasures;
                 }
 
             });

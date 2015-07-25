@@ -1,8 +1,14 @@
 ﻿<#@ output extension=".html" #>
 <#@ include file="Imports.include.t4" #>
+<#@ import namespace="System.Reflection" #>
+
 @model <#= ViewDataTypeName #>
 
-<h2><#= ViewName#></h2>
+<h4>{{formTitle}}</h4>
+
+<# 
+  var controllerNmae =  ViewDataTypeName.Replace("ViewModel", "");
+#>
 
 <form class="form-horizontal" name="<#= ViewName#>" novalidate role="form">
 
@@ -17,7 +23,7 @@
 		
 		<div class="col-sm-18" >
 		
-			<input type="text" id="<#= property.PropertyName #>" ng-model="" class="form-control"/>
+			<input type="text" id="<#= property.PropertyName #>" ng-model="<#= controllerNmae + "."  + property.PropertyName #>" class="form-control"/>
 		
 		</div>
 
@@ -27,17 +33,21 @@
 		}
 	}
 	#>
+
+	
 	
 	<div class="form-group">
 		<div class="col-sm-6">
 		</div>
 		<div class="col-sm-6">
-			<button type="button" value="Save" class="btn btn-primary" >
-				<i class="btn-span glyphicon glyphicon-floppy-save"></i>
+			<button type="button" value="Save" class="btn btn-primary btn-save" ng-click= '<#= string.Format("save{0}", controllerNmae ) #>'  >
+			 Save
+				<i class="btn-span glyphicon glyphicon-floppy-disk btn-span"></i>
 			</button>
 			
-			<button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete">
-				<i class="btn-span glyphicon glyphicon-remove-sign"></i>
+			<button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete" ng-click= '<#= string.Format("delete{0}", controllerNmae ) #>' >
+				Delete
+				<i class="btn-span glyphicon glyphicon-remove-sign btn-span"></i>
 			</button>		
 
 			<button type="button" value="Cancel" class="btn btn-default"/>

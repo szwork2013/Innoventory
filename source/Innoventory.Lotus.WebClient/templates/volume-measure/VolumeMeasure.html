@@ -1,57 +1,58 @@
-﻿@model Innoventory.Lotus.ViewModels.VolumeMeasureViewModel
-
-<h2>VolumeMeasure</h2>
+﻿
+<h4>{{formTitle}}</h4>
 
 <form class="form-horizontal" name="VolumeMeasure" novalidate role="form">
 
-		
-		<div class="form-group">
 
-		<label for="VolumeMeasureName" class="control-label col-sm-6"> VolumeMeasureName</label>
-		
-		<div class="col-sm-18" >
-		
-			<input type="text" id="VolumeMeasureName" ng-model="volumeMeasureName" class="form-control"/>
-		
-		</div>
+    <div class="form-group">
 
-	</div>
+        <label for="VolumeMeasureName" class="control-label col-sm-6"> Volume Measure Name</label>
 
-		<div class="form-group">
+        <div class="col-sm-18">
 
-		<label for="ShortName" class="control-label col-sm-6"> ShortName</label>
-		
-		<div class="col-sm-18" >
-		
-			<input type="text" id="ShortName" ng-model="shortName" class="form-control"/>
-		
-		</div>
+            <input type="text" id="VolumeMeasureName" ng-model="volumeMeasureVM.volumeMeasureName" class="form-control" />
 
-	</div>
+        </div>
 
-		
+    </div>
 
-		
-	<div class="form-group">
-		<div class="col-sm-6">
-		</div>
-		<div class="col-sm-18">
+    <div class="form-group">
 
-			<button type="button" value="Save" class="btn btn-primary btn-save" ng-click="saveVolumeMeasure($event)">
+        <label for="ShortName" class="control-label col-sm-6"> Short Name</label>
+
+        <div class="col-sm-18">
+
+            <input type="text" id="ShortName" ng-model="volumeMeasureVM.shortName" class="form-control" />
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="form-group">
+        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-18">
+
+            <button type="button" value="Save" class="btn btn-primary btn-save" ng-click="saveVolumeMeasure($event)">
                 Save
-				<i class="btn-span glyphicon glyphicon-floppy-save"></i>
+                <i class="btn-span glyphicon glyphicon-floppy-save"></i>
 
-			</button>
-			
-			<button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete" ng-click="delete($event)">
+            </button>
+
+            <button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete" ng-click="delete($event)">
                 Delete
-				<i class="btn-span glyphicon glyphicon-remove-sign"></i>
-			</button>		
+                <i class="btn-span glyphicon glyphicon-remove-sign"></i>
+            </button>
 
-			<button type="button" value="Cancel" class="btn btn-default" ng-click="cancel($event)"/>
+            <button type="button" value="Cancel" class="btn btn-default" ng-click="cancel($event)">
+                Cancel
+            </button>
 
-		</div>
-	</div>
+        </div>
+    </div>
 
 </form>
 
