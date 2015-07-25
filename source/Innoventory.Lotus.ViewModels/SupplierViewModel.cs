@@ -6,12 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Innoventory.Lotus.Core.Contracts;
+using System.Runtime.Serialization;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    public class SupplierViewModel:IIdentifiable
+    [DataContract]
+    public class SupplierViewModel : IIdentifiable
     {
-
+        [ScaffoldColumn(false)]
+        [DataMember(Name = "supplierId")]
         public Guid SupplierId { get; set; }
 
         public string SupplierName { get; set; }
@@ -27,7 +30,7 @@ namespace Innoventory.Lotus.ViewModels
 
 
 
-
+        [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get

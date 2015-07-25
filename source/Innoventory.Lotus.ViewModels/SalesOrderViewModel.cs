@@ -12,6 +12,7 @@ namespace Innoventory.Lotus.ViewModels
     public class SalesOrderViewModel:IIdentifiable
     {
         [Key]
+        [ScaffoldColumn(false)]
         public Guid SalesOrderId { get; set; }
         public DateTime SaleOrderDate { get; set; }
         public Guid CustomerId { get; set; }
@@ -22,6 +23,7 @@ namespace Innoventory.Lotus.ViewModels
 
         public CustomerViewModel Customer { get; set; }
 
+        [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get

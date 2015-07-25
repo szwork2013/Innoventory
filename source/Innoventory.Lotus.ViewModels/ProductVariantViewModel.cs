@@ -26,6 +26,14 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "barCode")]
         public string BarCode { get; set; }
 
+        [ScaffoldColumn(false)]
+        [DataMember(Name = "purchaseVMId")]
+        public Guid PurchaseVolueMeasureId { get; set; }
+
+        [ScaffoldColumn(false)]
+        [DataMember(Name = "salesVMId")]
+        public Guid SalesVolumeMeasureId { get; set; }
+
         [DisplayName("Sales Volume")]
         [DataMember(Name = "salesVolume")]
         public decimal? SalesVolume { get; set; }
@@ -33,6 +41,16 @@ namespace Innoventory.Lotus.ViewModels
         [DisplayName("Purchase Volume")]
         [DataMember(Name = "purchaseVolume")]
         public decimal? PurchaseVolume { get; set; }
+
+
+        [DisplayName("Purchase Volume Measure Short Name")]
+        [DataMember(Name="purchaseVMShortName")]
+        public string PurchaseVMShortName { get; set; }
+
+        [DisplayName("Sales Volume Measure Short Name")]
+        [DataMember(Name = "salesVMShortName")]
+        public string SalesVMShortName { get; set; }
+
 
         [DisplayName("Case Length")]
         [DataMember]
@@ -110,8 +128,10 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "imageFileIds")]
         public List<Guid> ImageFileIds { get; set; }
 
-     
 
+        public List<ProductVariantAttributeValueViewModel> MyProperty { get; set; }
+
+        [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get

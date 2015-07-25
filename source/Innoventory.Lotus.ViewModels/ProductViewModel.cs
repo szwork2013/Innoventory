@@ -37,6 +37,11 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "remarks")]
         public string Remarks { get; set; }
 
+
+        [ScaffoldColumn(false)]
+        [DataMember(Name = "categorySubCategoryMapId")]
+        public Guid CategorySubCategoryMapId { get; set; }
+
         [DisplayName("Category ID")]
         [DataMember(Name = "categoryId")]
         public Guid CategoryId { get; set; }
@@ -81,6 +86,7 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "imageUrl")]
         public string ImageUrl { get; set; }
 
+        [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get

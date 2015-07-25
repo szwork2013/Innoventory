@@ -10,7 +10,7 @@ namespace Innoventory.Lotus.ViewModels
 {
     public class SalesReturnItemViewModel:IIdentifiable
     {
-
+        [ScaffoldColumn(false)]
         public Guid SalesReturnItemId { get; set; }
         public Guid SalesReturnId { get; set; }
         public Guid ProductVariantId { get; set; }
@@ -22,6 +22,7 @@ namespace Innoventory.Lotus.ViewModels
 
         public virtual ProductVariantViewModel ProductVariant { get; set; }
 
+        [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get

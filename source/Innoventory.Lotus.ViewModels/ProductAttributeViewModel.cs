@@ -8,18 +8,16 @@ using Innoventory.Lotus.Core.Contracts;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    public class ProductAttributeViewModel:IIdentifiable
+    public class ProductAttributeViewModel : IIdentifiable
     {
-        
+        [ScaffoldColumn(false)]
         public Guid ProductAttributeId { get; set; }
 
-        
         public string AttributeName { get; set; }
 
-        
         public string AttributeDescription { get; set; }
 
-
+        [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get

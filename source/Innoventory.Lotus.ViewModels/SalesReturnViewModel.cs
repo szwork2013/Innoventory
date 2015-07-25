@@ -11,7 +11,8 @@ namespace Innoventory.Lotus.ViewModels
 {
     public class SalesReturnViewModel:IIdentifiable
     {
-        
+
+        [ScaffoldColumn(false)]
         public Guid SalesReturnId { get; set; }
         public DateTime SaleReturnDate { get; set; }
         public Guid CustomerId { get; set; }
@@ -22,6 +23,7 @@ namespace Innoventory.Lotus.ViewModels
 
         public CustomerViewModel Customer { get; set; }
 
+        [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get

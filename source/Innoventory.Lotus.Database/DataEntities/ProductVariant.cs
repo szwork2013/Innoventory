@@ -14,6 +14,10 @@ namespace Innoventory.Lotus.Database.DataEntities
 
         public Guid ProductId { get; set; }
 
+        public Guid PurchaseVolueMeasureId { get; set; }
+
+        public Guid SalesVolumeMeasureId { get; set; }
+
         [StringLength(500)]
         public string BarCode { get; set; }
 

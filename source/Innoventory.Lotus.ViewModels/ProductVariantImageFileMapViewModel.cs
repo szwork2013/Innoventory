@@ -21,6 +21,7 @@ namespace Innoventory.Lotus.ViewModels
         public List<ImageFileViewModel> ImageFiles{ get; set; }
 
 
+        [ScaffoldColumn(false)]
 
         public Guid EntityId
         {

@@ -13,6 +13,7 @@ namespace Innoventory.Lotus.ViewModels
     {
 
         [Key]
+        [ScaffoldColumn(false)]
         public Guid PurchaseOrderId { get; set; }
         public DateTime PurchaseOrderDate { get; set; }
         public Guid SupplierId { get; set; }
@@ -24,7 +25,7 @@ namespace Innoventory.Lotus.ViewModels
         public SupplierViewModel Supplier{ get; set; }
 
 
-
+        [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get

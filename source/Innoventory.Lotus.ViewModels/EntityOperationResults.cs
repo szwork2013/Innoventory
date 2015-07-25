@@ -29,6 +29,19 @@ namespace Innoventory.Lotus.ViewModels
     public class FindResult<ViewModel> : EntityOperationResultBase
     {
         public List<ViewModel> Entities { get; set; }
+
+        public long Count
+        {
+            get
+            {
+                if(Entities != null && Entities.Count > 0)
+                {
+                    return Entities.Count;
+                }
+
+                return 0;
+            }
+        }
     }
 
     public class DeleteResult<ViewModel> : EntityOperationResultBase

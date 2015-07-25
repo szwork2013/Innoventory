@@ -9,7 +9,7 @@ using Innoventory.Lotus.Core.Contracts;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    public class ProductVariantAttributeValueViewModel:IIdentifiable
+    public class ProductVariantAttributeValueViewModel : IIdentifiable
     {
 
 
@@ -19,11 +19,7 @@ namespace Innoventory.Lotus.ViewModels
 
         public AttributeValueListViewModel AttributeValueList { get; set; }
 
-
-        public ProductVariantViewModel ProductVariant { get; set; }
-
-
-
+        [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get
