@@ -16,10 +16,26 @@ namespace Innoventory.Lotus.Business.Concrete
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class VolumeMeasureRepository : GenericRepository<VolumeMeasure, VolumeMeasureViewModel>, IVolumeMeasureRepository
     {
-      
+
+        protected VolumeMeasure GetDomainEntity(VolumeMeasureViewModel viewModel)
+        {
+            VolumeMeasure volumemeasure = ObjectMapper.PropertyMap(viewModel, new VolumeMeasure());
+
+            return volumemeasure;
+        }
+
         protected override VolumeMeasureViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            throw new NotImplementedException();
+            DbSet<VolumeMeasure> entitySet = dbContext.VolumeMeasureSet;
+
+            VolumeMeasure dmVolumeMeasure = entitySet.FirstOrDefault(x => x.VolumeMeasureId == id);
+
+            VolumeMeasureViewModel vmVM = new VolumeMeasureViewModel();
+
+            VolumeMeasureViewModel volumemeasureVM = ObjectMapper.PropertyMap(dmVolumeMeasure, vmVM);
+
+            return volumemeasureVM;
+
         }
 
         protected override List<VolumeMeasureViewModel> GetEntities(InnoventoryDBContext dbContext)
@@ -46,24 +62,54 @@ namespace Innoventory.Lotus.Business.Concrete
 
         protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
         {
-            throw new NotImplementedException();
+            DbSet<VolumeMeasure> entitySet = dbContext.VolumeMeasureSet;
+
+            //VolumeMeasureViewModel VolumeMeasureVM = GetEntity(dbContext, id);
+
+
+            VolumeMeasure VolumeMeasure = entitySet.FirstOrDefault(x => x.VolumeMeasureId == id);
+
+            if (VolumeMeasure != null)
+            {
+                entitySet.Remove(VolumeMeasure);
+                dbContext.SaveChanges();
+            }
+            return true;
         }
 
     
 
         protected override bool AddEntity(InnoventoryDBContext dbContext, VolumeMeasureViewModel viewModel)
         {
-            throw new NotImplementedException();
+            VolumeMeasure volumemeasure = GetDomainEntity(viewModel);
+            dbContext.VolumeMeasureSet.Add(volumemeasure);
+
+            dbContext.SaveChanges();
+            return true;
+
+
         }
 
         protected override bool EditEntity(InnoventoryDBContext dbContext, VolumeMeasureViewModel viewModel)
         {
-            throw new NotImplementedException();
+            DbSet<VolumeMeasure> entitySet = dbContext.VolumeMeasureSet;
+
+            VolumeMeasure volumemeasure = GetDomainEntity(viewModel);
+
+            entitySet.Attach(volumemeasure);
+
+            dbContext.Entry(volumemeasure).State = EntityState.Modified;
+
+            dbContext.SaveChanges();
+
+            return true;
         }
 
         protected override List<VolumeMeasureViewModel> Find(InnoventoryDBContext dbContext, Func<VolumeMeasureViewModel, bool> predicate)
         {
-            throw new NotImplementedException();
+            List<VolumeMeasureViewModel> volumemeasures = (GetEntities(dbContext)).Where(predicate).ToList();
+
+            return volumemeasures;
         }
     }
 }
