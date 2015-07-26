@@ -1,6 +1,6 @@
-﻿@model IEnumerable<innoventory.lotus.viewmodels.productattributeviewmodel>
-
-    <h2>List</h2>
+﻿
+    <h4>Product Attributes</h4>
+<div ng-show="isData">
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="productAttribute in productAttributes " ng-click="editProductAttribute()">
+            <tr ng-repeat="productAttribute in productAttributes " ng-click="editProductAttribute(productAttribute)">
                 <td>
                     {{productAttribute.attributeName}}
                 </td>
@@ -27,5 +27,8 @@
         </tbody>
 
     </table>
-
+</div>
+<div ng-hide="isData" class="no-data">
+    <h4>No Data</h4>
+</div>
 

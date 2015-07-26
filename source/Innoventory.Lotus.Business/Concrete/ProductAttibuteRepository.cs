@@ -41,7 +41,7 @@ namespace Innoventory.Lotus.Business.Concrete
         {
             DbSet<ProductAttribute> entitySet = dbContext.ProductAttributeSet;
 
-            List<ProductAttribute> productAttributes = entitySet.ToList();
+            List<ProductAttribute> productAttributes = entitySet.OrderBy(x => x.AttributeName).ToList();
 
             List<ProductAttributeViewModel> retList = new List<ProductAttributeViewModel>();
 
@@ -72,8 +72,6 @@ namespace Innoventory.Lotus.Business.Concrete
             }
             return true;
         }
-
-
 
         protected override bool AddEntity(InnoventoryDBContext dbContext, ProductAttributeViewModel viewModel)
         {

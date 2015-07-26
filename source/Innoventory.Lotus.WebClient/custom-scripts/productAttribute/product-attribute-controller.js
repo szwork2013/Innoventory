@@ -10,22 +10,22 @@
         $scope.apiService = apiService;
         $scope.showProductAttribute = false;
 
-        $scope.newProductAttribte = function () {
+        $scope.newProductAttribute = function () {
 
-            $scope.productAttribteVM = new Innoventory.productAttribteModel();
+            $scope.productAttributeVM = new Innoventory.productAttributeModel();
             $scope.showDelete = false;
-            $scope.showProductAttribte = true;
-            $scope.formTitle = "New ProductAttribte";
+            $scope.showProductAttribute = true;
+            $scope.formTitle = "New ProductAttribute";
 
         };
 
 
         GetCategories = function () {
-            apiService.apiGet("ProductAttribte/productAttribtes", {}, function (result) {
+            apiService.apiGet("ProductAttribute/productAttributes", {}, function (result) {
 
                 if (result.Entities) {
-                    $scope.productAttribtes = result.Entities;
-                    if ($scope.productAttribtes && $scope.productAttribtes.length > 0)
+                    $scope.productAttributes = result.Entities;
+                    if ($scope.productAttributes && $scope.productAttributes.length > 0)
                     {
                         $scope.isData = true;
                     }
@@ -34,36 +34,36 @@
                         $scope.isData = false;
                     }
 
-                    return $scope.productAttribtes;
+                    return $scope.productAttributes;
                 }
 
             });
 
         };
 
-        $scope.editProductAttribte = function (productAttribte) {
-            $scope.productAttribteVM = angular.copy(productAttribte);
+        $scope.editProductAttribute = function (productAttribute) {
+            $scope.productAttributeVM = angular.copy(productAttribute);
 
-            $scope.formTitle = "Edit ProductAttribte";
+            $scope.formTitle = "Edit ProductAttribute";
             $scope.showDelete = true;
-            $scope.showProductAttribte = true;
-            $scope.selectedId = productAttribte.productAttribteId;
+            $scope.showProductAttribute = true;
+            $scope.selectedId = productAttribute.productAttributeId;
 
         }
 
-        $scope.saveProductAttribte = function (e) {
+        $scope.saveProductAttribute = function (e) {
 
             var errors = [];
             var hasErrors = false;
 
             e.preventDefault();
 
-            if ($scope.productAttribteVM.categoryName == null || $scope.productAttribteVM.categoryName == "") {
-                errors.push("ProductAttribte Name can not be blank!");
+            if ($scope.productAttributeVM.attributeName == null || $scope.productAttributeVM.attributeName == "") {
+                errors.push("Product Attribute Name can not be blank!");
                 hasErrors = true;
             };
 
-            if ($scope.productAttribteVM.description == null || $scope.productAttribteVM.description == "") {
+            if ($scope.productAttributeVM.attributeDescription == null || $scope.productAttributeVM.attributeDescription == "") {
 
                 errors.push("Description can not be blank!");
                 hasErrors = true;
@@ -76,16 +76,16 @@
                 return;
             };
 
-            if ($scope.productAttribteVM.productAttribteId == null) {
-                $scope.productAttribteVM.productAttribteId = Innoventory.emptyGuid;
+            if ($scope.productAttributeVM.productAttributeId == null) {
+                $scope.productAttributeVM.productAttributeId = Innoventory.emptyGuid;
             }
 
-            apiService.apiPost("ProductAttribte/SaveProductAttribte", $scope.productAttribteVM, function (result) {
+            apiService.apiPost("ProductAttribute/SaveProductAttribute", $scope.productAttributeVM, function (result) {
 
 
-                $scope.productAttribteVM = null;
+                $scope.productAttributeVM = null;
 
-                $scope.showProductAttribte = false;
+                $scope.showProductAttribute = false;
 
                 GetCategories();
 
@@ -93,15 +93,15 @@
 
         }
 
-        $scope.deleteProductAttribte = function (e) {
+        $scope.deleteProductAttribute = function (e) {
 
             e.preventDefault();
 
-            if (confirm("Are you sure you want to delete this productAttribte?")) {
+            if (confirm("Are you sure you want to delete this productAttribute?")) {
 
-                apiService.apiDelete("ProductAttribte/Delete/" + $scope.productAttribteVM.productAttribteId, function (result) {
+                apiService.apiDelete("ProductAttribute/Delete/" + $scope.productAttributeVM.productAttributeId, function (result) {
 
-                    $scope.showProductAttribte = false;
+                    $scope.showProductAttribute = false;
 
                     GetCategories();
                 });
@@ -111,9 +111,9 @@
         $scope.cancel = function (e) {
             e.preventDefault();
 
-            $scope.productAttribteVM = null;
+            $scope.productAttributeVM = null;
 
-            $scope.showProductAttribte = false;
+            $scope.showProductAttribute = false;
             $scope.selectedId = null;
         }
 

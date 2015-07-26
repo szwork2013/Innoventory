@@ -45,7 +45,7 @@ namespace Innoventory.Lotus.Business.Concrete
         {
             DbSet<Category> entitySet = dbContext.CategorySet;
 
-            List<Category> categories = entitySet.ToList();
+            List<Category> categories = entitySet.OrderBy(x=>x.CategoryName).ToList();
 
             List<CategoryViewModel> retList = new List<CategoryViewModel>();
 

@@ -45,6 +45,10 @@
     mainApp.controller("volumeMeasureController", ["$scope", "$q", "apiService", function ($scope, $q, apiService) {
         Innoventory.volumeMeasureController($scope, $q, apiService);
     }]);
+
+    mainApp.controller("productAttributeController", ["$scope", "$q", "apiService", function ($scope, $q, apiService) {
+        Innoventory.productAttributeController($scope, $q, apiService);
+    }]);
        
 
 }(window.Innoventory));

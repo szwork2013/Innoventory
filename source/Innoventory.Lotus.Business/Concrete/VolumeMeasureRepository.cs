@@ -42,7 +42,7 @@ namespace Innoventory.Lotus.Business.Concrete
         {
             DbSet<VolumeMeasure> entitySet = dbContext.VolumeMeasureSet;
 
-            List<VolumeMeasure> volumeMeasures = entitySet.ToList();
+            List<VolumeMeasure> volumeMeasures = entitySet.OrderBy(x=>x.VolumeMeasureName).ToList();
 
             List<VolumeMeasureViewModel> retList = new List<VolumeMeasureViewModel>();
 
