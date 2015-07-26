@@ -50,7 +50,7 @@ namespace Innoventory.Lotus.BusinessTransition
         private IImageFileRepository imageFileRepository;
 
         [Import]
-        private IProductAttibuteRepository productAttributeRepository;
+        private IProductAttributeRepository productAttributeRepository;
 
         [Import]
         private ICategorySubCategoryAttributeMapRepository categorySubCategoryAttributeMapRepository;
@@ -124,8 +124,10 @@ namespace Innoventory.Lotus.BusinessTransition
                     if(categoryAttributeCount > 0)
                     {
                         List<CategorySubCategoryAttributeMapViewModel> catSubCatAttribList = catSubCatAttribMapResult.Entities;
-
+                        
                     }
+
+
                 }
                 
             }

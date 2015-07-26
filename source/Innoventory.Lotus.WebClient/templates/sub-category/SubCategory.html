@@ -31,7 +31,7 @@
     </div>
 
 
-    <div class="form-group" >
+    <div class="form-group">
 
         <div class="col-sm-6 form-group" ng-repeat="categorySelection in subCategoryVM.categories">
             <label class="control-label col-sm-24">
@@ -50,14 +50,19 @@
         <div class="col-sm-12">
             <button type="button" class="btn btn-primary btn-save" ng-click="saveSubCategory($event)">
                 Save
-                <i class="btn-span glyphicon glyphicon-floppy-disk btn-span"></i>
+                <i class="glyphicon glyphicon-floppy-disk"></i>
             </button>
 
             <button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete">
-                <i class="btn-span glyphicon glyphicon-remove-sign"></i>
-            </button>		
-        
-            <input type="button" value="Cancel" class="btn btn-default" ng-click="cancel($event)"/>
+                Delete
+                <i class="glyphicon glyphicon-minus"></i>
+            </button>
+
+            <button type="button" class="btn btn-default" ng-click="cancel($event)">
+                Cancel
+                <i class="glyphicon glyphicon-remove"></i>
+            </button>
+
         </div>
     </div>
 

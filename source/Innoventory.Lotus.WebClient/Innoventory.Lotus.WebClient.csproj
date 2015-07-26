@@ -191,10 +191,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\ProductAttributeController.cs" />
     <Compile Include="Controllers\Api\CategoryController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\SubCategoryController.cs" />
     <Compile Include="Controllers\Api\VolumeMeasureController.cs" />
+    <Compile Include="Controllers\Mvc\ProductAttributeController.cs" />
     <Compile Include="Controllers\Mvc\CategoryController.cs" />
     <Compile Include="Controllers\Mvc\HomeController.cs" />
     <Compile Include="Controllers\Mvc\ProductsController.cs" />
@@ -216,6 +218,8 @@
     <Content Include="custom-scripts\category\category-directives.js" />
     <Content Include="custom-scripts\category\category-model.js" />
     <Content Include="custom-scripts\category\category-service.js" />
+    <Content Include="custom-scripts\productAttribute\product-attribute-controller.js" />
+    <Content Include="custom-scripts\productAttribute\product-attribute-model.js" />
     <Content Include="custom-scripts\shared\innoventory.js" />
     <Content Include="custom-scripts\product\product-model.js" />
     <Content Include="custom-scripts\product\product-service.js" />
@@ -268,6 +272,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="CodeTemplates\MvcView\NgEmpty.cs.t4" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -287,6 +292,8 @@
     <Content Include="templates\sub-category\SubCategory.html" />
     <Content Include="templates\volume-measure\List.html" />
     <Content Include="templates\volume-measure\VolumeMeasure.html" />
+    <Content Include="templates\product-attribute\List.html" />
+    <Content Include="templates\product-attribute\ProductAttribute.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -313,6 +320,8 @@
     <Content Include="Views\Shared\Loader.cshtml" />
     <Content Include="Views\SubCategory\SubCategories.cshtml" />
     <Content Include="Views\VolumeMeasure\VolumeMeasures.cshtml" />
+    <Content Include="Views\ProductAttribute\View.cshtml" />
+    <Content Include="Views\ProductAttribute\ProductAttributes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

@@ -132,17 +132,64 @@ header .jumbotron .title {
     width: 30px;
 }
 
+.btn {
+    line-height: 33px;
+    font-size: 14px;
+    padding: 0 10px;
+    transition: all 0.3s ease-in-out 0s;
+    width: auto;
+    min-width: 140px;
+}
+
 .btn-save {
-    background: #73c348;
+    background: #5ea72d;
 }
 
     .btn-save:hover {
-        background: #5a9639;
+        background: #4D961C;
     }
 
-.btn-default {
-    background: #cfc7c7;
+    .btn-save:active {
+        background: #5ea72d;
+    }
+
+
+
+.btn i {
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 0 0 0 1px;
+    font-size: 20px;
+    margin: 0 0 0 5px;
+    padding: 0 0 0 10px;
+    line-height: 31px;
+    float: right;
+    margin-left:10px;
 }
+
+.btn-default i {
+    border-left: #fff solid 1px;
+}
+
+.btn-alert{
+    border-left: #fff solid 1px;
+}
+
+.btn-default {
+    background: #9d9a9a;
+    color:#f9fbfc
+}
+
+.btn-default:hover {
+    background: #a1a1a3;
+    color:#f9fbfc
+}
+
+.btn-default:active {
+    background: #a1a1a3;
+    color:#f9fbfc
+}
+
 
 .row-selected {
     background: linear-gradient(top, #d2dbe0 0%, #c1d1dd 100%);

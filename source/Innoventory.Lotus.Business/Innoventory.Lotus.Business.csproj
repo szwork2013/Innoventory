@@ -89,7 +89,7 @@
     <Compile Include="Abstract\IOrganisationSetupRepository.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Abstract\IProductAttibuteRepository.cs">
+    <Compile Include="Abstract\IProductAttributeRepository.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Abstract\IProductRepository.cs">

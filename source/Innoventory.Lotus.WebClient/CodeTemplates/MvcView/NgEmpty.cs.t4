@@ -1,0 +1,113 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension=".cshtml" #>
+<#@ include file="Imports.include.t4" #>
+model <#= ViewDataTypeName #>
+
+<# 
+	var viewName =  ViewDataTypeShortName.Replace("ViewModel", "");
+    var modelName = viewName.Substring(0, 1).ToLower() + viewName.Substring(1);
+
+#>
+
+
+
+<#
+// The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
+if(IsPartialView) {
+#>
+
+<#
+} else if(IsLayoutPageSelected) {
+#>
+
+@{
+    ViewBag.Title = "<#= viewName#>";
+	ViewBag.Name = "<#= viewName#>";
+
+<#
+if (!String.IsNullOrEmpty(LayoutPageFile)) {
+#>
+    Layout = "<#= LayoutPageFile#>";
+<#
+}
+#>
+}
+
+@section scripts
+{
+    
+}
+
+@section footerScript
+{
+    
+}
+
+
+<#
+} else {
+#>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title><#= ViewName #></title>
+</head>
+<body>
+<#
+    PushIndent("    ");
+}
+#>
+<#
+if(!IsPartialView && !IsLayoutPageSelected) {
+#>
+
+<#
+}
+#>
+<div class="container" ng-controller="<#=modelName + "Controller as " + modelName + "Ctrl" #>"> 
+	<div ng-show="apiService.isLoading">
+        @Html.Partial("~/Views/Shared/Loader.cshtml")
+    </div>
+
+    @Html.Partial("~/Views/Shared/AlertBox.cshtml")
+
+	<div>
+        <<#= modelName + "-list" #>></<#= modelName + "-list" #>>
+    </div>
+
+	<div class="form-group">
+
+        <a href="#" id="<#= "lnkNew" + viewName #>" class="btn btn-primary" ng-click="<#= "new" + viewName +"()"#>">
+            Create New
+            <i class="glyphicon glyphicon-plus"></i>
+        </a>
+
+    </div>
+
+    <div ng-show="<#= "show" + viewName #>">
+
+        <<#= modelName.ToLower() #>></<#= modelName.ToLower() #>>
+
+    </div>
+
+</div>
+<#
+// The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
+#>
+
+<#
+if(!IsPartialView && !IsLayoutPageSelected) {
+    ClearIndent();
+#>
+</body>
+</html>
+<#
+}
+#>

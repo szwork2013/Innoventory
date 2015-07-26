@@ -1,0 +1,48 @@
+﻿
+
+@{
+    ViewBag.Title = "Product Attribute";
+    ViewBag.Name = "ProductAttribute";
+
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+
+@section scripts
+{
+
+}
+
+@section footerScript
+{
+
+}
+
+
+<div class="container" ng-controller="productAttributeController as productAttributeCtrl">
+    <div ng-show="apiService.isLoading">
+        @Html.Partial("~/Views/Shared/Loader.cshtml")
+    </div>
+
+    @Html.Partial("~/Views/Shared/AlertBox.cshtml")
+
+    <div>
+        <product-attribute-list></product-attribute-list>
+    </div>
+
+    <div class="form-group">
+
+        <a href="#" id="lnkNewProductAttribute" class="btn btn-primary" ng-click="newProductAttribute()">
+            Create New
+            <i class="glyphicon glyphicon-plus"></i>
+        </a>
+
+    </div>
+
+    <div ng-show="showProductAttribute">
+
+        <product-attribute></product-attribute>
+
+    </div>
+
+</div>
+

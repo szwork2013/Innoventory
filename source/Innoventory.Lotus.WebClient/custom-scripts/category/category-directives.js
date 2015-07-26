@@ -52,4 +52,21 @@
         };
     });
 
+    app.directive("productAttributeList", function () {
+
+        return {
+            restrict: 'E',
+            templateUrl: '../templates/product-attribute/List.html'
+
+        }
+
+    });
+
+    app.directive("productAttribute", function () {
+        return {
+            restrict: 'E',
+            templateUrl: '../templates/product-attribute/ProductAttribute.html'
+        };
+    });
+
 })()

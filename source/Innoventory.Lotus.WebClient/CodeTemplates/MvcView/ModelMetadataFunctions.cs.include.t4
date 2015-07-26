@@ -41,6 +41,10 @@ bool IsPropertyGuid(PropertyMetadata property) {
     return String.Equals("System.Guid", property.TypeName, StringComparison.OrdinalIgnoreCase);
 }
 
+string GetCamelCaseName(string str)	{
+	string retString = str.Substring(0,1).ToLower() + str.Substring(1);
+	return retString;
+}
 //bool IsRequired(EnvDTE.CodeProperty propertyType)
 //{
 //    foreach (EnvDTE.CodeAttribute attribute in propertyType.Attributes) 

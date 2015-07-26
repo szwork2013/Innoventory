@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.Business.Abstract
 {
-    public interface IProductAttibuteRepository : IGenericRepository<ProductAttributeViewModel>
+    public interface IProductAttributeRepository : IGenericRepository<ProductAttributeViewModel>
     {
         
     }

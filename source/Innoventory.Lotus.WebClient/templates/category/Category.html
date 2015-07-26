@@ -37,20 +37,21 @@
         <div class="col-sm-12">
 
             <button type="button" class="btn btn-primary btn-save" ng-click="saveCategory($event)">
-               Save
-                <span class="glyphicon glyphicon-floppy-disk btn-span">
-                    
-                </span>
+                Save
+                <i class="glyphicon glyphicon-floppy-disk"></i>
+
+
             </button>
 
-            <button type="button" class="btn btn-warning" ng-show="showDelete" ng-click="deleteCategory($event)" >
+            <button type="button" class="btn btn-warning" ng-show="showDelete" ng-click="deleteCategory($event)">
                 Delete
-                <span class="glyphicon glyphicon-remove-sign btn-span" >
+                <i class="glyphicon glyphicon-minus-sign"></i>
 
-                </span>
-                </button>
+            </button>
 
-            <input type="submit" value="Cancel" class="btn btn-default" ng-click="cancel($event)" />
+            <button type="button" class="btn btn-default" ng-click="cancel($event)" />
+            Cancel
+            <i class="glyphicon glyphicon-remove"></i>
         </div>
     </div>
 

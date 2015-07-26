@@ -1,12 +1,15 @@
 ﻿<#@ template language="C#" HostSpecific="True" #>
 <#@ output extension=".html" #>
 <#@ include file="Imports.include.t4" #>
-<#@ import "" #>
+
 @model IEnumerable<#= "<" + ViewDataTypeName + ">" #>
 
 <h2><#= ViewName #></h2>
 <# 
-	 var controllerNmae =  ViewDataTypeName.Replace("ViewModel", "");
+
+	 var modelName =  ViewDataTypeShortName.Replace("ViewModel", "");
+	 var controllerName = modelName.Substring(0, 1).ToLower() + modelName.Substring(1);
+
 #>
 <table class="table table-striped table-bordered">
 	<thead>
@@ -16,17 +19,16 @@
 				foreach (PropertyMetadata property in properties) {
 				if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
 			#>
-				<#
-						// We do not want to show any association properties for which there is
-						// no associated foreign key.
-						if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
-							continue;
-						}
-				#>
-					 <th>
-					 <#= System.Reflection #>
-						<#= GetValueExpression(property) #>
-					</th>
+			<#
+				// We do not want to show any association properties for which there is
+				// no associated foreign key.
+				if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
+					continue;
+				}
+			#>
+			<th>
+				<#= GetValueExpression(property) #>
+			</th>
 
 			<#
 					}
@@ -36,7 +38,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="<#= ViewDataTypeShortName #> " ng-click="(<#= string.Format("edit{0}", controllerNmae) #>)">
+		<tr ng-repeat="<#= modelName + " in " + modelName + "s" #> " ng-click="<#= string.Format("edit{0}", modelName()) #>)">
 		<#
 			foreach (PropertyMetadata property in properties) {
 				if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
@@ -48,9 +50,9 @@
 						continue;
 					}
 			#>
-					<td>
-						{{<#= controllerNmae + "." + GetValueExpression(property) #>}}
-					</td>
+			<td>
+				{{<#= controllerName + "." +GetCamelCaseName(GetValueExpression(property)) #>}}
+			</td>
 			<#
 				}
 			}
@@ -59,5 +61,6 @@
 	</tbody>
 
 </table>
+
 
 <#@ include file="ModelMetadataFunctions.cs.include.t4" #>
