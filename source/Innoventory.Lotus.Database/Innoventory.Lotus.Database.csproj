@@ -82,9 +82,9 @@
     <Compile Include="DataEntities\UserRole.cs" />
     <Compile Include="DataEntities\VolumeMeasure.cs" />
     <Compile Include="DataEntities\VolumeMeasureMap.cs" />
-    <Compile Include="Migrations\201507142230084_AK.cs" />
-    <Compile Include="Migrations\201507142230084_AK.Designer.cs">
-      <DependentUpon>201507142230084_AK.cs</DependentUpon>
+    <Compile Include="Migrations\201507261702460_Amol.cs" />
+    <Compile Include="Migrations\201507261702460_Amol.Designer.cs">
+      <DependentUpon>201507261702460_Amol.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,8 +94,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507142230084_AK.resx">
-      <DependentUpon>201507142230084_AK.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201507261702460_Amol.resx">
+      <DependentUpon>201507261702460_Amol.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

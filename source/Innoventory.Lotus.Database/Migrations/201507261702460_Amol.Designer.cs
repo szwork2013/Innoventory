@@ -7,13 +7,13 @@ namespace Innoventory.Lotus.Database.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AK : IMigrationMetadata
+    public sealed partial class Amol : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AK));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Amol));
         
         string IMigrationMetadata.Id
         {
-            get { return "201507142230084_AK"; }
+            get { return "201507261702460_Amol"; }
         }
         
         string IMigrationMetadata.Source

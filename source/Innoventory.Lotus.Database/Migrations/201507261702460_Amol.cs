@@ -3,7 +3,7 @@ namespace Innoventory.Lotus.Database.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AK : DbMigration
+    public partial class Amol : DbMigration
     {
         public override void Up()
         {
@@ -125,9 +125,11 @@ namespace Innoventory.Lotus.Database.Migrations
                     {
                         ProductVariantId = c.Guid(nullable: false),
                         ProductId = c.Guid(nullable: false),
+                        PurchaseVolueMeasureId = c.Guid(nullable: false),
+                        SalesVolumeMeasureId = c.Guid(nullable: false),
                         BarCode = c.String(maxLength: 500),
-                        PurchaseUnitVolume = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        SalesUnitVolume = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        PurchaseVolume = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        SalesVolume = c.Decimal(nullable: false, precision: 18, scale: 2),
                         ReorderPoint = c.Decimal(precision: 18, scale: 2),
                         ReorderQuantity = c.Decimal(precision: 18, scale: 2),
                         CaseLength = c.Decimal(precision: 18, scale: 2),
@@ -181,15 +183,13 @@ namespace Innoventory.Lotus.Database.Migrations
                         ProductId = c.Guid(nullable: false),
                         ProductName = c.String(maxLength: 200),
                         ItemType = c.Int(nullable: false),
-                        Description = c.String(),
+                        Description = c.String(maxLength: 500),
                         Remarks = c.String(),
                         SalesVolumeMeasureId = c.Guid(nullable: false),
                         PurchaseVolumeMeasureId = c.Guid(nullable: false),
                         ModifiedBy = c.Guid(nullable: false),
                         ModifiedOn = c.DateTime(nullable: false),
                         ImageId = c.Guid(),
-                        SalesOrderUnitId = c.Guid(nullable: false),
-                        PurchaseOrderUnitId = c.Guid(nullable: false),
                         CategorySubCategoryMapId = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.ProductId);
