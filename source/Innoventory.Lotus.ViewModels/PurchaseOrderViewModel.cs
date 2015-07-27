@@ -1,24 +1,41 @@
-﻿using System;
+﻿using Innoventory.Lotus.Core.Contracts;
+using Innoventory.Lotus.Database.DataEntities;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using Innoventory.Lotus.Core.Contracts;
+
 
 namespace Innoventory.Lotus.ViewModels
 {
+     [DataContract]
     public class PurchaseOrderViewModel:IIdentifiable
     {
 
         [Key]
         [ScaffoldColumn(false)]
+         [DataMember(Name="purchaseOrderId")]
         public Guid PurchaseOrderId { get; set; }
+
+          [DisplayName("Purchase Order Date")]
+         [DataMember(Name="purchaseOrderDate")]
         public DateTime PurchaseOrderDate { get; set; }
+
+          [DisplayName("Supplier ID")]
+          [DataMember(Name = "supplierId")]
         public Guid SupplierId { get; set; }
-        public decimal ShippingCost { get; set; }
-        public decimal Taxes { get; set; }
+
+          [DisplayName("Shipping Cost")]
+          [DataMember(Name = "shippingCost")]
+         public decimal ShippingCost { get; set; }
+
+          [DisplayName("Taxes")]
+          [DataMember(Name = "taxes")]
+         public decimal Taxes { get; set; }
 
         public List<PurchaseOrderItemViewModel> PurchaseOrderItems { get; set; }
 
@@ -28,14 +45,9 @@ namespace Innoventory.Lotus.ViewModels
         [ScaffoldColumn(false)]
         public Guid EntityId
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return PurchaseOrderId; }
+
+            set { PurchaseOrderId = value; }
         }
     }
 }
