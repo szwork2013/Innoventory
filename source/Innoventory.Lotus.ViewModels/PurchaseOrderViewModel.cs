@@ -12,34 +12,36 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.ViewModels
 {
-     [DataContract]
-    public class PurchaseOrderViewModel:IIdentifiable
+    [DataContract]
+    public class PurchaseOrderViewModel : IIdentifiable
     {
 
         [Key]
         [ScaffoldColumn(false)]
-         [DataMember(Name="purchaseOrderId")]
+        [DataMember(Name = "purchaseOrderId")]
         public Guid PurchaseOrderId { get; set; }
 
-          [DisplayName("Purchase Order Date")]
-         [DataMember(Name="purchaseOrderDate")]
+        [DisplayName("Purchase Order Date")]
+        [DataMember(Name = "purchaseOrderDate")]
         public DateTime PurchaseOrderDate { get; set; }
 
-          [DisplayName("Supplier ID")]
-          [DataMember(Name = "supplierId")]
+        [DisplayName("Supplier ID")]
+        [DataMember(Name = "supplierId")]
         public Guid SupplierId { get; set; }
 
-          [DisplayName("Shipping Cost")]
-          [DataMember(Name = "shippingCost")]
-         public decimal ShippingCost { get; set; }
+        [DisplayName("Shipping Cost")]
+        [DataMember(Name = "shippingCost")]
+        public decimal ShippingCost { get; set; }
 
-          [DisplayName("Taxes")]
-          [DataMember(Name = "taxes")]
-         public decimal Taxes { get; set; }
+        [DisplayName("Taxes")]
+        [DataMember(Name = "taxes")]
+        public decimal Taxes { get; set; }
 
+        [DataMember(Name="purchaseOrderItems")]
         public List<PurchaseOrderItemViewModel> PurchaseOrderItems { get; set; }
 
-        public SupplierViewModel Supplier{ get; set; }
+        [DataMember(Name="supplier")]
+        public SupplierViewModel Supplier { get; set; }
 
 
         [ScaffoldColumn(false)]
