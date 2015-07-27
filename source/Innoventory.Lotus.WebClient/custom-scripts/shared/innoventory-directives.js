@@ -1,5 +1,5 @@
 ﻿(function () {
-    var app = angular.module('category-directives', []);
+    var app = angular.module('innoventory-directives', []);
 
     app.directive("categoryList", function () {
 

@@ -77,7 +77,7 @@ header .jumbotron .title {
     }
 
 .navbar-inverse {
-    background: #0a1e4d;
+    background: #132143;
 }
 
     .navbar-inverse .navbar-nav > li > a {
@@ -164,31 +164,31 @@ header .jumbotron .title {
     padding: 0 0 0 10px;
     line-height: 31px;
     float: right;
-    margin-left:10px;
+    margin-left: 10px;
 }
 
 .btn-default i {
     border-left: #fff solid 1px;
 }
 
-.btn-alert{
+.btn-alert {
     border-left: #fff solid 1px;
 }
 
 .btn-default {
     background: #9d9a9a;
-    color:#f9fbfc
+    color: #f9fbfc;
 }
 
-.btn-default:hover {
-    background: #a1a1a3;
-    color:#f9fbfc
-}
+    .btn-default:hover {
+        background: #a1a1a3;
+        color: #f9fbfc;
+    }
 
-.btn-default:active {
-    background: #a1a1a3;
-    color:#f9fbfc
-}
+    .btn-default:active {
+        background: #a1a1a3;
+        color: #f9fbfc;
+    }
 
 
 .row-selected {
@@ -204,3 +204,34 @@ div.no-data {
     margin: 10px;
     text-align: center;
 }
+
+span.caret {
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+.dropdown:active{
+
+
+}
+
+.dropdown-menu {
+    border: 1px solid #0a1e4d;
+    background: #6391ef;
+    border-radius: 0;
+    padding:0;
+}
+
+    .dropdown-menu li {
+        border-bottom: 1px dotted #0a1e4d;
+        color: white;
+        text-transform:capitalize;
+        min-width: 220px;
+    }
+
+    .dropdown-menu li a{
+        color: white;
+        text-transform:capitalize;
+        padding-bottom: 8px;
+        padding-top: 8px;
+    }

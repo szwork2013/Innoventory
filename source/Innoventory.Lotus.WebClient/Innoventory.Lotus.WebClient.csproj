@@ -215,18 +215,17 @@
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="custom-scripts\category\category-controller.js" />
-    <Content Include="custom-scripts\category\category-directives.js" />
+    <Content Include="custom-scripts\shared\innoventory-directives.js" />
     <Content Include="custom-scripts\category\category-model.js" />
     <Content Include="custom-scripts\category\category-service.js" />
     <Content Include="custom-scripts\productAttribute\product-attribute-controller.js" />
     <Content Include="custom-scripts\productAttribute\product-attribute-model.js" />
-    <Content Include="custom-scripts\shared\innoventory.js" />
     <Content Include="custom-scripts\product\product-model.js" />
+    <Content Include="custom-scripts\shared\innoventory.js" />
     <Content Include="custom-scripts\product\product-service.js" />
     <Content Include="custom-scripts\product\product-directives.js" />
     <Content Include="custom-scripts\shared\apiService.js" />
     <Content Include="custom-scripts\subCategory\sub-category-controller.js" />
-    <Content Include="custom-scripts\subCategory\sub-category-directives.js" />
     <Content Include="custom-scripts\subCategory\sub-category-model.js" />
     <Content Include="custom-scripts\volumeMeasure\volume-measure-controller.js" />
     <Content Include="custom-scripts\volumeMeasure\volume-measure-directive.js" />
@@ -352,6 +351,9 @@
       <Project>{2d2dc8ba-66f6-4bdb-901d-293eebeed402}</Project>
       <Name>Innoventory.Lotus.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

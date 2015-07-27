@@ -12,7 +12,7 @@
     }]);
 
     
-    var mainApp = angular.module("mainApp", ['common', 'category-directives']);
+    var mainApp = angular.module("mainApp", ['common', 'innoventory-directives']);
 
     mainApp.controller("productController", ["$scope", "$q", "productService", function ($scope, $q, productService) {
 
