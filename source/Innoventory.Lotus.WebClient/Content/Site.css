@@ -210,28 +210,32 @@ span.caret {
     font-size: 20px;
 }
 
-.dropdown:active{
-
-
+.dropdown {
+    transition: all 0.3s ease-in-out 0s;
 }
+
+    .dropdown:active {
+        background: white;
+    }
+
 
 .dropdown-menu {
     border: 1px solid #0a1e4d;
-    background: #6391ef;
+    background: #fff;
     border-radius: 0;
-    padding:0;
+    padding: 0;
 }
 
     .dropdown-menu li {
         border-bottom: 1px dotted #0a1e4d;
         color: white;
-        text-transform:capitalize;
+        text-transform: capitalize;
         min-width: 220px;
     }
 
-    .dropdown-menu li a{
-        color: white;
-        text-transform:capitalize;
-        padding-bottom: 8px;
-        padding-top: 8px;
-    }
+        .dropdown-menu li a {
+            color: #6391ef;
+            text-transform: capitalize;
+            padding-bottom: 8px;
+            padding-top: 8px;
+        }
