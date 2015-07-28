@@ -96,7 +96,7 @@ namespace Innoventory.Lotus.BusinessTransition
 
                 long categoryAttributeCount = 0;
 
-                FindResult<CategorySubCategoryAttributeMapViewModel> catSubCatAttribMapResult = categorySubCategoryAttributeMapRepository.FindBy(dbContext, x => x.CategorySubCategoryMapId == product.CategorySubCategoryMapId);
+                FindResult<SubCategoryAttributeMapViewModel> catSubCatAttribMapResult = categorySubCategoryAttributeMapRepository.FindBy(dbContext, x => x.CategorySubCategoryMapId == product.CategorySubCategoryMapId);
 
                 if(catSubCatAttribMapResult.Success && catSubCatAttribMapResult.Count> 0)
                 {
@@ -123,7 +123,7 @@ namespace Innoventory.Lotus.BusinessTransition
 
                     if(categoryAttributeCount > 0)
                     {
-                        List<CategorySubCategoryAttributeMapViewModel> catSubCatAttribList = catSubCatAttribMapResult.Entities;
+                        List<SubCategoryAttributeMapViewModel> catSubCatAttribList = catSubCatAttribMapResult.Entities;
                         
                     }
 

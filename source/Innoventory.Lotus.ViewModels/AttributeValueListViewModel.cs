@@ -17,14 +17,14 @@ namespace Innoventory.Lotus.ViewModels
        [ScaffoldColumn(false)]
         public Guid AttributeValueListId { get; set; }
 
-        public Guid CategorySubCategoryAttributeMapID { get; set; }
+        public Guid SubCategoryAttributeMapID { get; set; }
 
         [DisplayName("Attribute Value")]
         public string AttributeValue { get; set; }
 
 
         
-        public CategorySubCategoryAttributeMapViewModel CategorySubCategoryAttributeMap { get; set; }
+        public SubCategoryAttributeMapViewModel SubCategoryAttributeMap { get; set; }
 
         public List<ProductVariantAttributeValueViewModel> ProductVariantAttributeValue { get; set; }
 

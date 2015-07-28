@@ -4,12 +4,14 @@ namespace Innoventory.Lotus.Database.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Innoventory.Lotus.Database.DataEntities;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Innoventory.Lotus.Database.DataEntities.InnoventoryDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            Database.SetInitializer<InnoventoryDBContext>(null);
         }
 
         protected override void Seed(Innoventory.Lotus.Database.DataEntities.InnoventoryDBContext context)
