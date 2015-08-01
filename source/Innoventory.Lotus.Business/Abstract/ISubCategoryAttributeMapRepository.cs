@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.Business.Abstract
 {
-    public interface ICategorySubCategoryAttributeMapRepository : IGenericRepository<SubCategoryAttributeMapViewModel>
+    public interface ISubCategoryAttributeMapRepository : IGenericRepository<SubCategoryAttributeMapViewModel>
     {
         
     }

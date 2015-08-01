@@ -5,54 +5,68 @@
 
 <form class="form-horizontal" name="ProductAttribute" novalidate role="form">
 
-		<div class="form-group">
+    <div class="form-group">
 
-		<label for="AttributeName" class="control-label col-sm-6"> Attribute Name</label>
-		
-		<div class="col-sm-18" >
-		
-			<input type="text" id="AttributeName" ng-model="productAttributeVM.attributeName" class="form-control"/>
-		
-		</div>
+        <label for="AttributeName" class="control-label col-sm-6"> Attribute Name</label>
 
-	</div>
+        <div class="col-sm-18">
 
-		<div class="form-group">
+            <input type="text" id="AttributeName" ng-model="productAttributeVM.attributeName" class="form-control" />
 
-		<label for="AttributeDescription" class="control-label col-sm-6"> Attribute Description</label>
-		
-		<div class="col-sm-18" >
-		
-			<input type="text" id="AttributeDescription" ng-model="productAttributeVM.attributeDescription" class="form-control"/>
-		
-		</div>
+        </div>
 
-	</div>
+    </div>
 
-	
-	
-	
-	<div class="form-group">
-		<div class="col-sm-6">
-		</div>
-		<div class="col-sm-18">
-			<button type="button" value="Save" class="btn btn-primary btn-save" ng-click= 'saveProductAttribute($event)'  >
-			 Save
-				<i class="btn-span glyphicon glyphicon-floppy-disk btn-span"></i>
-			</button>
-			
-			<button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete" ng-click= 'deleteProductAttribute($event)' >
-				Delete
-				<i class="btn-span glyphicon glyphicon-remove-sign btn-span"></i>
-			</button>		
+    <div class="form-group">
 
-			<button type="button" class="btn btn-default" ng-click="cancel($event)">
-				Cancel
-				<i class="glyphicon glyphicon-remove"></i>
-			</button>
+        <label for="AttributeDescription" class="control-label col-sm-6"> Attribute Description</label>
 
-		</div>
-	</div>
+        <div class="col-sm-18">
+
+            <input type="text" id="AttributeDescription" ng-model="productAttributeVM.attributeDescription" class="form-control" />
+
+        </div>
+
+    </div>
+
+<div class="form-group">
+
+    <label class="control-label col-sm-6"> Sub Categories</label>
+
+    <div class="col-sm-6 form-group" ng-repeat="subCategorySelection in productAttributeVM.subCategorySelections">
+
+        <label class="control-label col-sm-24">
+            {{subCategorySelection.subCategory.subCategoryName}}
+            <input type="checkbox" id="subCategorySelection.subCategory.subCategoryId" ng-model="subCategorySelection.isSelected">
+        </label>
+
+    </div>
+
+
+</div>
+
+
+    <div class="form-group">
+        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-18">
+            <button type="button" value="Save" class="btn btn-primary btn-save" ng-click='saveProductAttribute($event)'>
+                Save
+                <i class="btn-span glyphicon glyphicon-floppy-disk btn-span"></i>
+            </button>
+
+            <button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete" ng-click='deleteProductAttribute($event)'>
+                Delete
+                <i class="btn-span glyphicon glyphicon-remove-sign btn-span"></i>
+            </button>
+
+            <button type="button" class="btn btn-default" ng-click="cancel($event)">
+                Cancel
+                <i class="glyphicon glyphicon-remove"></i>
+            </button>
+
+        </div>
+    </div>
 
 </form>
 

@@ -39,7 +39,7 @@ namespace Innoventory.Lotus.Database.DataEntities
 
         public DbSet<PurchaseOrderItem> PurchaseOrderItemSet { get; set; }
 
-        public DbSet<SubCategoryAttributeMap> CategorySubCategoryAttributeMapSet { get; set; }
+        public DbSet<SubCategoryAttributeMap> SubCategoryAttributeMapSet { get; set; }
 
         public DbSet<Country> CountrySet { get; set; }
 

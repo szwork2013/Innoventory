@@ -21,6 +21,7 @@
 
         };
 
+       
 
         GetCategories = function () {
             apiService.apiGet("Category/categories", {}, function (result) {
@@ -55,6 +56,7 @@
 
         $scope.saveCategory = function (e) {
 
+            
             var errors = [];
             var hasErrors = false;
 
@@ -73,8 +75,9 @@
             };
 
             if (hasErrors) {
-                apiService.hasErrors = true;
-                apiService.errors = errors;
+                apiService.showError(errors);
+                //apiService.hasErrors = true;
+                //apiService.errors = errors;
                 return;
             };
 

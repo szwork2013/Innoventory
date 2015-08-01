@@ -53,7 +53,7 @@ namespace Innoventory.Lotus.BusinessTransition
         private IProductAttributeRepository productAttributeRepository;
 
         [Import]
-        private ICategorySubCategoryAttributeMapRepository categorySubCategoryAttributeMapRepository;
+        private ISubCategoryAttributeMapRepository categorySubCategoryAttributeMapRepository;
 
         [Import]
         private IAttributeValueListRepository attributeValueListRepository;
@@ -96,7 +96,7 @@ namespace Innoventory.Lotus.BusinessTransition
 
                 long categoryAttributeCount = 0;
 
-                FindResult<SubCategoryAttributeMapViewModel> catSubCatAttribMapResult = categorySubCategoryAttributeMapRepository.FindBy(dbContext, x => x.CategorySubCategoryMapId == product.CategorySubCategoryMapId);
+                FindResult<SubCategoryAttributeMapViewModel> catSubCatAttribMapResult = categorySubCategoryAttributeMapRepository.FindBy(dbContext, x => x.SubCategoryId == product.CategorySubCategoryMapId);
 
                 if(catSubCatAttribMapResult.Success && catSubCatAttribMapResult.Count> 0)
                 {

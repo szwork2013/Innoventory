@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="CategoeySubCategory\ISubCategoryTransition.cs" />
     <Compile Include="CategoeySubCategory\SubCategoryTransition.cs" />
+    <Compile Include="ProductAttribute\IProductAttributeTransition.cs" />
+    <Compile Include="ProductAttribute\ProductAttributeTransition.cs" />
     <Compile Include="Product\IProductTransition.cs" />
     <Compile Include="Product\ProductTransition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

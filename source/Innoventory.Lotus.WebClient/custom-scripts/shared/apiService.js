@@ -1,5 +1,5 @@
 ﻿(function (inv) {
-    var apiService = function ($http, $q) {
+    var apiService = function ($http, $q, $timeout) {
 
         var me = this;
 
@@ -10,9 +10,10 @@
         me.isLoading = false;
         me.hasErrors = false;
 
+       
         me.apiGet = function (uri, data, success, failure, always) {
 
-            
+
             me.isLoading = true;
             me.modelIsValid = true;
             me.hasErrors = false;
@@ -122,6 +123,7 @@
         };
 
         me.apiPost = function (uri, data, success, failure, always) {
+            
             me.isLoading = true;
             me.modelIsValid = true;
             me.hasErrors = false;
@@ -177,14 +179,71 @@
         showAlert = function (data) {
             if (data) {
                 if (data && data.Success && data.SuccessMessage && data.SuccessMessage != "") {
-                    me.hasSuccess = true;
-                    me.successMessage = data.SuccessMessage;
-                } else if(data.Success == false && data.ErrorMessage != "") {
+                   
+                    me.showSuccess(data.SuccessMessage);
+                    
+                } else if (data.Success == false && data.ErrorMessage != "") {
                     me.hasErrors = true;
                     me.errors.push(data.ErrorMessage);
+                    $timeout(dismissAlert(), 3000);
                 };
             }
+
+
         };
+
+        me.showSuccess = function (message) {
+            me.hasSuccess = true;
+            me.successMessage = message;
+            displayAlert();
+        }
+
+        displayAlert = function () {
+
+            var alertBox = document.getElementById("alert-box");
+            
+            alertBox.style.opacity = 1;
+
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+
+            var dw = alertBox.offsetWidth;
+            var dh = alertBox.offsetHeight;
+
+            var x = w - 500 - 40;
+
+            var y = h - 300 - 50;
+
+            alertBox.style.position = "absolute";
+            alertBox.style.left = x + "px";
+            alertBox.style.top = y + "px";
+
+
+            $timeout(dismissAlert, 6000);
+
+        };
+
+        me.showError = function (errors) {
+                        
+            me.hasErrors = true;
+            me.errors = errors;
+            displayAlert();
+                                    
+        }
+
+        var dismissAlert = function () {
+            document.getElementById("alert-box").style.opacity = 0;
+            $timeout(cancelError, 2000);
+            
+        }
+
+        var cancelError = function () {
+            me.hasSuccess = false;
+            me.successMessage = "";
+            me.hasErrors = false;
+            me.errors = [];
+            //document.getElementById("error-alert").style.opacity = 1;
+        }
 
         return me;
 

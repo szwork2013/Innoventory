@@ -1,19 +1,22 @@
 ﻿
-<div ng-show="apiService.hasErrors" class="alert alert-danger">
 
-    <h4 class="aler-heading"> Errors! </h4>
+<div id="alert-box" style="position:absolute; transition:ease-in-out 1s; opacity: 0; width:100%; z-index:101;">
+    <div ng-show="apiService.hasErrors" class="alert alert-danger">
 
-    <ul ng-repeat="error in apiService.errors">
-        <li>{{error}}</li>
-    </ul>
+        <h4 class="aler-heading"> Errors! </h4>
 
-</div>
+        <ul ng-repeat="error in apiService.errors">
+            <li>{{error}}</li>
+        </ul>
 
-<div ng-show="apiService.hasSuccess" class="alert alert-info">
+    </div>
 
-    <h4> Success </h4>
-    <p>
-        {{apiService.successMessage}}
-    </p>
+    <div ng-show="apiService.hasSuccess" class="alert alert-info">
 
+        <h4> Success </h4>
+        <p>
+            {{apiService.successMessage}}
+        </p>
+
+    </div>
 </div>

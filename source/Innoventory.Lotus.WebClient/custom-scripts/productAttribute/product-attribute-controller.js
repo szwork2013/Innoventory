@@ -3,7 +3,9 @@
 
     var productAttributeController = function ($scope, $q, apiService) {
 
-        var cc = this;
+        var pa = this;
+
+        pa.productAttributeVM = {};
 
         $scope.isData = false;
 
@@ -12,7 +14,10 @@
 
         $scope.newProductAttribute = function () {
 
-            $scope.productAttributeVM = new Innoventory.productAttributeModel();
+            pa.productAttributeVM = new Innoventory.productAttributeModel();
+
+            getSubCategories();
+
             $scope.showDelete = false;
             $scope.showProductAttribute = true;
             $scope.formTitle = "New ProductAttribute";
@@ -20,17 +25,41 @@
         };
 
 
-        GetCategories = function () {
+        getSubCategories = function () {
+
+            url = "SubCategory/SubCategories";
+
+            var subCategories = [];
+
+            apiService.apiGet(url, {}, function (result) {
+
+                subCategories = result.Entities;
+
+                subCategories.forEach(function (subCategory, key) {
+
+                    subCategorySelection = {
+                        subCategory: subCategory,
+                        isSelected: false,
+                    }
+
+                    pa.productAttributeVM.subCategorySelections.push(subCategorySelection);
+                });
+
+                $scope.productAttributeVM = pa.productAttributeVM;
+
+            });
+
+        };
+
+        getProductAttributes = function () {
             apiService.apiGet("ProductAttribute/productAttributes", {}, function (result) {
 
                 if (result.Entities) {
                     $scope.productAttributes = result.Entities;
-                    if ($scope.productAttributes && $scope.productAttributes.length > 0)
-                    {
+                    if ($scope.productAttributes && $scope.productAttributes.length > 0) {
                         $scope.isData = true;
                     }
-                    else
-                    {
+                    else {
                         $scope.isData = false;
                     }
 
@@ -82,12 +111,11 @@
 
             apiService.apiPost("ProductAttribute/SaveProductAttribute", $scope.productAttributeVM, function (result) {
 
-
                 $scope.productAttributeVM = null;
 
                 $scope.showProductAttribute = false;
 
-                GetCategories();
+                getProductAttributes();
 
             });
 
@@ -103,7 +131,7 @@
 
                     $scope.showProductAttribute = false;
 
-                    GetCategories();
+                    getProductAttributes();
                 });
             };
         }
@@ -117,7 +145,7 @@
             $scope.selectedId = null;
         }
 
-        GetCategories();
+        getProductAttributes();
 
         return this;
 
