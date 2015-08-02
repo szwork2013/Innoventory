@@ -296,6 +296,7 @@
     <Content Include="templates\volume-measure\VolumeMeasure.html" />
     <Content Include="templates\product-attribute\List.html" />
     <Content Include="templates\product-attribute\ProductAttribute.html" />
+    <Content Include="Views\PurchaseOrder\PurchaseOrder.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -324,11 +325,11 @@
     <Content Include="Views\VolumeMeasure\VolumeMeasures.cshtml" />
     <Content Include="Views\ProductAttribute\View.cshtml" />
     <Content Include="Views\ProductAttribute\ProductAttributes.cshtml" />
+    <Content Include="Views\PurchaseOrder\PurchaseOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Views\Products\Templates\" />
-    <Folder Include="Views\PurchaseOrder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

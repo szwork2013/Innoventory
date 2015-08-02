@@ -1,0 +1,83 @@
+﻿
+
+
+<h4>{{formTitle}}</h4>
+
+
+<form class="form-horizontal" name="PurchaseOrder" novalidate role="form">
+
+		<div class="form-group">
+
+		<label for="PurchaseOrderDate" class="control-label col-sm-6"> PurchaseOrderDate</label>
+		
+		<div class="col-sm-18" >
+		
+			<input type="text" id="PurchaseOrderDate" ng-model="purchaseOrderVM.purchaseOrderDate" class="form-control"/>
+		
+		</div>
+
+	</div>
+
+		<div class="form-group">
+
+		<label for="SupplierId" class="control-label col-sm-6"> SupplierId</label>
+		
+		<div class="col-sm-18" >
+		
+			<input type="text" id="SupplierId" ng-model="purchaseOrderVM.supplierId" class="form-control"/>
+		
+		</div>
+
+	</div>
+
+		<div class="form-group">
+
+		<label for="ShippingCost" class="control-label col-sm-6"> ShippingCost</label>
+		
+		<div class="col-sm-18" >
+		
+			<input type="text" id="ShippingCost" ng-model="purchaseOrderVM.shippingCost" class="form-control"/>
+		
+		</div>
+
+	</div>
+
+		<div class="form-group">
+
+		<label for="Taxes" class="control-label col-sm-6"> Taxes</label>
+		
+		<div class="col-sm-18" >
+		
+			<input type="text" id="Taxes" ng-model="purchaseOrderVM.taxes" class="form-control"/>
+		
+		</div>
+
+	</div>
+
+	
+	
+	
+	<div class="form-group">
+		<div class="col-sm-6">
+		</div>
+		<div class="col-sm-18">
+			<button type="button" value="Save" class="btn btn-primary btn-save" ng-click= 'savePurchaseOrder($event)'  >
+			 Save
+				<i class="btn-span glyphicon glyphicon-floppy-disk btn-span"></i>
+			</button>
+			
+			<button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete" ng-click= 'deletePurchaseOrder($event)' >
+				Delete
+				<i class="btn-span glyphicon glyphicon-remove-sign btn-span"></i>
+			</button>		
+
+			<button type="button" class="btn btn-default" ng-click="cancel($event)">
+				Cancel
+				<i class="glyphicon glyphicon-remove"></i>
+			</button>
+
+		</div>
+	</div>
+
+</form>
+
