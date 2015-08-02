@@ -18,15 +18,6 @@ namespace Innoventory.Lotus.Business.Concrete
     public class CategoryRepository : GenericRepository<Category, CategoryViewModel>, ICategoryRepository
     {
 
-        protected Category GetDomainEntity(CategoryViewModel viewModel)
-        {
-            Category category = ObjectMapper.PropertyMap(viewModel, new Category());
-
-            return category;
-        }
-
-
-
         protected override CategoryViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
             DbSet<Category> entitySet = dbContext.CategorySet;
@@ -41,26 +32,6 @@ namespace Innoventory.Lotus.Business.Concrete
 
         }
 
-        protected override List<CategoryViewModel> GetEntities(InnoventoryDBContext dbContext)
-        {
-            DbSet<Category> entitySet = dbContext.CategorySet;
-
-            List<Category> categories = entitySet.OrderBy(x=>x.CategoryName).ToList();
-
-            List<CategoryViewModel> retList = new List<CategoryViewModel>();
-
-            foreach (Category category in categories)
-            {
-                CategoryViewModel catVM = new CategoryViewModel();
-
-
-                retList.Add(ObjectMapper.PropertyMap(category, catVM));
-
-            }
-
-            return retList;
-        }
-
         protected override List<CategoryViewModel> Find(InnoventoryDBContext dbContext, Func<CategoryViewModel, bool> predicate)
         {
 
@@ -69,6 +40,46 @@ namespace Innoventory.Lotus.Business.Concrete
             return categories;
         }
 
+
+        protected override List<CategoryViewModel> GetEntities(InnoventoryDBContext dbContext)
+        {
+            DbSet<Category> entitySet = dbContext.CategorySet;
+
+            List<Category> categories = entitySet.OrderBy(x=>x.CategoryName).ToList();
+
+            List<CategoryViewModel> retList = new List<CategoryViewModel>();
+
+            categories.ForEach(x => retList.Add (ObjectMapper.PropertyMap(x, new CategoryViewModel())));
+                       
+
+            return retList;
+        }
+
+        protected override bool AddEntity(InnoventoryDBContext dbContext, CategoryViewModel viewModel)
+        {
+            Category category = ObjectMapper.PropertyMap(viewModel, new Category()); ;
+            dbContext.CategorySet.Add(category);
+
+            dbContext.SaveChanges();
+            return true;
+        }
+
+        protected override bool EditEntity(InnoventoryDBContext dbContext, CategoryViewModel viewModel)
+        {
+            DbSet<Category> entitySet = dbContext.CategorySet;
+
+            Category category = ObjectMapper.PropertyMap(viewModel, new Category()); ;
+
+            entitySet.Attach(category);
+
+            dbContext.Entry(category).State = EntityState.Modified;
+
+            dbContext.SaveChanges();
+
+            return true;
+
+        }
+                
         protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
         {
             DbSet<Category> entitySet = dbContext.CategorySet;
@@ -86,31 +97,7 @@ namespace Innoventory.Lotus.Business.Concrete
             return true;
         }
 
-        protected override bool AddEntity(InnoventoryDBContext dbContext, CategoryViewModel viewModel)
-        {
-            Category category = GetDomainEntity(viewModel);
-            dbContext.CategorySet.Add(category);
-
-            dbContext.SaveChanges();
-            return true;
-        }
-
-        protected override bool EditEntity(InnoventoryDBContext dbContext, CategoryViewModel viewModel)
-        {
-            DbSet<Category> entitySet = dbContext.CategorySet;
-
-            Category category = GetDomainEntity(viewModel);
-
-            entitySet.Attach(category);
-
-            dbContext.Entry(category).State = EntityState.Modified;
-
-            dbContext.SaveChanges();
-
-            return true;
-
-        }
-
+        
 
 
     }

@@ -14,7 +14,6 @@ namespace Innoventory.Lotus.Database.DataEntities
         public Guid PurchaseOrderId { get; set; }
         public Guid ProductVariantId { get; set; }
         public Decimal Quantity { get; set; }
-        public Guid Unit { get; set; }
         public Decimal Price { get; set; }
 
         [ForeignKey("PurchaseOrderId")]

@@ -14,15 +14,19 @@ namespace Innoventory.Lotus.Database.DataEntities
         [Key]
         public Guid AttributeValueListId { get; set; }
 
-        public Guid CategorySubCategoryAttributeMapID { get; set; }
+        public Guid CategoryId { get; set; }
+
+        public Guid SubCategoryAttributeMapID { get; set; }
 
         [StringLength(50)]
         public string AttributeValue { get; set; }
 
 
-        [ForeignKey("CategorySubCategoryAttributeMapID")]
-        public virtual CategorySubCategoryAttributeMap CategorySubCategoryAttributeMap { get; set; }
+        [ForeignKey("SubCategoryAttributeMapID")]
+        public virtual SubCategoryAttributeMap SubCategoryAttributeMap { get; set; }
 
-        public virtual List<ProductVariantAttributeValue> ProductVariantAttributeValue { get; set; }
+        [ForeignKey("CategoryId")]
+        public virtual Category Category { get; set; }
+                
     }
 }

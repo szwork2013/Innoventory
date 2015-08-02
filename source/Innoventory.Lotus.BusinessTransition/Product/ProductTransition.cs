@@ -53,7 +53,7 @@ namespace Innoventory.Lotus.BusinessTransition
         private IProductAttributeRepository productAttributeRepository;
 
         [Import]
-        private ICategorySubCategoryAttributeMapRepository categorySubCategoryAttributeMapRepository;
+        private ISubCategoryAttributeMapRepository categorySubCategoryAttributeMapRepository;
 
         [Import]
         private IAttributeValueListRepository attributeValueListRepository;
@@ -71,14 +71,31 @@ namespace Innoventory.Lotus.BusinessTransition
 
             using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
             {
+                
+
                 GetEntityResult<ProductViewModel> productResult = productRepository.FindById(dbContext, productId);
                 if (!productResult.Success)
                 {
+
                     return productResult;
 
                 }
 
                 ProductViewModel product = productResult.Entity;
+
+                GetEntityResult<VolumeMeasureViewModel> purchaseVMResult = volumeMeasureRepository.FindById(product.PurchaseVolueMeasureId);
+
+                if (purchaseVMResult.Success)
+                {
+                    product.PurchaseVolumeMeasureName = purchaseVMResult.Entity.ShortName;
+                }
+
+                GetEntityResult<VolumeMeasureViewModel> salesVMResult = volumeMeasureRepository.FindById(product.SalesVolumeMeasureId);
+
+                if (salesVMResult.Success)
+                {
+                    product.SalesVolumeMeasureName = salesVMResult.Entity.ShortName;
+                }
 
                 FindResult<ProductVariantViewModel> findProductVriantResult = productVariantRepository.FindBy(dbContext, x => x.ProductId == productId);
 
@@ -96,34 +113,22 @@ namespace Innoventory.Lotus.BusinessTransition
 
                 long categoryAttributeCount = 0;
 
-                FindResult<CategorySubCategoryAttributeMapViewModel> catSubCatAttribMapResult = categorySubCategoryAttributeMapRepository.FindBy(dbContext, x => x.CategorySubCategoryMapId == product.CategorySubCategoryMapId);
+                FindResult<SubCategoryAttributeMapViewModel> subCatAttribMapResult = categorySubCategoryAttributeMapRepository.FindBy(dbContext, x => x.SubCategoryId == product.CategorySubCategoryMapId);
 
-                if(catSubCatAttribMapResult.Success && catSubCatAttribMapResult.Count> 0)
+                if(subCatAttribMapResult.Success && subCatAttribMapResult.Count> 0)
                 {
 
-                    categoryAttributeCount = catSubCatAttribMapResult.Count;
+                    categoryAttributeCount = subCatAttribMapResult.Count;
 
                 }
 
                 foreach (ProductVariantViewModel pvm in productVariants)
                 {
-                    GetEntityResult<VolumeMeasureViewModel> purchaseVMResult = volumeMeasureRepository.FindById(pvm.PurchaseVolueMeasureId);
-
-                    if(purchaseVMResult.Success)
-                    {
-                        pvm.PurchaseVMShortName = purchaseVMResult.Entity.ShortName;
-                    }
-
-                    GetEntityResult<VolumeMeasureViewModel> salesVMResult = volumeMeasureRepository.FindById(pvm.SalesVolumeMeasureId);
-
-                    if (salesVMResult.Success)
-                    {
-                        pvm.SalesVMShortName = salesVMResult.Entity.ShortName;
-                    }
+                    
 
                     if(categoryAttributeCount > 0)
                     {
-                        List<CategorySubCategoryAttributeMapViewModel> catSubCatAttribList = catSubCatAttribMapResult.Entities;
+                        List<SubCategoryAttributeMapViewModel> catSubCatAttribList = subCatAttribMapResult.Entities;
                         
                     }
 

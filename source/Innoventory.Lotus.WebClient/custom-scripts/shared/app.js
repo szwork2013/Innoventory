@@ -7,8 +7,8 @@
 
 
     commonModule.constant("emptyGuid", "00000000-0000-0000-0000-000000000000");
-    commonModule.factory('apiService', ['$http', '$q', function ($http, $q) {
-        return Innoventory.apiService($http, $q);
+    commonModule.factory('apiService', ['$http', '$q', '$timeout', function ($http, $q, $timeout) {
+        return Innoventory.apiService($http, $q, $timeout);
     }]);
 
     

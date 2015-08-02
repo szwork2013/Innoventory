@@ -26,46 +26,36 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "barCode")]
         public string BarCode { get; set; }
 
-        [ScaffoldColumn(false)]
-        [DataMember(Name = "purchaseVMId")]
-        public Guid PurchaseVolueMeasureId { get; set; }
-
-        [ScaffoldColumn(false)]
-        [DataMember(Name = "salesVMId")]
-        public Guid SalesVolumeMeasureId { get; set; }
-
+        
         [DisplayName("Sales Volume")]
         [DataMember(Name = "salesVolume")]
         public decimal? SalesVolume { get; set; }
 
         [DisplayName("Purchase Volume")]
         [DataMember(Name = "purchaseVolume")]
+                
         public decimal? PurchaseVolume { get; set; }
 
+        [DataMember(Name = "reorderPoint")]
+        public decimal? ReorderPoint { get; set; }
 
-        [DisplayName("Purchase Volume Measure Short Name")]
-        [DataMember(Name="purchaseVMShortName")]
-        public string PurchaseVMShortName { get; set; }
-
-        [DisplayName("Sales Volume Measure Short Name")]
-        [DataMember(Name = "salesVMShortName")]
-        public string SalesVMShortName { get; set; }
-
+        [DataMember(Name = "reorderQuantity")]
+        public decimal? ReorderQuantity { get; set; }
 
         [DisplayName("Case Length")]
-        [DataMember]
+        [DataMember(Name = "caseLength")]
         public decimal? CaseLength { get; set; }
 
         [DisplayName("Case Width")]
-        [DataMember]
+        [DataMember(Name = "caseWidth")]
         public decimal? CaseWidth { get; set; }
 
         [DisplayName("Case Height")]
-        [DataMember]
+        [DataMember(Name = "caseHeight")]
         public decimal? CaseHeight { get; set; }
 
         [DisplayName("Case Weight")]
-        [DataMember]
+        [DataMember(Name = "caseWeight")]
         public decimal? CaseWeight { get; set; }
 
         [DisplayName("Product Length")]
@@ -143,5 +133,31 @@ namespace Innoventory.Lotus.ViewModels
                 ProductVariantId = value;
             }
         }
+    }
+
+    [DataContract]
+    public class ProductVariantListItem
+    {
+        [DataMember(Name = "productVariantId")]
+        public Guid ProductVariantId { get; set; }
+
+        [DataMember(Name = "attributeValueString")]
+        public string AttributeValuesString { get; set; }
+
+        [DataMember(Name = "availableQuantity")]
+        public int AvailableQuantity { get; set; }
+
+        [DataMember(Name = "skuCode")]
+        public string SKUCode { get; set; }
+
+        [DataMember(Name = "basePrice")]
+        public decimal BasePrice { get; set; }
+
+        [DataMember(Name = "shelfPrice")]
+        public decimal ShelfPrice { get; set; }
+
+
+
+
     }
 }

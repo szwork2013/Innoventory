@@ -16,7 +16,6 @@ namespace Innoventory.Lotus.ViewModels
         public Guid PurchaseReturnId { get; set; }
         public Guid ProductVariantId { get; set; }
         public Decimal Quantity { get; set; }
-        public Guid Unit { get; set; }
         public Decimal Price { get; set; }
 
         public PurchaseReturnViewModel PurchaseReturn { get; set; }

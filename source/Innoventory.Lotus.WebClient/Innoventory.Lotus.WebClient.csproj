@@ -225,7 +225,6 @@
     <Content Include="custom-scripts\purchaseOrder\purchase-order-model.js" />
     <Content Include="custom-scripts\shared\innoventory.js" />
     <Content Include="custom-scripts\product\product-model.js" />
-    <Content Include="custom-scripts\shared\innoventory.js" />
     <Content Include="custom-scripts\product\product-service.js" />
     <Content Include="custom-scripts\product\product-directives.js" />
     <Content Include="custom-scripts\shared\apiService.js" />

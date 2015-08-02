@@ -9,6 +9,7 @@ using System.Linq.Expressions;
 using System.Collections.Generic;
 using Innoventory.Lotus.Core.Contracts;
 using Innoventory.Lotus.ViewModels;
+using Innoventory.Lotus.Core.Common;
 
 
 namespace Innoventory.Lotus.Business.Abstract
@@ -17,10 +18,8 @@ namespace Innoventory.Lotus.Business.Abstract
         where DbEntity : class, new()
         where VM : class, IIdentifiable, new()
     {
-
-
-
-
+       
+      
         #region Abstract Methods
         protected abstract VM GetEntity(InnoventoryDBContext dbContext, Guid id);
 

@@ -68,7 +68,7 @@
     <Compile Include="Abstract\ICategoryRepository.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Abstract\ICategorySubCategoryAttributeMapRepository.cs">
+    <Compile Include="Abstract\ISubCategoryAttributeMapRepository.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Abstract\ICategorySubCategoryMapRepository.cs" />
@@ -147,7 +147,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Concrete\CategoryRepository.cs" />
-    <Compile Include="Concrete\CategorySubCategoryAttributeMapRepository.cs">
+    <Compile Include="Concrete\SubCategoryAttributeMapRepository.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Concrete\CategorySubCategoryMapRepository.cs">

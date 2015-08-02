@@ -53,7 +53,7 @@
     <Compile Include="DataEntities\Address.cs" />
     <Compile Include="DataEntities\AttributeValueList.cs" />
     <Compile Include="DataEntities\Category.cs" />
-    <Compile Include="DataEntities\CategorySubCategoryAttributeMap.cs" />
+    <Compile Include="DataEntities\SubCategoryAttributeMap.cs" />
     <Compile Include="DataEntities\CategorySubCategoryMap.cs" />
     <Compile Include="DataEntities\Country.cs" />
     <Compile Include="DataEntities\Currency.cs" />
@@ -82,12 +82,28 @@
     <Compile Include="DataEntities\UserRole.cs" />
     <Compile Include="DataEntities\VolumeMeasure.cs" />
     <Compile Include="DataEntities\VolumeMeasureMap.cs" />
+    <Compile Include="Migrations\201507282228007_NewDatabase.cs" />
+    <Compile Include="Migrations\201507282228007_NewDatabase.Designer.cs">
+      <DependentUpon>201507282228007_NewDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508021510432_020815.cs" />
+    <Compile Include="Migrations\201508021510432_020815.Designer.cs">
+      <DependentUpon>201508021510432_020815.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201507282228007_NewDatabase.resx">
+      <DependentUpon>201507282228007_NewDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508021510432_020815.resx">
+      <DependentUpon>201508021510432_020815.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

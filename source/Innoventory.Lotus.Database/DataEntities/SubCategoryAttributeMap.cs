@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.Database.DataEntities
 {
-    public class CategorySubCategoryAttributeMap
+    public class SubCategoryAttributeMap
     {
         [Key]
-        public Guid CategorySubCategoryAttributeMapId { get; set; }
-        public Guid CategorySubCategoryMapId { get; set; }
+        public Guid SubCategoryAttributeMapId { get; set; }
+        public Guid SubCategoryId { get; set; }
         public Guid ProductAttributeId { get; set; }
 
-        [ForeignKey("CategorySubCategoryMapId")]
-        public CategorySubCategoryMap CategorySubCategoryMap { get; set; }
+        [ForeignKey("SubCategoryId")]
+        public SubCategory SubCategory { get; set; }
 
 
         [ForeignKey("ProductAttributeId")]

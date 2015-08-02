@@ -22,6 +22,12 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name="attributeDescription")]
         public string AttributeDescription { get; set; }
 
+        [DataMember(Name = "subCategoryNames")]
+        public string SubCategoryNames { get; set; }
+
+        [DataMember(Name = "subCategorySelections")]
+        public List<SubCategorySelection> SubCategorySelections { get; set; }
+
         [ScaffoldColumn(false)]
         public Guid EntityId
         {
@@ -34,5 +40,20 @@ namespace Innoventory.Lotus.ViewModels
                 ProductAttributeId = value;
             }
         }
+    }
+
+    
+
+    [DataContract]
+    public class SubCategorySelection
+    {
+
+        [DataMember(Name="subCategory")]
+        public SubCategoryViewModel SubCategory { get; set; }
+
+        [DataMember(Name="isSelected")]
+        public bool IsSelected { get; set; }
+
+
     }
 }
