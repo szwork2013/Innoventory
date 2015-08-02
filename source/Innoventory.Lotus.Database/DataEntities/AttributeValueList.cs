@@ -14,6 +14,8 @@ namespace Innoventory.Lotus.Database.DataEntities
         [Key]
         public Guid AttributeValueListId { get; set; }
 
+        public Guid CategoryId { get; set; }
+
         public Guid SubCategoryAttributeMapID { get; set; }
 
         [StringLength(50)]
@@ -22,6 +24,9 @@ namespace Innoventory.Lotus.Database.DataEntities
 
         [ForeignKey("SubCategoryAttributeMapID")]
         public virtual SubCategoryAttributeMap SubCategoryAttributeMap { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public virtual Category Category { get; set; }
                 
     }
 }

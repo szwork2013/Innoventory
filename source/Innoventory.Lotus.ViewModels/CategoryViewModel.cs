@@ -30,7 +30,7 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "description")]
         public string Description { get; set; }
 
-
+        [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get { return CategoryId; }

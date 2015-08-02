@@ -17,18 +17,22 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "supplierId")]
         public Guid SupplierId { get; set; }
 
+        [DataMember(Name = "supplierName")]
         public string SupplierName { get; set; }
 
+        [DataMember(Name = "supplierContactNo")]
         public string SupplierContactNo { get; set; }
 
+        [DataMember(Name = "supplierEmailId")]
         public string SupplierEmailId { get; set; }
 
-        public Guid CurrencyId { get; set; }
 
+        [DataMember(Name = "currency")]
         public CurrencyViewModel Currency { get; set; }
 
 
-
+        [DataMember(Name = "supplierAddresses")]
+        public List<AddressViewModel> SupplierAddresses { get; set; }
 
         [ScaffoldColumn(false)]
         public Guid EntityId

@@ -16,28 +16,27 @@ namespace Innoventory.Lotus.ViewModels
     public class CustomerViewModel : IIdentifiable 
     {
         [ScaffoldColumn(false)]
-        [DataMember]
+        [DataMember(Name= "customerId")]
 
         public Guid CustomerId { get; set; }
 
         [DisplayName("Customer Name")]
-        [DataMember]
+        [DataMember(Name = "customerName")]
 
         public string CustomerName { get; set; }
 
         [DisplayName("Customer Contact No")]
-        [DataMember]
+        [DataMember(Name = "customerContactNo")]
 
         public string CustomerContactNo { get; set; }
 
         [DisplayName("Customer Email ID")]
-        [DataMember]
+        [DataMember(Name = "customerEmailId")]
 
         public string CustomerEmailId { get; set; }
 
-        public List<PurchaseOrderViewModel> PurchaseOrders { get; set; }
-
-
+                              
+        [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get

@@ -11,31 +11,29 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.ViewModels
 {
-        [DataContract]
-    public class CurrencyViewModel:IIdentifiable
+    [DataContract]
+    public class CurrencyViewModel : IIdentifiable
     {
 
         [ScaffoldColumn(false)]
-        [DataMember]
+        [DataMember(Name = "currencyId")]
         public Guid CurrencyID { get; set; }
 
 
         [DisplayName("Currency Code")]
-        [DataMember]
+        [DataMember(Name = "currencyCode")]
         public string CurrencyCode { get; set; }
 
         [DisplayName("Currency Symbol")]
-        [DataMember]
+        [DataMember(Name = "currencySymbol")]
         public string CurrencySymbol { get; set; }
 
         [DisplayName("Currency Full Name")]
-        [DataMember]
+        [DataMember(Name = "currencyFullName")]
         public string CurrencyFullName { get; set; }
 
 
-
-
-
+        [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get { return CurrencyID; }
