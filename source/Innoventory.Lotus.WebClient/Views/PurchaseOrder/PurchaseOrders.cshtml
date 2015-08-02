@@ -1,0 +1,34 @@
+﻿
+
+
+
+
+
+<div class="container" ng-controller="purchaseOrderController as purchaseOrderCtrl"> 
+	<div ng-show="apiService.isLoading">
+        @Html.Partial("~/Views/Shared/Loader.cshtml")
+    </div>
+
+    @Html.Partial("~/Views/Shared/AlertBox.cshtml")
+
+	<div>
+        <purchaseOrder-list></purchaseOrder-list>
+    </div>
+
+	<div class="form-group">
+
+        <a href="#" id="lnkNewPurchaseOrder" class="btn btn-primary" ng-click="newPurchaseOrder()">
+            Create New
+            <i class="glyphicon glyphicon-plus"></i>
+        </a>
+
+    </div>
+
+    <div ng-show="showPurchaseOrder">
+
+        <purchaseorder></purchaseorder>
+
+    </div>
+
+</div>
+
