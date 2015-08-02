@@ -74,6 +74,8 @@ namespace Innoventory.Lotus.BusinessTransition
                 
 
                 GetEntityResult<ProductViewModel> productResult = productRepository.FindById(dbContext, productId);
+
+                                            
                 if (!productResult.Success)
                 {
 
@@ -129,7 +131,11 @@ namespace Innoventory.Lotus.BusinessTransition
                     if(categoryAttributeCount > 0)
                     {
                         List<SubCategoryAttributeMapViewModel> catSubCatAttribList = subCatAttribMapResult.Entities;
-                        
+
+                        foreach (var item in catSubCatAttribList)
+                        {
+                            
+                        }
                     }
 
 

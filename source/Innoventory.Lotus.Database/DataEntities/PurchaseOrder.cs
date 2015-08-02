@@ -18,10 +18,13 @@ namespace Innoventory.Lotus.Database.DataEntities
         public decimal ShippingCost { get; set; }
         public decimal Taxes { get; set; }
 
+        [StringLength(20)]
+        public string SupplierReference { get; set; }
+
         public virtual List<PurchaseOrderItem> PurchaseOrderItems { get; set; }
 
         [ForeignKey("SupplierId")]
-        public virtual Supplier Supplier{ get; set; }
+        public virtual Supplier Supplier { get; set; }
 
 
     }

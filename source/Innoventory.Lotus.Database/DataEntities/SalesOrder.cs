@@ -12,6 +12,9 @@ namespace Innoventory.Lotus.Database.DataEntities
     {
         [Key]
         public Guid SalesOrderId { get; set; }
+
+        [StringLength(20)]
+        public string ReferenceNo { get; set; }
         public DateTime SaleOrderDate { get; set; }
         public Guid CustomerId { get; set; }
         public decimal ShippingCost { get; set; }
