@@ -60,6 +60,8 @@
     <Compile Include="Product\IProductTransition.cs" />
     <Compile Include="Product\ProductTransition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseOrder\IPurchaseOrderTransition.cs" />
+    <Compile Include="PurchaseOrder\PurchaseOrderTransition.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Innoventory.Lotus.Business\Innoventory.Lotus.Business.csproj">
