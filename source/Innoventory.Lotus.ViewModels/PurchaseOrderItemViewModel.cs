@@ -22,6 +22,9 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "productVariantId")]
         public Guid ProductVariantId { get; set; }
 
+        [DataMember(Name="productName")]
+        public string ProductName { get; set; }
+
         [DataMember(Name = "quantity")]
         public Decimal Quantity { get; set; }
                
