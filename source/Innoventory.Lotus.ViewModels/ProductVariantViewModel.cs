@@ -76,7 +76,7 @@ namespace Innoventory.Lotus.ViewModels
 
         [DisplayName("Last Supplier ID")]
         [DataMember(Name = "lastSupplierId")]
-        public int? LastSupplierId { get; set; }
+        public Guid? LastSupplierId { get; set; }
 
         [DisplayName("Is Sellable")]
         [DataMember(Name = "isSellable")]
@@ -119,7 +119,7 @@ namespace Innoventory.Lotus.ViewModels
         public List<Guid> ImageFileIds { get; set; }
 
 
-        public List<ProductVariantAttributeValueViewModel> MyProperty { get; set; }
+        public List<ProductVariantAttributeValueViewModel> ProductVariantAttributeValues { get; set; }
 
         [ScaffoldColumn(false)]
         public Guid EntityId
@@ -155,9 +155,6 @@ namespace Innoventory.Lotus.ViewModels
 
         [DataMember(Name = "shelfPrice")]
         public decimal ShelfPrice { get; set; }
-
-
-
 
     }
 }

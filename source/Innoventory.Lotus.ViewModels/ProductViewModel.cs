@@ -101,4 +101,47 @@ namespace Innoventory.Lotus.ViewModels
 
 
     }
+
+    public class ProductListItem
+    {
+        [ScaffoldColumn(false)]
+        [DataMember(Name = "productId")]
+        public Guid ProductId { get; set; }
+
+        [DisplayName("Item Type")]
+        [DataMember(Name = "itemType")]
+        public int ItemType { get; set; }
+
+        [DisplayName("Item Type Value")]
+        [DataMember(Name = "itemTypeValue")]
+        public string ItemTypeValue { get; set; }
+
+        [DisplayName("Product Name")]
+        [DataMember(Name = "productName")]
+        public string ProductName { get; set; }
+
+        [DisplayName("Description")]
+        [DataMember(Name = "description")]
+        public string Description { get; set; }
+
+
+        [DisplayName("Category Name")]
+        [DataMember(Name = "categoryName")]
+        public string CategoryName { get; set; }
+
+        [DisplayName("Sub Category ID")]
+        [DataMember(Name = "subCategoryId")]
+        public Guid SubCategoryId { get; set; }
+
+
+        [DisplayName("Sub Category Name")]
+        [DataMember(Name = "subCategoryName")]
+        public string SubCategoryName { get; set; }
+
+
+        [DisplayName("Image ID")]
+        [DataMember(Name = "imageId")]
+        public Guid? ImageId { get; set; }
+
+    }
 }

@@ -10,6 +10,6 @@ namespace Innoventory.Lotus.Business.Abstract
 {
     public interface IProductVariantRepository : IGenericRepository<ProductVariantViewModel>
     {
-        
+        PreCacheResult<ProductVariantViewModel> PreCache();
     }
 }

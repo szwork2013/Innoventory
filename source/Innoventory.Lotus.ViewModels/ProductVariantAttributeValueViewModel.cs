@@ -6,30 +6,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Innoventory.Lotus.Core.Contracts;
+using System.Runtime.Serialization;
 
 namespace Innoventory.Lotus.ViewModels
 {
-    public class ProductVariantAttributeValueViewModel : IIdentifiable
+    [DataContract]
+    public class ProductVariantAttributeValueViewModel
     {
-
-
+        
+        [DataMember(Name="productVariantId")]
         public Guid ProductVariantId { get; set; }
 
+        [DataMember(Name="attributeValueListId")]
         public Guid AttributeValueListId { get; set; }
 
-        public AttributeValueListViewModel AttributeValueList { get; set; }
+        [DataMember(Name="productAttributeName")]
+        public string  ProductAttributeName { get; set; }
 
-        [ScaffoldColumn(false)]
-        public Guid EntityId
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        [DataMember(Name = "productAttributeValue")]
+        public string  ProductAttributeValue { get; set; }
+
+       
     }
 }

@@ -10,6 +10,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Caching;
+
 
 namespace Innoventory.Lotus.Business.Concrete
 {
@@ -17,6 +19,10 @@ namespace Innoventory.Lotus.Business.Concrete
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class ProductVariantRepository : GenericRepository<ProductVariant, ProductVariantViewModel>, IProductVariantRepository
     {
+
+        MemoryCache pvCache;
+
+        public const string CONST_CACHE_PRODUCT_VARIANT = "PRODUCT_VARIANT_CACHE";
 
         protected ProductVariant GetDomainEntity(ProductVariantViewModel viewModel)
         {
@@ -109,6 +115,32 @@ namespace Innoventory.Lotus.Business.Concrete
 
             return true;
 
+        }
+
+        public PreCacheResult<ProductVariantViewModel> PreCache()
+        {
+            PreCacheResult<ProductVariantViewModel> precacheResult = new PreCacheResult<ProductVariantViewModel>();
+            
+            InnoventoryDBContext dbContext = new InnoventoryDBContext();
+
+            DbSet<ProductVariant> entitySet = dbContext.ProductVariantSet;
+
+            precacheResult.Count = entitySet.Count();
+
+            
+            List<ProductVariant> productVariants = entitySet.ToList();
+
+            List<ProductVariantViewModel> retList = new List<ProductVariantViewModel>();
+
+            Parallel.ForEach(productVariants, pv =>
+            {
+                ProductVariantViewModel pvVM = new ProductVariantViewModel();
+
+                retList.Add(ObjectMapper.PropertyMap(pv, pvVM));
+
+            });
+
+            return precacheResult;
         }
     }
 }

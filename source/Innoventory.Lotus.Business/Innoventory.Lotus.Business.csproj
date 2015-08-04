@@ -7,7 +7,7 @@
     <ProjectGuid>{CFC1B219-5EF3-4008-A178-4CBAA92112B4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Innoventory.Lotus.DataAccessInnoventory.Lotus.Business</RootNamespace>
+    <RootNamespace>Innoventory.Lotus.Business</RootNamespace>
     <AssemblyName>Innoventory.Lotus.Business</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -50,6 +50,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -95,9 +96,6 @@
     <Compile Include="Abstract\IProductRepository.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Abstract\IProductVariantAttributeValueRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Abstract\IProductVariantImageFileMapRepository.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -140,6 +138,8 @@
     <Compile Include="Abstract\IVolumeMeasureRepository.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Caching\IInnoventoryDataCache.cs" />
+    <Compile Include="Caching\InnoventoryDataCache.cs" />
     <Compile Include="Concrete\AddressRepository.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -170,9 +170,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Concrete\ProductRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Concrete\ProductVariantAttributeValueRepository.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Concrete\ProductVariantImageFileMapRepository.cs">
