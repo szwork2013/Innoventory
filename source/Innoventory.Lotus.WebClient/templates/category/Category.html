@@ -1,62 +1,65 @@
 ﻿
+<div class="panel panel-default">
+    <div class="panel-heading">
 
-
-
-<h4>{{formTitle}}</h4>
-
-<form class="form-horizontal" name="Category" novalidate role="form">
-
-
-
-    <div class="form-group">
-        <label for="CategoryName" class="control-label col-sm-6"> Category Name</label>
-
-        <div class="col-sm-18">
-
-            <input type="text" id="CategoryName" class="form-control" ng-model="categoryVM.categoryName" />
-
-        </div>
-
+        <h4 class="panel-title">{{formTitle}}</h4>
     </div>
 
-    <div class="form-group">
-        <label for="CategoryDescription" class="control-label col-sm-6"> Description</label>
+    <form class="form-horizontal" name="Category" novalidate role="form">
 
-        <div class="col-sm-18">
+        <div class="panel-body">
 
-            <input type="text" id="CategoryDescription" class="form-control" ng-model="categoryVM.description" />
+            <div class="form-group">
+                <label for="CategoryName" class="control-label col-sm-4"> Category Name</label>
 
-        </div>
-
-    </div>
-
-
-    <div class="form-group">
-        <div class="col-sm-6">
-        </div>
-        <div class="col-sm-12">
-
-            <button type="button" class="btn btn-primary btn-save" ng-click="saveCategory($event)">
                 <div class="col-sm-18">
-                    Save
+
+                    <input type="text" id="CategoryName" class="form-control" ng-model="categoryVM.categoryName" />
+
                 </div>
-                <i class="glyphicon glyphicon-floppy-disk col-sm-6"></i>
 
-
-            </button>
-
-            <button type="button" class="btn btn-warning" ng-show="showDelete" ng-click="deleteCategory($event)">
-                <div class="col-sm-18"> Delete </div>
-                <i class="glyphicon glyphicon-minus-sign col-sm-6"></i>
-
-            </button>
-
-            <button type="button" class="btn btn-default" ng-click="cancel($event)" />
-            <div class="col-sm-18">
-                Cancel
             </div>
-            <i class="glyphicon glyphicon-remove col-sm-6"></i>
-        </div>
-    </div>
 
-</form>
+            <div class="form-group">
+                <label for="CategoryDescription" class="control-label col-sm-4"> Description</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="CategoryDescription" class="form-control" ng-model="categoryVM.description" />
+
+                </div>
+
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-18">
+
+                    <button type="button" class="btn btn-primary btn-save" ng-click="saveCategory($event)">
+                        <div class="col-sm-18">
+                            Save
+                        </div>
+                        <i class="glyphicon glyphicon-floppy-disk col-sm-6"></i>
+
+
+                    </button>
+
+                    <button type="button" class="btn btn-warning" ng-show="showDelete" ng-click="deleteCategory($event)">
+                        <div class="col-sm-18"> Delete </div>
+                        <i class="glyphicon glyphicon-minus-sign col-sm-6"></i>
+
+                    </button>
+
+                    <button type="button" class="btn btn-default" ng-click="cancel($event)" />
+                    <div class="col-sm-18">
+                        Cancel
+                    </div>
+                    <i class="glyphicon glyphicon-remove col-sm-6"></i>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

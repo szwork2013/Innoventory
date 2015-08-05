@@ -1,71 +1,87 @@
 ﻿
-
-<h4>{{title}}</h4>
-
-<form class="form-horizontal" name="SubCategory" novalidate role="form">
-
-    <div class="alert alert-danger" ng-if="hasError">{{formErrors}}</div>
-
-    <div class="form-group">
-
-        <label for="SubCategoryName" class="control-label col-sm-6"> SubCategoryName</label>
-
-        <div class="col-sm-18">
-
-            <input type="text" id="SubCategoryName" ng-model="subCategoryVM.subCategoryName" class="form-control" />
-
-        </div>
-
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{title}}</h3>
     </div>
 
-    <div class="form-group">
+    <form class="form-horizontal" name="SubCategory" novalidate role="form">
 
-        <label for="Description" class="control-label col-sm-6"> Description</label>
+        <div class="alert alert-danger" ng-if="hasError">{{formErrors}}</div>
 
-        <div class="col-sm-18">
+        <div class="form-group">
 
-            <input type="text" id="Description" ng-model="subCategoryVM.description" class="form-control" />
+            <label for="SubCategoryName" class="control-label col-sm-4"> SubCategoryName</label>
 
-        </div>
+            <div class="col-sm-18">
 
-    </div>
+                <input type="text" id="SubCategoryName" ng-model="subCategoryVM.subCategoryName" class="form-control" />
 
-
-    <div class="form-group">
-
-        <div class="col-sm-6 form-group" ng-repeat="categorySelection in subCategoryVM.categories">
-            <label class="control-label col-sm-24">
-                {{categorySelection.category.categoryName}}
-                <input type="checkbox" id="categorySelection.category.categoryId" ng-model="categorySelection.isSelected" />
-            </label>
+            </div>
 
         </div>
 
-    </div>
+        <div class="form-group">
 
+            <label for="Description" class="control-label col-sm-4"> Description</label>
 
-    <div class="form-group">
-        <div class="col-sm-6">
-        </div>
-        <div class="col-sm-12">
-            <button type="button" class="btn btn-primary btn-save" ng-click="saveSubCategory($event)">
-                <div class="col-sm-18" style="text-align:center; padding-right:0px;">Save</div>
-                <i class="glyphicon glyphicon-floppy-disk col-sm-6"></i>
-            </button>
+            <div class="col-sm-18">
 
-            <button type="button" class="btn btn-warning" ng-show="showDelete">
-                <div class="col-sm-18">Delete</div>
-                <i class="glyphicon glyphicon-minus col-sm-6"></i>
-            </button>
+                <input type="text" id="Description" ng-model="subCategoryVM.description" class="form-control" />
 
-            <button type="button" class="btn btn-default" ng-click="cancel($event)">
-                
-                <div class="col-sm-18">Cancel</div>
-                <i class="glyphicon glyphicon-remove col-sm-6"></i>
-            </button>
+            </div>
 
         </div>
-    </div>
 
-</form>
 
+        <div>
+            <div class="form-group">
+                <div class="col-sm-4">
+
+                </div>
+                <span>
+                    <b>Categories</b>
+                </span>
+            </div>
+            <div class="form-group">
+                <div ng-repeat="categorySelection in subCategoryVM.categories">
+                    <div class="col-sm-4">
+
+                    </div>
+
+                    <input type="checkbox" id="{{categorySelection.category.categoryId}}" name="{{categorySelection.category.categoryId}}" ng-model="categorySelection.isSelected" />
+                    <label for="{{categorySelection.category.categoryId}}" style="font-weight:normal">
+                        {{categorySelection.category.categoryName}}
+
+                    </label>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-20">
+                <button type="button" class="btn btn-primary btn-save" ng-click="saveSubCategory($event)">
+                    <div class="col-sm-18" style="text-align:center; padding-right:0px;">Save</div>
+                    <i class="glyphicon glyphicon-floppy-disk col-sm-6"></i>
+                </button>
+
+                <button type="button" class="btn btn-warning" ng-show="showDelete">
+                    <div class="col-sm-18">Delete</div>
+                    <i class="glyphicon glyphicon-minus col-sm-6"></i>
+                </button>
+
+                <button type="button" class="btn btn-default" ng-click="cancel($event)">
+
+                    <div class="col-sm-18">Cancel</div>
+                    <i class="glyphicon glyphicon-remove col-sm-6"></i>
+                </button>
+
+            </div>
+        </div>
+
+    </form>
+
+</div>

@@ -9,13 +9,15 @@
 
 #>
 
-
-<h4><#= modelName #></h4>
-
-<div ng-show="isData">
-	<table class="table table-striped table-bordered">
-		<thead>
-			<tr>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-titel"><#= modelName #></h3>
+	</div>
+	<div class="panel-body">
+		<div ng-show="isData">
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
 				<#
 					IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
 					foreach (PropertyMetadata property in properties) {
@@ -28,19 +30,19 @@
 						continue;
 					}
 				#>
-				<th>
-					<#= GetValueExpression(property) #>
-				</th>
+						<th>
+							<#= GetValueExpression(property) #>
+						</th>
 
 				<#
 						}
 					}
 				#>
 
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="<#= modelName + " in " + modelName + "s" #> " ng-click="<#= string.Format("edit{0}", modelName()) #>)">
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="<#= modelName + " in " + modelName + "s" #> " ng-click="<#= string.Format("edit{0}", modelName()) #>)">
 			<#
 				foreach (PropertyMetadata property in properties) {
 					if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
@@ -52,20 +54,22 @@
 							continue;
 						}
 				#>
-				<td>
-					{{<#= controllerName + "." +GetCamelCaseName(GetValueExpression(property)) #>}}
-				</td>
+						<td>
+							{{<#= controllerName + "." +GetCamelCaseName(GetValueExpression(property)) #>}}
+						</td>
 				<#
 					}
 				}
 			#>
-			</tr>
-		</tbody>
+					</tr>
+				</tbody>
 
-	</table>
-</div>
-<div ng-hide="isData" class="no-data">
-    <h4>No Data</h4>
+			</table>
+		</div>
+		<div ng-hide="isData" class="no-data">
+			<h4>No Data</h4>
+		</div>
+	</div>
 </div>
 
 <#@ include file="ModelMetadataFunctions.cs.include.t4" #>

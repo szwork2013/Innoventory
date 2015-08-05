@@ -2,10 +2,11 @@
 <#@ include file="Imports.include.t4" #>
 <#@ import namespace="System.Reflection" #>
 
-
-
-<h4>{{formTitle}}</h4>
-
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-titel">{{formTitle}}</h3>
+	</div>
+	<div class="panel-body">
 <# 
 	//var viewModelName = ViewDataTypeShortName
   var modelName =  ViewDataTypeShortName.Replace("ViewModel", "");
@@ -13,54 +14,53 @@
 
 #>
 
-<form class="form-horizontal" name="<#= ViewName#>" novalidate role="form">
+		<form class="form-horizontal" name="<#= ViewName#>" novalidate role="form">
 
 	<#
 	foreach (PropertyMetadata property in ModelMetadata.Properties) {
 		if (property.Scaffold && !property.IsAssociation) {
 
 	#>
-	<div class="form-group">
+			<div class="form-group">
 
-		<label for="<#= property.PropertyName #>" class="control-label col-sm-6"> <#= property.PropertyName #></label>
+				<label for="<#= property.PropertyName #>" class="control-label col-sm-6"> <#= property.PropertyName #></label>
 		
-		<div class="col-sm-18" >
+				<div class="col-sm-18" >
 		
-			<input type="text" id="<#= property.PropertyName #>" ng-model="<#= controllerName + "VM."  + GetCamelCaseName(property.PropertyName) #>" class="form-control"/>
+					<input type="text" id="<#= property.PropertyName #>" ng-model="<#= controllerName + "VM."  + GetCamelCaseName(property.PropertyName) #>" class="form-control"/>
 		
-		</div>
+				</div>
 
-	</div>
+			</div>
 
 	<#
 		}
 	}
 	#>
-
 	
-	
-	<div class="form-group">
-		<div class="col-sm-6">
-		</div>
-		<div class="col-sm-18">
-			<button type="button" value="Save" class="btn btn-primary btn-save" ng-click= '<#= string.Format("save{0}($event)", modelName ) #>'  >
-				<div class="col-sm-18">Save</div>
-				<i class="btn-span glyphicon glyphicon-floppy-disk col-sm-6"></i>
-			</button>
+			<div class="form-group">
+				<div class="col-sm-6">
+				</div>
+				<div class="col-sm-18">
+					<button type="button" value="Save" class="btn btn-primary btn-save" ng-click= '<#= string.Format("save{0}($event)", modelName ) #>'  >
+						<div class="col-sm-18">Save</div>
+						<i class="btn-span glyphicon glyphicon-floppy-disk col-sm-6"></i>
+					</button>
 			
-			<button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete" ng-click= '<#= string.Format("delete{0}($event)", modelName) #>' >
-				<div class="col-sm-18">Delete</div>
-				<i class="btn-span glyphicon glyphicon-remove-sign col-sm-6"></i>
-			</button>		
+					<button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete" ng-click= '<#= string.Format("delete{0}($event)", modelName) #>' >
+						<div class="col-sm-18">Delete</div>
+						<i class="btn-span glyphicon glyphicon-remove-sign col-sm-6"></i>
+					</button>		
 
-			<button type="button" class="btn btn-default" ng-click="cancel($event)">
-				<div class="col-sm-18">Cancel</div>
-				<i class="glyphicon glyphicon-remove col-sm-6"></i>
-			</button>
+					<button type="button" class="btn btn-default" ng-click="cancel($event)">
+						<div class="col-sm-18">Cancel</div>
+						<i class="glyphicon glyphicon-remove col-sm-6"></i>
+					</button>
 
-		</div>
+				</div>
+			</div>
+
+		</form>
 	</div>
-
-</form>
-
+</div>
 <#@ include file="ModelMetadataFunctions.cs.include.t4" #>
