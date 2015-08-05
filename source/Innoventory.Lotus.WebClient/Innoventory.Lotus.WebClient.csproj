@@ -196,6 +196,7 @@
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\SubCategoryController.cs" />
     <Compile Include="Controllers\Api\VolumeMeasureController.cs" />
+    <Compile Include="Controllers\Mvc\MaintenanceController.cs" />
     <Compile Include="Controllers\Mvc\ProductAttributeController.cs" />
     <Compile Include="Controllers\Mvc\CategoryController.cs" />
     <Compile Include="Controllers\Mvc\HomeController.cs" />
@@ -215,6 +216,7 @@
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="custom-scripts\category\category-controller.js" />
+    <Content Include="custom-scripts\product\product-variant-model.js" />
     <Content Include="custom-scripts\shared\innoventory-directives.js" />
     <Content Include="custom-scripts\category\category-model.js" />
     <Content Include="custom-scripts\category\category-service.js" />
@@ -312,24 +314,20 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Products\Products.cshtml" />
-    <Content Include="Views\Products\ProductList.cshtml" />
-    <Content Include="Views\Products\View.cshtml" />
+    <Content Include="Views\Maintenance\Products.cshtml" />
     <Content Include="Views\Shared\InnoventoryMaster.cshtml" />
     <Content Include="Views\Shared\AdminMaster.cshtml" />
-    <Content Include="Views\Category\List.cshtml" />
-    <Content Include="Views\Category\Categories.cshtml" />
+    <Content Include="Views\Maintenance\Categories.cshtml" />
     <Content Include="Views\Shared\AlertBox.cshtml" />
     <Content Include="Views\Shared\Loader.cshtml" />
-    <Content Include="Views\SubCategory\SubCategories.cshtml" />
-    <Content Include="Views\VolumeMeasure\VolumeMeasures.cshtml" />
-    <Content Include="Views\ProductAttribute\View.cshtml" />
-    <Content Include="Views\ProductAttribute\ProductAttributes.cshtml" />
+    <Content Include="Views\Maintenance\SubCategories.cshtml" />
+    <Content Include="Views\Maintenance\VolumeMeasures.cshtml" />
+    <Content Include="Views\Maintenance\ProductAttributes.cshtml" />
     <Content Include="Views\PurchaseOrder\PurchaseOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Views\Products\Templates\" />
+    <Folder Include="Views\ProductAttribute\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -126,8 +126,8 @@
             $scope.subCategoryVM.categories;
 
             if (hasErrors) {
-                apiService.hasErrors = true;
-                apiService.errors = errors;
+                apiService.showError(errors);
+                
                 return;
             };
 

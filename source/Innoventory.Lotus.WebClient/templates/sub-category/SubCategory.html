@@ -49,18 +49,19 @@
         </div>
         <div class="col-sm-12">
             <button type="button" class="btn btn-primary btn-save" ng-click="saveSubCategory($event)">
-                Save
-                <i class="glyphicon glyphicon-floppy-disk"></i>
+                <div class="col-sm-18" style="text-align:center; padding-right:0px;">Save</div>
+                <i class="glyphicon glyphicon-floppy-disk col-sm-6"></i>
             </button>
 
-            <button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete">
-                Delete
-                <i class="glyphicon glyphicon-minus"></i>
+            <button type="button" class="btn btn-warning" ng-show="showDelete">
+                <div class="col-sm-18">Delete</div>
+                <i class="glyphicon glyphicon-minus col-sm-6"></i>
             </button>
 
             <button type="button" class="btn btn-default" ng-click="cancel($event)">
-                Cancel
-                <i class="glyphicon glyphicon-remove"></i>
+                
+                <div class="col-sm-18">Cancel</div>
+                <i class="glyphicon glyphicon-remove col-sm-6"></i>
             </button>
 
         </div>

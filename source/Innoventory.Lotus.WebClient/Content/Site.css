@@ -91,7 +91,7 @@ header .jumbotron .title {
 }
 
 .btn {
-    min-width: 150px;
+    min-width: 120px;
 }
 
 .table thead {
@@ -116,41 +116,53 @@ header .jumbotron .title {
 }
 
 .btn {
-    line-height: 33px;
+    line-height: 35px;
     font-size: 14px;
     padding: 0 10px;
     transition: all 0.3s ease-in-out 0s;
     width: auto;
-    min-width: 140px;
+    min-width: 160px;
 }
 
 .btn-save {
     background: #5ea72d;
 }
 
-    .btn-save:hover {
+    .btn-save:hover, .btn-save:active, .btn-save:focus {
         background: #4D961C;
     }
 
-    .btn-save:active {
-        background: #5ea72d;
-    }
+    
 
 
+
+.btn span {
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 0 0 0 1px;
+    font-size: 20px;
+    padding: 0px 0px 0 2px;
+    line-height: 30px;
+    margin: 3px 5px 0px 5px;
+    float: none;
+    
+    
+}
 
 .btn i {
     border-color: #ccc;
     border-style: solid;
     border-width: 0 0 0 1px;
     font-size: 20px;
-    margin: 0 0 0 5px;
-    padding: 0 0 0 10px;
-    line-height: 31px;
-    float: right;
-    margin-left: 10px;
+    padding: 0px 0px 0 2px;
+    line-height: 30px;
+    margin: 3px 5px 0px 5px;
+    float: none;
+     
 }
 
-.btn-default i {
+
+.btn-default span {
     border-left: #fff solid 1px;
 }
 
@@ -163,7 +175,7 @@ header .jumbotron .title {
     color: #f9fbfc;
 }
 
-    .btn-default:hover {
+    .btn-default:hover, .btn-default:active, .btn-default:focus {
         background: #a1a1a3;
         color: #f9fbfc;
     }
@@ -172,7 +184,7 @@ header .jumbotron .title {
         background: #a1a1a3;
         color: #f9fbfc;
     }
-
+    
 
 .row-selected {
     background: linear-gradient(top, #d2dbe0 0%, #c1d1dd 100%);
@@ -190,7 +202,6 @@ div.no-data {
 
 span.caret {
     margin-left: 8px;
-    
 }
 
 .navbar-inverse {

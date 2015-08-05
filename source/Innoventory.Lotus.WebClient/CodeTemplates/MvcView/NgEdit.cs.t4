@@ -44,18 +44,18 @@
 		</div>
 		<div class="col-sm-18">
 			<button type="button" value="Save" class="btn btn-primary btn-save" ng-click= '<#= string.Format("save{0}($event)", modelName ) #>'  >
-			 Save
-				<i class="btn-span glyphicon glyphicon-floppy-disk btn-span"></i>
+				<div class="col-sm-18">Save</div>
+				<i class="btn-span glyphicon glyphicon-floppy-disk col-sm-6"></i>
 			</button>
 			
 			<button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete" ng-click= '<#= string.Format("delete{0}($event)", modelName) #>' >
-				Delete
-				<i class="btn-span glyphicon glyphicon-remove-sign btn-span"></i>
+				<div class="col-sm-18">Delete</div>
+				<i class="btn-span glyphicon glyphicon-remove-sign col-sm-6"></i>
 			</button>		
 
 			<button type="button" class="btn btn-default" ng-click="cancel($event)">
-				Cancel
-				<i class="glyphicon glyphicon-remove"></i>
+				<div class="col-sm-18">Cancel</div>
+				<i class="glyphicon glyphicon-remove col-sm-6"></i>
 			</button>
 
 		</div>

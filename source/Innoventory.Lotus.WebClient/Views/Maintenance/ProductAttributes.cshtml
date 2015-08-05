@@ -1,6 +1,4 @@
-﻿
-
-@{
+﻿@{
     ViewBag.Title = "Product Attribute";
     ViewBag.Name = "ProductAttribute";
 
@@ -9,8 +7,8 @@
 
 @section scripts
 {
-<script src="~/custom-scripts/productAttribute/product-attribute-model.js"></script>
-<script src="~/custom-scripts/productAttribute/product-attribute-controller.js"></script>
+    <script src="~/custom-scripts/productAttribute/product-attribute-model.js"></script>
+    <script src="~/custom-scripts/productAttribute/product-attribute-controller.js"></script>
 }
 
 @section footerScript
@@ -33,8 +31,10 @@
     <div class="form-group">
 
         <a href="#" id="lnkNewProductAttribute" class="btn btn-primary" ng-click="newProductAttribute()">
-            Create New
-            <i class="glyphicon glyphicon-plus"></i>
+            <div class="col-sm-18">
+                Create New
+            </div>
+            <i class="glyphicon glyphicon-plus col-sm-6"></i>
         </a>
 
     </div>
