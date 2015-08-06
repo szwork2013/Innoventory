@@ -132,11 +132,11 @@ header .jumbotron .title {
         background: #4D961C;
     }
 
-    
 
 
 
-.btn span {
+
+/*.btn span {
     border-color: #ccc;
     border-style: solid;
     border-width: 0 0 0 1px;
@@ -145,9 +145,7 @@ header .jumbotron .title {
     line-height: 30px;
     margin: 3px 5px 0px 5px;
     float: none;
-    
-    
-}
+}*/
 
 .btn i {
     border-color: #ccc;
@@ -158,17 +156,17 @@ header .jumbotron .title {
     line-height: 30px;
     margin: 3px 5px 0px 5px;
     float: none;
-     
 }
 
 
-.btn-default span {
+.btn-default i {
     border-left: #fff solid 1px;
 }
 
 .btn-alert {
     border-left: #fff solid 1px;
 }
+
 
 .btn-default {
     background: #9d9a9a;
@@ -184,7 +182,30 @@ header .jumbotron .title {
         background: #a1a1a3;
         color: #f9fbfc;
     }
-    
+
+.btn-search {
+    min-width: 24px;
+    font-size: 18px;
+    border-radius: 3px;
+    border: 1px solid grey;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    background: linear-gradient(top, #cfc7c7 0%,  #a1a1a3 100%);
+    background: -moz-linear-gradient(top, #cfc7c7 0%,  #a1a1a3 100%);
+    background: -webkit-linear-gradient(top, #cfc7c7 0%,  #a1a1a3 100%);
+    background: -ms-linear-gradient(top, #cfc7c7 0%,  #a1a1a3 100%);
+}
+
+.btn-search:hover{
+    background: #cfc7c7;
+}
+
+/*.panel-default > .panel-heading {
+    background: #d9edf7;
+    border-color: #bce8f1;
+}*/
+
+
 
 .row-selected {
     background: linear-gradient(top, #d2dbe0 0%, #c1d1dd 100%);
@@ -246,7 +267,10 @@ li.dropdown:hover > ul.dropdown-menu {
     display: block;
 }
 
-
+.data-grid{
+    width:100%;
+    height: 100%;
+}
 
 .dropdown-menu {
     border: 1px solid #0a1e4d;

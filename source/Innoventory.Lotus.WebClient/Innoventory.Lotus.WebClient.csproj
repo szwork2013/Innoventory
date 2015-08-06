@@ -215,6 +215,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="Content\ui-grid.css" />
+    <Content Include="Content\ui-grid.min.css" />
+    <Content Include="Content\ui-grid.svg" />
     <Content Include="custom-scripts\category\category-controller.js" />
     <Content Include="custom-scripts\product\product-variant-model.js" />
     <Content Include="custom-scripts\shared\innoventory-directives.js" />
@@ -277,6 +280,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="CodeTemplates\MvcView\NgEmpty.cs.t4" />
+    <Content Include="Content\ui-grid.woff" />
+    <Content Include="Content\ui-grid.ttf" />
+    <Content Include="Content\ui-grid.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -288,6 +294,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ui-grid.js" />
+    <Content Include="Scripts\ui-grid.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="templates\product-detail.html" />
     <Content Include="templates\category\Category.html" />

@@ -1,24 +1,51 @@
-﻿
+﻿@{
+    ViewBag.Title = "Category";
+    ViewBag.Name = "Category";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+@section scripts
+{
+    
+}
 
-<div class="container" ng-controller="productController as productCtrl">
+<div class="container">
 
-    <div ng-show="apiService.isLoading">
+    @*<div ng-show="apiService.isLoading">
         @Html.Partial("~/Views/Shared/Loader.cshtml")
-    </div>
+    </div>*@
 
     @Html.Partial("~/Views/Shared/AlertBox.cshtml")
 
-    <div class="search-panel container">
-
-        <div class="col-sm-12">
-            <input type="text" />
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"> Products </h3>
         </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class=" col-sm-10">
+                    <input type="text" class="form-control" placeholder="Product Name" />
 
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control" id="category">
+                        <option>Select Category</option>
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control" id="subCategory" disabled="disabled"></select>
+                </div>
+
+                <button class="btn-search">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </div>
+
+        </div>
     </div>
 
-    <div style="margin:2px auto;">
+    @*<div style="margin:2px auto;">
         <product-list></product-list>
-    </div>
+    </div>*@
 
     <div class="form-group">
 

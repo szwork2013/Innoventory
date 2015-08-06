@@ -12,7 +12,7 @@
     }]);
 
     
-    var mainApp = angular.module("mainApp", ['common', 'innoventory-directives']);
+    var mainApp = angular.module("mainApp", ['common', 'innoventory-directives', 'ui.grid', 'ui.grid.selection']);
 
     mainApp.controller("productController", ["$scope", "$q", "productService", function ($scope, $q, productService) {
 
@@ -29,8 +29,8 @@
 
     var categoryModule = angular.module("categoryModule", ['common']);
 
-    mainApp.controller("categoryController", ["$scope", "$q", "apiService", function ($scope, $q, apiService) {
-        Innoventory.categoryController($scope, $q, apiService);
+    mainApp.controller("categoryController", ["$scope", "$q", "apiService", "$interval", 'uiGridConstants', function ($scope, $q, apiService, $interval, uiGridConstants) {
+        Innoventory.categoryController($scope, $q, apiService, $interval, uiGridConstants);
     }]);
 
 
