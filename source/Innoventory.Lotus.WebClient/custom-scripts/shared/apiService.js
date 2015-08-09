@@ -214,9 +214,9 @@
 
             var y = h - 300 - 50;
 
-            alertBox.style.position = "absolute";
-            alertBox.style.left = x + "px";
-            alertBox.style.top = y + "px";
+            alertBox.style.position = "fixed";
+            alertBox.style.right = 5 + "px";
+            alertBox.style.bottom = 5 + "px";
 
 
             $timeout(dismissAlert, 6000);

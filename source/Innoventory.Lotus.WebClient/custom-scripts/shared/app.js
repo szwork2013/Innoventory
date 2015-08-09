@@ -12,7 +12,7 @@
     }]);
 
     
-    var mainApp = angular.module("mainApp", ['common', 'innoventory-directives', 'ui.grid', 'ui.grid.selection']);
+    var mainApp = angular.module("mainApp", ['common', 'innoventory-directives', 'ui.grid', 'ui.grid.selection', 'ui.grid.pagination', 'ui.grid.autoResize']);
 
     mainApp.controller("productController", ["$scope", "$q", "productService", function ($scope, $q, productService) {
 

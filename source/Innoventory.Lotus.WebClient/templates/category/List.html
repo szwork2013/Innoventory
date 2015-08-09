@@ -4,7 +4,7 @@
         <h3 class="panel-title">Categories</h3>
     </div>
    
-        <table class="table table-striped table-bordered" ng-show="isData">
+        <!--<table class="table table-striped table-bordered" ng-show="isData">
             <thead>
                 <tr>
                     <th>
@@ -33,14 +33,18 @@
                 </tr>
 
             </tbody>
-        </table>
+        </table>-->
+
+    <div ui-grid="gridOptions" ui-grid-selection ui-grid-pagination ui-grid-auto-resize ng-style="tableStyle">
+
+        <div style="float:none; height:1px;"></div>
+        
+    </div>
     
     <div ng-hide="isData" class="no-data">
         <h4>No Data</h4>
     </div>
 
-    <!--<div ui-grid="gridOptions" >
-
-    </div>-->
-
+    
+    <div style="float:none; height:1px;"></div>
 </div>
