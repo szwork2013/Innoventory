@@ -194,6 +194,7 @@
     <Compile Include="Controllers\Api\ProductAttributeController.cs" />
     <Compile Include="Controllers\Api\CategoryController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
+    <Compile Include="Controllers\Api\ProductOdataController.cs" />
     <Compile Include="Controllers\Api\SubCategoryController.cs" />
     <Compile Include="Controllers\Api\VolumeMeasureController.cs" />
     <Compile Include="Controllers\Mvc\MaintenanceController.cs" />
@@ -219,6 +220,8 @@
     <Content Include="Content\ui-grid.min.css" />
     <Content Include="Content\ui-grid.svg" />
     <Content Include="custom-scripts\category\category-controller.js" />
+    <Content Include="custom-scripts\product\product-grid.js" />
+    <Content Include="custom-scripts\product\product-variant-grid.js" />
     <Content Include="custom-scripts\product\product-variant-model.js" />
     <Content Include="custom-scripts\shared\innoventory-directives.js" />
     <Content Include="custom-scripts\category\category-model.js" />
@@ -297,15 +300,20 @@
     <Content Include="Scripts\ui-grid.js" />
     <Content Include="Scripts\ui-grid.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="templates\category\SelectCategory.html" />
     <Content Include="templates\product-detail.html" />
     <Content Include="templates\category\Category.html" />
     <Content Include="templates\category\List.html" />
+    <Content Include="templates\product-variant\List.html" />
+    <Content Include="templates\product-variant\ProductVariant.html" />
+    <Content Include="templates\product\List.html" />
     <Content Include="templates\sub-category\List.html" />
     <Content Include="templates\sub-category\SubCategory.html" />
     <Content Include="templates\volume-measure\List.html" />
     <Content Include="templates\volume-measure\VolumeMeasure.html" />
     <Content Include="templates\product-attribute\List.html" />
     <Content Include="templates\product-attribute\ProductAttribute.html" />
+    <Content Include="templates\product\Product.html" />
     <Content Include="Views\PurchaseOrder\PurchaseOrder.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

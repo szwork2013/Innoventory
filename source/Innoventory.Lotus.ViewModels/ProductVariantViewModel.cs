@@ -145,7 +145,7 @@ namespace Innoventory.Lotus.ViewModels
         public string AttributeValuesString { get; set; }
 
         [DataMember(Name = "availableQuantity")]
-        public int AvailableQuantity { get; set; }
+        public decimal AvailableQuantity { get; set; }
 
         [DataMember(Name = "skuCode")]
         public string SKUCode { get; set; }

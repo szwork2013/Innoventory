@@ -31,9 +31,18 @@
         me.categoryName = "";
         me.subCategoryId = {};
         me.subCategoryName = "";
-        me.imageId = [];
+        me.imageId = {};
     };
 
+    var productFilterOption = function () {
+        var me = this;
+
+        me.searchTerm = "";
+        me.subCategoryId = {};
+        me.categoryId = {};
+    }
+
+    inv.productFilterOption = productFilterOption;
     inv.productModel = productModel;
     inv.productListItemModel = productListItemModel;
 

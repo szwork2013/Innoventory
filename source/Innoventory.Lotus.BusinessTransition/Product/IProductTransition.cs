@@ -12,9 +12,9 @@ namespace Innoventory.Lotus.BusinessTransition
 
         GetEntityResult<ProductViewModel> GetProduct(Guid productId);
 
-        FindResult<ProductViewModel> GetAllProducts(ProductFilterOption filterOption, SortOption sortOption);
+        FindResult<ProductListItem> GetAllProductListItems(ProductFilterOption filterOption);
 
-        UpdateResult<ProductViewModel> UpdateProduct(ProductViewModel productViewModel);
+        UpdateResult<ProductViewModel> SaveProduct(ProductViewModel productViewModel);
 
         bool UpdateProductToInactive(Guid productId);
 

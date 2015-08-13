@@ -142,7 +142,40 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
                 return response;
             });
 
+
         }
 
+        [HttpGet]
+        [Route("getVolumeMeasureSelectList")]
+        public HttpResponseMessage GetCategorySelectList(HttpRequestMessage request)
+        {
+            FindResult<VolumeMeasureViewModel> findVolumeMeasureResult = _volumeMeasureRepository.GetAll();
+
+            SelectEntityModelListResult<VolumeMeasureViewModel> selectVolumeMeasures = null;
+
+            HttpResponseMessage response = null;
+
+            return GetHttpResponse(request, () =>
+            {
+
+                if (findVolumeMeasureResult.Success)
+                {
+                    selectVolumeMeasures = new SelectEntityModelListResult<VolumeMeasureViewModel>(findVolumeMeasureResult.Entities);
+                    selectVolumeMeasures.Success = true;
+                }
+                else
+                {
+                    selectVolumeMeasures = new SelectEntityModelListResult<VolumeMeasureViewModel>(new List<VolumeMeasureViewModel>());
+                    selectVolumeMeasures.Success = false;
+                }
+
+                response = new HttpResponseMessage(HttpStatusCode.OK);
+
+                response.Content = new ObjectContent<SelectEntityModelListResult<VolumeMeasureViewModel>>(selectVolumeMeasures, Configuration.Formatters.JsonFormatter);
+
+                return response;
+
+            });
+        }
     }
 }

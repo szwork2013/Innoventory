@@ -10,11 +10,11 @@ namespace Innoventory.Lotus.ViewModels
     [DataContract]
     public class ProductFilterOption
     {
-        [DataMember(Name = "category")]
-        public Guid Category { get; set; }
+        [DataMember(Name = "categoryId")]
+        public Guid CategoryId { get; set; }
 
-        [DataMember(Name = "subCategory")]
-        public Guid SubCategory { get; set; }
+        [DataMember(Name = "subCategoryId")]
+        public Guid SubCategoryId { get; set; }
 
         [DataMember(Name = "searchString")]
         public string SearchString { get; set; }

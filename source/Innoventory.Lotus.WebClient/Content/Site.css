@@ -109,10 +109,25 @@ header .jumbotron .title {
     animation: spin 2s infinite linear;
 }
 
+.btn-div {
+    width: 75%;
+    float: left;
+    text-align: center;
+}
+
 .btn-span {
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 0 0 0 1px;
+    font-size: 20px;
+    padding: 0px;
+    line-height: 30px;
+    margin: 3px 5px 0px 5px;
+    float: none;
     padding-left: 5px;
-    text-align: right;
-    width: 30px;
+    text-align: center;
+    width: 25%;
+    float: right;
 }
 
 .btn {
@@ -190,10 +205,10 @@ header .jumbotron .title {
     border: 1px solid grey;
     padding-top: 4px;
     padding-bottom: 2px;
-    background: linear-gradient(top, #cfc7c7 0%, #a1a1a3 100%);
-    background: -moz-linear-gradient(top, #cfc7c7 0%, #a1a1a3 100%);
-    background: -webkit-linear-gradient(top, #cfc7c7 0%, #a1a1a3 100%);
-    background: -ms-linear-gradient(top, #cfc7c7 0%, #a1a1a3 100%);
+    background: linear-gradient(top, #f9f9f9 0%, #bfbfbf 100%);
+    background: -moz-linear-gradient(top, #f9f9f9 0%, #bfbfbf 100%);
+    background: -webkit-linear-gradient(top, #f9f9f9 0%, #bfbfbf 100%);
+    background: -ms-linear-gradient(top, #f9f9f9 0%, #bfbfbf 100%);
 }
 
     .btn-search:hover {
@@ -205,6 +220,12 @@ header .jumbotron .title {
     border-color: #bce8f1;
 }*/
 
+
+
+.panel-form {
+    border: 1px solid #ddd;
+    background: #fafafa;
+}
 
 .panel-default {
     border: none;
@@ -305,25 +326,32 @@ li.dropdown:hover > ul.dropdown-menu {
 
 
 .data-grid {
-    
     height: auto;
 }
 
 .ui-grid-viewport {
-    
     padding-bottom: 10px;
+    overflow: auto;
 }
 
 .ui-grid-header {
     background: #6391ef;
+    border-bottom: 3px solid #aaa;
 }
+
 
 .ui-grid-row {
     border-bottom: 1px solid gray;
 }
 
-.data-row {
-    border-bottom: 1px solid gray;
+.ui-grid .ui-grid-row .ui-grid-cell {
+    border-bottom: 1px solid #ccc;
+}
+
+.ui-grid-cell-number {
+    border-bottom: 1px solid #ccc;
+    text-align: right;
+    
 }
 
 .ui-grid-pager-panel {

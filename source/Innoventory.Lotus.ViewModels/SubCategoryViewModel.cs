@@ -12,7 +12,7 @@ namespace Innoventory.Lotus.ViewModels
 {
 
     [DataContract]
-    public class SubCategoryViewModel : IIdentifiable
+    public class SubCategoryViewModel : IIdentifiable, IDisplayName
     {
 
         [Key]
@@ -39,20 +39,27 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "categoryIds")]
         public List<Guid> CategoryIds { get; set; }
 
+        [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get { return SubCategoryId; }
             set { SubCategoryId = value; }
+        }
+
+        [ScaffoldColumn(false)]
+        public string DisplayName
+        {
+            get { return SubCategoryName; }
         }
     }
 
     [DataContract]
     public class SubCategoryCategories
     {
-        [DataMember(Name="subCategory")]
+        [DataMember(Name = "subCategory")]
         public SubCategoryViewModel SubCategory { get; set; }
 
-        [DataMember(Name="categorySelections")]
+        [DataMember(Name = "categorySelections")]
         public List<CategorySelectionViewModel> CategorySelections { get; set; }
     }
 

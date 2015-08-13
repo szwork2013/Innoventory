@@ -14,6 +14,10 @@
             pageSize: 10,
         }
 
+        $scope.onDblClickRow = function (rowItem) {
+            alert(rowItem.entity.categoryName);
+        };
+
         $scope.gridOptions = {
             enableRowSelection: true,
             enableRowHeaderSelection: false,
@@ -25,12 +29,12 @@
             enablePaging: true,
             paginationPageSizes: [10, 20, 30],
             paginationPageSize: 10,
-            //rowTemplate: '<div ng-style="{ \'cursor\': row.cursor }" ng-repeat="col in renderedColumns" ng-class="col.colIndex()" class="ngCell {{col.cellClass}}"><div class="ngVerticalBar" ng-style="{height: rowHeight}" ng-class="{ ngVerticalBarVisible: !$last }">&nbsp;</div><div ng-cell></div></div>',
-
+            
             verticalScrollbarVisible: false,
             columnDefs: [
             { field: 'categoryName', displayName: 'Category Name' },
-            { field: 'description', displayName: 'Description' }
+            { field: 'description', displayName: 'Description' },
+            //{ field: 'amount', displayName: 'Currency', cellClass: 'ui-grid-cell-number', cellFilter: "currency:'£'", width: "15%" },
             ]
 
         };
@@ -58,17 +62,16 @@
             });
         };
 
-        $scope.toggleRowSelection = function () {
-            $scope.gridApi.selection.clearSelectedRows();
-            $scope.gridOptions.enableRowSelection = !$scope.gridOptions.enableRowSelection;
-            $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.OPTIONS);
-        };
+        getAmount = function () {
 
+            return 12345.00;
+        }
 
 
         $scope.apiService = apiService;
         $scope.showCategory = false;
 
+        //New Category
         $scope.newCategory = function () {
 
             $scope.categoryVM = new Innoventory.categoryModel();
@@ -104,16 +107,16 @@
 
 
 
-                height = ((rowCount * rowHeight) + headerHeight) + 30;
+                height = ((rowCount * rowHeight) + headerHeight + 10) + 30;
 
 
                 //height = (dataLength * rowHeight) + headerHeight - 20 + "px";
 
-                $scope.gridApi.grid.gridHeight = height - 30;
+                $scope.gridApi.grid.gridHeight = height - 10;
 
 
                 if (height < $scope.gridApi.grid.gridHeight) {
-                    height = $scope.gridApi.grid.gridHeight;
+                    height = $scope.gridApi.grid.gridHeight + 10;
                 }
 
 
@@ -133,6 +136,10 @@
                     if ($scope.categories && $scope.categories.length > 0) {
                         $scope.isData = true;
                         $scope.gridOptions.data = result.Entities;
+
+                       
+
+                        
 
                         //$interval(function () { $scope.gridApi.selection.selectRow($scope.gridOptions.data[0]); }, 0, 1);
                         getTableStyle();
@@ -164,7 +171,6 @@
         }
 
         $scope.saveCategory = function (e) {
-
 
             var errors = [];
             var hasErrors = false;

@@ -145,6 +145,38 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
             });
 
         }
+        [HttpGet]
+        [Route("getCategorySelectList")]
+        public HttpResponseMessage GetCategorySelectList(HttpRequestMessage request)
+        {
+            FindResult<CategoryViewModel> findCategoryResult = _categoryRepository.GetAll();
+
+            SelectEntityModelListResult<CategoryViewModel> selectCategories = null;
+
+            HttpResponseMessage response = null;
+
+            return GetHttpResponse(request, () =>
+            {
+
+                if (findCategoryResult.Success)
+                {
+                    selectCategories = new SelectEntityModelListResult<CategoryViewModel>(findCategoryResult.Entities);
+                    selectCategories.Success = true;
+                }
+                else
+                {
+                    selectCategories = new SelectEntityModelListResult<CategoryViewModel>(new List<CategoryViewModel>());
+                    selectCategories.Success = false;
+                }
+
+                response = new HttpResponseMessage(HttpStatusCode.OK);
+
+                response.Content = new ObjectContent<SelectEntityModelListResult<CategoryViewModel>>(selectCategories, Configuration.Formatters.JsonFormatter);
+
+                return response;
+
+            });
+        }
 
     }
 }

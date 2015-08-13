@@ -11,32 +11,32 @@ using System.Runtime.Serialization;
 namespace Innoventory.Lotus.ViewModels
 {
     [DataContract]
-    public class VolumeMeasureViewModel:IIdentifiable
+    public class VolumeMeasureViewModel : IIdentifiable, IDisplayName
     {
         [Key]
-        [DataMember(Name="volumeMeasureId")]
+        [DataMember(Name = "volumeMeasureId")]
         public Guid VolumeMeasureId { get; set; }
 
         [StringLength(50)]
         [DataMember(Name = "volumeMeasureName")]
         public string VolumeMeasureName { get; set; }
-        
+
         [StringLength(5)]
         [DataMember(Name = "shortName")]
         public string ShortName { get; set; }
 
-
+        [ScaffoldColumn(false)]
 
         public Guid EntityId
         {
-            get
-            {
-                return VolumeMeasureId;
-            }
-            set
-            {
-                VolumeMeasureId = value;
-            }
+            get { return VolumeMeasureId; }
+            set { VolumeMeasureId = value; }
+        }
+
+        [ScaffoldColumn(false)]
+        public string DisplayName
+        {
+            get { return string.Format("{0} - ({1})", VolumeMeasureName, ShortName); }
         }
     }
 }

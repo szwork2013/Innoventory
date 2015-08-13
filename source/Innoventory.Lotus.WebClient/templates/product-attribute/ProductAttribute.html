@@ -29,21 +29,21 @@
 
     </div>
 
-<div class="form-group">
+    <div class="form-group">
 
-    <label class="control-label col-sm-6"> Sub Categories</label>
+        <label class="control-label col-sm-6"> Sub Categories</label>
 
-    <div class="col-sm-6 form-group" ng-repeat="subCategorySelection in productAttributeVM.subCategorySelections">
+        <div class="col-sm-6 form-group" ng-repeat="subCategorySelection in productAttributeVM.subCategorySelections">
 
-        <label class="control-label col-sm-24">
-            {{subCategorySelection.subCategory.subCategoryName}}
-            <input type="checkbox" id="subCategorySelection.subCategory.subCategoryId" ng-model="subCategorySelection.isSelected">
-        </label>
+            <label class="control-label col-sm-24">
+                {{subCategorySelection.subCategory.subCategoryName}}
+                <input type="checkbox" id="subCategorySelection.subCategory.subCategoryId" ng-model="subCategorySelection.isSelected">
+            </label>
+
+        </div>
+
 
     </div>
-
-
-</div>
 
 
     <div class="form-group">
@@ -51,18 +51,18 @@
         </div>
         <div class="col-sm-18">
             <button type="button" value="Save" class="btn btn-primary btn-save" ng-click='saveProductAttribute($event)'>
-                Save
+                <div class="btn-div">Save</div>
                 <span class="btn-span glyphicon glyphicon-floppy-disk btn-span"></span>
             </button>
 
             <button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete" ng-click='deleteProductAttribute($event)'>
-                Delete
+                <div class="btn-div">Delete</div>
                 <span class="btn-span glyphicon glyphicon-remove-sign btn-span"></span>
             </button>
 
             <button type="button" class="btn btn-default" ng-click="cancel($event)">
-                Cancel
-                <span class="glyphicon glyphicon-remove"></span>
+                <div class="btn-div">Cancel</div>
+                <span class="glyphicon glyphicon-remove btn-span"></span>
             </button>
 
         </div>

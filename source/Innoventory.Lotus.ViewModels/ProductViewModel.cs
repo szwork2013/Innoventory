@@ -11,7 +11,7 @@ using Innoventory.Lotus.Core.Contracts;
 namespace Innoventory.Lotus.ViewModels
 {
     [DataContract]
-    public class ProductViewModel : IIdentifiable
+    public class ProductViewModel : IIdentifiable, IDisplayName
     {
         [ScaffoldColumn(false)]
         [DataMember(Name = "productId")]
@@ -89,17 +89,16 @@ namespace Innoventory.Lotus.ViewModels
         [ScaffoldColumn(false)]
         public Guid EntityId
         {
-            get
-            {
-                return ProductId;
-            }
-            set
-            {
-                ProductId = value;
-            }
+            get { return ProductId; }
+            set { ProductId = value; }
         }
 
 
+        [ScaffoldColumn(false)]
+        public string DisplayName
+        {
+            get { return ProductName; }
+        }
     }
 
     public class ProductListItem
@@ -123,6 +122,10 @@ namespace Innoventory.Lotus.ViewModels
         [DisplayName("Description")]
         [DataMember(Name = "description")]
         public string Description { get; set; }
+
+        [DisplayName("Category Id")]
+        [DataMember(Name = "categoryId")]
+        public Guid CategoryId { get; set; }
 
 
         [DisplayName("Category Name")]

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Innoventory.Lotus.Core.Contracts
 {
-    public interface IIdentifiable
+    public interface IDisplayName
     {
-        Guid EntityId { get; set; }
-
+        string DisplayName { get; }
     }
 }

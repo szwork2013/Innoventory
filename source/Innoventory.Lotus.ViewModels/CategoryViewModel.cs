@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Innoventory.Lotus.ViewModels
 {
     [DataContract]
-    public class CategoryViewModel : IIdentifiable
+    public class CategoryViewModel : IIdentifiable, IDisplayName
     {
         //public CategoryViewModel (Category category)
         //{ }
@@ -36,6 +36,17 @@ namespace Innoventory.Lotus.ViewModels
             get { return CategoryId; }
 
             set { CategoryId = value; }
+        }
+
+
+        [ScaffoldColumn(false)]
+        public string DisplayName
+        {
+            get
+            {
+                return CategoryName;
+            }
+           
         }
     }
 }

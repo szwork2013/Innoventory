@@ -26,6 +26,8 @@ namespace Innoventory.Lotus.Bootsraper
 
             catalog.Catalogs.Add(new AssemblyCatalog(typeof(SubCategoryTransition).Assembly));
 
+            //catalog.Catalogs.Add(new AssemblyCatalog(typeof(ProductTransition).Assembly));
+
             CompositionContainer container = new CompositionContainer(catalog);
 
             return container;

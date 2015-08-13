@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Innoventory.Lotus.ViewModels
 {
     [DataContract]
-    public class CountryViewModel:IIdentifiable 
+    public class CountryViewModel:IIdentifiable , IDisplayName
     {
 
         [ScaffoldColumn(false)]
@@ -42,6 +42,11 @@ namespace Innoventory.Lotus.ViewModels
         {
             get{return CountryID; }
             set {CountryID = value;}
+        }
+
+        public string DisplayName
+        {
+            get { return string.Format("{0}({1})", CountryName, CountryCode); }
         }
     }
 }

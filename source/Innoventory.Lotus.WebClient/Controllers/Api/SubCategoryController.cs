@@ -88,5 +88,50 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
 
             });
         }
+
+
+        [HttpGet]
+        [Route("getSubCategorySelectList/{id}")]
+        public HttpResponseMessage GetCategorySelectList(HttpRequestMessage request, Guid? id = null)
+        {
+
+            FindResult<SubCategoryViewModel> findSubCategoryResult = new FindResult<SubCategoryViewModel>();
+
+            if (id.HasValue)
+            {
+                findSubCategoryResult = subCategoryTransition.GetAllSubcategoriesByCategory(id.Value);
+            }
+            else
+            {
+                findSubCategoryResult = subCategoryTransition.GetAllSubcategories();
+            }
+
+
+            SelectEntityModelListResult<SubCategoryViewModel> selectSubCategories = null;
+
+            HttpResponseMessage response = null;
+
+            return GetHttpResponse(request, () =>
+            {
+
+                if (findSubCategoryResult.Success)
+                {
+                    selectSubCategories = new SelectEntityModelListResult<SubCategoryViewModel>(findSubCategoryResult.Entities);
+                    selectSubCategories.Success = true;
+                }
+                else
+                {
+                    selectSubCategories = new SelectEntityModelListResult<SubCategoryViewModel>(new List<SubCategoryViewModel>());
+                    selectSubCategories.Success = false;
+                }
+
+                response = new HttpResponseMessage(HttpStatusCode.OK);
+
+                response.Content = new ObjectContent<SelectEntityModelListResult<SubCategoryViewModel>>(selectSubCategories, Configuration.Formatters.JsonFormatter);
+
+                return response;
+
+            });
+        }
     }
 }

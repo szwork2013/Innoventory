@@ -67,6 +67,34 @@ namespace Innoventory.Lotus.BusinessTransition
             return subCategoryCategories;
         }
 
+        public FindResult<SubCategoryViewModel> GetAllSubcategoriesByCategory(Guid id)
+        {
+            FindResult<SubCategoryViewModel> entityResult = new FindResult<SubCategoryViewModel>() { Success = false };
+
+            List<SubCategoryViewModel> subCategories = new List<SubCategoryViewModel>();
+
+            using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
+            {
+                var query = from c in dbContext.CategorySet
+                            join csbmap in dbContext.CategorySubCategoryMapSet
+                            on c.CategoryId equals csbmap.CategoryId
+                            join sb in dbContext.SubCategorySet
+                            on csbmap.SubCategoryId equals sb.SubCategoryId
+                            where c.CategoryId == id
+                            select sb;
+
+                foreach (var item in query)
+                {
+                    subCategories.Add(ObjectMapper.PropertyMap(item, new SubCategoryViewModel()));
+                }
+
+                entityResult.Entities = subCategories;
+                entityResult.Success = true;
+            }
+
+            return entityResult;
+        }
+
         private List<CategorySelectionViewModel> GetCategorySelections(Guid subCategoryId)
         {
             List<CategorySelectionViewModel> categorySelections = new List<CategorySelectionViewModel>();

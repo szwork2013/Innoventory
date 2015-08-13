@@ -35,30 +35,15 @@ namespace Innoventory.Lotus.BusinessTransition
         private IProductVariantRepository productVariantRepository;
 
         [Import]
-        private ICategorySubCategoryMapRepository categorySubCategoryMapRepository;
-
-        [Import]
-        private ICategoryRepository categoryRepository;
-
-        [Import]
-        private ISubCategoryRepository subCategoryRepository;
-
-        [Import]
-        private IVolumeMeasureRepository volumeMeasureRepository;
-
-        [Import]
-        private IImageFileRepository imageFileRepository;
+        private ISubCategoryAttributeMapRepository categorySubCategoryAttributeMapRepository;
 
         [Import]
         private IProductAttributeRepository productAttributeRepository;
 
         [Import]
-        private ISubCategoryAttributeMapRepository categorySubCategoryAttributeMapRepository;
-
-        [Import]
         private IAttributeValueListRepository attributeValueListRepository;
 
-        
+
         [Import]
         private IProductVariantImageFileMapRepository productVariantImageFileMapRepository;
 
@@ -100,12 +85,8 @@ namespace Innoventory.Lotus.BusinessTransition
 
                 if (!productResult.Success)
                 {
-
                     return productResult;
-
                 }
-
-
 
                 FindResult<ProductVariantViewModel> findProductVriantResult = productVariantRepository.FindBy(dbContext, x => x.ProductId == productId);
 
@@ -120,7 +101,7 @@ namespace Innoventory.Lotus.BusinessTransition
                 List<ProductVariantViewModel> productVariants = findProductVriantResult.Entities;
 
                 product.ProductVariants = productVariants;
-                               
+
 
                 long categoryAttributeCount = 0;
 
@@ -161,17 +142,178 @@ namespace Innoventory.Lotus.BusinessTransition
             return entityResult;
         }
 
-        public FindResult<ProductViewModel> GetAllProducts(ProductFilterOption filterOption, SortOption sortOption)
+        public FindResult<ProductListItem> GetAllProductListItems(ProductFilterOption filterOption)
         {
+            FindResult<ProductListItem> result = new FindResult<ProductListItem>() { Success = false };
 
-            return null;
+            try
+            {
 
+                using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
+                {
+                    List<ProductListItem> productListItems = (from pr in dbContext.ProductSet.ToList()
+                                                              join catSubCatMap in dbContext.CategorySubCategoryMapSet.ToList()
+                                                              on pr.CategorySubCategoryMapId equals catSubCatMap.CategorySubCategoryMapId
+                                                              join category in dbContext.CategorySet.ToList()
+                                                              on catSubCatMap.CategoryId equals category.CategoryId
+                                                              join subCategory in dbContext.SubCategorySet
+                                                              on catSubCatMap.SubCategoryId equals subCategory.SubCategoryId
+                                                              select new ProductListItem
+                                                              {
+                                                                  CategoryId = category.CategoryId,
+                                                                  CategoryName = category.CategoryName,
+                                                                  Description = pr.Description,
+                                                                  ImageId = pr.ImageId,
+                                                                  ItemType = pr.ItemType,
+                                                                  ProductName = pr.ProductName,
+                                                                  SubCategoryId = subCategory.SubCategoryId,
+                                                                  SubCategoryName = subCategory.SubCategoryName,
+                                                                  ProductId = pr.ProductId
+
+                                                              }).ToList();
+
+                    
+
+                    if (!string.IsNullOrEmpty(filterOption.SearchString) && filterOption.SearchString.Trim() != string.Empty)
+                    {
+                        productListItems = productListItems.Where(x => x.ProductName.Contains(filterOption.SearchString)).ToList();
+
+                    }
+
+                    if(filterOption.CategoryId != Guid.Empty)
+                    {
+                        productListItems = productListItems.Where(x => x.CategoryId == filterOption.CategoryId).ToList();
+                    }
+
+                    if (filterOption.SubCategoryId != Guid.Empty)
+                    {
+                        productListItems = productListItems.Where(x => x.SubCategoryId == filterOption.SubCategoryId).ToList();
+                    }
+
+                    result.Entities = productListItems.OrderBy(x => x.ProductName).ToList();
+                }
+
+                result.Success = true;
+
+
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                throw;
+            }
+
+
+            return result;
 
         }
 
-        public UpdateResult<ProductViewModel> UpdateProduct(ProductViewModel productViewModel)
+        public FindResult<ProductVariantListItem> GetAllProductVariantListItems(Guid productId)
         {
-            throw new NotImplementedException();
+            FindResult<ProductVariantListItem> result = new FindResult<ProductVariantListItem> { Success = false };
+
+            using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
+            {
+
+                var productVariants = (from prv in dbContext.ProductVariantSet
+                                       where prv.ProductId == productId
+                                       select new ProductVariantListItem
+                                       {
+                                           ProductVariantId = prv.ProductVariantId,
+                                           AvailableQuantity = prv.AvailableQuantity,
+                                           BasePrice = prv.BasePrice,
+                                           ShelfPrice = prv.ShelfPrice,
+                                           SKUCode = prv.SKUCode,
+                                       }).ToList();
+
+                foreach (ProductVariantListItem pvm in productVariants)
+                {
+
+
+
+                    var productVariantAttributeValues = GetProductVariantAttributeValueVMS(dbContext, pvm.ProductVariantId);
+
+
+                    if (productVariantAttributeValues.Count > 0)
+                    {
+                        StringBuilder sb = new StringBuilder();
+
+                        foreach (var item in productVariantAttributeValues)
+                        {
+                            sb.AppendFormat("{0} - ({1}), ", item.ProductAttributeName, item.ProductAttributeValue);
+                            sb.Append(" ");
+                        }
+
+                        string formattedAttributeValues = sb.ToString().Trim();
+
+                        if (formattedAttributeValues.EndsWith(","))
+                        {
+                            formattedAttributeValues = formattedAttributeValues.Substring(0, formattedAttributeValues.Length - 1);
+                        }
+
+                        pvm.AttributeValuesString = formattedAttributeValues;
+                    }
+
+                }
+
+
+                productVariantRepository.FindById(Guid.NewGuid());
+
+                result.Entities = productVariants;
+            }
+
+            result.Success = true;
+
+            return result;
+        }
+
+
+        public List<ProductVariantAttributeValueViewModel> GetProductVariantAttributeValueVMS(InnoventoryDBContext dbContext, Guid productVariantId)
+        {
+
+            var ProductVariantAttributeValues = (from pv in dbContext.ProductVariantAttributeValueSet
+                                                 join avl in dbContext.AttributeValueListSet on pv.AttributeValueListId equals avl.AttributeValueListId
+                                                 join subcatAttrMap in dbContext.SubCategoryAttributeMapSet
+                                                 on avl.SubCategoryAttributeMapID equals subcatAttrMap.SubCategoryAttributeMapId
+                                                 join productAttributs in dbContext.ProductAttributeSet
+                                                 on subcatAttrMap.ProductAttributeId equals productAttributs.ProductAttributeId
+                                                 where pv.ProductVariantId == productVariantId
+                                                 select new ProductVariantAttributeValueViewModel
+                                                 {
+                                                     ProductVariantId = pv.ProductVariantId,
+                                                     AttributeValueListId = avl.AttributeValueListId,
+                                                     ProductAttributeName = productAttributs.AttributeName,
+                                                     ProductAttributeValue = avl.AttributeValue
+                                                 }).ToList();
+
+            return ProductVariantAttributeValues;
+        }
+        public UpdateResult<ProductViewModel> SaveProduct(ProductViewModel productViewModel)
+        {
+
+            UpdateResult<ProductViewModel> result = new UpdateResult<ProductViewModel>() { Success = false };
+
+            using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
+            {
+                UpdateResult<ProductViewModel> updateResult = productRepository.Update(dbContext, productViewModel);
+
+                if (!updateResult.Success)
+                {
+                    return updateResult;
+                }
+
+                foreach (ProductVariantViewModel prvm in productViewModel.ProductVariants)
+                {
+                    productVariantRepository.Update(prvm);
+
+                    foreach (var item in prvm.ProductVariantAttributeValues)
+                    {
+                        //item.
+                    }
+                }
+            }
+
+            return result;
         }
 
         public bool UpdateProductToInactive(Guid productId)
@@ -185,10 +327,12 @@ namespace Innoventory.Lotus.BusinessTransition
         }
 
 
-
         public PreCacheResult<ProductViewModel> PreCache()
         {
             throw new NotImplementedException();
         }
+
+
+
     }
 }

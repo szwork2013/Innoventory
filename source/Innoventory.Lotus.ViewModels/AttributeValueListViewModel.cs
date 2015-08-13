@@ -49,5 +49,6 @@ namespace Innoventory.Lotus.ViewModels
                 AttributeValueListId = value;
             }
         }
+                      
     }
 }

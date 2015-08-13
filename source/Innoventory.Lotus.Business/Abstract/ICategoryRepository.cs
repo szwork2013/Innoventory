@@ -10,7 +10,6 @@ namespace Innoventory.Lotus.Business.Abstract
 {
     public interface ICategoryRepository:IGenericRepository<CategoryViewModel>
     {
-             
-
+        
     }
 }

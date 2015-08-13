@@ -70,7 +70,7 @@
     });
 
 
-    app.directive("purchaseorderList", function () {
+    app.directive("purchaseOrderList", function () {
 
         return {
             restrict: 'E',
@@ -80,10 +80,40 @@
 
     });
 
-    app.directive("purchaseorder", function () {
+
+    app.directive("purchaseOrder", function () {
         return {
             restrict: 'E',
             templateUrl: '../templates/purchaseorder/PurchaseOrder.html'
+        };
+    });
+
+
+    app.directive("productList", function () {
+        return {
+            restrict: 'E',
+            templateUrl: '../templates/product/List.html'
+        };
+    });
+
+    app.directive("product", function () {
+        return {
+            restrict: 'E',
+            templateUrl: '../templates/product/Product.html'
+        };
+    });
+
+    app.directive("productVariantList", function () {
+        return {
+            restrict: 'E',
+            templateUrl: '../templates/product-variant/List.html'
+        };
+    });
+
+    app.directive("productVariant", function () {
+        return {
+            restrict: 'E',
+            templateUrl: '../templates/product-variant/ProductVariant.html'
         };
     });
 

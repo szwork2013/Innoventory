@@ -1,0 +1,16 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"> Product Variants</h3>
+    </div>
+    <div class="panel-body" style="border: 1px solid #e1e1e1; padding:0px;">
+        <div ng-show="isPVData" ui-grid="pvGridOptions" ui-grid-selection ui-grid-pagination ui-grid-auto-resize ng-style="pvTableStyle">
+
+            <div style="float:none; height:1px;"></div>
+
+        </div>
+
+        <div ng-hide="isPVData" class="no-data">
+            <h4>No Product Variants</h4>
+        </div>
+    </div>
+</div>

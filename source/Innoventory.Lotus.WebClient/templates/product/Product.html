@@ -1,0 +1,165 @@
+﻿
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+
+        <h3 class="panel-title">{{formTitle}}</h3>
+
+    </div>
+    
+    <div class="panel-form">
+
+        <form class="form-horizontal" name="Product" novalidate role="form">
+
+
+            <div class="form-group">
+                <p class="col-sm-24">
+                    <label for="ProductName" class="control-label"> ProductName</label>
+                </p>
+                <div class="col-sm-24">
+
+                    <input type="text" id="ProductName" ng-model="productVM.productName" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <p class="col-sm-24">
+                    <label for="Description" class="control-label"> Description</label>
+                </p>
+                <div class="col-sm-24">
+
+                    <input type="text" id="Description" ng-model="productVM.description" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <p class="col-sm-24">
+                    <label for="Remarks" class="control-label"> Remarks</label>
+                </p>
+                <div class="col-sm-24">
+
+                    <input type="text" id="Remarks" ng-model="productVM.remarks" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <input type="hidden" id="CategoryId" ng-model="productVM.categoryId" class="form-control" />
+
+            <div class="form-group col-sm-12">
+                <p class="col-sm-24">
+                    <label for="category" class="control-label"> Category</label>
+                </p>
+                <div class="col-sm-24">
+                    <select name="category" id="category" class="form-control" ng-model="selectedCategory"
+                            ng-options="selCategory as selCategory.entityName for selCategory in categories track by selCategory.entityId"></select>
+
+                </div>
+
+            </div>
+
+            <div class="form-group col-sm-12">
+                <p class="col-sm-24">
+                    <label for="subCategory" class="control-label"> Sub Category Name</label>
+                </p>
+                <div class="col-sm-24">
+                    <select name="subCategory" id="subCategory" class="form-control" ng-model="selectedSubCategory"
+                            ng-options="subCategory for subCategory in subCategories"></select>
+
+                </div>
+
+            </div>
+
+            <input type="hidden" id="ImageId" ng-model="productVM.imageId" class="form-control" />
+
+
+            <div class="form-group col-sm-12">
+                <p class="col-sm-24">
+                    <label for="SalesVolumeMeasureName" class="control-label"> Sales VolumeMeasure Name</label>
+                </p>
+                <div class="col-sm-24">
+                    <select name="salesVM" id="salesVM" class="form-control" ng-model="salesVolumeMeasure"
+                            ng-options="volumeMeasure for volumeMeasure in volumeMeasures"></select>
+
+                </div>
+
+
+            </div>
+
+            <div class="form-group col-sm-12">
+                <p class="col-sm-24">
+                    <label for="purchaseVM" class="control-label"> Purchase VolumeMeasure Name</label>
+                </p>
+                <div class="col-sm-24">
+                    <select name="purchaseVM" id="purchaseVM" class="form-control" ng-model="purchaseVolumeMeasure"
+                            ng-options="volumeMeasure for volumeMeasure in volumeMeasures"></select>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <p class="col-sm-24">
+                    <label for="ImageUrl" class="control-label">Image Url</label>
+                </p>
+                <div class="col-sm-24">
+
+                    <input type="text" id="ImageUrl" ng-model="productVM.imageUrl" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <!-- Product Varuant At least one is required-->
+            <section id="productVariant">
+
+                <div>
+
+                    <product-variant-list> </product-variant-list>
+
+                </div>
+
+                <div style="clear:both; height:1px;"></div>
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" ng-click="newProductVariant($event)">
+                        <div class="btn-div">Add New</div>
+                        <i class="btn-span glyphicon glyphicon-plus"></i>
+                    </button>
+                </div>
+            </section>
+
+
+
+            <div class="form-group">
+
+                <div class="col-sm-4 pull-right">
+                    <button type="button" class="btn btn-default pull-right" ng-click="onCancelProduct($event)">
+                        <div class="btn-div">Cancel</div>
+                        <i class="glyphicon glyphicon-remove btn-span"></i>
+                    </button>
+                </div>
+                <div class="col-sm-4 pull-right" ng-show="showDelete">
+                    <button type="button" value="Delete" class="btn btn-warning pull-right" ng-click='deleteProduct($event)'>
+                        <div class="btn-div">Delete</div>
+                        <i class="btn-span glyphicon glyphicon-remove-sign btn-span"></i>
+                    </button>
+                </div>
+
+                <div class="col-sm-4 pull-right">
+                    <button type="button" value="Save" class="btn btn-primary btn-save pull-right" ng-click='saveProduct($event)'>
+                        <div class="btn-div">Save</div>
+                        <i class="btn-span glyphicon glyphicon-floppy-disk btn-span"></i>
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+</div>

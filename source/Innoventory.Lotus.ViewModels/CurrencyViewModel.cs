@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Innoventory.Lotus.ViewModels
 {
     [DataContract]
-    public class CurrencyViewModel : IIdentifiable
+    public class CurrencyViewModel : IIdentifiable, IDisplayName
     {
 
         [ScaffoldColumn(false)]
@@ -39,6 +39,15 @@ namespace Innoventory.Lotus.ViewModels
             get { return CurrencyID; }
 
             set { CurrencyID = value; }
+        }
+
+        public string DisplayName
+        {
+            get
+            {
+                return string.Format("{0}({1})", CurrencyCode, CurrencySymbol) ;
+            }
+            
         }
     }
 }
