@@ -169,7 +169,7 @@ namespace Innoventory.Lotus.BusinessTransition
 
                                                               }).ToList();
 
-                    
+
 
                     if (!string.IsNullOrEmpty(filterOption.SearchString) && filterOption.SearchString.Trim() != string.Empty)
                     {
@@ -177,7 +177,7 @@ namespace Innoventory.Lotus.BusinessTransition
 
                     }
 
-                    if(filterOption.CategoryId != Guid.Empty)
+                    if (filterOption.CategoryId != Guid.Empty)
                     {
                         productListItems = productListItems.Where(x => x.CategoryId == filterOption.CategoryId).ToList();
                     }
@@ -290,23 +290,105 @@ namespace Innoventory.Lotus.BusinessTransition
 
             UpdateResult<ProductViewModel> result = new UpdateResult<ProductViewModel>() { Success = false };
 
+            Guid categoryId = productViewModel.CategoryId;
+            Guid subCategoryId = productViewModel.SubCategoryId;
+
+
             using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
             {
-                UpdateResult<ProductViewModel> updateResult = productRepository.Update(dbContext, productViewModel);
-
-                if (!updateResult.Success)
+                try
                 {
-                    return updateResult;
-                }
+                    UpdateResult<ProductViewModel> updateResult = productRepository.Update(dbContext, productViewModel);
 
-                foreach (ProductVariantViewModel prvm in productViewModel.ProductVariants)
-                {
-                    productVariantRepository.Update(prvm);
-
-                    foreach (var item in prvm.ProductVariantAttributeValues)
+                    if (!updateResult.Success)
                     {
-                        //item.
+                        return updateResult;
                     }
+
+                    foreach (ProductVariantViewModel prvm in productViewModel.ProductVariants)
+                    {
+
+
+
+                        productVariantRepository.Update(prvm);
+
+                        List<ProductVariantAttributeValue> productVariantAttributeValueMaps = dbContext.ProductVariantAttributeValueSet
+                                            .Where(x => x.ProductVariantId == prvm.ProductVariantId).ToList();
+
+                        List<Guid> attributeSelectValueIds = new List<Guid>();
+
+                        foreach (var item in prvm.ProductVariantAttributeValues)
+                        {
+                            if (item.ProductAttributeId != Guid.Empty)
+                            {
+
+
+                                if (!item.AttributeValueListId.HasValue && !string.IsNullOrEmpty(item.ProductAttributeValue))
+                                {
+                                    SubCategoryAttributeMap scAttrMap = dbContext.SubCategoryAttributeMapSet
+                                        .Where(x => x.ProductAttributeId == item.ProductAttributeId && x.SubCategoryId == subCategoryId).FirstOrDefault();
+
+                                    AttributeValueList avl = new AttributeValueList()
+                                    {
+
+                                        AttributeValueListId = Guid.NewGuid(),
+                                        AttributeValue = item.ProductAttributeValue,
+                                        CategoryId = categoryId,
+                                        SubCategoryAttributeMapID = scAttrMap.SubCategoryAttributeMapId,
+                                    };
+
+                                    dbContext.AttributeValueListSet.Add(avl);
+
+                                    dbContext.SaveChanges();
+                                    item.AttributeValueListId = avl.AttributeValueListId;
+
+                                }
+
+                                if (item.AttributeValueListId.HasValue && !string.IsNullOrEmpty(item.ProductAttributeValue))
+                                {
+                                    ProductVariantAttributeValue pvAttrValue = productVariantAttributeValueMaps
+                                                        .Where(x => x.AttributeValueListId == item.AttributeValueListId.Value)
+                                                        .FirstOrDefault();
+
+                                    if (pvAttrValue != null)
+                                    {
+                                        productVariantAttributeValueMaps.Remove(pvAttrValue);
+                                    }
+                                    else
+                                    {
+                                        ProductVariantAttributeValue newPVAttrValue = new ProductVariantAttributeValue()
+                                        {
+                                            ProductVariantId = prvm.ProductVariantId,
+                                            AttributeValueListId = item.AttributeValueListId.Value,
+                                        };
+
+                                        dbContext.ProductVariantAttributeValueSet.Add(newPVAttrValue);
+                                        dbContext.SaveChanges();
+
+                                    }
+                                }
+                            }
+
+                        }
+
+                        if (productVariantAttributeValueMaps != null && productVariantAttributeValueMaps.Count > 0)
+                        {
+                            foreach (var pvavm in productVariantAttributeValueMaps)
+                            {
+                                dbContext.ProductVariantAttributeValueSet.Remove(pvavm);
+
+                            }
+
+                            dbContext.SaveChanges();
+                        }
+                    }
+
+                    result.Success = true;
+                }
+                catch (Exception ex)
+                {
+                    result.Success = false;
+                    result.ErrorMessage = ex.Message;
                 }
             }
 

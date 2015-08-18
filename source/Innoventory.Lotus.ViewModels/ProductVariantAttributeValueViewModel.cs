@@ -13,19 +13,22 @@ namespace Innoventory.Lotus.ViewModels
     [DataContract]
     public class ProductVariantAttributeValueViewModel
     {
-        
-        [DataMember(Name="productVariantId")]
+
+        [DataMember(Name = "productVariantId")]
         public Guid ProductVariantId { get; set; }
 
-        [DataMember(Name="attributeValueListId")]
-        public Guid AttributeValueListId { get; set; }
+        [DataMember(Name = "productAttributeId")]
+        public Guid ProductAttributeId { get; set; }
 
-        [DataMember(Name="productAttributeName")]
-        public string  ProductAttributeName { get; set; }
+        [DataMember(Name = "attributeValueListId")]
+        public Guid? AttributeValueListId { get; set; }
+
+        [DataMember(Name = "productAttributeName")]
+        public string ProductAttributeName { get; set; }
 
         [DataMember(Name = "productAttributeValue")]
-        public string  ProductAttributeValue { get; set; }
+        public string ProductAttributeValue { get; set; }
 
-       
+
     }
 }

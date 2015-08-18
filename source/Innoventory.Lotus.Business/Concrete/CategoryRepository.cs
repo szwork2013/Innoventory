@@ -45,12 +45,12 @@ namespace Innoventory.Lotus.Business.Concrete
         {
             DbSet<Category> entitySet = dbContext.CategorySet;
 
-            List<Category> categories = entitySet.OrderBy(x=>x.CategoryName).ToList();
+            List<Category> categories = entitySet.OrderBy(x => x.CategoryName).ToList();
 
             List<CategoryViewModel> retList = new List<CategoryViewModel>();
 
-            categories.ForEach(x => retList.Add (ObjectMapper.PropertyMap(x, new CategoryViewModel())));
-                       
+            categories.ForEach(x => retList.Add(ObjectMapper.PropertyMap(x, new CategoryViewModel())));
+
 
             return retList;
         }
@@ -79,13 +79,10 @@ namespace Innoventory.Lotus.Business.Concrete
             return true;
 
         }
-                
+
         protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)
         {
             DbSet<Category> entitySet = dbContext.CategorySet;
-
-            //CategoryViewModel categoryVM = GetEntity(dbContext, id);
-
 
             Category category = entitySet.FirstOrDefault(x => x.CategoryId == id);
 
@@ -97,7 +94,7 @@ namespace Innoventory.Lotus.Business.Concrete
             return true;
         }
 
-        
+
 
 
     }
