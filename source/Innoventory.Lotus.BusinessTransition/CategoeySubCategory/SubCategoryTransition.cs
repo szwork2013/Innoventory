@@ -315,5 +315,28 @@ namespace Innoventory.Lotus.BusinessTransition
         {
             return subCategoryRepository.GetAll();
         }
+
+
+        public GetEntityResult<CategorySubCategoryMapViewModel> GetCategorySubCategoryMap(Guid categoryId, Guid subCategoryId)
+        {
+            FindResult<CategorySubCategoryMapViewModel> findResult = new FindResult<CategorySubCategoryMapViewModel>();
+
+            findResult = categorySubCategoryMapRepo.FindBy(x => x.CategoryId == categoryId && x.SubCategoryId == subCategoryId);
+
+            GetEntityResult<CategorySubCategoryMapViewModel> result = new GetEntityResult<CategorySubCategoryMapViewModel>();
+
+            if (findResult.Success)
+            {
+                result.Entity = findResult.Entities.FirstOrDefault();
+                result.Success = true;
+            }
+            else
+            {
+                result.Success = false;
+                result.Entity = null;
+            }
+
+            return result;
+        }
     }
 }

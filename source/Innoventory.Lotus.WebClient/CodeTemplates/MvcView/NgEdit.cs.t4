@@ -49,12 +49,12 @@
 			
 					<button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete" ng-click= '<#= string.Format("delete{0}($event)", modelName) #>' >
 						<div class="btn-div">Delete</div>
-						<i class="btn-span glyphicon glyphicon-remove-sign btn-span"></i>
+						<i class="btn-span glyphicon glyphicon-trash btn-span"></i>
 					</button>		
 
 					<button type="button" class="btn btn-default" ng-click="cancel($event)">
 						<div class="btn-div">Cancel</div>
-						<i class="glyphicon glyphicon-remove col-sm-6 btn-span"></i>
+						<i class="glyphicon glyphicon-remove btn-span"></i>
 					</button>
 
 				</div>

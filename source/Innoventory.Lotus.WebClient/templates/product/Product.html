@@ -6,7 +6,7 @@
         <h3 class="panel-title">{{formTitle}}</h3>
 
     </div>
-    
+
     <div class="panel-form">
 
         <form class="form-horizontal" name="Product" novalidate role="form">
@@ -56,8 +56,16 @@
                     <label for="category" class="control-label"> Category</label>
                 </p>
                 <div class="col-sm-24">
-                    <select name="category" id="category" class="form-control" ng-model="selectedCategory"
-                            ng-options="selCategory as selCategory.entityName for selCategory in categories track by selCategory.entityId"></select>
+                    <select name="category" id="category" class="form-control" ng-model="productCategory" ng-change="onProductCategoryChange()"
+                            ng-options="prodCategory as prodCategory.entityName for prodCategory in productCategories track by prodCategory.entityId">
+                        <option style="background:gray">
+
+                            ---- Select Category ----
+
+                        </option>
+
+                    </select>
+
 
                 </div>
 
@@ -68,8 +76,9 @@
                     <label for="subCategory" class="control-label"> Sub Category Name</label>
                 </p>
                 <div class="col-sm-24">
-                    <select name="subCategory" id="subCategory" class="form-control" ng-model="selectedSubCategory"
-                            ng-options="subCategory for subCategory in subCategories"></select>
+                    <select name="subCategory" id="subCategory" class="form-control" ng-model="productSubCategory"
+                            ng-change="onProductSubCategoryChange()"
+                            ng-options="prodSubCategory as prodSubCategory.entityName for prodSubCategory in productSubCategories track by prodSubCategory.entityId"></select>
 
                 </div>
 
@@ -84,7 +93,7 @@
                 </p>
                 <div class="col-sm-24">
                     <select name="salesVM" id="salesVM" class="form-control" ng-model="salesVolumeMeasure"
-                            ng-options="volumeMeasure for volumeMeasure in volumeMeasures"></select>
+                            ng-options="salesVM as salesVM.entityName for salesVM in volumeMeasures track by salesVM.entityId"></select>
 
                 </div>
 
@@ -96,8 +105,9 @@
                     <label for="purchaseVM" class="control-label"> Purchase VolumeMeasure Name</label>
                 </p>
                 <div class="col-sm-24">
+                    
                     <select name="purchaseVM" id="purchaseVM" class="form-control" ng-model="purchaseVolumeMeasure"
-                            ng-options="volumeMeasure for volumeMeasure in volumeMeasures"></select>
+                            ng-options="purchaseVM as purchaseVM.entityName for purchaseVM in volumeMeasures track by purchaseVM.entityId"></select>
 
                 </div>
 
@@ -127,13 +137,23 @@
                 <div style="clear:both; height:1px;"></div>
 
                 <div class="form-group">
-                    <button type="button" class="btn btn-primary" ng-click="newProductVariant($event)">
-                        <div class="btn-div">Add New</div>
-                        <i class="btn-span glyphicon glyphicon-plus"></i>
-                    </button>
-                </div>
-            </section>
 
+                    <button type="button" class="btn btn-primary" ng-click="newProductVariant($event)">
+                        <div class="btn-div">
+                            Add Variant
+                        </div>
+                        <i class="glyphicon glyphicon-plus btn-span"></i>
+                    </button>
+
+                </div>
+
+                <div ng-show="showProductVariant">
+
+                    <product-variant> </product-variant>
+
+                </div>
+
+            </section>
 
 
             <div class="form-group">
@@ -147,7 +167,7 @@
                 <div class="col-sm-4 pull-right" ng-show="showDelete">
                     <button type="button" value="Delete" class="btn btn-warning pull-right" ng-click='deleteProduct($event)'>
                         <div class="btn-div">Delete</div>
-                        <i class="btn-span glyphicon glyphicon-remove-sign btn-span"></i>
+                        <i class="btn-span glyphicon glyphicon-trash btn-span"></i>
                     </button>
                 </div>
 

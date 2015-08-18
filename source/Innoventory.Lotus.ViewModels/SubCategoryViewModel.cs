@@ -73,4 +73,6 @@ namespace Innoventory.Lotus.ViewModels
         public bool IsSelected { get; set; }
 
     }
+
+
 }

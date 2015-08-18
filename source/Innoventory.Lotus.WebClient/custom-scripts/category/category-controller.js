@@ -119,8 +119,6 @@
                     height = $scope.gridApi.grid.gridHeight + 10;
                 }
 
-
-
             };
 
             $scope.tableStyle = {
@@ -136,10 +134,6 @@
                     if ($scope.categories && $scope.categories.length > 0) {
                         $scope.isData = true;
                         $scope.gridOptions.data = result.Entities;
-
-                       
-
-                        
 
                         //$interval(function () { $scope.gridApi.selection.selectRow($scope.gridOptions.data[0]); }, 0, 1);
                         getTableStyle();

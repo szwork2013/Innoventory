@@ -68,6 +68,26 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
             });
         }
 
+        [HttpGet]
+        [Route("getAttributeValues/{categorySubCategoryMapId}")]
+        public HttpResponseMessage GetAttirbuteValues(HttpRequestMessage request, Guid categorySubCategoryMapId)
+        {
+            return GetHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                FindResult<CategorySubCategoryAttributeValuesViewModel> findResult = productAttributeTransition
+                                                        .GetAllCategorySubCategoryAttributesValueList(categorySubCategoryMapId);
+
+
+                response = GetFindResultResponse(request, findResult);
+
+                return response;
+            });
+
+
+        }
+
         [HttpDelete]
         [Route("Delete/{id}")]
         public HttpResponseMessage DeleteProductAttribute(HttpRequestMessage request,

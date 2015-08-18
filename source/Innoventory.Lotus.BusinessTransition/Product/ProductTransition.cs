@@ -56,8 +56,7 @@ namespace Innoventory.Lotus.BusinessTransition
                 //dbContext.Database.SqlQuery(  )
 
                 var product = (from pr in dbContext.ProductSet.ToList()
-                               join vm in dbContext.VolumeMeasureSet.ToList() on pr.SalesVolumeMeasureId equals vm.VolumeMeasureId
-                               join svm in dbContext.VolumeMeasureSet.ToList() on pr.PurchaseVolumeMeasureId equals svm.VolumeMeasureId
+                               join vm in dbContext.VolumeMeasureSet.ToList() on pr.VolumeMeasureId equals vm.VolumeMeasureId
                                join catSubCatMap in dbContext.CategorySubCategoryMapSet.ToList() on pr.CategorySubCategoryMapId equals catSubCatMap.CategorySubCategoryMapId
                                join category in dbContext.CategorySet.ToList() on catSubCatMap.CategoryId equals category.CategoryId
                                join subCategory in dbContext.SubCategorySet on catSubCatMap.SubCategoryId equals subCategory.SubCategoryId
@@ -71,10 +70,8 @@ namespace Innoventory.Lotus.BusinessTransition
                                    ImageId = pr.ImageId,
                                    ItemType = pr.ItemType,
                                    ProductName = pr.ProductName,
-                                   PurchaseVolueMeasureId = pr.PurchaseVolumeMeasureId,
-                                   PurchaseVolumeMeasureName = vm.ShortName,
-                                   SalesVolumeMeasureName = svm.ShortName,
-                                   SalesVolumeMeasureId = pr.SalesVolumeMeasureId,
+                                   VolueMeasureId = pr.VolumeMeasureId,
+                                   volumeMeasureShortName = vm.ShortName,
                                    SubCategoryId = subCategory.SubCategoryId,
                                    SubCategoryName = subCategory.SubCategoryName,
                                    Remarks = pr.Remarks

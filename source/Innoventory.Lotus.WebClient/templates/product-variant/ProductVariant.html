@@ -1,4 +1,211 @@
-﻿<div class="panel panel-primary">
+﻿
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{pvFormTitle}}</h3>
+    </div>
+    <div class="panel-body">
+
+        <form class="form-horizontal" name="ProductVariant" novalidate role="form">
+
+            <div class="form-group">
+
+                <label for="BarCode" class="control-label col-sm-6"> BarCode</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="BarCode" ng-model="productVariantVM.barCode" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="SalesVolume" class="control-label col-sm-6"> SalesVolume</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="SalesVolume" ng-model="productVariantVM.salesVolume" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="PurchaseVolume" class="control-label col-sm-6"> PurchaseVolume</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="PurchaseVolume" ng-model="productVariantVM.purchaseVolume" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="ReorderPoint" class="control-label col-sm-6"> ReorderPoint</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="ReorderPoint" ng-model="productVariantVM.reorderPoint" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="ReorderQuantity" class="control-label col-sm-6"> ReorderQuantity</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="ReorderQuantity" ng-model="productVariantVM.reorderQuantity" class="form-control" />
+
+                </div>
+
+            </div>
 
 
+
+            <div class="form-group">
+
+                <label for="LastSupplierId" class="control-label col-sm-6"> LastSupplierId</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="LastSupplierId" ng-model="productVariantVM.lastSupplierId" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="IsSellable" class="control-label col-sm-6"> IsSellable</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="IsSellable" ng-model="productVariantVM.isSellable" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="IsPurchaseable" class="control-label col-sm-6"> IsPurchaseable</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="IsPurchaseable" ng-model="productVariantVM.isPurchaseable" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="IsActive" class="control-label col-sm-6"> IsActive</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="IsActive" ng-model="productVariantVM.isActive" class="form-control" />
+
+                </div>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="SKUCode" class="control-label col-sm-6"> SKUCode</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="SKUCode" ng-model="productVariantVM.skuCode" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="LastPurchasePrice" class="control-label col-sm-6"> LastPurchasePrice</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="LastPurchasePrice" ng-model="productVariantVM.lastPurchasePrice" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="BasePrice" class="control-label col-sm-6"> BasePrice</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="BasePrice" ng-model="productVariantVM.basePrice" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="ShelfPrice" class="control-label col-sm-6"> ShelfPrice</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="ShelfPrice" ng-model="productVariantVM.shelfPrice" class="form-control" />
+
+                </div>
+
+            </div>
+
+
+
+            <div class="form-group" ng-repeat="attributeNameValueList in attributeValueListCollection">
+                
+
+                <label class="control-label col-sm-6">{{attributeNameValueList.attributeName}}</label>
+
+                <div class="col-sm-18">
+                    
+                    <input class="form-control" type="text" id="{{attributeNameValueList.attributeId}}" ng-model="attributeNameValueList.selectedAttributeValue"
+                           typeahead="attr as attr.attributeValue for attr in attributeNameValueList.attributeValues | filter:$viewValue">                    
+                    
+
+                </div>
+                <span style="border: 1px solid blue">{{attributeNameValueList.selectedAttributeValue.attributeValueListId}} </span>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-18">
+                    <button type="button" value="Save" class="btn btn-primary btn-save" ng-click='saveProductVariant($event)'>
+                        <div class="btn-div">Save</div>
+                        <i class="btn-span glyphicon glyphicon-floppy-disk btn-span"></i>
+                    </button>
+
+                    <button type="button" value="Delete" class="btn btn-warning" ng-show="showDeletePV" ng-click='deleteProductVariant($event)'>
+                        <div class="btn-div">Delete</div>
+                        <i class="btn-span glyphicon glyphicon-trash btn-span"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-default" ng-click="cancel($event)">
+                        <div class="btn-div">Cancel</div>
+                        <i class="glyphicon glyphicon-remove col-sm-6 btn-span"></i>
+                    </button>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
 </div>

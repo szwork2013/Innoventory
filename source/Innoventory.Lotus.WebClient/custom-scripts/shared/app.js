@@ -11,21 +11,27 @@
         return Innoventory.apiService($http, $q, $timeout);
     }]);
 
-    
-    var mainApp = angular.module("mainApp", ['common', 'innoventory-directives', 'ui.grid', 'ui.grid.selection', 'ui.grid.autoResize', 'ui.grid.pagination' ]);
 
-    mainApp.controller("productController", ["$scope", "$q", "apiService", function ($scope, $q, apiService) {
+    var mainApp = angular.module("mainApp", ['common', 'innoventory-directives',
+                                            'ui.bootstrap', 'ui.grid', 'ui.grid.selection',
+                                            'ui.grid.autoResize', 'ui.grid.pagination']);
 
-        Innoventory.productController($scope, $q, apiService);
+    mainApp.controller("productController", ["$scope", "$q", "apiService",
+           function ($scope, $q, apiService ) {
 
+               Innoventory.productController($scope, $q, apiService);
+
+           }]);
+
+
+
+    mainApp.factory("productService", ['$scope', '$http', '$q', 'apiService', function ($scope, $http, $q, apiService) {
+        return Innoventory.productService($scope, $http, $q, apiService);
     }]);
 
-
-
-    mainApp.factory("productService", ['$http', '$q', 'apiService', function ($http, $q, apiService) {
-        return Innoventory.productService($http, $q, apiService);
+    mainApp.factory("productVariantService", ['$scope', '$http', '$q', 'apiService', function ($scope, $http, $q, apiService) {
+        return Innoventory.productService($scope, $http, $q, apiService);
     }]);
-
 
     var categoryModule = angular.module("categoryModule", ['common']);
 
@@ -49,6 +55,6 @@
     mainApp.controller("productAttributeController", ["$scope", "$q", "apiService", function ($scope, $q, apiService) {
         Innoventory.productAttributeController($scope, $q, apiService);
     }]);
-       
+
 
 }(window.Innoventory));

@@ -133,5 +133,28 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
 
             });
         }
+
+        [HttpGet]
+        [Route("getCategorySubCategoryMap/{categoryId}/{subCategoryId}")]
+        public HttpResponseMessage GetCategorySubCategoryMap(HttpRequestMessage request, Guid categoryId, Guid subCategoryId)
+        {
+
+            GetEntityResult<CategorySubCategoryMapViewModel> entityResult = new GetEntityResult<CategorySubCategoryMapViewModel>();
+
+            return GetHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                entityResult = subCategoryTransition.GetCategorySubCategoryMap(categoryId, subCategoryId);
+
+                response = new HttpResponseMessage(HttpStatusCode.OK);
+
+                response.Content = new ObjectContent<GetEntityResult<CategorySubCategoryMapViewModel>>(entityResult, Configuration.Formatters.JsonFormatter);
+
+                return response;
+
+            });
+
+        }
     }
 }

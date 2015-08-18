@@ -8,8 +8,21 @@
     <script src="~/custom-scripts/product/product-grid.js"></script>
     <script src="~/custom-scripts/product/product-variant-grid.js"></script>
     <script src="~/custom-scripts/product/product-model.js"></script>
+    <script src="~/custom-scripts/product/product-variant-model.js"></script>
     <script src="~/custom-scripts/product/product-controller.js"></script>
+    <script src="~/custom-scripts/product/product-service.js"></script>
+    <script src="~/custom-scripts/product/product-variant-service.js"></script>
+    @*<script type="text/ng-template" id="template/typeahead/typeahead-popup.html">
+        <ul class="dropdown-menu" ng-if="isOpen()" ng-style="{top: position.top+'px', left: position.left+'px'}" style="display: block;" role="listbox" aria-hidden="{{!isOpen()}}">
+            <li ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }" ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="{{match.id}}">
+                <div typeahead-match index="$index" match="match" query="query" template-url="templateUrl"></div>
+            </li>
+        </ul>
+    </script>
 
+    <script type="text/ng-template" id="template/typeahead/typeahead-match.html">
+        <a tabindex="-1" bind-html-unsafe="match.label | typeaheadHighlight:query"></a>
+    </script>*@
 }
 
 <div class="container" ng-controller="productController as productCtrl">
@@ -41,7 +54,13 @@
                         <label class="control-label">Category</label>
                     </div>
                     <select class="form-control" id="category" ng-model="searchCategory" ng-change="onSearchCategoryChange()"
-                            ng-options="cat as cat.entityName for cat in categories track by cat.entityId" placeholder="Search in Category"></select>
+                            ng-options="cat as cat.entityName for cat in categories track by cat.entityId" placeholder="Search in Category">
+
+                        <option>
+                            ---- Search By Category ----
+                        </option>
+                    </select>
+
 
                 </div>
 

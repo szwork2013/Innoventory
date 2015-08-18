@@ -27,6 +27,9 @@ namespace Innoventory.Lotus.BusinessTransition
         [Import]
         private ISubCategoryAttributeMapRepository subCategoryAttributeMapRepository;
 
+        //[Import]
+        //private ICategorySubCategoryMapRepository categorySubCategoryMapRepo;
+
         public FindResult<ProductAttributeViewModel> GetProductAttributes()
         {
             FindResult<ProductAttributeViewModel> findResult = new FindResult<ProductAttributeViewModel>();
@@ -58,7 +61,7 @@ namespace Innoventory.Lotus.BusinessTransition
 
             retResult.Entities = new List<ProductAttributeViewModel>();
 
-                       
+
 
             if (findResult.Success && findResult.Entities.Count > 0)
             {
@@ -68,9 +71,9 @@ namespace Innoventory.Lotus.BusinessTransition
 
                     FindResult<SubCategoryAttributeMapViewModel> subCategoryAttributeMapResult = subCategoryAttributeMapRepository.FindBy(x => x.ProductAttributeId == productAttributeId);
 
-                    List<SubCategorySelection> subCategorySelections = new List<SubCategorySelection>();
+                    List<AttributeSubCategorySelection> subCategorySelections = new List<AttributeSubCategorySelection>();
 
-                    subCategoryResult.Entities.ForEach(x => subCategorySelections.Add(new SubCategorySelection
+                    subCategoryResult.Entities.ForEach(x => subCategorySelections.Add(new AttributeSubCategorySelection
                     {
                         SubCategory = x,
                         IsSelected = false,
@@ -78,20 +81,20 @@ namespace Innoventory.Lotus.BusinessTransition
 
                     subCategorySelections.ForEach(x => x.IsSelected = false);
 
-                    entity.SubCategorySelections = new List<SubCategorySelection>();
-                                     
+                    entity.SubCategorySelections = new List<AttributeSubCategorySelection>();
+
 
                     entity.SubCategorySelections = subCategorySelections;
                     entity.SubCategoryNames = string.Empty;
 
-                    SubCategorySelection selection = new SubCategorySelection();
+                    AttributeSubCategorySelection selection = new AttributeSubCategorySelection();
 
 
                     if (subCategoryAttributeMapResult.Success && subCategoryAttributeMapResult.Entities.Count > 0)
                     {
                         foreach (SubCategoryAttributeMapViewModel map in subCategoryAttributeMapResult.Entities)
                         {
-                            SubCategorySelection selectedSubCategory = entity.SubCategorySelections
+                            AttributeSubCategorySelection selectedSubCategory = entity.SubCategorySelections
                                 .FirstOrDefault(x => x.SubCategory.SubCategoryId == map.SubCategoryId);
 
                             selectedSubCategory.IsSelected = true;
@@ -171,7 +174,7 @@ namespace Innoventory.Lotus.BusinessTransition
 
             updateResult.Entity = productAttribute;
 
-            List<SubCategorySelection> selectedSubCategories = productAttribute.SubCategorySelections.Where(x => x.IsSelected).ToList();
+            List<AttributeSubCategorySelection> selectedSubCategories = productAttribute.SubCategorySelections.Where(x => x.IsSelected).ToList();
 
             if (selectedSubCategories.Count == 0)
             {
@@ -218,7 +221,7 @@ namespace Innoventory.Lotus.BusinessTransition
                         {
                             foreach (var item in subCategoryAttributeMapVMResult.Entities)
                             {
-                                SubCategorySelection existingSelection = productAttribute.SubCategorySelections
+                                AttributeSubCategorySelection existingSelection = productAttribute.SubCategorySelections
                                         .FirstOrDefault(x => x.SubCategory.SubCategoryId == item.SubCategoryId && x.IsSelected == true);
 
                                 if (existingSelection == null)
@@ -233,7 +236,7 @@ namespace Innoventory.Lotus.BusinessTransition
                             }
                         }
 
-                        foreach (SubCategorySelection subCategorySelection in selectedSubCategories)
+                        foreach (AttributeSubCategorySelection subCategorySelection in selectedSubCategories)
                         {
 
                             if (!existingSubCategoryIds.Contains(subCategorySelection.SubCategory.SubCategoryId))
@@ -364,15 +367,81 @@ namespace Innoventory.Lotus.BusinessTransition
 
                 }
 
-
             }
 
             EntityOperationResultBase attributeDeleteResult = productAttributeRepository.Delete(id);
 
-
-
             return deleteResult;
 
+        }
+
+
+        public FindResult<CategorySubCategoryAttributeValuesViewModel> GetAllCategorySubCategoryAttributesValueList(Guid categorySubCategoryMapId)
+        {
+
+            FindResult<CategorySubCategoryAttributeValuesViewModel> result = new FindResult<CategorySubCategoryAttributeValuesViewModel>();
+
+            using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
+            {
+                var categorySubCategoryMapResult = dbContext.CategorySubCategoryMapSet.Where(x=>x.CategorySubCategoryMapId == categorySubCategoryMapId).FirstOrDefault();
+
+
+                Guid categoryId = Guid.Empty;
+                Guid subCategoryId = Guid.Empty;
+
+                if(categorySubCategoryMapResult == null)
+                {
+                    result.Success = false;
+
+                    return result;
+                }
+                
+                categoryId = categorySubCategoryMapResult.CategoryId;
+
+                subCategoryId = categorySubCategoryMapResult.SubCategoryId;
+
+
+
+
+                var prodAttributes = (from pa in dbContext.ProductAttributeSet
+                                     join sca in dbContext.SubCategoryAttributeMapSet
+                                     on pa.ProductAttributeId equals sca.ProductAttributeId
+                                     where sca.SubCategoryId == subCategoryId
+                                     select new CategorySubCategoryAttributeValuesViewModel
+                                     {
+                                         AttributeName = pa.AttributeName,
+                                         ProductAttributeId = pa.ProductAttributeId,
+                                          CategorySubCategoryMapId = sca.SubCategoryAttributeMapId,
+
+                                     }).ToList();
+
+
+                List<AttributeValueList> attributeValueLists = dbContext.AttributeValueListSet.ToList();
+
+
+                foreach (var pa in prodAttributes)
+                {
+                    var attributeValueList = (from attvl in attributeValueLists
+                                             where attvl.SubCategoryAttributeMapID == pa.CategorySubCategoryMapId
+                                             && attvl.CategoryId == categoryId
+                                             select new AttributeValueItem
+                                             {
+                                                 AttributeValue = attvl.AttributeValue,
+                                                 AttributeValueListId = attvl.AttributeValueListId
+                                             }).ToList();
+
+                    pa.AttributeValues = attributeValueList;
+                }
+
+
+                result.Entities = prodAttributes;
+
+
+                result.Success = true;
+
+            }
+
+            return result;
         }
     }
 }

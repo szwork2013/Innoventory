@@ -26,16 +26,14 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "barCode")]
         public string BarCode { get; set; }
 
+
+        [DisplayName("Unit Volume")]
+        [DataMember(Name = "unitVolume")]
+        public decimal? UnitVolume { get; set; }
         
-        [DisplayName("Sales Volume")]
-        [DataMember(Name = "salesVolume")]
-        public decimal? SalesVolume { get; set; }
-
-        [DisplayName("Purchase Volume")]
-        [DataMember(Name = "purchaseVolume")]
-                
-        public decimal? PurchaseVolume { get; set; }
-
+        [DataMember(Name = "availableQuantity")]
+        public decimal AvailableQuantity { get; set; }
+        
         [DataMember(Name = "reorderPoint")]
         public decimal? ReorderPoint { get; set; }
 

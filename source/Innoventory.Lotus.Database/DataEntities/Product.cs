@@ -22,22 +22,20 @@ namespace Innoventory.Lotus.Database.DataEntities
         public string Description { get; set; }
 
         public string Remarks { get; set; }
-        
-        public Guid SalesVolumeMeasureId { get; set; }
 
-        public Guid PurchaseVolumeMeasureId { get; set; }
+        public Guid VolumeMeasureId { get; set; }
 
         public Guid ModifiedBy { get; set; }
 
         public DateTime ModifiedOn { get; set; }
 
         public Guid? ImageId { get; set; }
-               
+
 
         public Guid CategorySubCategoryMapId { get; set; }
 
         public virtual IList<ProductVariant> ProductVariants { get; set; }
-                     
+
 
     }
 }

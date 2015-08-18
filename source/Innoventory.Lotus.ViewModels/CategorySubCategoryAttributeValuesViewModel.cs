@@ -20,14 +20,23 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "attributeName")]
         public string AttributeName { get; set; }
 
+        [DataMember(Name="attributeId")]
+        public string AttributeId
+        {
+            get { return AttributeName.Trim().Replace(" ", ""); }
+        }
 
-        public List<AttributeValues> AttributeValues { get; set; }
+        [DataMember(Name="attributeValues")]
+        public List<AttributeValueItem> AttributeValues { get; set; }
+
+        [DataMember(Name="selectedAttributeValue")]
+        public AttributeValueItem SelectedAttributeValue { get; set; }
 
 
     }
 
     [DataContract]
-    public class AttributeValues
+    public class AttributeValueItem 
     {
         [DataMember(Name="attributeValueListId")]
         public Guid AttributeValueListId { get; set; }

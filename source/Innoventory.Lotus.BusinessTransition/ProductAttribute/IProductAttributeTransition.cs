@@ -20,5 +20,7 @@ namespace Innoventory.Lotus.BusinessTransition
 
 
         DeleteResult<ProductAttributeViewModel> Delete(Guid id);
+
+        FindResult<CategorySubCategoryAttributeValuesViewModel> GetAllCategorySubCategoryAttributesValueList(Guid categorySubCategoryMapId);
     }
 }

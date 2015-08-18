@@ -37,11 +37,12 @@ namespace Innoventory.Lotus.WebClient
                         "~/Scripts/angular.js",
                         "~/Scripts/angular-route.js",
                         "~/Scripts/ui-grid.js",
-                        "~/Scripts/angular-animate.js"));
+                        "~/Scripts/angular-animate.js",
+                        "~/Scripts/angular-ui/ui-bootstrap-tpls.js"));
                                    
 
-            bundles.Add(new ScriptBundle("~/bundles/angular-ui").IncludeDirectory(
-                            "~/Scripts/angular-ui", "*.js", true));
+            //bundles.Add(new ScriptBundle("~/bundles/angular-ui").IncludeDirectory(
+            //                "~/Scripts/angular-ui", "*.js", true));
 
             bundles.Add(new ScriptBundle("~/bundles/shared-scripts").Include(
                                         "~/custom-scripts/shared/apiService.js",

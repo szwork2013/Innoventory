@@ -64,21 +64,14 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "imageId")]
         public Guid? ImageId { get; set; }
 
-        [DisplayName("Sales Order Unit ID")]
-        [DataMember(Name = "salesOrderVolumeMeasureId")]
-        public Guid SalesVolumeMeasureId { get; set; }
-
-        [DisplayName("Sales Order Volume Measure")]
-        [DataMember(Name = "salesOrderVolumeMeasureName")]
-        public string SalesVolumeMeasureName { get; set; }
-
-        [DisplayName("Purchase Order Volume Measure Id")]
-        [DataMember(Name = "purchaseOrderVolumeMeasureId")]
-        public Guid PurchaseVolueMeasureId { get; set; }
-
-        [DisplayName("Purschase Order Unit")]
-        [DataMember(Name = "purchaseOrderVMShortName")]
-        public string PurchaseVolumeMeasureName { get; set; }
+             
+        [DataMember(Name = "volumeMeasureId")]
+        public Guid VolueMeasureId { get; set; }
+                
+               
+        [DataMember(Name = "volumeMeasureShortName")]
+        public string volumeMeasureShortName { get; set; }
+        
 
         [DataMember(Name = "productVariants")]
         public List<ProductVariantViewModel> ProductVariants { get; set; }

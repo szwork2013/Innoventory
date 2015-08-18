@@ -13,10 +13,10 @@
         me.subCategoryId = {};
         me.subCategoryName = "";
         me.imageId = [];
-        me.salesOrderVolumeMeasureId = {};
-        me.salesOrderVolumeMeasureName = "";
-        me.purchaseOrderVolumeMeasureId = {};
-        me.purchaseOrderVMShortName = "";
+        me.salesVolumeMeasureId = {};
+        me.salesVolumeMeasureName = "";
+        me.purchaseVolumeMeasureId = {};
+        me.purchaseVolumeMeasureName = "";
         me.productVariants = [];
         me.imageUrl = "";
     };

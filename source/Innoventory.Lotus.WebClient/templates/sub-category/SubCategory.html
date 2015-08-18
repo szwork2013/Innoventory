@@ -43,17 +43,19 @@
                 </span>
             </div>
             <div class="form-group">
+                
                 <div ng-repeat="categorySelection in subCategoryVM.categories">
-                    <div class="col-sm-4">
+                    <div class="col-sm-4" >
 
                     </div>
+                    <div class="col-sm-4 chk-box-col">
 
-                    <input type="checkbox" id="{{categorySelection.category.categoryId}}" name="{{categorySelection.category.categoryId}}" ng-model="categorySelection.isSelected" />
-                    <label for="{{categorySelection.category.categoryId}}" style="font-weight:normal">
-                        {{categorySelection.category.categoryName}}
+                        <input type="checkbox" id="{{categorySelection.category.categoryId}}" name="{{categorySelection.category.categoryId}}" ng-model="categorySelection.isSelected" />
+                        <label for="{{categorySelection.category.categoryId}}" style="font-weight:normal">
+                            {{categorySelection.category.categoryName}}
 
-                    </label>
-
+                        </label>
+                    </div>    
                 </div>
             </div>
         </div>
@@ -65,18 +67,18 @@
             <div class="col-sm-20">
                 <button type="button" class="btn btn-primary btn-save" ng-click="saveSubCategory($event)">
                     <div class="col-sm-18" style="text-align:center; padding-right:0px;">Save</div>
-                    <i class="glyphicon glyphicon-floppy-disk col-sm-6"></i>
+                    <i class="glyphicon glyphicon-floppy-disk btn-span"></i>
                 </button>
 
                 <button type="button" class="btn btn-warning" ng-show="showDelete">
                     <div class="col-sm-18">Delete</div>
-                    <i class="glyphicon glyphicon-minus col-sm-6"></i>
+                    <i class="glyphicon glyphicon-trash btn-span"></i>
                 </button>
 
                 <button type="button" class="btn btn-default" ng-click="cancel($event)">
 
                     <div class="col-sm-18">Cancel</div>
-                    <i class="glyphicon glyphicon-remove col-sm-6"></i>
+                    <i class="glyphicon glyphicon-remove btn-span"></i>
                 </button>
 
             </div>

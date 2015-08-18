@@ -17,10 +17,9 @@ namespace Innoventory.Lotus.Database.DataEntities
         [StringLength(500)]
         public string BarCode { get; set; }
 
-        public decimal PurchaseVolume { get; set; }
+        public decimal UnitVolume { get; set; }
 
-        public decimal SalesVolume { get; set; }
-
+       
         public decimal? ReorderPoint { get; set; }
 
         public decimal? ReorderQuantity { get; set; }

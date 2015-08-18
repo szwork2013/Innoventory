@@ -16,5 +16,7 @@ namespace Innoventory.Lotus.BusinessTransition
         SubCategoryCategories GetSubCategoryCategories(Guid subCategoryId);
 
         FindResult<SubCategoryViewModel> GetAllSubcategoriesByCategory(Guid id);
+
+        GetEntityResult<CategorySubCategoryMapViewModel> GetCategorySubCategoryMap(Guid categoryId, Guid subCategoryId);
     }
 }
