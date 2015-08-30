@@ -11,7 +11,7 @@
             enableHorizontalScrollbar: 1,
             enableVerticalScrollbar: 0,
             enablePaging: true,
-            rowHeight: 45,
+            
             paginationPageSizes: [10, 20, 30],
             paginationPageSize: 10,
             //rowTemplate: '<div ng-style="{ \'cursor\': row.cursor }" ng-repeat="col in renderedColumns" ng-class="col.colIndex()" class="ngCell {{col.cellClass}}"><div class="ngVerticalBar" ng-style="{height: rowHeight}" ng-class="{ ngVerticalBarVisible: !$last }">&nbsp;</div><div ng-cell></div></div>',
@@ -21,7 +21,7 @@
                 { field: 'productName', displayName: 'Product Name', width: "30%" },
                 { field: 'description', displayName: 'Description', width: "35%" },
                 { field: 'categoryName', displayName: 'Category', width: "12%" },
-                { field: 'subCategoryName', displayName: 'Sub Category', width: "12%" },
+                { field: 'subCategoryName', displayName: 'Sub Category', width: "13%" },
 
             ]
         };

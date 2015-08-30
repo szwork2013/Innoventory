@@ -11,7 +11,7 @@
             enableHorizontalScrollbar: 1,
             enableVerticalScrollbar: 0,
             enablePaging: true,
-            rowHeight: 40,
+            
             //rowTemplate: '<div ng-style="{ \'cursor\': row.cursor }" ng-repeat="col in renderedColumns" ng-class="col.colIndex()" class="ngCell {{col.cellClass}}"><div class="ngVerticalBar" ng-style="{height: rowHeight}" ng-class="{ ngVerticalBarVisible: !$last }">&nbsp;</div><div ng-cell></div></div>',
 
             columnDefs: [

@@ -338,7 +338,12 @@ li.dropdown:hover > ul.dropdown-menu {
 }
 
 .ui-grid-header {
-    background: #6391ef;
+    
+    background: linear-gradient(top, #4084F2 50%, #4084F2 100%);
+    background: -webkit-linear-gradient(top, #4084F2 50%, #4084F2 100%);
+    background: -moz-linear-gradient(top, #4084F2 50%, #4084F2 100%);
+    background: -o-linear-gradient(top, #4084F2 50%, #4084F2 100%);
+    background: -ms-linear-gradient(top, #4084F2 50%, #4084F2 100%);
     border-bottom: 3px solid #aaa;
 }
 
