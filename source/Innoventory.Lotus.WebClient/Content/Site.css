@@ -90,9 +90,6 @@ header .jumbotron .title {
     border-bottom: 1px solid #cfc7c7;
 }
 
-.btn {
-    min-width: 120px;
-}
 
 .table thead {
     background: -moz-linear-gradient(top, #286090 50%, #457AA8 100%);
@@ -148,7 +145,10 @@ header .jumbotron .title {
     }
 
 
+    .btn-toolbox{
+        min-width:20px;
 
+    }
 
 
 /*.btn span {
@@ -174,7 +174,7 @@ header .jumbotron .title {
 }
 
 
-.btn-default i {
+.btn-default .btn-span {
     border-left: #fff solid 1px;
 }
 
@@ -215,6 +215,9 @@ header .jumbotron .title {
         background: #cfc7c7;
     }
 
+    .btn-toolbox i{
+        border: none;
+    }
 /*.panel-default > .panel-heading {
     background: #d9edf7;
     border-color: #bce8f1;
@@ -224,7 +227,7 @@ header .jumbotron .title {
 
 .panel-form {
     border: 1px solid #ddd;
-    background: #fafafa;
+    
 }
 
 .panel-default {

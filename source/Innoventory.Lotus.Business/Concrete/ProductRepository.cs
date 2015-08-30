@@ -21,12 +21,53 @@ namespace Innoventory.Lotus.Business.Concrete
 
         protected Product GetDomainEntity(ProductViewModel viewModel)
         {
-            Product product = ObjectMapper.PropertyMap(viewModel, new Product());
+            Product product = GetProduct(viewModel);
 
             return product;
         }
 
+        private Product GetProduct(ProductViewModel viewModel)
+        {
+            if (viewModel == null)
+                return null;
 
+            Product product = new Product
+            {
+                CategorySubCategoryMapId = viewModel.CategorySubCategoryMapId,
+                Description = viewModel.Description,
+                ImageId = viewModel.ImageId,
+                ItemType = viewModel.ItemType,
+                ModifiedOn = DateTime.Now,
+                ProductId = viewModel.ProductId,
+                ProductName = viewModel.ProductName,
+                Remarks = viewModel.Remarks,
+                VolumeMeasureId = viewModel.VolueMeasureId,
+            };
+           
+
+            return product;
+
+        }
+
+        private ProductViewModel GetProductViewModel(Product product)
+        {
+            if (product == null)
+                return null;
+
+            ProductViewModel productViewModel = new ProductViewModel
+            {
+                CategorySubCategoryMapId = product.CategorySubCategoryMapId,
+                Description = product.Description,
+                ImageId = product.ImageId,
+                ItemType = product.ItemType,
+                ProductId = product.ProductId,
+                ProductName = product.ProductName,
+                Remarks = product.Remarks,
+                VolueMeasureId = product.VolumeMeasureId,
+            };
+
+            return productViewModel;
+        }
 
         protected override ProductViewModel GetEntity(InnoventoryDBContext dbContext, Guid id)
         {
@@ -34,9 +75,7 @@ namespace Innoventory.Lotus.Business.Concrete
 
             Product dmProduct = entitySet.FirstOrDefault(x => x.ProductId == id);
 
-            ProductViewModel pVM = new ProductViewModel();
-
-            ProductViewModel productVM = ObjectMapper.PropertyMap(dmProduct, pVM);
+            ProductViewModel productVM = GetProductViewModel(dmProduct);
 
             return productVM;
 
@@ -52,8 +91,7 @@ namespace Innoventory.Lotus.Business.Concrete
 
             foreach (Product product in products)
             {
-                ProductViewModel pVM = new ProductViewModel();
-
+                ProductViewModel pVM = GetProductViewModel(product);
 
                 retList.Add(ObjectMapper.PropertyMap(product, pVM));
 

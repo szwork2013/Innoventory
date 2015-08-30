@@ -66,11 +66,14 @@ namespace Innoventory.Lotus.ViewModels
     [DataContract]
     public class AttributesValueLists
     {
-
+        [DataMember(Name="categorySubCategoryMapId")]
         public Guid CategorySubCategoryMapId { get; set; }
 
+        [DataMember(Name="productAttributeId")]
         public Guid ProductAttributeId { get; set; }
 
+
+        [DataMember(Name="attributeValues")]
         public List<CategorySubCategoryAttributeValuesViewModel> AttributeValues { get; set; }
 
     }

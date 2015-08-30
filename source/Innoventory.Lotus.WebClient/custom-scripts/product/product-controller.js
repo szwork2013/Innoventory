@@ -1,8 +1,14 @@
 ﻿(function (inv) {
-    var productController = function ($scope, $q, apiService) {
+
+    var productController = function ($scope, $q, productService, productVariantService, apiService) {
         //var page = this;
 
+
         var pc = this;
+
+        pc.pvRowId = 0;
+
+        pc.pvEditRowId = 0
 
         $scope.categorySubCategoryMap = {};
 
@@ -25,6 +31,10 @@
         $scope.subCategories = [];
         $scope.volumeMeasures = [];
 
+        $scope.volumeMeasure = {};
+        $scope.category = {};
+        $scope.subCategory = {};
+
         $scope.productFilterOption = {};
 
         $scope.searchCategory = {};
@@ -40,11 +50,15 @@
         $scope.isSubCategories = false;
         $scope.isData = false;
         $scope.isPVData = false;
+        $scope.hasAttribute = false;
 
         $scope.productGrid = new Innoventory.productGrid();
         $scope.productVariantGrid = new Innoventory.productVariantGrid();
 
         $scope.gridOptions = $scope.productGrid.gridOptions;
+
+        $scope.pvTableStyle = "";
+        $scope.tableStyle = "";
 
         //$scope.gridOptions.data = [];
 
@@ -52,36 +66,10 @@
 
         $scope.pvGridOptions = $scope.productVariantGrid.gridOptions;
 
-        $scope.pvGridOptions.data = {};
+        $scope.pvGridOptions.data = [];
 
         $scope.salesVolumeMeasure = {};
         $scope.purchaseVolumeMeasure = {};
-
-
-        $scope.gridOptions.onRegisterApi = function (gridApi) {
-            $scope.gridApi = gridApi;
-            gridApi.selection.on.rowSelectionChanged($scope, function (row) {
-                var msg = 'row selected ' + row.isSelected;
-                $scope.editProduct(row.entity.productId);
-            });
-
-            gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
-               $scope.gridOptions.paginationOptions.pageNumber = newPage;
-               $scope.gridOptions.paginationOptions.pageSize = pageSize;
-                onCancel();
-                getTableStyle($scope.gridOptions, $scope.gridApi);
-            });
-        };
-
-        $scope.pvGridOptions.onRegisterApi = function (pvGridApi) {
-
-            $scope.pvGridApi = pvGridApi;
-            pvGridApi.selection.on.rowSelectionChanged($scope, function (row) {
-                var msg = 'row selected ' + row.isSelected;
-                $scope.editProductVariant(row.entity.productId);
-            });
-                       
-        };
 
 
         getTableStyle = function (gridOptions, gridApi) {
@@ -120,9 +108,36 @@
 
             };
 
-            $scope.tableStyle = {
+            var tableStyle = {
                 height: height + "px"
             };
+
+            return tableStyle;
+        };
+        $scope.gridOptions.onRegisterApi = function (gridApi) {
+            $scope.gridApi = gridApi;
+            gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                var msg = 'row selected ' + row.isSelected;
+                $scope.editProduct(row.entity.productId);
+            });
+
+            gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
+                $scope.gridOptions.paginationOptions.pageNumber = newPage;
+                $scope.gridOptions.paginationOptions.pageSize = pageSize;
+                onCancel();
+                $scope.tableStyle = getTableStyle($scope.gridOptions, $scope.gridApi);
+
+            });
+        };
+
+        $scope.pvGridOptions.onRegisterApi = function (pvGridApi) {
+
+            $scope.pvGridApi = pvGridApi;
+            pvGridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                var msg = 'row selected ' + row.isSelected;
+                $scope.editProductVariant(row.entity.productVariantId);
+            });
+
         };
 
 
@@ -181,13 +196,18 @@
             };
         }
 
-        $scope.onProductCategoryChange = function (category) {
+        $scope.onProductCategoryChange = function (e) {
+
+            getProductSubCategories();
+        }
+
+        getProductSubCategories = function (subCategoryId) {
 
             var category = $scope.productCategory;
 
             $scope.categorySubCategoryMap = {};
 
-            if (category) {
+            if (category && category.entityId) {
 
                 var scurl = "SubCategory/getSubCategorySelectList/" + category.entityId;
                 $scope.apiService.apiGet(scurl, {}, function (result) {
@@ -198,29 +218,40 @@
 
                         $scope.isProductSubCategories = true;
 
-                    }
-                    else {
+                        if (subCategoryId) {
 
-                        $scope.isProductSubCategories = false;
+                            $scope.productSubCategory = getSelectListItem($scope.productSubCategories, subCategoryId);
+                            $scope.onProductSubCategoryChange();
+                        }
+                        else {
+
+                            $scope.isProductSubCategories = false;
+
+
+                        }
 
                     }
                 });
-            };
+
+            }
         }
 
         $scope.onProductSubCategoryChange = function () {
 
-            var subCategoryId = $scope.productSubCategory.entityId;
+            var subCategory = $scope.productSubCategory;
+
             var categoryId = $scope.productCategory.entityId;
 
-            if (subCategoryId) {
+            if (subCategory && subCategory.entityId) {
 
-                var url = "SubCategory/getCategorySubCategoryMap/" + categoryId + "/" + subCategoryId;
+                var url = "SubCategory/getCategorySubCategoryMap/" + categoryId + "/" + subCategory.entityId;
 
                 apiService.apiGet(url, {}, function (result) {
                     if (result) {
 
+                        //$scope.productVM.categorySubCategoryMap = result.entity;
                         $scope.categorySubCategoryMap = result.Entity;
+                        $scope.categorySubCategoryMapId = result.Entity.categorySubCategoryMapId;
                     }
                 });
             }
@@ -230,6 +261,12 @@
         $scope.searchProducts = function (e) {
 
             e.preventDefault();
+
+            search();
+
+        };
+
+        search = function(){
 
             if ($scope.searchCategory) {
                 $scope.productFilterOption.categoryId = $scope.searchCategory.entityId;
@@ -247,11 +284,13 @@
                 $scope.productListItems = result.Entities;
 
                 $scope.gridOptions.data = $scope.productListItems;
+                $scope.isData = true;
 
             });
 
             if ($scope.productListItems && $scope.productListItems.length > 0) {
                 $scope.isData = true;
+                $scope.tableStyle = getTableStyle($scope.gridOptions, $scope.gridApi);
             }
             else {
                 $scope.isData = false;
@@ -261,17 +300,34 @@
 
         $scope.getAttributeList = function () {
 
-            var catSubCatMapId = $scope.categorySubCategoryMap.categorySubCategoryMapId;
+            var catSubCatMapId = $scope.categorySubCategoryMapId;
 
-            var url = "productAttribute/getAttributeValues/" + catSubCatMapId;
+            var url = "productAttribute/getAttributeValues/" + mapId;
 
             apiService.apiGet(url, {}, function (result) {
 
                 if (result.Entities) {
 
+                    $scope.hasAttribute = true;
                     $scope.attributeValueListCollection = result.Entities;
+
+                }
+                else {
+
+                    $scope.hasAttribute = false;
+
                 }
             });
+
+        }
+
+        getAttributeListByMapId = function (mapId, fn) {
+
+            var url = "productAttribute/getAttributeValues/" + mapId;
+
+            apiService.apiGet(url, {}, fn);
+
+
 
         }
 
@@ -290,7 +346,31 @@
 
         $scope.newProductVariant = function (e) {
             e.preventDefault();
-            
+
+            var product = $scope.productVM;
+
+            product.categorySubCategoryMap = $scope.categorySubCategoryMap;
+
+            product.categorySubCategoryMapId = $scope.categorySubCategoryMap.categorySubCategoryMapId;
+
+            //product.categoryId = $scope.productCategory.entityId;
+            //product.categoryName = $scope.productCategory.entityName;
+
+            //product.subCategoryId = $scope.productSubCategory.entityId;
+            //product.subCategoryName = $scope.productSubCategory.entityName;
+
+            product.volumeMeasureId = $scope.volumeMeasure.entityId;
+            product.volumeMeasureName = $scope.volumeMeasure.entityName;
+
+
+
+            var validateProduct = productService.validateProductBeforeNewPV(product);
+
+            if (!validateProduct) {
+                return;
+            }
+
+
             $scope.pvFormTitle = "New Product Variant";
             $scope.showDeletePV = false;
             $scope.showProductVariant = true;
@@ -306,26 +386,132 @@
                 if (result.Entity) {
 
                     $scope.productVM = result.Entity;
-                    $scope.showProduct = true;
-                    $scope.showDelete = false;
+
+                    $scope.productCategory = getSelectListItem($scope.productCategories, $scope.productVM.categorySubCategoryMap.categoryId);
+
+                    getProductSubCategories($scope.productVM.categorySubCategoryMap.subCategoryId);
+
+                    if ($scope.volumeMeasures && $scope.volumeMeasures.length > 0) {
+                        $scope.volumeMeasure = getSelectListItem($scope.volumeMeasures, $scope.productVM.volumeMeasureId);
+                    }
+
+                    $scope.categorySubCategoryMap = $scope.productVM.categorySubCategoryMap;
+
+                    var categorySubCategoryMapId = $scope.productVM.categorySubCategoryMapId;
+
+                    getAttributeListByMapId(categorySubCategoryMapId, function (result) {
+
+                        if (result.Entities) {
+
+                            $scope.hasAttribute = true;
+                            $scope.attributeValueListCollection = result.Entities;
+
+                        }
+                        else {
+
+                            $scope.hasAttribute = false;
+
+                        }
+
+                        var attributeValueString = "";
+                        
+
+                        $scope.pvGridOptions.data = $scope.productVM.productVariantListItems;
+
+                        
+                        if ($scope.pvGridOptions.data && $scope.pvGridOptions.data.length > 0) {
+                            $scope.isPVData = true;
+                        }
+
+                        $scope.showProduct = true;
+                        $scope.showDelete = true;
+
+                        $scope.formTitle = "Edit Product";
+
+                    });
+
+
+
                 }
             });
         }
 
+        getSelectListItem = function (list, id) {
+
+            var result = list.filter(function (item) {
+
+                return item.entityId == id;
+
+            })
+
+            if (result && result.length > 0) {
+                return result[0];
+            }
+
+            return null;
+        }
+
         $scope.editProductVariant = function (pvId) {
 
-            var pvUrl = "productVariant/GetProductVariant/" + pvId;
+            var productVariant = getProductVariantRow(pvId);
 
-            apiService.apiGet(pvUrl, {}, function (result) {
-                if (result.Entity) {
+            if (productVariant) {
+                $scope.productVariantVM = productVariant;
 
-                    $scope.productVariantVM = result.Entity;
+                $scope.showDeletePV = true;
+                $scope.showProductVariant = true;
 
-                    //$scope.pvGridOptions.data = result.Entity.productVariants;
+                if($scope.hasAttribute)
+                {
+                    var productAttributeVariantValues = productVariant.productVariantAttributeValues;
+
+                    $scope.attributeValueListCollection.forEach(function (attr, key) {
+
+                        var selAttr = productAttributeVariantValues.filter(function (item) {
+
+                            return item.productAttributeId == attr.productAttributeId;
+
+                        });
+
+                        if(selAttr != null && selAttr.length > 0)
+                        {
+                            var selectedAttributeValue = selAttr[0];
+
+                            var attrValue = {
+                                attributeValueListId: selectedAttributeValue.attributeValueListId,
+                                attributeValue: selectedAttributeValue.productAttributeValue
+                            }
+
+                            attr.selectedAttributeValue = attrValue;
+                        }
+
+                    });
+                }
+
+                
+            };
+            
+
+        }
+
+        getProductVariantRow = function (pvId) {
+
+
+
+            var productVariants = $scope.productVM.productVariants.filter(function (object) {
+
+                if (object.productVariantId == pvId) {
+
+                    return object;
+
                 }
 
             });
-            //$scope.productVariantVM = 
+
+            if (productVariants && productVariants.length > 0) {
+
+                return productVariants[0];
+            };
         }
 
         $scope.saveProduct = function (e) {
@@ -334,49 +520,196 @@
             var isValid = false;
             var errors = [];
 
-            product.categoryId = $scope.productCategory.entityId;
-            product.categoryName = $scope.productCategory.entityName;
+            //product.categoryId = $scope.productCategory.entityId;
+            //product.categoryName = $scope.productCategory.entityName;
 
-            product.subCategoryId = $scope.productSubCategory.entityName;
-            product.subCategoryName = $scope.productsubcategory.entityName;
+            //product.subCategoryId = $scope.productSubCategory.entityName;
+            //product.subCategoryName = $scope.productSubCategory.entityName;
 
-            product.salesVolumeMeasureId = $scope.salesVolumeMeasure.entityId;
-            product.salesVolumeMeasureName = $scope.salesVolumeMeasure.entityName;
+            //product.volumeMeasureId = $scope.volumeMeasure.entityId;
+            //product.volumeMeasureShortName = $scope.volumeMeasure.entityName;
 
-            product.purchaseVolumeMeasureId = $scope.purchaseVolumeMeasure.entityId;
-            product.purchaseVolumeMeasureName = $scope.purchaseVolumeMeasure.entityna;
+            product.categorySubCategoryMap = $scope.categorySubCategoryMap;
 
-            if (!product.productName || product.productName == "") {
-                errors.push("Product Name can not be empty");
-            };
+            product.categorySubCategoryMapId = $scope.categorySubCategoryMap.categorySubCategoryMapId;
 
-            if (!product.description || product.description == "") {
-                errors.push("Description can not be empty");
-            };
 
-            if (!product.category) {
-                errors.push("Please select a Category");
-            };
+            var validateProduct = productService.validateProduct(product);
 
-            if (!product.subCategory) {
-                errors.push("Please select a Sub Category");
-            };
-
-            if (!product.salesVolumeMeasureId) {
-                errors.push("Please select a Sales Volume Measure");
-            };
-
-            if (!product.purchaseVolumeMeasureId) {
-                errors.push("Please select a Purchase Volume Measure");
-            };
-
-            if (!product.productVariants || product.productVariants.length == 0) {
-                errors.push("Please add at least one Product Variant");
-            };
-
-            if (errors.length > 0) {
-                apiService.showError(errors);
+            if (!validateProduct) {
+                return;
             }
+
+            var url = "product/saveProduct";
+
+            apiService.apiPost(url, product, function (result) {
+
+                if (result.Success) {
+                    
+
+                    search();
+                }
+
+            });
+
+        }
+
+        clearForm = function () {
+
+            $scope.showProduct = false;
+
+            $scope.showProductVariant = false;
+            $scope.showProduct = false;
+            $scope.pvGridOptions.data = [];
+            $scope.categorySubCategoryMap = null;
+            $scope.categorySubCategoryMapId = null;
+            $scope.productCategory = null;
+            $scope.productSubCategory = null;
+            $scope.productSubCategories = [];
+            $scope.categoryId = null;
+            $scope.volumeMeasure = null;
+            $scope.isProdCategorySelected = false;
+            $scope.isPVData = false;
+            $scope.isSubCategories = false;
+            $scope.productvm = {};
+            $scope.productVariantVM = {};
+
+        };
+
+        $scope.attributeSelected = function (value, attributeId) {
+
+            var selectedValue = value;
+            var attributeId = attributeId;
+
+
+        }
+
+        $scope.saveProductVariant = function (e) {
+
+            e.preventDefault();
+            var hasError = false;
+            var errors = [];
+
+            var productVariant = $scope.productVariantVM;
+
+            productVariant.productVariantAttributeValues = [];
+
+            var attributeValueString = "";
+            var loop = 0;
+
+            if ($scope.hasAttribute) {
+
+                $scope.attributeValueListCollection.forEach(function (pv, key) {
+
+                    var productVariantAttributeValueModel = new Innoventory.productVariantAttributeValueModel();
+
+                    productVariantAttributeValueModel = {
+                        productVariantId: productVariant.productVariantId,
+                        productAttributeId: pv.productAttributeId,
+                        productAttributeName: pv.attributeName
+                    };
+
+                    if (loop > 0) {
+                        attributeValueString = attributeValueString.concat("; ");
+                    }
+
+                    attributeValueString = attributeValueString.concat(pv.attributeName, ": ");
+
+                    if (pv.selectedAttributeValue && pv.selectedAttributeValue.attributeValueListId) {
+
+                        productVariantAttributeValueModel.attributeValueListId = pv.selectedAttributeValue.attributeValueListId;
+                        productVariantAttributeValueModel.productAttributeValue = pv.selectedAttributeValue.attributeValue.trim();
+                        attributeValueString = attributeValueString.concat(pv.selectedAttributeValue.attributeValue.trim());
+
+                    } else {
+
+                        productVariantAttributeValueModel.attributeValueListId = Innoventory.emptyGuid;
+                        productVariantAttributeValueModel.productAttributeValue = pv.selectedAttributeValue.trim();
+                        attributeValueString = attributeValueString.concat(pv.selectedAttributeValue.trim());
+
+                    }
+
+
+                    productVariant.productVariantAttributeValues.push(productVariantAttributeValueModel);
+
+                    loop = loop + 1;
+
+                });
+            }
+            else {
+                attributeValueString = "No Attributes"
+            };
+
+            var isValid = productVariantService.validateProductVariant(productVariant);
+
+            if (!isValid) {
+                return;
+            }
+
+            var productVariantListItem = null;
+
+            var isNewRow = false;
+
+            if (!productVariant.productVariantId || productVariant.productVariantId == Innoventory.emptyGuid) {
+                productVariant.productVariantId = apiService.generateUUID();
+                $scope.productVM.productVariants.push(productVariant);
+
+                productVariantListItem = new Innoventory.productVariantListItemModel();
+                isNewRow = true;
+
+            }
+            else {
+
+                var pvItems = $scope.productVM.productVariants.filter(function (item) {
+
+                    return item.productVariantId == productVariant.productVariantId;
+
+
+                });
+
+                if (pvItems && pvItems.length > 0) {
+                    pvItems[0] = productVariant;
+
+                };
+
+                var pvListItems = $scope.pvGridOptions.data.filter(function (item) {
+
+                    return item.productVariantId == productVariant.productVariantId;
+
+                });
+
+                if (pvListItems && pvListItems.length > 0) {
+
+                    productVariantListItem = pvListItems[0];
+                };
+
+            };
+
+            
+
+            
+
+            productVariantListItem.skuCode = productVariant.skuCode;
+            productVariantListItem.availableQuantity = productVariant.availableQuantity;
+            productVariantListItem.attributeValueString = attributeValueString;
+
+            productVariantListItem.basePrice = productVariant.basePrice;
+            productVariantListItem.shelfPrice = productVariant.shelfPrice;
+
+            if (isNewRow) {
+                $scope.pvGridOptions.data.push(productVariantListItem);
+            };
+
+            $scope.pvTableStyle = getTableStyle($scope.pvGridOptions, $scope.pvGridApi);
+
+            $scope.isPVData = true;
+
+            productVariant = null;
+
+            $scope.productvariantvm = null;
+
+            $scope.showProductVariant = false;
+
         }
 
 
@@ -388,9 +721,8 @@
         };
 
         onCancel = function () {
-            $scope.productVM = null;
-            $scope.showProduct = false;
-            $scope.selectedId = null;
+            clearForm();
+                        
             $scope.gridApi.selection.clearSelectedRows();
         }
 

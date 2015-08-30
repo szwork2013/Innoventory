@@ -63,9 +63,6 @@
     <Compile Include="Abstract\IAddressRepository.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Abstract\IAttributeValueListRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Abstract\ICategoryRepository.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -141,9 +138,6 @@
     <Compile Include="Caching\IInnoventoryDataCache.cs" />
     <Compile Include="Caching\InnoventoryDataCache.cs" />
     <Compile Include="Concrete\AddressRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Concrete\AttributeValueListRepository.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Concrete\CategoryRepository.cs" />

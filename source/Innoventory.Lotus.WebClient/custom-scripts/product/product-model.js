@@ -13,12 +13,11 @@
         me.subCategoryId = {};
         me.subCategoryName = "";
         me.imageId = [];
-        me.salesVolumeMeasureId = {};
-        me.salesVolumeMeasureName = "";
-        me.purchaseVolumeMeasureId = {};
-        me.purchaseVolumeMeasureName = "";
+        me.volumeMeasureId = {};
+        me.volumeMeasureShortName = "";
         me.productVariants = [];
         me.imageUrl = "";
+        
     };
 
     var productListItemModel = function () {

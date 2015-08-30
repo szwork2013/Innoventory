@@ -42,22 +42,26 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "categorySubCategoryMapId")]
         public Guid CategorySubCategoryMapId { get; set; }
 
-        [DisplayName("Category ID")]
-        [DataMember(Name = "categoryId")]
-        public Guid CategoryId { get; set; }
 
-        [DisplayName("Category Name")]
-        [DataMember(Name = "categoryName")]
-        public string CategoryName { get; set; }
+        [DataMember(Name="categorySubCategoryMap")]
+        public CategorySubCategoryMapViewModel CategorySubCategoryMap { get; set; }
 
-        [DisplayName("Sub Category ID")]
-        [DataMember(Name = "subCategoryId")]
-        public Guid SubCategoryId { get; set; }
+        //[DisplayName("Category ID")]
+        //[DataMember(Name = "categoryId")]
+        //public Guid CategoryId { get; set; }
+
+        //[DisplayName("Category Name")]
+        //[DataMember(Name = "categoryName")]
+        //public string CategoryName { get; set; }
+
+        //[DisplayName("Sub Category ID")]
+        //[DataMember(Name = "subCategoryId")]
+        //public Guid SubCategoryId { get; set; }
 
 
-        [DisplayName("Sub Category Name")]
-        [DataMember(Name = "subCategoryName")]
-        public string SubCategoryName { get; set; }
+        //[DisplayName("Sub Category Name")]
+        //[DataMember(Name = "subCategoryName")]
+        //public string SubCategoryName { get; set; }
 
 
         [DisplayName("Image ID")]
@@ -71,10 +75,13 @@ namespace Innoventory.Lotus.ViewModels
                
         [DataMember(Name = "volumeMeasureShortName")]
         public string volumeMeasureShortName { get; set; }
-        
+
 
         [DataMember(Name = "productVariants")]
         public List<ProductVariantViewModel> ProductVariants { get; set; }
+
+        [DataMember(Name = "productVariantListItems")]
+        public List<ProductVariantListItem> ProductVariantListItems { get; set; }
 
         [DataMember(Name = "imageUrl")]
         public string ImageUrl { get; set; }
@@ -94,6 +101,7 @@ namespace Innoventory.Lotus.ViewModels
         }
     }
 
+    [DataContract]
     public class ProductListItem
     {
         [ScaffoldColumn(false)]

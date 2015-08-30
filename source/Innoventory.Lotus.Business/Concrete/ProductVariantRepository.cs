@@ -26,9 +26,44 @@ namespace Innoventory.Lotus.Business.Concrete
 
         protected ProductVariant GetDomainEntity(ProductVariantViewModel viewModel)
         {
-            ProductVariant productVariant = ObjectMapper.PropertyMap(viewModel, new ProductVariant());
+            ProductVariant productVariant = GetProductVariant(viewModel);
 
             return productVariant;
+        }
+
+        private ProductVariant GetProductVariant(ProductVariantViewModel viewModel)
+        {
+            ProductVariant pv = new ProductVariant()
+            {
+                AvailableQuantity = viewModel.AvailableQuantity,
+                BarCode = viewModel.BarCode,
+                BasePrice = viewModel.BasePrice,
+                CaseHeight = viewModel.CaseHeight,
+                CaseLength = viewModel.CaseLength,
+                CaseWeight = viewModel.CaseWeight,
+                CaseWidth = viewModel.CaseWidth,
+                ImageFileId = viewModel.MainImageFileId,
+                IsActive = viewModel.IsActive,
+                IsPurchaseable = viewModel.IsPurchaseable,
+                IsSellable = viewModel.IsSellable,
+                LastPurchasePrice = viewModel.LastPurchasePrice,
+                LastSupplierId = viewModel.LastSupplierId,
+                ModifiedOn = DateTime.Now,
+                ProductHeight = viewModel.ProductHeight,
+                ProductId = viewModel.ProductId,
+                ProductLength = viewModel.ProductLength,
+                ProductVariantId = viewModel.ProductVariantId,
+                ProductWeight = viewModel.ProductWeight,
+                ProductWidth = viewModel.ProductWidth,
+                ReorderPoint = viewModel.ReorderPoint,
+                ReorderQuantity = viewModel.ReorderQuantity,
+                PromotionId = viewModel.PromotionId,
+                ShelfPrice = viewModel.ShelfPrice,
+                SKUCode = viewModel.SKUCode,
+                UnitVolume = viewModel.UnitVolume,
+            };
+
+            return pv;
         }
 
 
@@ -57,8 +92,8 @@ namespace Innoventory.Lotus.Business.Concrete
 
             foreach (ProductVariant productVariant in productVariants)
             {
-                ProductVariantViewModel pvVM = new ProductVariantViewModel();
 
+                ProductVariantViewModel pvVM = new ProductVariantViewModel();
 
                 retList.Add(ObjectMapper.PropertyMap(productVariant, pvVM));
 
@@ -73,6 +108,7 @@ namespace Innoventory.Lotus.Business.Concrete
             List<ProductVariantViewModel> productVariants = (GetEntities(dbContext)).Where(predicate).ToList();
 
             return productVariants;
+
         }
 
         protected override bool DeleteEntity(InnoventoryDBContext dbContext, Guid id)

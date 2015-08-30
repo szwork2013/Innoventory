@@ -38,5 +38,65 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
 
 
         }
+
+        [HttpGet]
+        [Route("getProduct/{id}")]
+        public HttpResponseMessage GetProduct(HttpRequestMessage request, Guid id)
+        {
+
+            HttpResponseMessage response = null;
+
+            return GetHttpResponse(request, () =>
+            {
+
+                GetEntityResult<ProductViewModel> productResult = productTransition.GetProduct(id);
+
+                if(productResult.Success)
+                {
+                    response = new HttpResponseMessage(HttpStatusCode.OK);
+                   
+                }
+                else
+                {
+                    response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+                }
+
+                response.Content = new ObjectContent<GetEntityResult<ProductViewModel>>(productResult, Configuration.Formatters.JsonFormatter);
+
+                return response;
+
+            });
+
+        }
+
+        [HttpPost]
+        [Route("saveProduct")]
+        public HttpResponseMessage SaveProduct(HttpRequestMessage request, [FromBody]ProductViewModel product)
+        {
+            HttpResponseMessage response = null;
+
+            return GetHttpResponse(request, () =>
+            {
+
+                UpdateResult<ProductViewModel> updateResult = productTransition.SaveProduct(product);
+
+                if (updateResult.Success)
+                {
+                    response = new HttpResponseMessage(HttpStatusCode.OK);
+
+
+                }
+                else
+                {
+                    response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
+
+                }
+
+                response.Content = new ObjectContent<UpdateResult<ProductViewModel>>(updateResult, Configuration.Formatters.JsonFormatter);
+
+                return response;
+
+            });
+        }
     }
 }

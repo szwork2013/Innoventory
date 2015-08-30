@@ -36,6 +36,11 @@ namespace Innoventory.Lotus.Database.DataEntities
 
         public virtual IList<ProductVariant> ProductVariants { get; set; }
 
+        public Product()
+        {
+            ProductVariants = new List<ProductVariant>();
+        }
+
 
     }
 }

@@ -11,6 +11,7 @@ using Innoventory.Lotus.Database.DataEntities;
 using System.ComponentModel.Composition;
 using Innoventory.Lotus.Business.Abstract;
 using System.Runtime.Caching;
+using Innoventory.Lotus.Core.Common;
 
 namespace Innoventory.Lotus.BusinessTransition
 {
@@ -35,13 +36,7 @@ namespace Innoventory.Lotus.BusinessTransition
         private IProductVariantRepository productVariantRepository;
 
         [Import]
-        private ISubCategoryAttributeMapRepository categorySubCategoryAttributeMapRepository;
-
-        [Import]
-        private IProductAttributeRepository productAttributeRepository;
-
-        [Import]
-        private IAttributeValueListRepository attributeValueListRepository;
+        private ISubCategoryAttributeMapRepository subCategoryAttributeMapRepository;
 
 
         [Import]
@@ -53,29 +48,6 @@ namespace Innoventory.Lotus.BusinessTransition
 
             using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
             {
-                //dbContext.Database.SqlQuery(  )
-
-                var product = (from pr in dbContext.ProductSet.ToList()
-                               join vm in dbContext.VolumeMeasureSet.ToList() on pr.VolumeMeasureId equals vm.VolumeMeasureId
-                               join catSubCatMap in dbContext.CategorySubCategoryMapSet.ToList() on pr.CategorySubCategoryMapId equals catSubCatMap.CategorySubCategoryMapId
-                               join category in dbContext.CategorySet.ToList() on catSubCatMap.CategoryId equals category.CategoryId
-                               join subCategory in dbContext.SubCategorySet on catSubCatMap.SubCategoryId equals subCategory.SubCategoryId
-                               where pr.ProductId == productId
-                               select new ProductViewModel
-                               {
-                                   CategoryId = category.CategoryId,
-                                   CategoryName = category.CategoryName,
-                                   CategorySubCategoryMapId = pr.CategorySubCategoryMapId,
-                                   Description = pr.Description,
-                                   ImageId = pr.ImageId,
-                                   ItemType = pr.ItemType,
-                                   ProductName = pr.ProductName,
-                                   VolueMeasureId = pr.VolumeMeasureId,
-                                   volumeMeasureShortName = vm.ShortName,
-                                   SubCategoryId = subCategory.SubCategoryId,
-                                   SubCategoryName = subCategory.SubCategoryName,
-                                   Remarks = pr.Remarks
-                               }).FirstOrDefault();
 
                 GetEntityResult<ProductViewModel> productResult = productRepository.FindById(dbContext, productId);
 
@@ -84,6 +56,58 @@ namespace Innoventory.Lotus.BusinessTransition
                 {
                     return productResult;
                 }
+
+                var product = productResult.Entity;
+
+                var categorySubCategoryMap = from cscmap in dbContext.CategorySubCategoryMapSet
+                                             join c in dbContext.CategorySet on cscmap.CategoryId equals c.CategoryId
+                                             join sc in dbContext.SubCategorySet
+                                             on cscmap.SubCategoryId equals sc.SubCategoryId
+                                             where (cscmap.CategorySubCategoryMapId == product.CategorySubCategoryMapId)
+                                             select new CategorySubCategoryMapViewModel
+                                             {
+                                                 Category = new CategoryViewModel
+                                                 {
+                                                     CategoryId = c.CategoryId,
+                                                     CategoryName = c.CategoryName,
+                                                     Description = c.Description,
+                                                 },
+                                                 CategoryId = c.CategoryId,
+                                                 CategorySubCategoryMapId = product.CategorySubCategoryMapId,
+                                                 SubCategory = new SubCategoryViewModel
+                                                 {
+                                                     Description = sc.Description,
+                                                     SubCategoryId = sc.SubCategoryId,
+                                                     SubCategoryName = sc.SubCategoryName,
+                                                 },
+                                                 SubCategoryId = sc.SubCategoryId
+                                             };
+
+
+                product.CategorySubCategoryMap = categorySubCategoryMap.FirstOrDefault();
+
+
+
+                //if (categorySubCategoryMap != null)
+                //{
+                //    var category = dbContext.CategorySet.Where(x => x.CategoryId == categorySubCategoryMap.CategoryId).FirstOrDefault();
+
+                //    if (category != null)
+                //    {
+                //        product.CategoryId = category.CategoryId;
+                //        product.CategoryName = category.CategoryName;
+                //    }
+
+                //    var subCategory = dbContext.SubCategorySet.Where(x => x.SubCategoryId == categorySubCategoryMap.SubCategoryId).FirstOrDefault();
+
+                //    if (subCategory != null)
+                //    {
+                //        product.SubCategoryId = subCategory.SubCategoryId;
+                //        product.SubCategoryName = subCategory.SubCategoryName;
+                //    }
+
+
+                //}
 
                 FindResult<ProductVariantViewModel> findProductVriantResult = productVariantRepository.FindBy(dbContext, x => x.ProductId == productId);
 
@@ -99,11 +123,10 @@ namespace Innoventory.Lotus.BusinessTransition
 
                 product.ProductVariants = productVariants;
 
-
                 long categoryAttributeCount = 0;
 
-                FindResult<SubCategoryAttributeMapViewModel> subCatAttribMapResult = categorySubCategoryAttributeMapRepository
-                                .FindBy(dbContext, x => x.SubCategoryId == product.CategorySubCategoryMapId);
+                FindResult<SubCategoryAttributeMapViewModel> subCatAttribMapResult = subCategoryAttributeMapRepository
+                                .FindBy(dbContext, x => x.SubCategoryId == product.CategorySubCategoryMap.SubCategoryId);
 
                 if (subCatAttribMapResult.Success && subCatAttribMapResult.Count > 0)
                 {
@@ -111,30 +134,44 @@ namespace Innoventory.Lotus.BusinessTransition
                     categoryAttributeCount = subCatAttribMapResult.Count;
 
                 }
-
-                foreach (ProductVariantViewModel pvm in productVariants)
+                if (product.ProductVariants != null && product.ProductVariants.Count > 0)
                 {
+                    foreach (ProductVariantViewModel pvm in product.ProductVariants)
+                    {
 
 
 
-                    pvm.ProductVariantAttributeValues = (from pv in dbContext.ProductVariantAttributeValueSet
-                                                         join avl in dbContext.AttributeValueListSet on pv.AttributeValueListId equals avl.AttributeValueListId
-                                                         join subcatAttrMap in dbContext.SubCategoryAttributeMapSet
-                                                         on avl.SubCategoryAttributeMapID equals subcatAttrMap.SubCategoryAttributeMapId
-                                                         join productAttributs in dbContext.ProductAttributeSet
-                                                         on subcatAttrMap.ProductAttributeId equals productAttributs.ProductAttributeId
-                                                         where pv.ProductVariantId == pvm.ProductVariantId
-                                                         select new ProductVariantAttributeValueViewModel
-                                                         {
-                                                             ProductVariantId = pv.ProductVariantId,
-                                                             AttributeValueListId = avl.AttributeValueListId,
-                                                             ProductAttributeName = productAttributs.AttributeName,
-                                                             ProductAttributeValue = avl.AttributeValue
-                                                         }).ToList();
+                        pvm.ProductVariantAttributeValues = (from pv in dbContext.ProductVariantAttributeValueSet
+                                                             join avl in dbContext.AttributeValueListSet on pv.AttributeValueListId equals avl.AttributeValueListId
+                                                             join subcatAttrMap in dbContext.SubCategoryAttributeMapSet
+                                                             on avl.SubCategoryAttributeMapID equals subcatAttrMap.SubCategoryAttributeMapId
+                                                             join productAttributs in dbContext.ProductAttributeSet
+                                                             on subcatAttrMap.ProductAttributeId equals productAttributs.ProductAttributeId
+                                                             where pv.ProductVariantId == pvm.ProductVariantId
+                                                             select new ProductVariantAttributeValueViewModel
+                                                             {
+                                                                 ProductVariantId = pv.ProductVariantId,
+                                                                 AttributeValueListId = avl.AttributeValueListId,
+                                                                 ProductAttributeName = productAttributs.AttributeName,
+                                                                 ProductAttributeValue = avl.AttributeValue,
+                                                                 ProductAttributeId = productAttributs.ProductAttributeId,
+                                                             }).ToList();
 
+                    }
                 }
 
+                FindResult<ProductVariantListItem> pvResult = GetAllProductVariantListItems(product.ProductId);
+
+                if (pvResult.Success)
+                {
+                    product.ProductVariantListItems = pvResult.Entities;
+                }
+
+                entityResult.Entity = product;
+
+                entityResult.Success = true;
             }
+
 
             return entityResult;
         }
@@ -237,13 +274,13 @@ namespace Innoventory.Lotus.BusinessTransition
 
                         foreach (var item in productVariantAttributeValues)
                         {
-                            sb.AppendFormat("{0} - ({1}), ", item.ProductAttributeName, item.ProductAttributeValue);
+                            sb.AppendFormat("{0}: {1}; ", item.ProductAttributeName, item.ProductAttributeValue);
                             sb.Append(" ");
                         }
 
                         string formattedAttributeValues = sb.ToString().Trim();
 
-                        if (formattedAttributeValues.EndsWith(","))
+                        if (formattedAttributeValues.EndsWith(";"))
                         {
                             formattedAttributeValues = formattedAttributeValues.Substring(0, formattedAttributeValues.Length - 1);
                         }
@@ -254,7 +291,6 @@ namespace Innoventory.Lotus.BusinessTransition
                 }
 
 
-                productVariantRepository.FindById(Guid.NewGuid());
 
                 result.Entities = productVariants;
             }
@@ -290,14 +326,15 @@ namespace Innoventory.Lotus.BusinessTransition
 
             UpdateResult<ProductViewModel> result = new UpdateResult<ProductViewModel>() { Success = false };
 
-            Guid categoryId = productViewModel.CategoryId;
-            Guid subCategoryId = productViewModel.SubCategoryId;
+            Guid categoryId = productViewModel.CategorySubCategoryMap.CategoryId;
+            Guid subCategoryId = productViewModel.CategorySubCategoryMap.SubCategoryId;
 
 
             using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
             {
                 try
                 {
+
                     UpdateResult<ProductViewModel> updateResult = productRepository.Update(dbContext, productViewModel);
 
                     if (!updateResult.Success)
@@ -308,9 +345,23 @@ namespace Innoventory.Lotus.BusinessTransition
                     foreach (ProductVariantViewModel prvm in productViewModel.ProductVariants)
                     {
 
+                        prvm.ProductId = updateResult.Entity.ProductId;
 
+                        ProductVariant pv = dbContext.ProductVariantSet.Where(x => x.ProductVariantId == prvm.ProductVariantId).FirstOrDefault();
 
-                        productVariantRepository.Update(prvm);
+                        if (pv == null)
+                        {
+                            prvm.ProductVariantId = Guid.Empty;
+                        }
+
+                        UpdateResult<ProductVariantViewModel> pvUpdateResult = productVariantRepository.Update(prvm);
+
+                        if (!pvUpdateResult.Success)
+                        {
+                            result.Success = false;
+                            result.ErrorMessage = pvUpdateResult.ErrorMessage;
+                            return result;
+                        }
 
                         List<ProductVariantAttributeValue> productVariantAttributeValueMaps = dbContext.ProductVariantAttributeValueSet
                                             .Where(x => x.ProductVariantId == prvm.ProductVariantId).ToList();
@@ -323,7 +374,9 @@ namespace Innoventory.Lotus.BusinessTransition
                             {
 
 
-                                if (!item.AttributeValueListId.HasValue && !string.IsNullOrEmpty(item.ProductAttributeValue))
+                                if ((!item.AttributeValueListId.HasValue
+                                     || item.AttributeValueListId.Value == Guid.Empty)
+                                     && !string.IsNullOrEmpty(item.ProductAttributeValue))
                                 {
                                     SubCategoryAttributeMap scAttrMap = dbContext.SubCategoryAttributeMapSet
                                         .Where(x => x.ProductAttributeId == item.ProductAttributeId && x.SubCategoryId == subCategoryId).FirstOrDefault();
@@ -339,12 +392,20 @@ namespace Innoventory.Lotus.BusinessTransition
 
                                     dbContext.AttributeValueListSet.Add(avl);
 
-                                    dbContext.SaveChanges();
+
                                     item.AttributeValueListId = avl.AttributeValueListId;
 
-                                }
+                                    ProductVariantAttributeValue newPVAttrValue = new ProductVariantAttributeValue()
+                                    {
+                                        ProductVariantId = prvm.ProductVariantId,
+                                        AttributeValueListId = item.AttributeValueListId.Value,
+                                    };
 
-                                if (item.AttributeValueListId.HasValue && !string.IsNullOrEmpty(item.ProductAttributeValue))
+                                    dbContext.ProductVariantAttributeValueSet.Add(newPVAttrValue);
+                                    dbContext.SaveChanges();
+
+                                }
+                                else if (item.AttributeValueListId.HasValue && item.AttributeValueListId != Guid.Empty && !string.IsNullOrEmpty(item.ProductAttributeValue))
                                 {
                                     ProductVariantAttributeValue pvAttrValue = productVariantAttributeValueMaps
                                                         .Where(x => x.AttributeValueListId == item.AttributeValueListId.Value)

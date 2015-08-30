@@ -57,14 +57,8 @@
                 </p>
                 <div class="col-sm-24">
                     <select name="category" id="category" class="form-control" ng-model="productCategory" ng-change="onProductCategoryChange()"
-                            ng-options="prodCategory as prodCategory.entityName for prodCategory in productCategories track by prodCategory.entityId">
-                        <option style="background:gray">
-
-                            ---- Select Category ----
-
-                        </option>
-
-                    </select>
+                            ng-options="prodCategory as prodCategory.entityName for prodCategory in productCategories track by prodCategory.entityId"
+                            ng-selectedindex="0"></select>
 
 
                 </div>
@@ -78,7 +72,9 @@
                 <div class="col-sm-24">
                     <select name="subCategory" id="subCategory" class="form-control" ng-model="productSubCategory"
                             ng-change="onProductSubCategoryChange()"
-                            ng-options="prodSubCategory as prodSubCategory.entityName for prodSubCategory in productSubCategories track by prodSubCategory.entityId"></select>
+                            ng-options="prodSubCategory as prodSubCategory.entityName for prodSubCategory in productSubCategories track by prodSubCategory.entityId"
+                            ng-selectedIndex="0"></select>
+                    
 
                 </div>
 
@@ -89,29 +85,17 @@
 
             <div class="form-group col-sm-12">
                 <p class="col-sm-24">
-                    <label for="SalesVolumeMeasureName" class="control-label"> Sales VolumeMeasure Name</label>
+                    <label for="prodVolumeMeasure" class="control-label">Volume Measure</label>
                 </p>
                 <div class="col-sm-24">
-                    <select name="salesVM" id="salesVM" class="form-control" ng-model="salesVolumeMeasure"
-                            ng-options="salesVM as salesVM.entityName for salesVM in volumeMeasures track by salesVM.entityId"></select>
+                    <select name="prodVolumeMeasure" id="prodVolumeMeasure" class="form-control" ng-model="volumeMeasure"
+                            ng-options="volumeMeasure as volumeMeasure.entityName for volumeMeasure in volumeMeasures track by volumeMeasure.entityId"></select>
 
                 </div>
 
 
             </div>
-
-            <div class="form-group col-sm-12">
-                <p class="col-sm-24">
-                    <label for="purchaseVM" class="control-label"> Purchase VolumeMeasure Name</label>
-                </p>
-                <div class="col-sm-24">
-                    
-                    <select name="purchaseVM" id="purchaseVM" class="form-control" ng-model="purchaseVolumeMeasure"
-                            ng-options="purchaseVM as purchaseVM.entityName for purchaseVM in volumeMeasures track by purchaseVM.entityId"></select>
-
-                </div>
-
-            </div>
+                        
 
             <div class="form-group">
                 <p class="col-sm-24">

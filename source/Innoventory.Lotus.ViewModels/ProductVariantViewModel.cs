@@ -29,7 +29,7 @@ namespace Innoventory.Lotus.ViewModels
 
         [DisplayName("Unit Volume")]
         [DataMember(Name = "unitVolume")]
-        public decimal? UnitVolume { get; set; }
+        public decimal UnitVolume { get; set; }
         
         [DataMember(Name = "availableQuantity")]
         public decimal AvailableQuantity { get; set; }
@@ -112,11 +112,19 @@ namespace Innoventory.Lotus.ViewModels
         [DataMember(Name = "promotionId")]
         public Guid PromotionId { get; set; }
 
+        [DataMember(Name = "mainImageFileId")]
+        public Guid? MainImageFileId { get; set; }
 
         [DataMember(Name = "imageFileIds")]
         public List<Guid> ImageFileIds { get; set; }
 
+        [DataMember(Name="imageUrls")]
+        public List<string> ImageUrls { get; set; }
 
+        [DataMember(Name = "mainImageUrl")]
+        public string MainImageUrl { get; set; }
+
+        [DataMember(Name = "productVariantAttributeValues")]
         public List<ProductVariantAttributeValueViewModel> ProductVariantAttributeValues { get; set; }
 
         [ScaffoldColumn(false)]
