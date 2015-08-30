@@ -8,7 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Innoventory.Lotus.BusinessTransition;
+using Innoventory.Lotus.BusinessActivity;
 
 namespace Innoventory.Lotus.WebClient.Controllers.Api
 {
@@ -21,12 +21,12 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
         //IProductAttributeRepository _productAttributeRepository;
 
         
-        IProductAttributeTransition productAttributeTransition;
+        IProductAttributeActivity productAttributeActivity;
              
         [ImportingConstructor]
-        public ProductAttributeController(IProductAttributeTransition productAttributeTransition)
+        public ProductAttributeController(IProductAttributeActivity productAttributeActivity)
         {
-            this.productAttributeTransition = productAttributeTransition;
+            this.productAttributeActivity = productAttributeActivity;
             
         }
 
@@ -41,7 +41,7 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
 
                 List<ProductAttributeViewModel> retProductAttributes = new List<ProductAttributeViewModel>();
 
-                FindResult<ProductAttributeViewModel> result = productAttributeTransition.GetProductAttributes();
+                FindResult<ProductAttributeViewModel> result = productAttributeActivity.GetProductAttributes();
 
                 response = GetFindResultResponse(request, result);
 
@@ -59,7 +59,7 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
             {
                 HttpResponseMessage response = null;
 
-                UpdateResult<ProductAttributeViewModel> updateResult = productAttributeTransition.UpdateProductAttribute(productAttributeModel);
+                UpdateResult<ProductAttributeViewModel> updateResult = productAttributeActivity.UpdateProductAttribute(productAttributeModel);
 
 
                 response = GetUpdateResultResponse(request, updateResult);
@@ -76,7 +76,7 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
             {
                 HttpResponseMessage response = null;
 
-                FindResult<CategorySubCategoryAttributeValuesViewModel> findResult = productAttributeTransition
+                FindResult<CategorySubCategoryAttributeValuesViewModel> findResult = productAttributeActivity
                                                         .GetAllCategorySubCategoryAttributesValueList(categorySubCategoryMapId);
 
 
@@ -105,7 +105,7 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
 
                 DeleteResult<ProductAttributeViewModel> deleteResult = new DeleteResult<ProductAttributeViewModel>();
 
-                deleteResult = productAttributeTransition.Delete(id);
+                deleteResult = productAttributeActivity.Delete(id);
                 deleteResult.Entity = productAttribute;
               
 
@@ -120,7 +120,7 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
                     return response;
                 }
 
-                EntityOperationResultBase result = productAttributeTransition.Delete(productAttribute.ProductAttributeId);
+                EntityOperationResultBase result = productAttributeActivity.Delete(productAttribute.ProductAttributeId);
 
                 deleteResult.ErrorMessage = result.ErrorMessage;
                 deleteResult.Success = result.Success;

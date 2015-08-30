@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Innoventory.Lotus.BusinessTransition
+namespace Innoventory.Lotus.BusinessActivity
 {
-    public interface IProductTransition
+    public interface IProductActivity
     {
 
         GetEntityResult<ProductViewModel> GetProduct(Guid productId);

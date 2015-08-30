@@ -13,12 +13,12 @@ using Innoventory.Lotus.Repository.Abstract;
 using System.Runtime.Caching;
 using Innoventory.Lotus.Core.Common;
 
-namespace Innoventory.Lotus.BusinessTransition
+namespace Innoventory.Lotus.BusinessActivity
 {
 
-    [Export(typeof(IProductTransition))]
+    [Export(typeof(IProductActivity))]
     [PartCreationPolicy(System.ComponentModel.Composition.CreationPolicy.NonShared)]
-    public class ProductTransition : IProductTransition
+    public class ProductActivity : IProductActivity
     {
 
         private const string CONST_CACHE_PRODUCT = "PRODUCT_CACHE";

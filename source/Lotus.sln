@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.Repositor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.Database", "Innoventory.Lotus.Database\Innoventory.Lotus.Database.csproj", "{4AF5F319-4D6A-4597-9930-33AAE9C6C856}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.BusinessTransition", "Innoventory.Lotus.BusinessTransition\Innoventory.Lotus.BusinessTransition.csproj", "{9B99C18C-EE69-4D1D-84F4-C3C78578F407}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.BusinessActivity", "Innoventory.Lotus.BusinessTransition\Innoventory.Lotus.BusinessActivity.csproj", "{9B99C18C-EE69-4D1D-84F4-C3C78578F407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

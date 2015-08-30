@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 using Innoventory.Lotus.Core.Common;
 using System.Data.Entity;
 
-namespace Innoventory.Lotus.BusinessTransition
+namespace Innoventory.Lotus.BusinessActivity
 {
-    [Export(typeof(ISubCategoryTransition))]
+    [Export(typeof(ISubCategoryBusinessAcitvity))]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class SubCategoryTransition : ISubCategoryTransition
+    public class SubCategoryBusinessAcitvity : ISubCategoryBusinessAcitvity
     {
         [Import]
         ISubCategoryRepository subCategoryRepository;
@@ -27,7 +27,7 @@ namespace Innoventory.Lotus.BusinessTransition
         ICategorySubCategoryMapRepository categorySubCategoryMapRepo;
 
 
-        //public SubCategoryTransition(ISubCategoryRepository subCategoryRepository, 
+        //public SubCategoryActivity(ISubCategoryRepository subCategoryRepository, 
         //                            ICategoryRepository categoryRepository,
         //                            ICategorySubCategoryMapRepository categorySubCategoryMapRepo)
         //{

@@ -5,7 +5,7 @@ using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Innoventory.Lotus.BusinessTransition;
+using Innoventory.Lotus.BusinessActivity;
 
 namespace Innoventory.Lotus.Bootsraper
 {
@@ -24,10 +24,9 @@ namespace Innoventory.Lotus.Bootsraper
 
             //catalog.Catalogs.Add(new AssemblyCatalog(typeof(CategorySubCategoryMapRepository).Assembly));
 
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(SubCategoryTransition).Assembly));
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(SubCategoryBusinessAcitvity).Assembly));
 
-            //catalog.Catalogs.Add(new AssemblyCatalog(typeof(ProductTransition).Assembly));
-
+            
             CompositionContainer container = new CompositionContainer(catalog);
 
             return container;

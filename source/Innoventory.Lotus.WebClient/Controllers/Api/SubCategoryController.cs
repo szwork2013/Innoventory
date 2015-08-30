@@ -1,5 +1,5 @@
 ﻿using Innoventory.Lotus.Repository.Abstract;
-using Innoventory.Lotus.BusinessTransition;
+using Innoventory.Lotus.BusinessActivity;
 using Innoventory.Lotus.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,13 +18,13 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
     {
         //ISubCategoryRepository _subCategoryRepository;
         //[Import]
-        ISubCategoryTransition subCategoryTransition = null;
+        ISubCategoryBusinessAcitvity subCategoryActivity = null;
 
         [ImportingConstructor]
-        public SubCategoryController(ISubCategoryTransition subCategoryTransition)
+        public SubCategoryController(ISubCategoryBusinessAcitvity subCategoryActivity)
         {
 
-            this.subCategoryTransition = subCategoryTransition;
+            this.subCategoryActivity = subCategoryActivity;
 
         }
 
@@ -38,7 +38,7 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
 
                 FindResult<SubCategoryCategories> subCategoryCategoriesResult = new FindResult<SubCategoryCategories>();
 
-                FindResult<SubCategoryViewModel> subCategoryResult = subCategoryTransition.GetAllSubcategories();
+                FindResult<SubCategoryViewModel> subCategoryResult = subCategoryActivity.GetAllSubcategories();
 
                 response = GetFindResultResponse(request, subCategoryResult);
                 return response;
@@ -53,7 +53,7 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
             {
                 HttpResponseMessage response = null;
 
-                UpdateResult<SubCategoryViewModel> updateResult = subCategoryTransition.UpdateSubCategory(model);
+                UpdateResult<SubCategoryViewModel> updateResult = subCategoryActivity.UpdateSubCategory(model);
 
                 response = GetUpdateResultResponse(request, updateResult);
 
@@ -69,7 +69,7 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
             {
 
                 HttpResponseMessage response = null;
-                SubCategoryCategories subCategory = subCategoryTransition.GetSubCategoryCategories(id);
+                SubCategoryCategories subCategory = subCategoryActivity.GetSubCategoryCategories(id);
                 GetEntityResult<SubCategoryCategories> result = new GetEntityResult<SubCategoryCategories>
                 {
                     Entity = subCategory,
@@ -99,11 +99,11 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
 
             if (id.HasValue)
             {
-                findSubCategoryResult = subCategoryTransition.GetAllSubcategoriesByCategory(id.Value);
+                findSubCategoryResult = subCategoryActivity.GetAllSubcategoriesByCategory(id.Value);
             }
             else
             {
-                findSubCategoryResult = subCategoryTransition.GetAllSubcategories();
+                findSubCategoryResult = subCategoryActivity.GetAllSubcategories();
             }
 
 
@@ -145,7 +145,7 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
             {
                 HttpResponseMessage response = null;
 
-                entityResult = subCategoryTransition.GetCategorySubCategoryMap(categoryId, subCategoryId);
+                entityResult = subCategoryActivity.GetCategorySubCategoryMap(categoryId, subCategoryId);
 
                 response = new HttpResponseMessage(HttpStatusCode.OK);
 

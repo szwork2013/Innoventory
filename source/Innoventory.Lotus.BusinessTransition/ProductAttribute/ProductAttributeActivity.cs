@@ -11,11 +11,11 @@ using System.Data.Entity;
 using Innoventory.Lotus.Database.DataEntities;
 
 
-namespace Innoventory.Lotus.BusinessTransition
+namespace Innoventory.Lotus.BusinessActivity
 {
-    [Export(typeof(IProductAttributeTransition))]
+    [Export(typeof(IProductAttributeActivity))]
     [PartCreationPolicy(System.ComponentModel.Composition.CreationPolicy.NonShared)]
-    public class ProductAttributeTransition : IProductAttributeTransition
+    public class ProductAttributeActivity : IProductAttributeActivity
     {
 
         [Import]

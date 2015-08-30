@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Innoventory.Lotus.BusinessTransition;
+using Innoventory.Lotus.BusinessActivity;
 using Innoventory.Lotus.ViewModels;
 
 namespace Innoventory.Lotus.WebClient.Controllers.Api
@@ -16,7 +16,7 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
     public class ProductController : ApiControllerBase
     {
         [Import]
-        IProductTransition productTransition;
+        IProductActivity productActivity;
 
         [HttpPost]
         [Route("searchProduct")]
@@ -27,7 +27,7 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
 
             return GetHttpResponse(request, () =>
             {
-                FindResult<ProductListItem> productListItemsResult = productTransition.GetAllProductListItems(productFilterOption);
+                FindResult<ProductListItem> productListItemsResult = productActivity.GetAllProductListItems(productFilterOption);
 
                 response = new HttpResponseMessage(HttpStatusCode.OK);
 
@@ -49,7 +49,7 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
             return GetHttpResponse(request, () =>
             {
 
-                GetEntityResult<ProductViewModel> productResult = productTransition.GetProduct(id);
+                GetEntityResult<ProductViewModel> productResult = productActivity.GetProduct(id);
 
                 if(productResult.Success)
                 {
@@ -78,7 +78,7 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
             return GetHttpResponse(request, () =>
             {
 
-                UpdateResult<ProductViewModel> updateResult = productTransition.SaveProduct(product);
+                UpdateResult<ProductViewModel> updateResult = productActivity.SaveProduct(product);
 
                 if (updateResult.Success)
                 {

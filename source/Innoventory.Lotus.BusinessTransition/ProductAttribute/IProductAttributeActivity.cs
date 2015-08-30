@@ -5,9 +5,9 @@ using System.Text;
 using Innoventory.Lotus.ViewModels;
 
 
-namespace Innoventory.Lotus.BusinessTransition
+namespace Innoventory.Lotus.BusinessActivity
 {
-    public interface IProductAttributeTransition
+    public interface IProductAttributeActivity
     {
 
         FindResult<ProductAttributeViewModel> GetProductAttributes();

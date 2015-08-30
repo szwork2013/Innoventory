@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Innoventory.Lotus.BusinessTransition
+namespace Innoventory.Lotus.BusinessActivity
 {
-    public class PurchaseOrderTransition : IPurchaseOrderTransition
+    public class PurchaseOrderActivity : IPurchaseOrderActivity
     {
 
     }

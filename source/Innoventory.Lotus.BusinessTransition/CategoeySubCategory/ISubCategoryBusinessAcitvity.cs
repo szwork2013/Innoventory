@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Innoventory.Lotus.ViewModels;
 
-namespace Innoventory.Lotus.BusinessTransition
+namespace Innoventory.Lotus.BusinessActivity
 {
-    public interface ISubCategoryTransition
+    public interface ISubCategoryBusinessAcitvity
     {
         UpdateResult<SubCategoryViewModel> UpdateSubCategory(SubCategoryViewModel subCategoryViewModel);
 

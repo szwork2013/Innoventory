@@ -53,15 +53,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoeySubCategory\ISubCategoryTransition.cs" />
-    <Compile Include="CategoeySubCategory\SubCategoryTransition.cs" />
-    <Compile Include="ProductAttribute\IProductAttributeTransition.cs" />
-    <Compile Include="ProductAttribute\ProductAttributeTransition.cs" />
-    <Compile Include="Product\IProductTransition.cs" />
-    <Compile Include="Product\ProductTransition.cs" />
+    <Compile Include="CategoeySubCategory\ISubCategoryBusinessAcitvity.cs" />
+    <Compile Include="CategoeySubCategory\SubCategoryBusinessAcitvity.cs" />
+    <Compile Include="ProductAttribute\IProductAttributeActivity.cs" />
+    <Compile Include="ProductAttribute\ProductAttributeActivity.cs" />
+    <Compile Include="Product\IProductActivity.cs" />
+    <Compile Include="Product\ProductActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PurchaseOrder\IPurchaseOrderTransition.cs" />
-    <Compile Include="PurchaseOrder\PurchaseOrderTransition.cs" />
+    <Compile Include="PurchaseOrder\IPurchaseOrderActivity.cs" />
+    <Compile Include="PurchaseOrder\PurchaseOrderActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Innoventory.Lotus.Business\Innoventory.Lotus.Repository.csproj">
