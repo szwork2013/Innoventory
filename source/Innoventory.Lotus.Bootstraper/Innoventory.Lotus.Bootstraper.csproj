@@ -48,9 +48,9 @@
       <Project>{9b99c18c-ee69-4d1d-84f4-c3c78578f407}</Project>
       <Name>Innoventory.Lotus.BusinessTransition</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Innoventory.Lotus.Business\Innoventory.Lotus.Business.csproj">
+    <ProjectReference Include="..\Innoventory.Lotus.Business\Innoventory.Lotus.Repository.csproj">
       <Project>{cfc1b219-5ef3-4008-a178-4cbaa92112b4}</Project>
-      <Name>Innoventory.Lotus.Business</Name>
+      <Name>Innoventory.Lotus.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Innoventory.Lotus.ViewModels\Innoventory.Lotus.ViewModels.csproj">
       <Project>{d7f7ea22-ae02-47b6-a438-c8f850435f0d}</Project>

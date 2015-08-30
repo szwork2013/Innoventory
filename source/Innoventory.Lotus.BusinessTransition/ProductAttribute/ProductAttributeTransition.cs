@@ -1,4 +1,4 @@
-﻿using Innoventory.Lotus.Business.Abstract;
+﻿using Innoventory.Lotus.Repository.Abstract;
 using Innoventory.Lotus.ViewModels;
 using Innoventory.Lotus.Core;
 using System;

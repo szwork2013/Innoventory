@@ -1,4 +1,4 @@
-﻿using Innoventory.Lotus.Business.Abstract;
+﻿using Innoventory.Lotus.Repository.Abstract;
 using Innoventory.Lotus.Database.DataEntities;
 using Innoventory.Lotus.ViewModels;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Innoventory.Lotus.Business.Concrete
+namespace Innoventory.Lotus.Repository.Concrete
 {
     [Export(typeof(IOrganisationSetupRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]

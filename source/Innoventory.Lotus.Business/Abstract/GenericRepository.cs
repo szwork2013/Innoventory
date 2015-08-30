@@ -12,7 +12,7 @@ using Innoventory.Lotus.ViewModels;
 using Innoventory.Lotus.Core.Common;
 
 
-namespace Innoventory.Lotus.Business.Abstract
+namespace Innoventory.Lotus.Repository.Abstract
 {
     public abstract class GenericRepository<DbEntity, VM> : IGenericRepository<VM>
         where DbEntity : class, new()

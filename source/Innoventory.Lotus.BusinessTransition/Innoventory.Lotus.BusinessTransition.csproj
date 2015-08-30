@@ -64,9 +64,9 @@
     <Compile Include="PurchaseOrder\PurchaseOrderTransition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Innoventory.Lotus.Business\Innoventory.Lotus.Business.csproj">
+    <ProjectReference Include="..\Innoventory.Lotus.Business\Innoventory.Lotus.Repository.csproj">
       <Project>{cfc1b219-5ef3-4008-a178-4cbaa92112b4}</Project>
-      <Name>Innoventory.Lotus.Business</Name>
+      <Name>Innoventory.Lotus.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Innoventory.Lotus.Database\Innoventory.Lotus.Database.csproj">
       <Project>{4af5f319-4d6a-4597-9930-33aae9c6c856}</Project>

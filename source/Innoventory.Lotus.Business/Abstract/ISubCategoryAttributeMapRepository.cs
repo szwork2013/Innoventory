@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Innoventory.Lotus.Business.Abstract
+namespace Innoventory.Lotus.Repository.Abstract
 {
     public interface ISubCategoryAttributeMapRepository : IGenericRepository<SubCategoryAttributeMapViewModel>
     {

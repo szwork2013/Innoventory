@@ -22,7 +22,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.WebClient
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.Bootstraper", "Innoventory.Lotus.Bootstraper\Innoventory.Lotus.Bootstraper.csproj", "{C424F5F8-D603-4823-9147-AA04B20C1C44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.Business", "Innoventory.Lotus.Business\Innoventory.Lotus.Business.csproj", "{CFC1B219-5EF3-4008-A178-4CBAA92112B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.Repository", "Innoventory.Lotus.Business\Innoventory.Lotus.Repository.csproj", "{CFC1B219-5EF3-4008-A178-4CBAA92112B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innoventory.Lotus.Database", "Innoventory.Lotus.Database\Innoventory.Lotus.Database.csproj", "{4AF5F319-4D6A-4597-9930-33AAE9C6C856}"
 EndProject

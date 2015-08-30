@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using Innoventory.Lotus.Database;
 using Innoventory.Lotus.ViewModels;
-using Innoventory.Lotus.Business;
+using Innoventory.Lotus.Repository;
 using Innoventory.Lotus.Database.DataEntities;
 using System.ComponentModel.Composition;
-using Innoventory.Lotus.Business.Abstract;
+using Innoventory.Lotus.Repository.Abstract;
 using System.Runtime.Caching;
 using Innoventory.Lotus.Core.Common;
 

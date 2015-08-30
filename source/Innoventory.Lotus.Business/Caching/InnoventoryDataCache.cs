@@ -8,7 +8,7 @@ using Innoventory.Lotus.ViewModels;
 using Innoventory.Lotus.Core;
 using Innoventory.Lotus.Database;
 
-namespace Innoventory.Lotus.Business
+namespace Innoventory.Lotus.Repository
 {
     public class InnoventoryDataCache<T> : IInnoventoryDataCache<T>
     {

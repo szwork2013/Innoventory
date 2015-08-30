@@ -1,4 +1,4 @@
-﻿using Innoventory.Lotus.Business.Abstract;
+﻿using Innoventory.Lotus.Repository.Abstract;
 using Innoventory.Lotus.Core.Common;
 using Innoventory.Lotus.Database.DataEntities;
 using Innoventory.Lotus.ViewModels;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Innoventory.Lotus.Business.Concrete
+namespace Innoventory.Lotus.Repository.Concrete
 {
     [Export(typeof(IVolumeMeasureRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]

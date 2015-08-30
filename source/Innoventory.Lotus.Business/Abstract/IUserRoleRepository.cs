@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Innoventory.Lotus.ViewModels;
 
 
-namespace Innoventory.Lotus.Business.Abstract
+namespace Innoventory.Lotus.Repository.Abstract
 {
     public interface IUserRoleRepository : IGenericRepository<UserRoleViewModel>
     {

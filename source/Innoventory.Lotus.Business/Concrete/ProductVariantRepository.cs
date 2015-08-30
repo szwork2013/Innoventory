@@ -1,4 +1,4 @@
-﻿using Innoventory.Lotus.Business.Abstract;
+﻿using Innoventory.Lotus.Repository.Abstract;
 using Innoventory.Lotus.Core.Common;
 using Innoventory.Lotus.Database.DataEntities;
 using Innoventory.Lotus.ViewModels;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Runtime.Caching;
 
 
-namespace Innoventory.Lotus.Business.Concrete
+namespace Innoventory.Lotus.Repository.Concrete
 {
     [Export(typeof(IProductVariantRepository))]
     [PartCreationPolicy(CreationPolicy.NonShared)]

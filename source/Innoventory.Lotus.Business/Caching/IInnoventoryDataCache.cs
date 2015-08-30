@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Innoventory.Lotus.ViewModels;
 
-namespace Innoventory.Lotus.Business
+namespace Innoventory.Lotus.Repository
 {
     public interface IInnoventoryDataCache<T>
     {
