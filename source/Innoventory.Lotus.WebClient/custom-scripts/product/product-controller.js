@@ -75,7 +75,7 @@
         getTableStyle = function (gridOptions, gridApi) {
 
             var rowHeight = gridOptions.rowHeight;
-            var headerHeight = gridOptions.headerHeight;
+            var headerHeight = gridOptions.headerRowHeight;
             var height = 400;
 
             if (gridOptions.data && gridOptions.data.length) {
@@ -83,23 +83,31 @@
 
                 var dataLength = go.data.length;
                 var rowCount = 0;
-                var currentPageNo = go.paginationCurrentPage;
 
-                var restRows = dataLength - (go.paginationPageSize * (currentPageNo - 1));
+                if (gridOptions.enablePaginationControls) {
+                    var currentPageNo = go.paginationCurrentPage;
 
-                if (restRows > go.paginationPageSize) {
-                    rowCount = go.paginationPageSize;
+                    var restRows = dataLength - (go.paginationPageSize * (currentPageNo - 1));
+
+
+                    if (restRows > go.paginationPageSize) {
+                        rowCount = go.paginationPageSize;
+                    }
+                    else {
+                        rowCount = restRows;
+                    }
+
                 }
                 else {
-                    rowCount = restRows;
-                }
+                    rowCount = gridOptions.data.length;
+                };
 
                 height = ((rowCount * rowHeight) + headerHeight) + 30;
 
 
                 //height = (dataLength * rowHeight) + headerHeight - 20 + "px";
 
-                gridApi.grid.gridHeight = height - 20;
+                gridApi.grid.gridHeight = height - 10;
 
 
                 if (height < gridApi.grid.gridHeight) {
@@ -107,6 +115,11 @@
                 }
 
             };
+
+            if (gridOptions.enablePaginationControls) {
+
+                height = height + 40;
+            }
 
             var tableStyle = {
                 height: height + "px"
@@ -285,6 +298,7 @@
 
                 $scope.gridOptions.data = $scope.productListItems;
                 $scope.isData = true;
+                $scope.tableStyle = getTableStyle($scope.gridOptions, $scope.gridApi);
 
             });
 
@@ -421,6 +435,7 @@
                         
                         if ($scope.pvGridOptions.data && $scope.pvGridOptions.data.length > 0) {
                             $scope.isPVData = true;
+                            $scope.pvTableStyle = getTableStyle($scope.pvGridOptions, $scope.pvGridApi);
                         }
 
                         $scope.showProduct = true;

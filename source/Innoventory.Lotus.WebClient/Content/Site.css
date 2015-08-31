@@ -348,18 +348,31 @@ li.dropdown:hover > ul.dropdown-menu {
 }
 
 
-.ui-grid-row {
+.ui-grid-row, .grid-cell {
     border-bottom: 1px solid gray;
 }
 
+
+
 .ui-grid .ui-grid-row .ui-grid-cell {
     border-bottom: 1px solid #ccc;
+}
+
+.ui-grid .ui-grid-row:last-child .ui-grid-cell{
+    border-bottom-width: 2px;
 }
 
 .ui-grid-cell-number {
     border-bottom: 1px solid #ccc;
     text-align: right;
     
+}
+
+.ui-grid-render-container{
+    background: linear-gradient(top, #fff 80%; #eee 100%);
+    background: -webkit-linear-gradient(top, #fff 80%; #eee 100%);
+    background: -moz-linear-gradient(top, #fff 80%; #eee 100%);
+    border-bottom: 1px solid gray;
 }
 
 .ui-grid-pager-panel {
