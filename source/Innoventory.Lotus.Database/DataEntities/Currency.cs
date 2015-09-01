@@ -12,13 +12,13 @@ namespace Innoventory.Lotus.Database.DataEntities
         [Key]
         public Guid CurrencyID { get; set; }
 
-        [StringLength(3)]
+        [StringLength(5)]
         public string CurrencyCode { get; set; }
         
         [StringLength(3)]
         public string CurrencySymbol { get; set; }
         
-        [StringLength(3)]
+        [StringLength(50)]
         public string CurrencyFullName { get; set; }
 
       

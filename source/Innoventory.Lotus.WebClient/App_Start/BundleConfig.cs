@@ -29,7 +29,8 @@ namespace Innoventory.Lotus.WebClient
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/ui-grid.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/form.css"));
 
             
 
@@ -46,6 +47,7 @@ namespace Innoventory.Lotus.WebClient
 
             bundles.Add(new ScriptBundle("~/bundles/shared-scripts").Include(
                                         "~/custom-scripts/shared/apiService.js",
+                                        "~/custom-scripts/shared/data-grid-service.js",
                                         "~/custom-scripts/shared/innoventory.js",
                                         "~/custom-scripts/shared/app.js"));
 

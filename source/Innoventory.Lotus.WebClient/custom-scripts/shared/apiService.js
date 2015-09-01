@@ -218,7 +218,7 @@
             alertBox.style.position = "fixed";
             alertBox.style.right = 5 + "px";
             alertBox.style.bottom = 5 + "px";
-
+            alertBox.style.zIndex = 200;
 
             $timeout(dismissAlert, 6000);
 
@@ -256,6 +256,66 @@
 
             return uuid;
         }
+
+        me.getTableStyle = function (gridOptions, gridApi) {
+
+            var rowHeight = gridOptions.rowHeight;
+            var headerHeight = gridOptions.headerRowHeight;
+            var height = 400;
+
+            if (gridOptions.data && gridOptions.data.length) {
+                var go = gridOptions;
+
+                var dataLength = go.data.length;
+                var rowCount = 0;
+
+                if (gridOptions.enablePaginationControls) {
+                    var currentPageNo = go.paginationCurrentPage;
+
+                    var restRows = dataLength - (go.paginationPageSize * (currentPageNo - 1));
+
+
+                    if (restRows > go.paginationPageSize) {
+                        rowCount = go.paginationPageSize;
+                    }
+                    else {
+                        rowCount = restRows;
+                    }
+
+                }
+                else {
+                    rowCount = gridOptions.data.length;
+                };
+
+                height = ((rowCount * rowHeight) + headerHeight) + 30;
+
+
+                //height = (dataLength * rowHeight) + headerHeight - 20 + "px";
+
+                //if (height < 120) {
+                //    height = 120;
+                //}
+
+                //gridApi.grid.gridHeight = height ;
+
+
+                //if (height < gridApi.grid.gridHeight) {
+                //    height = gridApi.grid.gridHeight;
+                //}
+
+            };
+
+            if (gridOptions.enablePaginationControls) {
+
+                height = height + 40;
+            }
+
+            var tableStyle = {
+                height: height + "px"
+            };
+
+            return tableStyle;
+        };
 
         return me;
 

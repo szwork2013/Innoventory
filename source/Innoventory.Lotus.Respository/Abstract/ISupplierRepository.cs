@@ -10,6 +10,7 @@ namespace Innoventory.Lotus.Repository.Abstract
 {
     public interface ISupplierRepository : IGenericRepository<SupplierViewModel>
     {
-        
+
+        FindResult<SupplierViewModel> SearchSupplier(string searchString);
     }
 }

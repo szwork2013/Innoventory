@@ -7,8 +7,8 @@
     <ProjectGuid>{9B99C18C-EE69-4D1D-84F4-C3C78578F407}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Innoventory.Lotus.BusinessTransition</RootNamespace>
-    <AssemblyName>Innoventory.Lotus.BusinessTransition</AssemblyName>
+    <RootNamespace>Innoventory.Lotus.BusinessActivity</RootNamespace>
+    <AssemblyName>Innoventory.Lotus.BusinessActivity</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -62,6 +62,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseOrder\IPurchaseOrderActivity.cs" />
     <Compile Include="PurchaseOrder\PurchaseOrderActivity.cs" />
+    <Compile Include="SalesOrder\ISalesOrderBusinessActivity.cs" />
+    <Compile Include="SalesOrder\SalesOrderBusinessActivity.cs" />
+    <Compile Include="SalesOrder\SalesOrderSearchOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Innoventory.Lotus.Database\Innoventory.Lotus.Database.csproj">

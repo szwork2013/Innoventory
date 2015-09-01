@@ -193,18 +193,18 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\CurrencyController.cs" />
+    <Compile Include="Controllers\Api\SupplierController.cs" />
+    <Compile Include="Controllers\Api\CustomerController.cs" />
     <Compile Include="Controllers\Api\ProductAttributeController.cs" />
     <Compile Include="Controllers\Api\CategoryController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\SubCategoryController.cs" />
     <Compile Include="Controllers\Api\VolumeMeasureController.cs" />
     <Compile Include="Controllers\Mvc\MaintenanceController.cs" />
-    <Compile Include="Controllers\Mvc\ProductAttributeController.cs" />
-    <Compile Include="Controllers\Mvc\CategoryController.cs" />
     <Compile Include="Controllers\Mvc\HomeController.cs" />
-    <Compile Include="Controllers\Mvc\ProductsController.cs" />
-    <Compile Include="Controllers\Mvc\SubCategoryController.cs" />
-    <Compile Include="Controllers\Mvc\VolumeMeasureController.cs" />
+    <Compile Include="Controllers\Mvc\ReportController.cs" />
+    <Compile Include="Controllers\Mvc\TransactionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -217,16 +217,25 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\form.css" />
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="Content\ui-grid.css" />
     <Content Include="Content\ui-grid.min.css" />
     <Content Include="Content\ui-grid.svg" />
     <Content Include="custom-scripts\category\category-controller.js" />
+    <Content Include="custom-scripts\shared\data-grid-service.js" />
+    <Content Include="custom-scripts\supplier\supplier-controller.js" />
+    <Content Include="custom-scripts\supplier\supplier-model.js" />
+    <Content Include="custom-scripts\customer\customer-controller.js" />
+    <Content Include="custom-scripts\customer\customer-model.js" />
     <Content Include="custom-scripts\product\product-grid.js" />
     <Content Include="custom-scripts\product\product-variant-grid.js" />
     <Content Include="custom-scripts\product\product-variant-model.js" />
     <Content Include="custom-scripts\product\product-variant-service.js" />
+    <Content Include="custom-scripts\sales-order\sales-order-controller.js" />
+    <Content Include="custom-scripts\sales-order\sales-order-item-model.js" />
+    <Content Include="custom-scripts\sales-order\sales-order-model.js" />
     <Content Include="custom-scripts\shared\innoventory-directives.js" />
     <Content Include="custom-scripts\category\category-model.js" />
     <Content Include="custom-scripts\category\category-service.js" />
@@ -311,6 +320,9 @@
     <Content Include="Scripts\ui-grid.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="templates\category\SelectCategory.html" />
+    <Content Include="templates\supplier\supplier.html" />
+    <Content Include="templates\supplier\List.html" />
+    <Content Include="templates\customer\List.html" />
     <Content Include="templates\product-detail.html" />
     <Content Include="templates\category\Category.html" />
     <Content Include="templates\category\List.html" />
@@ -324,6 +336,7 @@
     <Content Include="templates\product-attribute\ProductAttribute.html" />
     <Content Include="templates\product\Product.html" />
     <Content Include="templates\product-variant\ProductVariant.html" />
+    <Content Include="templates\customer\customer.html" />
     <Content Include="Views\PurchaseOrder\PurchaseOrder.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -350,9 +363,16 @@
     <Content Include="Views\Maintenance\VolumeMeasures.cshtml" />
     <Content Include="Views\Maintenance\ProductAttributes.cshtml" />
     <Content Include="Views\PurchaseOrder\PurchaseOrders.cshtml" />
+    <Content Include="Views\Maintenance\Customers.cshtml" />
+    <Content Include="Views\Report\CustomerOrders.cshtml" />
+    <Content Include="Views\Report\SalesReport.cshtml" />
+    <Content Include="Views\Transaction\PurchaseOrders.cshtml" />
+    <Content Include="Views\Transaction\SalesOrders.cshtml" />
+    <Content Include="Views\Maintenance\Suppliers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\Customer\" />
     <Folder Include="Views\ProductAttribute\" />
   </ItemGroup>
   <ItemGroup>

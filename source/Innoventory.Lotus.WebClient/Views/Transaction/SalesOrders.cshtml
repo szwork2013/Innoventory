@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "SalesOrder";
+    ViewBag.Name = "SalesOrder";
+
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+
+@section scripts
+{
+
+}
+
+@section footerScript
+{
+
+}
+
+
+<div class="container" ng-controller="salesOrderController as salesOrderCtrl">
+    <div ng-show="apiService.isLoading">
+        @Html.Partial("~/Views/Shared/Loader.cshtml")
+    </div>
+
+    @Html.Partial("~/Views/Shared/AlertBox.cshtml")
+
+    <div>
+        <salesorder-list></salesorder-list>
+    </div>
+
+    <div class="form-group">
+
+        <a href="#" id="lnkNewSalesOrder" class="btn btn-primary" ng-click="newSalesOrder()">
+            <div class="btn-div"> Create New </div>
+            <i class="glyphicon glyphicon-plus col-sm-6"></i>
+        </a>
+
+    </div>
+
+    <div ng-show="showSalesOrder">
+
+        <salesorder></salesorder>
+
+    </div>
+
+</div>
+

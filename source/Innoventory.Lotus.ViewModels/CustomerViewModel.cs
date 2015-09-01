@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Innoventory.Lotus.ViewModels
 {
     [DataContract]
-    public class CustomerViewModel : IIdentifiable 
+    public class CustomerViewModel : IIdentifiable, IDisplayName 
     {
         [ScaffoldColumn(false)]
         [DataMember(Name= "customerId")]
@@ -47,6 +47,11 @@ namespace Innoventory.Lotus.ViewModels
             {
                 CustomerId = value;
             }
+        }
+
+        public string DisplayName
+        {
+            get { return CustomerName; }
         }
     }
 }

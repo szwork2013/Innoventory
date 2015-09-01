@@ -10,6 +10,6 @@ namespace Innoventory.Lotus.Repository.Abstract
 {
     public interface ICustomerRepository : IGenericRepository<CustomerViewModel>
     {
-        
+        FindResult<CustomerViewModel> SearchCustomer(string searchString);
     }
 }

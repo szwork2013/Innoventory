@@ -34,5 +34,15 @@ namespace Innoventory.Lotus.WebClient.Controllers.Mvc
         {
             return View();
         }
+
+        public ActionResult Customers()
+        {
+            return View();
+        }
+
+        public ActionResult Suppliers()
+        {
+            return View();
+        }
     }
 }

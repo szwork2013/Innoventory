@@ -42,7 +42,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="<#= modelName + " in " + modelName + "s" #> " ng-click="<#= string.Format("edit{0}", modelName()) #>)">
+					<tr ng-repeat="<#= modelName + " in " + modelName + "s" #>" ng-click="<#= string.Format("edit{0}()", modelName) #>">
 			<#
 				foreach (PropertyMetadata property in properties) {
 					if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {

@@ -11,6 +11,12 @@
         return Innoventory.apiService($http, $q, $timeout);
     }]);
 
+    commonModule.factory('dataGridService', [function () {
+
+        return Innoventory.dataGridService();
+
+    }]);
+
 
     var mainApp = angular.module("mainApp", ['common', 'innoventory-directives',
                                             'ui.bootstrap', 'ui.grid', 'ui.grid.selection',
@@ -57,6 +63,24 @@
                Innoventory.productController($scope, $q, productService, productVariantService, apiService);
 
            }]);
+
+    mainApp.controller("customerController", ["$scope", "$q", "apiService", function ($scope, $q, apiService) {
+
+        Innoventory.customerController($scope, $q, apiService);
+
+    }]);
+
+    mainApp.controller("supplierController", ["$scope", "$q", "apiService", function ($scope, $q, apiService) {
+
+        Innoventory.supplierController($scope, $q, apiService);
+
+    }]);
+
+    mainApp.controller("salesOrderController", ["$scope", "$q", "apiService", 'dataGridService', function ($scope, $q, apiService, dataGridService) {
+
+        Innoventory.salesOrderController($scope, $q, apiService, dataGridService);
+
+    }]);
 
 
 }(window.Innoventory));

@@ -27,23 +27,23 @@ namespace Innoventory.Lotus.ViewModels
         public string SupplierEmailId { get; set; }
 
 
-        [DataMember(Name = "currency")]
-        public CurrencyViewModel Currency { get; set; }
+        //[DataMember(Name = "currency")]
+        //public CurrencyViewModel Currency { get; set; }
 
 
-        [DataMember(Name = "supplierAddresses")]
-        public List<AddressViewModel> SupplierAddresses { get; set; }
+        //[DataMember(Name = "supplierAddresses")]
+        //public List<AddressViewModel> SupplierAddresses { get; set; }
 
         [ScaffoldColumn(false)]
         public Guid EntityId
         {
             get
             {
-                throw new NotImplementedException();
+                return SupplierId;
             }
             set
             {
-                throw new NotImplementedException();
+                SupplierId = value;
             }
         }
     }

@@ -102,6 +102,18 @@
     <Compile Include="Migrations\201508181840476_18082015.Designer.cs">
       <DependentUpon>201508181840476_18082015.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508311206077_310815.cs" />
+    <Compile Include="Migrations\201508311206077_310815.Designer.cs">
+      <DependentUpon>201508311206077_310815.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011922122_010915.cs" />
+    <Compile Include="Migrations\201509011922122_010915.Designer.cs">
+      <DependentUpon>201509011922122_010915.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509012021200_010915_1.cs" />
+    <Compile Include="Migrations\201509012021200_010915_1.Designer.cs">
+      <DependentUpon>201509012021200_010915_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -124,6 +136,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508181840476_18082015.resx">
       <DependentUpon>201508181840476_18082015.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508311206077_310815.resx">
+      <DependentUpon>201508311206077_310815.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011922122_010915.resx">
+      <DependentUpon>201509011922122_010915.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509012021200_010915_1.resx">
+      <DependentUpon>201509012021200_010915_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

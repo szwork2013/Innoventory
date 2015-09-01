@@ -23,6 +23,7 @@ namespace Innoventory.Lotus.ViewModels
 
         [DataMember(Name = "customerId")]
         public Guid CustomerId { get; set; }
+               
 
         [DataMember(Name = "shippingCost")]
         public decimal ShippingCost { get; set; }

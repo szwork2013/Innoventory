@@ -21,8 +21,8 @@ namespace Innoventory.Lotus.Database.DataEntities
 
         public Guid CurrencyId { get; set; }
 
-        [ForeignKey("CurrencyId")]
-        public Currency Currency { get; set; }
+        //[ForeignKey("CurrencyId")]
+        //public Currency Currency { get; set; }
 
 
 

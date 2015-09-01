@@ -71,8 +71,7 @@
             };
 
             if (hasErrors) {
-                apiService.hasErrors = true;
-                apiService.errors = errors;
+                apiService.showError(errors);
                 return;
             };
 

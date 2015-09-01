@@ -2,14 +2,14 @@
 using Innoventory.Lotus.Core.Common;
 using Innoventory.Lotus.Database.DataEntities;
 using Innoventory.Lotus.ViewModels;
+
 using System;
+using System.Linq;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Data.Entity;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace Innoventory.Lotus.Repository.Concrete
 {
@@ -111,5 +111,54 @@ namespace Innoventory.Lotus.Repository.Concrete
 
         }
 
+
+        public FindResult<CustomerViewModel> SearchCustomer(string searchString)
+        {
+            FindResult<CustomerViewModel> result = new FindResult<CustomerViewModel>()
+            {
+                Success = false,
+            };
+
+            using (InnoventoryDBContext dbContext = new InnoventoryDBContext())
+            {
+
+                List<Customer> customers = null;
+
+                if (!string.IsNullOrEmpty(searchString) && searchString.Trim() != string.Empty)
+                {
+                    customers = dbContext.CustomerSet.Where(x => x.CustomerName.Contains(searchString)).OrderBy(x => x.CustomerName).ToList();
+                }
+                else
+                {
+                    customers = dbContext.CustomerSet.OrderBy(x => x.CustomerName).ToList();
+                }
+
+                List<CustomerViewModel> customerVMs = new List<CustomerViewModel>();
+
+                result.Entities = customerVMs;
+
+                if (customers != null && customers.Count > 0)
+                {
+
+                    foreach (Customer customer in customers)
+                    {
+
+                        CustomerViewModel customerVM = ObjectMapper.PropertyMap(customer, new CustomerViewModel());
+
+                        if (customerVM != null)
+                        {
+                            customerVMs.Add(customerVM);
+                        }
+
+                    }
+
+                }
+
+            }
+
+            result.Success = true;
+
+            return result;
+        }
     }
 }

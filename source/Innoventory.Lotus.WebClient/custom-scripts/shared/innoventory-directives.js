@@ -117,5 +117,33 @@
         };
     });
 
+    app.directive("customerList", function () {
+        return {
+            restrict: 'E',
+            templateUrl: '../templates/customer/List.html'
+        };
+    });
+
+    app.directive("customer", function () {
+        return {
+            restrict: 'E',
+            templateUrl: '../templates/customer/customer.html'
+        };
+    });
+
+
+    app.directive("supplierList", function () {
+        return {
+            restrict: 'E',
+            templateUrl: '../templates/supplier/List.html'
+        };
+    });
+
+    app.directive("supplier", function () {
+        return {
+            restrict: 'E',
+            templateUrl: '../templates/supplier/supplier.html'
+        };
+    });
 
 })()

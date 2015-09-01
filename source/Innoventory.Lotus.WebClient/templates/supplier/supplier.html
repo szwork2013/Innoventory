@@ -1,0 +1,73 @@
+﻿
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{formTitle}}</h3>
+    </div>
+    <div class="panel-body">
+
+        <form class="form-horizontal css-form" name="View" novalidate role="form">
+
+            <div class="form-group">
+
+                <label for="SupplierName" class="control-label col-sm-6"> Supplier Name</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="SupplierName" ng-model="supplierVM.supplierName" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="SupplierContactNo" class="control-label col-sm-6">Contact No</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="SupplierContactNo" ng-model="supplierVM.supplierContactNo" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="SupplierEmailId" class="control-label col-sm-6"> Email Id</label>
+
+                <div class="col-sm-18">
+
+                    <input type="text" id="SupplierEmailId" ng-model="supplierVM.supplierEmailId" class="form-control" />
+
+                </div>
+
+            </div>
+
+            
+
+
+            <div class="form-group">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-18">
+                    <button type="button" value="Save" class="btn btn-primary btn-save" ng-click='saveSupplier($event)'>
+                        <div class="btn-div">Save</div>
+                        <i class="btn-span glyphicon glyphicon-floppy-disk btn-span"></i>
+                    </button>
+
+                    <button type="button" value="Delete" class="btn btn-warning" ng-show="showDelete" ng-click='deleteSupplier($event)'>
+                        <div class="btn-div">Delete</div>
+                        <i class="btn-span glyphicon glyphicon-trash btn-span"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-default" ng-click="cancel($event)">
+                        <div class="btn-div">Cancel</div>
+                        <i class="glyphicon glyphicon-remove btn-span"></i>
+                    </button>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

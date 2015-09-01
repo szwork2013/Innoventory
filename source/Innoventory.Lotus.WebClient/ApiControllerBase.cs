@@ -35,8 +35,7 @@ namespace Innoventory.Lotus.WebClient
         protected HttpResponseMessage GetFindResultResponse<T>(HttpRequestMessage request, FindResult<T> findResult)
         {
             HttpResponseMessage response = null;
-
-            
+           
 
             if(findResult.Success)
             {
@@ -55,11 +54,35 @@ namespace Innoventory.Lotus.WebClient
             return response;
         }
 
-        protected HttpResponseMessage GetUpdateResultResponse<T>(HttpRequestMessage request, UpdateResult<T> findResult)
+
+        protected HttpResponseMessage GetEntityResultResponse<T>(HttpRequestMessage request, GetEntityResult<T> entityResult)
         {
             HttpResponseMessage response = null;
 
-            if (findResult.Success)
+
+            if (entityResult.Success)
+            {
+
+                response = request.CreateResponse(HttpStatusCode.OK);
+
+            }
+            else
+            {
+
+                response = request.CreateResponse(HttpStatusCode.InternalServerError);
+
+            }
+
+            response.Content = new ObjectContent<GetEntityResult<T>>(entityResult, Configuration.Formatters.JsonFormatter);
+
+            return response;
+        }
+
+        protected HttpResponseMessage GetUpdateResultResponse<T>(HttpRequestMessage request, UpdateResult<T> updateResult)
+        {
+            HttpResponseMessage response = null;
+
+            if (updateResult.Success)
             {
 
                 response = request.CreateResponse(HttpStatusCode.OK);
@@ -71,9 +94,32 @@ namespace Innoventory.Lotus.WebClient
 
             }
 
-            response.Content = new ObjectContent<UpdateResult<T>>(findResult, Configuration.Formatters.JsonFormatter);
+            response.Content = new ObjectContent<UpdateResult<T>>(updateResult, Configuration.Formatters.JsonFormatter);
 
             return response;
         }
+
+
+        protected HttpResponseMessage GetOperationBaseResponse(HttpRequestMessage request, EntityOperationResultBase resultBase)
+        {
+            HttpResponseMessage response = null;
+
+            if (resultBase.Success)
+            {
+
+                response = request.CreateResponse(HttpStatusCode.OK);
+
+            }
+            else
+            {
+                response = request.CreateResponse(HttpStatusCode.InternalServerError);
+
+            }
+
+            response.Content = new ObjectContent<EntityOperationResultBase>(resultBase, Configuration.Formatters.JsonFormatter);
+
+            return response;
+        }
+       
     }
 }

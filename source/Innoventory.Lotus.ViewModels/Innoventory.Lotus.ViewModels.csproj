@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="AttributeValueListViewModel.cs" />
     <Compile Include="CategorySubCategoryAttributeValuesViewModel.cs" />
+    <Compile Include="SalesOrderSearchOptions.cs" />
     <Compile Include="SelectModel.cs" />
     <Compile Include="SubCategoryAttributeMapViewModel.cs" />
     <Compile Include="CategorySubCategoryMapViewModel.cs" />

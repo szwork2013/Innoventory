@@ -6,10 +6,15 @@ using System.Web.Mvc;
 
 namespace Innoventory.Lotus.WebClient.Controllers.Mvc
 {
-    public class SubCategoryController : Controller
+    public class TransactionController : Controller
     {
-        // GET: SubCategory
-        public ActionResult SubCategories()
+        // GET: Transaction
+        public ActionResult PurchaseOrders()
+        {
+            return View();
+        }
+
+        public ActionResult SalesOrders()
         {
             return View();
         }

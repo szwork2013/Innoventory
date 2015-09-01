@@ -105,11 +105,11 @@ namespace Innoventory.Lotus.WebClient.Controllers.Api
                 DeleteResult<CategoryViewModel> deleteResult = new DeleteResult<CategoryViewModel>();
                 deleteResult.Entity = category;
 
-                bool success = false;
+                
 
                 if (category == null)
                 {
-                    response = new HttpResponseMessage(HttpStatusCode.BadRequest);
+                    response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
 
                     deleteResult.ErrorMessage = "Category is null";
                     deleteResult.Success = false;
